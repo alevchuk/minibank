@@ -29,6 +29,10 @@ Raspbian Stretch Lite https://www.raspberrypi.org/downloads/raspbian/
 
 ## Network
 
+## Build Tor
+
+## Start Tor
+
 ## Build Bitcoind
 
 ## Start Bitcoind
