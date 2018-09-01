@@ -19,6 +19,10 @@ bitcoin lightning node in a box
 * USB cable https://camelcamelcamel.com/UGREEN-Adapter-Samsung-Controller-Smartphone/product/B00LN3LQKQ
 Case ?
 
+## Operating System
+
+Raspbian Stretch Lite https://www.raspberrypi.org/downloads/raspbian/
+
 ## Storage
 
 ## Memory
