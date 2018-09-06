@@ -1,5 +1,11 @@
 # Litecoind
 
+# Update: 2019-09-06
+
+Cancelling my LTC attempt... See [README.md](README.md)
+
+# Archive before 2019-09-06
+
 ## Build Litecoind
 
 Install dependencies:
