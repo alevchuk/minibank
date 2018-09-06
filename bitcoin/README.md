@@ -24,6 +24,5 @@ cd ~/src_github.com/bitcoin
 
 Build and Install:
 ```
-make
-make install
+make && make install
 ```
