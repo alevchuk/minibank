@@ -3,6 +3,8 @@ bitcoin lightning node in a box
 
 ## Hardware
 
+### All Models
+
 * 2x Micro SD cards https://camelcamelcamel.com/Sandisk-Ultra-200GB-Micro-Adapter/product/B073JY5T7T 
 * Card Reader https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4
 
