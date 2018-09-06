@@ -1,5 +1,11 @@
 # ltcd
 
+# Update: 2019-09-06
+
+Cancelling my LTC attempt... See README.md
+
+# Archive before 2019-09-06
+
 # Prerequsits
 
 LND and it's dependencies need to be fetched. See https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#get-lnd--btcd
