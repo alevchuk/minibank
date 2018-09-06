@@ -3,7 +3,7 @@
 Testnet on Bitcoin is having issues (hight fees), so I'm switching to testing LND with Litecoin.
 
 
-## Build Litecoin
+## Build Litecoind
 
 Install dependencies:
 ```
