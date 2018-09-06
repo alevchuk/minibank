@@ -22,7 +22,7 @@ cd ~/src_github.com/bitcoin
 ./configure  --with-gui=no --disable-wallet --disable-tests --prefix=$HOME/bin
 ```
 
-Build:
+Build and Install:
 ```
 make
 make install
