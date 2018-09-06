@@ -1,6 +1,6 @@
-= ltcd =
+# ltcd
 
-== Build and Install ==
+# Build and Install
 
 ```
 cd $GOPATH/src/github.com/ltcsuite/ltcd
