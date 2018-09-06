@@ -24,7 +24,7 @@ Build:
 ```
 cd ~/src_github.com/litecoin
 ./autogen.sh
-./configure  --with-gui=no --disable-wallet
+./configure  --with-gui=no --disable-wallet --disable-tests
 ```
 
 ```
