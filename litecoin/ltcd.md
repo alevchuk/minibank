@@ -2,7 +2,7 @@
 
 # Prerequsits
 
-LND and it's dependencies need to be fetched.
+LND and it's dependencies need to be fetched. See https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#get-lnd--btcd
 
 # Build and Install
 
