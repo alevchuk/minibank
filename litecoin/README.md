@@ -8,6 +8,15 @@ Testnet on Bitcoin is having issues (my faviourite faucet shutdown citing high f
 
 So, at least for now, I'm switching to testing LND with Litecoin.
 
+# Update: 2019-09-06
+
+Nevermind, LTC does not even have a discoverable testnet https://github.com/lightningnetwork/lnd/issues/1542
+
+And it's LND mainnet is tiny https://ltc.roska.life/
+
+
+# Archive before 2019-09-06
+
 Also it will be easier to get bootstrapped on Litecoin mainnet because the fees are ~0.10 USD per transaction and chain size is 10x smaller (currently 18.95 GB on Litecoin vs 213.10 GB on Bitcoin).
 
 LND supports two implementations of Litcoin full node: 
