@@ -24,6 +24,14 @@ diff sample-ltcd.conf ltcd.conf  # Check if you already have existing config
 mv sample-ltcd.conf ltcd.conf  # Overwrite
 ```
 
+Edit **~/.ltcd/ltcd.conf**
+
+Type a bunch of random alphanumberic characters for RPC user and password:
+```
+rpcuser=
+rpcpass=
+```
+
 # Testnet
 
 In  `~/.ltcd/ltcd.conf` uncomment `testnet=1`
