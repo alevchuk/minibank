@@ -1,8 +1,9 @@
 
 # Update: 2019-09-06
 
-Nevermind, LTC does not even have a discoverable testnet https://github.com/lightningnetwork/lnd/issues/1542
-
+Nevermind, LTC does not even have a discoverable testnet (no DNS seed) https://github.com/lightningnetwork/lnd/issues/1542
+ https://github.com/lightningnetwork/lnd/issues/1860
+ 
 And it's LND mainnet is tiny https://ltc.roska.life/
 
 
