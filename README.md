@@ -42,7 +42,9 @@ sudo dphys-swapfile setup
 sudo dphys-swapfile swapon
 ```
 
-A note on microSD card wear and tear from Swap: I have been running Bitcoind + LND on this setup for over 6 months on two Pi Zero W boards and still have not seen failures related to swap wering out the microSD cards. For context on why this is important see "System with too little RAM" answer in https://askubuntu.com/a/652355/5191 . When failurs or slow-downs happen due to micro SD card lifespan, a quick remediation would be to swap the primary and the backup sd cards as described in the Storage section.
+A note on microSD card wear and tear from Swap: 
+
+I have been running Bitcoind + LND on this setup for over 6 months on two Pi Zero W boards and still have not seen failures related to swap wering out the microSD cards. For context on why this is importantm, see "System with too little RAM" section in [https://askubuntu.com/a/652355/5191]. When failurs or slow-downs happen due to micro SD card lifespan, a quick remediation would be to swap the primary and the backup sd cards as described in the Storage section.
 
 
 ## Storage
