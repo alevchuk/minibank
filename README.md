@@ -25,9 +25,27 @@ Case ?
 
 Raspbian Stretch Lite https://www.raspberrypi.org/downloads/raspbian/
 
-## Storage
-
 ## Memory
+
+Pi Zero W has 433 MB of usable RAM. Additional memory needs to be added as swap.
+
+Edit `/etc/dphys-swapfile`
+```
+CONF_SWAPSIZE=600
+CONF_MAXSWAP=600
+```
+
+Test:
+```
+sudo dphys-swapfile swapoff
+sudo dphys-swapfile setup
+sudo dphys-swapfile swapon
+```
+
+A note on microSD card wear and tear from Swap: I have been running Bitcoind + LND on this setup for over 6 months on two Pi Zero W boards and still have not seen failures related to swap wering out the microSD cards. For context on why this is important see "System with too little RAM" answer in https://askubuntu.com/a/652355/5191 . When failurs or slow-downs happen due to micro SD card lifespan, a quick remediation would be to swap the primary and the backup sd cards as described in the Storage section.
+
+
+## Storage
 
 ## Network
 
