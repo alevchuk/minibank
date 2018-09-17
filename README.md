@@ -1,6 +1,8 @@
 # bankminus
 bitcoin lightning node in a box
 
+![alt text](https://raw.githubusercontent.com/alevchuk/bankminus/master/model2_64gb.jpg "bankminus model 2, 64GB microSD cards, running testnet LND")
+
 ## Hardware
 
 ### All Models
