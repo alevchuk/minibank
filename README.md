@@ -16,7 +16,7 @@ bitcoin lightning node
 * Card Reader https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4
 * Case https://camelcamelcamel.com/Case-Official-Raspberry-Touchscreen-Display/product/B01HV97F64
 
-### Model 2
+### Model 2 [Discontinued]
 
 * Pi Zero W https://camelcamelcamel.com/Raspberry-Pi-Zero-Wireless-model/product/B06XFZC3BX
 * USB cable https://camelcamelcamel.com/UGREEN-Adapter-Samsung-Controller-Smartphone/product/B00LN3LQKQ
