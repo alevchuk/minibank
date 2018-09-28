@@ -1,27 +1,33 @@
 # bankminus
-bitcoin lightning node home appliance
+bitcoin lightning node
 
-![alt text](https://raw.githubusercontent.com/alevchuk/bankminus/master/model2_64gb.jpg "bankminus model 2, 64GB microSD cards, running testnet LND")
+![alt text](https://raw.githubusercontent.com/alevchuk/bankminus/master/model3_64gb.jpg "bankminus model 3, 64GB microSD cards, running testnet LND")
 
 ## Hardware
 
 ### All Models
 
 * 2x Micro SD cards https://camelcamelcamel.com/Sandisk-Ultra-200GB-Micro-Adapter/product/B073JY5T7T 
-* Card Reader https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4
 
 ### Model 1
 
 * Pi 3 B+ https://camelcamelcamel.com/ELEMENT-Element14-Raspberry-Pi-Motherboard/product/B07BDR5PDW
 * Touchscreen https://camelcamelcamel.com/Raspberry-Pi-7-Touchscreen-Display/product/B0153R2A9I
+* Card Reader https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4
 * Case https://camelcamelcamel.com/Case-Official-Raspberry-Touchscreen-Display/product/B01HV97F64
 
 ### Model 2
 
 * Pi Zero W https://camelcamelcamel.com/Raspberry-Pi-Zero-Wireless-model/product/B06XFZC3BX
-* Touchscreen https://camelcamelcamel.com/LANDZO-Touch-Screen-320480-Raspberry/product/B01IGBDT02
 * USB cable https://camelcamelcamel.com/UGREEN-Adapter-Samsung-Controller-Smartphone/product/B00LN3LQKQ
-Case ?
+* Touchscreen ? https://camelcamelcamel.com/LANDZO-Touch-Screen-320480-Raspberry/product/B01IGBDT02
+* Case ?
+
+### Model 3
+
+* 2x Pi Zero W https://camelcamelcamel.com/Raspberry-Pi-Zero-Wireless-model/product/B06XFZC3BX
+* 2x USB-A Addon Case https://camelcamelcamel.com/MakerFocus-Raspberry-Required-Connector-Protective/product/B07BK2BR6C
+* Power Supply https://camelcamelcamel.com/Tranesca-charger-foldable-Samsung-More-Black/product/B01385COIE
 
 ## Operating System
 
