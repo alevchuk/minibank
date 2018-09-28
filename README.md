@@ -20,6 +20,7 @@ bitcoin lightning node
 
 * Pi Zero W https://camelcamelcamel.com/Raspberry-Pi-Zero-Wireless-model/product/B06XFZC3BX
 * USB cable https://camelcamelcamel.com/UGREEN-Adapter-Samsung-Controller-Smartphone/product/B00LN3LQKQ
+* Card Reader https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4
 * Touchscreen ? https://camelcamelcamel.com/LANDZO-Touch-Screen-320480-Raspberry/product/B01IGBDT02
 * Case ?
 
