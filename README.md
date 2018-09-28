@@ -1,7 +1,7 @@
 # bankminus
 bitcoin lightning node
 
-![alt text](https://raw.githubusercontent.com/alevchuk/bankminus/master/model3_64gb.jpg "bankminus model 3, 64GB microSD cards, running testnet LND")
+![alt text](https://raw.githubusercontent.com/alevchuk/bankminus/master/model3_64g.jpg "bankminus model 3, 64GB microSD cards, running testnet LND")
 
 ## Hardware
 
