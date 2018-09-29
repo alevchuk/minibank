@@ -26,3 +26,10 @@ Build and Install:
 ```
 make && make install
 ```
+
+# Upgrade
+```
+cd ~/src_github.com/bitcoin
+git pull
+make clean && make && make install
+```
