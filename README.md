@@ -34,6 +34,22 @@ bitcoin lightning node
 
 Raspbian Stretch Lite https://www.raspberrypi.org/downloads/raspbian/
 
+## Network
+
+Edit `/etc/wpa_supplicant/wpa_supplicant.conf`
+
+Add WiFi network name and password:
+
+```
+network={
+    ssid="testing"
+    psk="testingPassword"
+}
+```
+
+For troubleshooting see:
+https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
+
 ## Memory
 
 Pi Zero W has 433 MB of usable RAM. Additional memory needs to be added as swap.
@@ -55,14 +71,13 @@ A note on microSD card wear and tear from Swap:
 
 I have been running Bitcoind + LND on this setup for over 6 months on two Pi Zero W boards and still have not seen failures related to swap wearing out the microSD cards. For context on why this is important, see "System with too little RAM" section in [https://askubuntu.com/a/652355/5191]. When failur or slow-downs happen due to micro SD card lifespan, a quick remediation would be to swap the primary and the backup sd cards as described in the Storage section.
 
-
 ## Storage
 
-## Network
+### Partition
 
-## Build Tor
+### ISCSI
 
-## Start Tor
+### BTRFS (RAID-1)
 
 ## Build Bitcoind
 
@@ -72,7 +87,9 @@ I have been running Bitcoind + LND on this setup for over 6 months on two Pi Zer
 
 ## Start LND
 
-## Touchscreen
+## Monitoring
+
+https://github.com/prometheus/prometheus#building-from-source
 
 ## systemd
 
