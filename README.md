@@ -75,6 +75,31 @@ I have been running Bitcoind + LND on this setup for over 6 months on two Pi Zer
 
 ### Partition
 
+```
+sudo parted /dev/mmcblk0
+```
+
+* First partition is boot
+* Second partition is for operating system
+* Third partition is for software and data
+
+Allocate 5GB to Second and the rest to Thrid.
+
+Results should look like this:
+```
+Model: SD GC2QT (sd/mmc)
+Disk /dev/mmcblk0: 200.0GB
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+Disk Flags:
+
+Number  Start   End     Size    Type     File system  Flags
+ 1      4194kB  49.5MB  45.3MB  primary  fat32        lba
+ 2      50.3MB  5500MB  5450MB  primary  ext4
+ 3      5450MB  200.0GB 194.5GB primary  btrfs
+```
+
+
 ### ISCSI
 
 ### BTRFS (RAID-1)
