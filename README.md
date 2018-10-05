@@ -92,7 +92,12 @@ Number  Start   End     Size    Type     File system  Flags
 ```
 
 
-### ISCSI
+### iSCSI
+
+(Not needed for Base Station beacause it uses an external USB Card reader)
+
+iSCSI makes a storage device available over the network. This is useful to avoid cables, USB, and extra card readers.
+
 
 ### BTRFS (RAID-1)
 
