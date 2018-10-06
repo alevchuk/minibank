@@ -7,7 +7,12 @@ Table of contents
 =================
 
   * [Hardware](#hardware)
-  
+  * [Network](#network
+  * [Storage](#storage
+  * [Build Go](#build-go)
+  * [Build LND](#build-lnd)
+  * [Start LND](#start-lnd)
+  * [Monitoring](#monitoring)
  
 ## Hardware
 
