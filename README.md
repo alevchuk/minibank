@@ -131,14 +131,13 @@ sudo apt-get install golang-1.6
 sudo apt-get install git
 ```
 
---- after this all commands should be run under the "lnd" account ---
-
 2. Log-in as "lnd"
 
 ```
 sudo su -l lnd
 ```
 
+--- after this all commands should be run under the "lnd" account ---
 
 3. Set bootstrap path and gopath. To ~lightning/.profile add:
 
