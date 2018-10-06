@@ -124,7 +124,7 @@ Prerequisits:
 * Raspbian GNU/Linux 9
 * Create unix account "lnd"
 
-1. Log-in as "lnd" unix account
+1. Log-in as "lnd"
 
 ```
 sudo su -l lnd
