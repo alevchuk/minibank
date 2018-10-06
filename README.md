@@ -122,17 +122,24 @@ This section is based on https://golang.org/doc/install/source and https://githu
 
 Prerequisits:
 * Raspbian GNU/Linux 9
+* Create unix account "lnd"
 
-1. Fetch bootstrap go (as root)
+1. Log-in as "lnd" unix account
 
 ```
-apt-get install golang-1.6
-apt-get install git
+sudo su -l lnd
+```
+
+2. Fetch bootstrap go (as root)
+
+```
+sudo apt-get install golang-1.6
+sudo apt-get install git
 ```
 
 --- after this all commands should be run under the "lightning" account ---
 
-2. Set bootstrap path and gopath. To ~lightning/.profile add:
+3. Set bootstrap path and gopath. To ~lightning/.profile add:
 
 ```
 export GOROOT_BOOTSTRAP=/usr/lib/go-1.6
@@ -142,7 +149,7 @@ export GOPATH=~/gocode
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 ```
 
-3. Fetch new go
+4. Fetch new go
 ```
 mkdir ~/src
 cd ~/src
@@ -152,7 +159,7 @@ git fetch
 git checkout go1.11.1
 ```
 
-4. Build new go
+5. Build new go
 ```
 . ~/.profile
 cd $GOROOT/src
