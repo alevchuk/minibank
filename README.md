@@ -110,7 +110,9 @@ Number  Start   End     Size    Type     File system  Flags
 iSCSI makes a storage device available over the network. This is useful to avoid cables, USB, and extra card readers.
 
 
-### BTRFS (RAID-1)
+### BTRFS 
+
+RAID-1
 
 ## Build Bitcoind
 
