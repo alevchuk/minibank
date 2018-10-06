@@ -105,6 +105,49 @@ iSCSI makes a storage device available over the network. This is useful to avoid
 
 ## Start Bitcoind
 
+## Build Go
+
+This is based on https://golang.org/doc/install/source
+
+1. Fetch bootstrap go (as root)
+
+```
+apt-get install golang-1.6
+apt-get install git
+```
+
+--- after this all commands should be run under the "lightning" account ---
+
+2. Set bootstrap path and gopath. To ~lightning/.profile add:
+
+```
+export GOROOT_BOOTSTRAP=/usr/lib/go-1.6
+
+export GOROOT=~/src/go
+export GOPATH=~/gocode
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+```
+
+3. Fetch new go
+```
+mkdir ~/src
+cd ~/src
+git clone https://go.googlesource.com/go
+cd go
+git fetch
+git checkout go1.11.1
+```
+
+4. Build new go
+```
+. ~/.profile
+cd $GOROOT/src
+./make.bash
+```
+At the end it should say "Installed commands in $GOROOT/bin"
+
+
+
 ## Build LND
 
 ## Start LND
