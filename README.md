@@ -107,7 +107,7 @@ iSCSI makes a storage device available over the network. This is useful to avoid
 
 ## Build Go
 
-This is based on https://golang.org/doc/install/source
+This section is based on https://golang.org/doc/install/source and https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#build-go
 
 1. Fetch bootstrap go (as root)
 
