@@ -124,20 +124,21 @@ Prerequisits:
 * Raspbian GNU/Linux 9
 * Create unix account "lnd"
 
-1. Log-in as "lnd"
-
-```
-sudo su -l lnd
-```
-
-2. Fetch bootstrap go (as root)
+1. Fetch bootstrap go (as root)
 
 ```
 sudo apt-get install golang-1.6
 sudo apt-get install git
 ```
 
---- after this all commands should be run under the "lightning" account ---
+--- after this all commands should be run under the "lnd" account ---
+
+2. Log-in as "lnd"
+
+```
+sudo su -l lnd
+```
+
 
 3. Set bootstrap path and gopath. To ~lightning/.profile add:
 
