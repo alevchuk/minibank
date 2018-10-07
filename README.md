@@ -116,9 +116,16 @@ iSCSI makes a storage device available over the network. This is useful to avoid
 
 RAID-1
 
+Create filesystems Bitcoin and LND nodes
 ```
 sudo mkfs.btrfs /dev/mmcblk0p3
 sudo mkfs.btrfs /dev/mmcblk0p4
+```
+
+Mount
+```
+sudo mkdir /mnt/btrfs_lnd
+sudo mount /dev/mmcblk0p4 /mnt/btrfs_lnd
 ```
 
 ## Build Bitcoind
