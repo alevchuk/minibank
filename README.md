@@ -189,7 +189,7 @@ At the end it should say "Installed commands in $GOROOT/bin"
 
 ## Monitoring
 
-Prequistis:
+Prerequisites:
 * Filesystem for LND node
 * Build Go
 
