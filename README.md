@@ -206,7 +206,7 @@ ln -s /mnt/btrfs_lnd/src
 ln -s /mnt/btrfs_lnd/gocode
 ```
 
-Build Go
+Now [Build Go](#build-go)
 
 ```
 go get github.com/prometheus/node_exporter
