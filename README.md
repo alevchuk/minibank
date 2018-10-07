@@ -210,6 +210,13 @@ Now [Build Go](#build-go)
 
 ```
 go get github.com/prometheus/node_exporter
+cd ${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter
+make
+```
+
+Run exporter
+```
+./node_exporter 
 ```
 
 ## systemd
