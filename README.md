@@ -84,9 +84,10 @@ sudo parted /dev/mmcblk0
 
 * First partition is boot
 * Second partition is for operating system
-* Third partition is for software and data
+* Third partition is for Bitcoin software and data
+* Fourth partition is for LND software and data
 
-Allocate 5GB to Second and the rest to Thrid.
+Allocate 5G to Second, 5G to Fourth, and the rest to Thrid.
 
 Results should look like this:
 ```
@@ -99,7 +100,8 @@ Disk Flags:
 Number  Start   End     Size    Type     File system  Flags
  1      4194kB  49.5MB  45.3MB  primary  fat32        lba
  2      50.3MB  5500MB  5450MB  primary  ext4
- 3      5450MB  200.0GB 194.5GB primary  btrfs
+ 3      5450MB  195.0GB 189.5GB primary  btrfs
+ 4      195.0GB 200.0GB 5.0GB   primary  btrfs
 ```
 
 
@@ -113,6 +115,11 @@ iSCSI makes a storage device available over the network. This is useful to avoid
 ### BTRFS 
 
 RAID-1
+
+```
+sudo mkfs.btrfs /dev/mmcblk0p3
+sudo mkfs.btrfs /dev/mmcblk0p4
+```
 
 ## Build Bitcoind
 
