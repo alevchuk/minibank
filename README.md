@@ -191,7 +191,21 @@ At the end it should say "Installed commands in $GOROOT/bin"
 
 ## Monitoring
 
-https://github.com/prometheus/prometheus#building-from-source
+Prequistis:
+* Filesystem for LND node
+
+Based on https://github.com/prometheus/prometheus#building-from-source
+
+```
+sudo mkdir /mnt/btrfs_lnd/gocode
+sudo mkdir /mnt/btrfs_lnd/src
+sudo chown -R monitoring /mnt/btrfs_lnd
+
+sudo su -l monitoring
+cd ~
+ln -s /mnt/btrfs_lnd/src
+ln -s /mnt/btrfs_lnd/gocode
+```
 
 ## systemd
 
