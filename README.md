@@ -16,8 +16,6 @@ Table of contents
  
 ## Hardware
 
-### All Models
-
 ### Model 1 :: Base Station
 
 * Pi 3 B+ https://camelcamelcamel.com/ELEMENT-Element14-Raspberry-Pi-Motherboard/product/B07BDR5PDW
@@ -193,6 +191,7 @@ At the end it should say "Installed commands in $GOROOT/bin"
 
 Prequistis:
 * Filesystem for LND node
+* Build Go
 
 Based on https://github.com/prometheus/prometheus#building-from-source
 
@@ -205,6 +204,12 @@ sudo su -l monitoring
 cd ~
 ln -s /mnt/btrfs_lnd/src
 ln -s /mnt/btrfs_lnd/gocode
+```
+
+Build Go
+
+```
+go get github.com/prometheus/node_exporter
 ```
 
 ## systemd
