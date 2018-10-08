@@ -259,13 +259,18 @@ Prereqisits:
 
 ```
 sudo adduser grafana
+sudo mkdir /mnt/btrfs/src_grafana
+sudo mkdir /mnt/btrfs/gocode_grafana
+sudo chown grafana /mnt/btrfs/src_grafana
+sudo chown grafana /mnt/btrfs/gocode_grafana
+
 su -l grafana
-ln -s /mnt/btrfs/src  # symlinc to read-only go installation
+ln -s /mnt/btrfs/src ~/src_readonly # symlinc to read-only go installation
 ```
 
 to `~/.profile` add:
 ```
-export GOROOT=~/src/go
+export GOROOT=~/src_readonly/go
 export GOPATH=~/gocode
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
