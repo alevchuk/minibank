@@ -146,11 +146,13 @@ sudo mount /dev/mmcblk0p4 /mnt/btrfs_lnd
 
 ## Build Go
 
-This section is based on https://golang.org/doc/install/source and https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#build-go
-
 Prerequisits:
 * Raspbian GNU/Linux 9
 * Create unix account "lnd"
+
+Citations:
+* This section is based on https://golang.org/doc/install/source and https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#build-go
+
 
 1. Fetch bootstrap go (as root)
 
@@ -209,7 +211,8 @@ Prerequisites:
 * Filesystem for LND node
 * Build Go
 
-Based on https://github.com/prometheus/prometheus#building-from-source
+Citations:
+ * This section is based on https://github.com/prometheus/prometheus#building-from-source
 
 Install on all nodes.
 
@@ -246,6 +249,9 @@ Install this on the base station to pull in all metrics into a single place.
 
 Grafana is a monitoring/analytics web interface. This is a web server. Install it on the base station.
 
+Citations:
+* This section is based on http://docs.grafana.org/project/building_from_source/
+
 Prereqisits:
 * node exporters on all nodes (`lnd`, `bitcoin`, `base`)
 * prometheus of `base`
@@ -266,6 +272,12 @@ export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 export PATH=$HOME/bin/bin:$PATH
 ```
 
+
+Install grafana:
+
+```
+go get github.com/grafana/grafana
+```
 
 
 
