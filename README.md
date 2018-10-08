@@ -13,6 +13,7 @@ Table of contents
   * [Build LND](#build-lnd)
   * [Start LND](#start-lnd)
   * [Monitoring](#monitoring)
+  * [Grafana](#grafana)
  
 ## Hardware
 
@@ -189,11 +190,15 @@ At the end it should say "Installed commands in $GOROOT/bin"
 
 ## Monitoring
 
+### Node exporters
+
 Prerequisites:
 * Filesystem for LND node
 * Build Go
 
 Based on https://github.com/prometheus/prometheus#building-from-source
+
+Install on all nodes.
 
 ```
 sudo mkdir /mnt/btrfs_lnd/gocode
@@ -218,6 +223,20 @@ Run exporter
 ```
 ./node_exporter 
 ```
+
+
+### Prometheus
+
+Install this on the base station to pull in all metrics into a single place.
+
+### Grafana
+
+Grafana is a monitoring/analytics web interface. This is a web server. Install it on the base station.
+
+```
+sudo adduser grafana
+```
+
 
 ## systemd
 
