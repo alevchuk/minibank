@@ -54,6 +54,17 @@ network={
 For troubleshooting see:
 https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
 
+You'll need two Rasberry Pi Zero W (Model 3) one for LND and the other one for Bitcoind. Optionally, you can get a touchscreen Base Station (Model 1).
+
+Lookup the IP addresses by running `ip addr` on each node.
+
+Edit `/etc/hosts` and add IP addresses for the 3 node, for example:
+```
+192.168.0.10    lnd
+192.168.0.11    bitcoin
+192.168.0.12    base
+```
+
 ## Memory
 
 Pi Zero W has 433 MB of usable RAM. Additional memory needs to be added as swap.
