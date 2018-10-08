@@ -295,7 +295,7 @@ Build node.js:
 ```
 cd ~/src
 git clone https://github.com/nodejs/node.git
-cd node.git
+cd node
 ./configure
 make -j4
 ```
