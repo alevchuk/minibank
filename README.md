@@ -253,7 +253,21 @@ Prereqisits:
 
 ```
 sudo adduser grafana
+su -l grafana
+ln -s /mnt/btrfs/src  # symlinc to read-only go installation
 ```
+
+to `~/.profile` add:
+```
+export GOROOT=~/src/go
+export GOPATH=~/gocode
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+
+export PATH=$HOME/bin/bin:$PATH
+```
+
+
+
 
 
 ## systemd
