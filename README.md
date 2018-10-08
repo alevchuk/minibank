@@ -246,6 +246,11 @@ Install this on the base station to pull in all metrics into a single place.
 
 Grafana is a monitoring/analytics web interface. This is a web server. Install it on the base station.
 
+Prereqisits:
+* node exporters on all nodes (`lnd`, `bitcoin`, `base`)
+* prometheus of `base`
+* ssh into `base`
+
 ```
 sudo adduser grafana
 ```
