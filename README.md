@@ -56,7 +56,7 @@ network={
 For troubleshooting see:
 https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
 
-You'll need two Rasberry Pi Zero W (Model 3) one for LND and the other one for Bitcoind. Optionally, you can get a touchscreen Base Station (Model 1). I'll call them hosts and use the hostnames `lnd`, `bitcoin`, and `base` in this manual.
+You'll need two Rasberry Pi Zero W (Model 3) one for LND and the other one for Bitcoind. Optionally, you can get a touchscreen Base Station (Model 1) for serving the web user interface for monitroing. I'll call all of the Pis "hosts" and use the hostnames `lnd`, `bitcoin`, and `base` in this manual.
 
 Lookup the IP addresses by running `ip addr` on each node.
 
