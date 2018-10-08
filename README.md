@@ -277,8 +277,19 @@ Install grafana:
 
 ```
 go get github.com/grafana/grafana
+
+cd $GOPATH/src/github.com/grafana/grafana
+go run build.go setup
+go run build.go build    
 ```
 
+Build node.
+
+```
+npm install -g yarn
+yarn install --pure-lockfile
+yarn watch
+```
 
 
 
