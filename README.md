@@ -266,6 +266,8 @@ sudo chown grafana /mnt/btrfs/gocode_grafana
 
 su -l grafana
 ln -s /mnt/btrfs/src ~/src_readonly # symlinc to read-only go installation
+ln -s /mnt/btrfs/src_grafana ~/src
+ln -s /mnt/btrfs/gocode_grafana ~/gocode
 ```
 
 to `~/.profile` add:
