@@ -290,9 +290,22 @@ go run build.go setup
 go run build.go build    
 ```
 
-Build node.
+Build node.js:
 
 ```
+cd ~/src
+git clone https://github.com/nodejs/node.git
+cd node.git
+./configure
+make -j4
+```
+
+Install NPM...
+
+Build Grafana fron-end:
+```
+cd $GOPATH/src/github.com/grafana/grafana
+
 npm install -g yarn
 yarn install --pure-lockfile
 yarn watch
