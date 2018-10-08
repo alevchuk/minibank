@@ -13,7 +13,9 @@ Table of contents
   * [Build LND](#build-lnd)
   * [Start LND](#start-lnd)
   * [Monitoring](#monitoring)
-  * [Grafana](#grafana)
+    * [Node exporters](#Node-exporters)
+    * [Prometheus](#prometheus)
+    * [Grafana](#grafana)
  
 ## Hardware
 
