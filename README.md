@@ -263,13 +263,17 @@ Prereqisits:
 sudo adduser grafana
 sudo mkdir /mnt/btrfs/src_grafana
 sudo mkdir /mnt/btrfs/gocode_grafana
+sudo mkdir /mnt/btrfs/bin_grafana
+
 sudo chown grafana /mnt/btrfs/src_grafana
 sudo chown grafana /mnt/btrfs/gocode_grafana
+sudo chown grafana /mnt/btrfs/bin_grafana
 
 su -l grafana
 ln -s /mnt/btrfs/src ~/src_readonly # symlinc to read-only go installation
 ln -s /mnt/btrfs/src_grafana ~/src
 ln -s /mnt/btrfs/gocode_grafana ~/gocode
+ln -s /mnt/btrfs/bin_grafana ~/bin
 ```
 
 to `~/.profile` add:
@@ -298,7 +302,7 @@ Build node.js:
 cd ~/src
 git clone https://github.com/nodejs/node.git
 cd node
-./configure --prefix =$HOME/bin/
+./configure --prefix $HOME/bin
 make
 make install
 ```
