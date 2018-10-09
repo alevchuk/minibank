@@ -301,6 +301,8 @@ Build node.js (includes NPM)
 ```
 cd ~/src
 git clone https://github.com/nodejs/node.git
+git fetch
+git checkout v10.11.0
 cd node
 ./configure --prefix $HOME/bin
 make
