@@ -296,7 +296,7 @@ go run build.go setup
 go run build.go build    
 ```
 
-Build node.js:
+Build node.js (includes NPM)
 
 ```
 cd ~/src
@@ -306,8 +306,6 @@ cd node
 make
 make install
 ```
-
-Install NPM...
 
 Build Grafana fron-end:
 ```
