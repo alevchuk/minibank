@@ -298,8 +298,9 @@ Build node.js:
 cd ~/src
 git clone https://github.com/nodejs/node.git
 cd node
-./configure
-make 
+./configure --prefix =$HOME/bin/
+make
+make install
 ```
 
 Install NPM...
