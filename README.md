@@ -6,6 +6,8 @@ bitcoin lightning node
 Table of contents
 =================
 
+WARNING: (1) This manual is incomplete. (2) The prototype that this is based on is work in progress...
+
   * [Hardware](#hardware)
   * [Network](#network)
   * [Storage](#storage)
