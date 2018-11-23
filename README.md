@@ -302,7 +302,7 @@ Citations:
 
 Prereqisits:
 * [Build Go](#build-go) 
-* node exporters on all nodes (`lnd`, `bitcoin`, `base`)
+* node exporter running on all nodes
 * prometheus of `base`
 * ssh into `base`
 
