@@ -364,6 +364,8 @@ npm install -g yarn
 
 # IMPORTANT: before running `yarn install` you need to remove
 #            "phantomjs-prebuilt" form ./github.com/grafana/grafana/package.json
+#            more details on this here
+#            https://github.com/grafana/grafana/issues/14115
 
 yarn install --pure-lockfile
 yarn watch
@@ -391,6 +393,12 @@ sudo systemctl restart netfilter-persistent.service
 
 
 Use grafana: connect your browser to http://localhost:3000
+
+Follow web-ui wizard. Import dashboards node_exporter for Grafana app store.
+E.g. "Node Exporter Server Metrics" can show multiple nodes side-by-side:
+
+
+
 
 
 ## systemd
