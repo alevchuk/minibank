@@ -257,6 +257,7 @@ Citations:
 * This section is based on http://docs.grafana.org/project/building_from_source/
 
 Prereqisits:
+* [Build Go](#build-go) 
 * node exporters on all nodes (`lnd`, `bitcoin`, `base`)
 * prometheus of `base`
 * ssh into `base`
@@ -304,7 +305,7 @@ Build node.js (includes NPM)
 cd ~/src
 git clone https://github.com/nodejs/node.git
 git fetch
-git checkout v10.11.0
+git checkout v11.2.0
 cd node
 ./configure --prefix $HOME/bin
 make
@@ -316,10 +317,36 @@ Build Grafana fron-end:
 cd $GOPATH/src/github.com/grafana/grafana
 
 npm install -g yarn
+
+# IMPORTANT: before running `yarn install` you need to remove
+#            "phantomjs-prebuilt" form ./github.com/grafana/grafana/package.json
+
 yarn install --pure-lockfile
 yarn watch
 ```
 
+Run grafana:
+```
+cd ~/gocode/src/github.com/grafana/grafana
+./bin/linux-arm/grafana-server
+```
+
+Update firefall:
+```
+sudo vi /etc/iptables/rules.v4
+```
+Add rule (modify -s if your subnet is different):
+```
+# Allow Grafana Web UI on local network
+-A INPUT -p tcp -s 192.168.0.0/24 --dport 3000 -j ACCEPT
+```
+Reload firewall:
+```
+sudo systemctl restart netfilter-persistent.service
+```
+
+
+Use grafana: connect your browser to http://localhost:3000
 
 
 ## systemd
