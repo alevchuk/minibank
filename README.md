@@ -249,6 +249,44 @@ Run exporter
 
 Install this on the base station to pull in all metrics into a single place.
 
+Setup accounts:
+```
+sudo adduser prometheus
+sudo mkdir /mnt/btrfs/prometheus_gocode
+sudo mkdir /mnt/btrfs/prometheus_data
+
+sudo chown prometheus /mnt/btrfs/prometheus_gocode
+sudo chown prometheus /mnt/btrfs/prometheus_data
+
+su -l prometheus
+ln -s /mnt/btrfs/src ~/lightning_src # symlink to read-only go installation
+ln -s /mnt/btrfs/prometheus_gocode/ ~/gocode
+```
+
+Fetch source code:
+```
+go get github.com/prometheus/prometheus/cmd/...
+```
+
+Build:
+```
+cd /home/prometheus/gocode/src/github.com/prometheus/prometheus/
+make build
+```
+
+Confgure:
+```
+mkdir ~/.prometheus
+vi ~/.prometheus/prometheus.yml
+```
+config to collect from node exporters from all managed hosts, including self, e.g.:
+```
+scrape_configs:
+- job_name: 'node'
+  static_configs:
+  - targets: ['b1:9100', 'l1:9100', 'base:9100']
+```
+
 ### Grafana
 
 Grafana is a monitoring/analytics web interface. This is a web server. Install it on the base station.
