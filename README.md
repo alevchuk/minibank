@@ -274,17 +274,23 @@ cd /home/prometheus/gocode/src/github.com/prometheus/prometheus/
 make build
 ```
 
-Confgure:
+Configure:
 ```
-mkdir ~/.prometheus
+mkdir /mnt/btrfs/prometheus_data
+ln -s /mnt/btrfs/prometheus_data ~/.prometheus
 vi ~/.prometheus/prometheus.yml
 ```
-config to collect from node exporters from all managed hosts, including self, e.g.:
+Configure to collect from node exporters from all managed hosts, including self, e.g.:
 ```
 scrape_configs:
 - job_name: 'node'
   static_configs:
   - targets: ['b1:9100', 'l1:9100', 'base:9100']
+```
+
+Run prometheus:
+```
+prometheus --config.file=$HOME/.prometheus/prometheus.yml --storage.tsdb.path=$HOME/.prometheus/data
 ```
 
 ### Grafana
