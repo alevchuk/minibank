@@ -130,13 +130,14 @@ iSCSI makes a storage device available over the network. This is useful to avoid
 
 
 /etc/tgt/conf.d/bankminus_iscsi.conf
-
+```
 <target iqn.2018-09.bankminus:lun1>
      backing-store /dev/mmcblk0p3
      initiator-address 192.168.0.15
      incominguser bankminus-iscsi-user $$USER1_HERE$$
      outgoinguser bankminus-iscsi-target  $$USER2_HERE$$
 </target>
+```
 
 ### BTRFS 
 
