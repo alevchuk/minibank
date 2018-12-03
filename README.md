@@ -196,25 +196,29 @@ export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 4. Fetch new go
 ```
-mkdir ~/src
+mkdir /mnt/btrfs/src
+ln -s /mnt/btrfs/src ~/src
 cd ~/src
 git clone https://go.googlesource.com/go
 cd go
 git fetch
-git checkout go1.11.1
+git checkout go1.11.2
 ```
 
 5. Build new go
 ```
 . ~/.profile
 cd $GOROOT/src
-./make.bash
+./all.bash
 ```
 At the end it should say "Installed commands in $GOROOT/bin"
 
 
 
 ## Build LND
+
+Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#installing-lnd
+
 
 ## Start LND
 
