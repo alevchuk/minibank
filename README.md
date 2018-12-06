@@ -208,6 +208,15 @@ node.session.auth.username_in = bankminus-iscsi-target
 node.session.auth.password_in = $$PASSWORD2_HERE$$
 ```
 
+Now running the following after replacing the IP address for `l1`
+```
+iscsiadm  -m node  --targetname "iqn.2018-12.bankminus:btrfs-lnd.lun1" --portal 192.168.0.10:3260" --login
+```
+
+A new sd* device should appear. Find it like this:
+```
+ls /dev/sd*
+```
 
 Check connections (intiator to target) on intiator
 ```
