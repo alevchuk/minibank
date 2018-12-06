@@ -133,7 +133,7 @@ iSCSI makes a storage device available over the network. This is useful to avoid
 
 Notes are based on https://www.tecmint.com/setup-iscsi-target-and-initiator-on-debian-9/ - yet here we avoid using LVM
 
-You'll need to set things like $$PASSWORD1_HERE$$ with unique passwords. Generate random strings for each password.
+You'll need to set things like $$PASSWORD1_HERE$$ with unique passwords. Generate random strings (of 30 alpha-nuberic characters) for each password. 
 
 Part 2: Target
 
@@ -146,17 +146,17 @@ apt-get install tgt
 Edit
 /etc/tgt/conf.d/bankminus_iscsi.conf
 ```
-<target iqn.2018-09.bankminus:btrfs-bitcoind.lun1>
+<target iqn.2018-09.bankminus:btrfs-bitcoind>
      backing-store /dev/mmcblk0p3
      initiator-address 192.168.0.15
-     incominguser bankminus-iscsi-user $$PASSWORD1_HERE$$
-     outgoinguser bankminus-iscsi-target  $$PASSWORD2_HERE$$
+     incominguser bankminus-iscsi-user1 $$PASSWORD1_HERE$$
+     outgoinguser bankminus-iscsi-target2  $$PASSWORD2_HERE$$
 </target>
-<target iqn.2018-09.bankminus:btrfs-lnd.lun1>
+<target iqn.2018-09.bankminus:btrfs-lnd>
      backing-store /dev/mmcblk0p4
      initiator-address 192.168.0.15
-     incominguser bankminus-iscsi-user $$PASSWORD3_HERE$$
-     outgoinguser bankminus-iscsi-target  $$PASSWORD4_HERE$$
+     incominguser bankminus-iscsi-user3 $$PASSWORD3_HERE$$
+     outgoinguser bankminus-iscsi-target4  $$PASSWORD4_HERE$$
 </target>
 
 ```
@@ -206,9 +206,9 @@ node.session.auth.authmethod = None
 with:
 ```
 node.session.auth.authmethod = CHAP
-node.session.auth.username = bankminus-iscsi-user
+node.session.auth.username = bankminus-iscsi-user1
 node.session.auth.password = $$PASSWORD1_HERE$$
-node.session.auth.username_in = bankminus-iscsi-target
+node.session.auth.username_in = bankminus-iscsi-target2
 node.session.auth.password_in = $$PASSWORD2_HERE$$
 ```
 
