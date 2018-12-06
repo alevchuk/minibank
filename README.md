@@ -133,6 +133,8 @@ iSCSI makes a storage device available over the network. This is useful to avoid
 
 Notes are based on https://www.tecmint.com/setup-iscsi-target-and-initiator-on-debian-9/ - yet here we avoid using LVM
 
+You'll need to set things like $$PASSWORD1_HERE$$ with unique passwords. Generate random strings for each password.
+
 Part 2: Target
 
 On host b1 setup the following
@@ -147,14 +149,14 @@ Edit
 <target iqn.2018-09.bankminus:btrfs-bitcoind.lun1>
      backing-store /dev/mmcblk0p3
      initiator-address 192.168.0.15
-     incominguser bankminus-iscsi-user $$USER1_HERE$$
-     outgoinguser bankminus-iscsi-target  $$USER2_HERE$$
+     incominguser bankminus-iscsi-user $$PASSWORD1_HERE$$
+     outgoinguser bankminus-iscsi-target  $$PASSWORD2_HERE$$
 </target>
 <target iqn.2018-09.bankminus:btrfs-lnd.lun1>
      backing-store /dev/mmcblk0p4
      initiator-address 192.168.0.15
-     incominguser bankminus-iscsi-user $$USER1_HERE$$
-     outgoinguser bankminus-iscsi-target  $$USER2_HERE$$
+     incominguser bankminus-iscsi-user $$PASSWORD3_HERE$$
+     outgoinguser bankminus-iscsi-target  $$PASSWORD4_HERE$$
 </target>
 
 ```
@@ -192,6 +194,20 @@ Discover targets:
 ```
 iscsiadm  -m discovery -t st -p l1
 ```
+Find the newly created "/default" file:
+```
+find /etc/iscsi/send_targets/
+```
+
+Edit "default" file, repalace to have the following:
+```
+node.session.auth.authmethod = CHAP
+node.session.auth.username = bankminus-iscsi-user
+node.session.auth.password = $$PASSWORD1_HERE$$
+node.session.auth.username_in = bankminus-iscsi-target
+node.session.auth.password_in = $$PASSWORD2_HERE$$
+```
+
 
 Check connections (intiator to target) on intiator
 ```
