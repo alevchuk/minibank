@@ -135,7 +135,7 @@ Notes are based on https://www.tecmint.com/setup-iscsi-target-and-initiator-on-d
 
 You'll need to set things like $$PASSWORD1_HERE$$ with unique passwords. Generate random strings (of 30 alpha-nuberic characters) for each password. 
 
-Part 2: Target
+Part 1: Target
 
 On host b1 setup the following
 
