@@ -131,7 +131,15 @@ Number  Start   End     Size    Type     File system  Flags
 
 iSCSI makes a storage device available over the network. This is useful to avoid cables, USB, and extra card readers.
 
+Part 2: Target
 
+On host b1 setup the following
+
+```
+apt-get install tgt
+```
+
+Edit
 /etc/tgt/conf.d/bankminus_iscsi.conf
 ```
 <target iqn.2018-09.bankminus:btrfs-bitcoind.lun1>
@@ -149,14 +157,43 @@ iSCSI makes a storage device available over the network. This is useful to avoid
 
 ```
 
+Restart tgt service:
+```
+service tgt restart
+```
+
 Check exported targets:
 ```
 tgtadm --mode target --op show
 ```
 
-Check connections (intiator to target)
+Check connections (intiator to target) on target
 ```
 tgtadm --mode conn --op show --tid 1
+```
+
+Part 2: Intiator
+
+On host b1 mount the remote filesystem
+
+
+```
+apt-get install open-iscsi
+```
+
+Restart 
+``
+service open-iscsi restart
+``
+
+Discover targets:
+```
+iscsiadm  -m discovery -t st -p l1
+```
+
+Check connections (intiator to target) on intiator
+```
+iscsiadm -m session
 ```
 
 
