@@ -199,7 +199,11 @@ Find the newly created "/default" file:
 find /etc/iscsi/send_targets/
 ```
 
-Edit "default" file, repalace to have the following:
+Edit the "...default/default" file, replace:
+```
+node.session.auth.authmethod = None
+```
+with:
 ```
 node.session.auth.authmethod = CHAP
 node.session.auth.username = bankminus-iscsi-user
