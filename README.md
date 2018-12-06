@@ -131,6 +131,8 @@ Number  Start   End     Size    Type     File system  Flags
 
 iSCSI makes a storage device available over the network. This is useful to avoid cables, USB, and extra card readers.
 
+Notes are based on https://www.tecmint.com/setup-iscsi-target-and-initiator-on-debian-9/
+
 Part 2: Target
 
 On host b1 setup the following
