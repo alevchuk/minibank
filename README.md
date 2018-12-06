@@ -139,6 +139,17 @@ iSCSI makes a storage device available over the network. This is useful to avoid
 </target>
 ```
 
+Check exported targets:
+```
+tgtadm --mode target --op show
+```
+
+Check connections (intiator to target)
+```
+tgtadm --mode conn --op show --tid 1
+```
+
+
 ### BTRFS 
 
 RAID-1
