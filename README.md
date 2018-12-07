@@ -244,6 +244,22 @@ sudo mkdir /mnt/btrfs_lnd
 sudo mount /dev/mmcblk0p4 /mnt/btrfs_lnd
 ```
 
+Label it
+```
+btrfs fi label /mnt/btrfs_lnd l1
+```
+
+Add it to fstab
+```
+sudo su -l
+echo -e "LABEL=l1\t/mnt/btrfs_lnd\tbtrfs\tnoauto\t0\t0" >> /etc/fstab
+```
+
+Now you can mount it like this (even if block device names change):
+```
+mount /mnt/btrfs_lnd
+```
+
 ## Build Bitcoind
 
 ## Start Bitcoind
