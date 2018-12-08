@@ -210,6 +210,7 @@ node.session.auth.username = bankminus-iscsi-user1
 node.session.auth.password = $$PASSWORD1_HERE$$
 node.session.auth.username_in = bankminus-iscsi-target2
 node.session.auth.password_in = $$PASSWORD2_HERE$$
+node.startup = automatic
 ```
 
 Now connect
