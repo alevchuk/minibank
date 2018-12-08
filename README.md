@@ -98,6 +98,8 @@ I have been running Bitcoind + LND on this setup for over 6 months on two Pi Zer
 
 ### Partition
 
+The two Pi's `b1` and `l1` will have identical SD card partition table. 
+
 ```
 sudo parted /dev/mmcblk0
 ```
