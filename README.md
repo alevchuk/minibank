@@ -250,14 +250,23 @@ sudo mount /dev/mmcblk0p4 /mnt/btrfs_lnd
 
 Label it
 ```
-sudo btrfs fi label /mnt/btrfs_lnd l1
+sudo btrfs fi label /mnt/btrfs_lnd lnd
+sudo btrfs fi label /mnt/btrfs_bitcoind bitcoind
+
 ```
 
-Add it to fstab
+Add it to fstab on host `b1`:
 ```
 sudo su -l
-echo -e "LABEL=l1\t/mnt/btrfs_lnd\tbtrfs\tnoauto\t0\t0" >> /etc/fstab
+echo -e "LABEL=bitcoind\t/mnt/btrfs_bitcoind\tbtrfs\tnoauto\t0\t0" >> /etc/fstab
 ```
+
+Add it to fstab on host `l1`:
+```
+sudo su -l
+echo -e "LABEL=lnd\t/mnt/btrfs_lnd\tbtrfs\tnoauto\t0\t0" >> /etc/fstab
+```
+
 
 Now you can mount it like this (even if block device names change):
 ```
