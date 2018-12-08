@@ -107,21 +107,22 @@ sudo parted /dev/mmcblk0
 * Third partition is for Bitcoin software and data
 * Fourth partition is for LND software and data
 
-Allocate 5G to Second, 5G to Fourth, and the rest to Thrid.
+Allocate 5G to **Second**, 10G to **Fourth**, and the rest to Thrid.
 
 Results should look like this:
 ```
+(parted) p
 Model: SD GC2QT (sd/mmc)
-Disk /dev/mmcblk0: 200.0GB
+Disk /dev/mmcblk0: 64.0GB
 Sector size (logical/physical): 512B/512B
 Partition Table: msdos
 Disk Flags:
 
 Number  Start   End     Size    Type     File system  Flags
  1      4194kB  49.5MB  45.3MB  primary  fat32        lba
- 2      50.3MB  5500MB  5450MB  primary  ext4
- 3      5450MB  195.0GB 189.5GB primary  btrfs
- 4      195.0GB 200.0GB 5.0GB   primary  btrfs
+ 2      50.3MB  4500MB  4450MB  primary  ext4
+ 3      4500MB  54.0GB  49.5GB  primary  btrfs
+ 4      54.0GB  64.0GB  10.0GB  primary  btrfs        
 ```
 
 
