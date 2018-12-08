@@ -301,9 +301,17 @@ For more on BTRFS Raid see https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_w
 
 ```
 sudo adduser bitcoin
+
+sudo su -l bitocoin
+
+ln -s /mnt/btrfs_bitcoind/bin
+ln -s /mnt/btrfs_bitcoind/bitcoin .bitcoin
+
+echo 'export PATH=$HOME/bin/bin:$PATH  # bitcoind is here' >> ~/.profile
+. ~/.profile
 ```
 
-...
+Follow instruction to build bitoin core: https://github.com/alevchuk/minibank/tree/master/bitcoin
 
 
 ## Start Bitcoind
