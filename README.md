@@ -273,6 +273,18 @@ sudo parted /dev/mmcblk0
 (type "p" and press enter to see the current partition table)
 
 
+To setup Raid1 you can do it at the time of running `mkfs.btrfs` or add a new device later, like this:
+```
+sudo btrfs dev add -f /dev/mmcblk0p4 /mnt/btrfs_lnd
+
+# check current Raid setup
+sudo btrfs fi df /mnt/btrfs_lnd
+
+# convert to Raid1
+sudo btrfs balance start -dconvert=raid1 -mconvert=raid1 /mnt/btrfs_lnd/
+```
+For more on BTRFS Raid see https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_with_Multiple_Devices#Adding_new_devices 
+
 ## Build Bitcoind
 
 ## Start Bitcoind
