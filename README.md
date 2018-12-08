@@ -247,7 +247,7 @@ sudo mount /dev/mmcblk0p4 /mnt/btrfs_lnd
 
 Label it
 ```
-btrfs fi label /mnt/btrfs_lnd l1
+sudo btrfs fi label /mnt/btrfs_lnd l1
 ```
 
 Add it to fstab
@@ -258,8 +258,20 @@ echo -e "LABEL=l1\t/mnt/btrfs_lnd\tbtrfs\tnoauto\t0\t0" >> /etc/fstab
 
 Now you can mount it like this (even if block device names change):
 ```
-mount /mnt/btrfs_lnd
+sudo mount /mnt/btrfs_lnd
 ```
+
+Check BTRFS sizes like this (--si makes numbers compatible with numbers in `parted`):
+```
+sudo btrfs fi show --si
+```
+
+If you need to shrink BTRFS you can do so safely, yet you'll need to re-size the device partition table accordingly, e.g.:
+```
+sudo parted /dev/mmcblk0
+```
+(type "p" and press enter to see the current partition table)
+
 
 ## Build Bitcoind
 
