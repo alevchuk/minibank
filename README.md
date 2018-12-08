@@ -376,9 +376,15 @@ At the end it should say "Installed commands in $GOROOT/bin"
 
 ```
 sudo adduser lightning
-```
 
-...
+su -l lightning
+
+ln -s /mnt/btrfs_lnd/lnd-data ~/.lnd
+
+ln -s /mnt/btrfs_lnd/gocode
+ln -s /mnt/btrfs_lnd/lnd-e2e-testing
+ln -s /mnt/btrfs_lnd/src
+```
 
 
 Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#installing-lnd
