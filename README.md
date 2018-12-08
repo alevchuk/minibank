@@ -299,6 +299,13 @@ For more on BTRFS Raid see https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_w
 
 ## Build Bitcoind
 
+```
+sudo adduser bitcoin
+```
+
+...
+
+
 ## Start Bitcoind
 
 ## Build Go
@@ -358,6 +365,13 @@ At the end it should say "Installed commands in $GOROOT/bin"
 
 
 ## Build LND
+
+```
+sudo adduser lightning
+```
+
+...
+
 
 Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#installing-lnd
 
