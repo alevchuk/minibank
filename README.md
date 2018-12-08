@@ -62,7 +62,7 @@ network={
 For troubleshooting see:
 https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
 
-You'll need two Rasberry Pi Zero W (Model 3) one for LND and the other one for Bitcoind. Optionally, you can get a touchscreen Base Station (Model 1) for serving the web user interface for monitroing. I'll call all of the Pis "hosts" and use the hostnames `l1`, `b1`, and `base` in this manual.
+You'll need two Raspberry Pi Zero W (Model 3) one for LND and the other one for Bitcoind. Optionally, you can get a touchscreen Base Station (Model 1) for monitoring. Monitoring consists of a time-series database and a web user interface. I'll call all of the Pis "hosts" and use the hostnames `l1`, `b1`, and `base` in this manual.
 
 Lookup the IP addresses by running `ip addr` on each node.
 
@@ -92,13 +92,13 @@ sudo dphys-swapfile swapon
 
 A note on microSD card wear and tear from Swap: 
 
-I have been running Bitcoind + LND on this setup for over 6 months on two Pi Zero W boards and still have not seen failures related to swap wearing out the microSD cards. For context on why this is important, see "System with too little RAM" section in [https://askubuntu.com/a/652355/5191]. When failur or slow-downs happen due to micro SD card lifespan, a quick remediation would be to swap the primary and the backup sd cards as described in the Storage section.
+I have been running Bitcoind + LND on this setup for over 6 months on two Pi Zero W boards and still have not seen failures related to swap wearing out the microSD cards. For context on why this is important, see "System with too little RAM" section in [https://askubuntu.com/a/652355/5191]. When failure or slow-downs happen due to micro SD card lifespan, a quick remediation would be to swap the primary and the backup sd cards as described in the Storage section.
 
 ## Storage
 
 ### Partition
 
-The two Pi's `b1` and `l1` will have identical SD card partition table. 
+The two hosts `b1` and `l1` will have identical SD card partition table. 
 
 ```
 sudo parted /dev/mmcblk0
@@ -109,7 +109,7 @@ sudo parted /dev/mmcblk0
 * Third partition is for Bitcoin software and data
 * Fourth partition is for LND software and data
 
-Allocate 5G to **Second**, 10G to **Fourth**, and the rest to Thrid.
+Allocate 5G to **Second**, 10G to **Fourth**, and the rest to Third.
 
 Results should look like this:
 ```
@@ -130,13 +130,13 @@ Number  Start   End     Size    Type     File system  Flags
 
 ### iSCSI
 
-(Not needed for Base Station beacause it uses an external USB Card reader)
+(Not needed for Base Station because Base Station will use an external USB Card reader)
 
 iSCSI makes a storage device available over the network. This is useful to avoid cables, USB, and extra card readers.
 
 Notes are based on https://www.tecmint.com/setup-iscsi-target-and-initiator-on-debian-9/ - yet here we avoid using LVM
 
-You'll need to set things like $$PASSWORD1_HERE$$ with unique passwords. Generate random strings (of 30 alpha-nuberic characters) for each password. 
+You'll need to set things like $$PASSWORD1_HERE$$ with unique passwords. Generate random strings (of 30 alphanumeric characters) for each password. 
 
 Part 1: Target
 
@@ -174,12 +174,12 @@ Check exported targets:
 tgtadm --mode target --op show
 ```
 
-Check connections (intiator to target) on target
+Check connections (initiator to target) on target
 ```
 tgtadm --mode conn --op show --tid 1
 ```
 
-Part 2: Intiator
+Part 2: Initiator
 
 On host b1 mount the remote filesystem
 
@@ -226,7 +226,7 @@ A new sd* device should appear. Find it like this:
 ls /dev/sd*
 ```
 
-Check connections (intiator to target) on intiator
+Check connections (initiator to target) on initiator
 ```
 iscsiadm -m session
 ```
@@ -294,7 +294,7 @@ For more on BTRFS Raid see https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_w
 
 ## Build Go
 
-Prerequisits:
+Prerequisites:
 * Raspbian GNU/Linux 9
 * Create unix account "lnd"
 
@@ -465,7 +465,7 @@ sudo chown grafana /mnt/btrfs/gocode_grafana
 sudo chown grafana /mnt/btrfs/bin_grafana
 
 su -l grafana
-ln -s /mnt/btrfs/src ~/src_readonly # symlinc to read-only go installation
+ln -s /mnt/btrfs/src ~/src_readonly # symlink to read-only go installation
 ln -s /mnt/btrfs/src_grafana ~/src
 ln -s /mnt/btrfs/gocode_grafana ~/gocode
 ln -s /mnt/btrfs/bin_grafana ~/bin
@@ -504,7 +504,7 @@ make
 make install
 ```
 
-Build Grafana fron-end:
+Build Grafana front-end:
 ```
 cd $GOPATH/src/github.com/grafana/grafana
 
@@ -546,7 +546,7 @@ Follow web-ui wizard. Import dashboards node_exporter for Grafana app store.
 E.g. "Node Exporter Server Metrics" can show multiple nodes side-by-side:
 
 
-![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/grafana_screen_shot_2018-11-23.png "graphana monitoring dashboard using data from prometheus time-series store")
+![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/grafana_screen_shot_2018-11-23.png "grafana monitoring dashboard using data from prometheus time-series store")
 
 
 
