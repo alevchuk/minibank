@@ -304,6 +304,7 @@ sudo adduser bitcoin
 
 mkdir /mnt/btrfs_bitcoind/bin
 mkdir /mnt/btrfs_bitcoind/bitcoin
+mkdir /mnt/btrfs_bitcoind/src_github.com
 chown -R bitocoin /mnt/btrfs_bitcoind/
 
 sudo su -l bitocoin
@@ -319,6 +320,11 @@ Follow instruction to build bitoin core: https://github.com/alevchuk/minibank/tr
 
 
 ## Start Bitcoind
+
+```
+sudo su -l bitocoin
+bitcoind
+```
 
 ## Build Go
 
