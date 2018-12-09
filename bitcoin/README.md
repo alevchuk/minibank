@@ -10,9 +10,7 @@ sudo apt-get install libzmq3-dev
 
 Checkout source code:
 ```
-mkdir ~/src_github.com
-cd ~/src_github.com
-git clone https://github.com/bitcoin/bitcoin.git
+git clone https://github.com/bitcoin/bitcoin.git ~/src_github.com/bitcoin
 ```
 
 Prepare for build (one time setup):
