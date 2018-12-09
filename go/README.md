@@ -1,9 +1,9 @@
-= Go =
+# Go
 
 We use Go for Lightning LND implementation and for monitoring services.
 
 
-== Build Go ==
+## Build Go
 
 1. Fetch bootstrap go (as root)
 
