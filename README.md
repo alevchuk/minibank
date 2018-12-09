@@ -354,7 +354,8 @@ sudo mkdir /mnt/btrfs_lnd/src
 
 sudo chown -R lightning /mnt/btrfs_lnd/
 
-su -l lightning
+# Log-in as "lightning" user
+sudo su -l lightning
 
 ln -s /mnt/btrfs_lnd/lnd-data ~/.lnd
 
