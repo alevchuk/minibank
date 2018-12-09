@@ -14,11 +14,12 @@ WARNING: (1) This manual is incomplete. (2) The prototype described here is work
     * [Partitions](#partition)
     * [iSCSI](#iscsi)
     * [BTRFS](#btrfs)
-  * [Build Bitcoin](#build-bitcoin)
-  * [Start Bitcoin](#start-bitcoin)
-  * [Build Go](#build-go)
-  * [Build LND](#build-lnd)
-  * [Start LND](#start-lnd)
+  * [Software](#software)
+    * [Build Bitcoin](#build-bitcoind)
+    * [Start Bitcoin](#start-bitcoind)
+    * [Build Go](#build-go)
+    * [Build LND](#build-lnd)
+    * [Start LND](#start-lnd)
   * [Monitoring](#monitoring)
     * [Node exporters](#node-exporters)
     * [Prometheus](#prometheus)
@@ -299,7 +300,9 @@ sudo btrfs balance start -dconvert=raid1 -mconvert=raid1 /mnt/btrfs_lnd/
 ```
 For more on BTRFS Raid see https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_with_Multiple_Devices#Adding_new_devices 
 
-## Build Bitcoind
+## Software
+
+### Build Bitcoind
 
 ```
 sudo adduser bitcoin
@@ -321,14 +324,14 @@ echo 'export PATH=$HOME/bin/bin:$PATH  # bitcoind is here' >> ~/.profile
 Follow instruction to build bitoin core: https://github.com/alevchuk/minibank/tree/master/bitcoin
 
 
-## Start Bitcoind
+### Start Bitcoind
 
 ```
 sudo su -l bitocoin
 bitcoind
 ```
 
-## Build Go
+### Build Go
 
 Prerequisites:
 * Raspbian GNU/Linux 9
@@ -398,15 +401,13 @@ cd $GOROOT/src
 ```
 At the end it should say "Installed commands in $GOROOT/bin"
 
-
-
-## Build LND
+### Build LND
 
 
 Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#installing-lnd
 
 
-## Start LND
+### Start LND
 
 ## Monitoring
 
