@@ -24,7 +24,7 @@ WARNING: (1) This manual is incomplete. (2) The prototype described here is work
     * [Node exporters](#node-exporters)
     * [Prometheus](#prometheus)
     * [Grafana](#grafana)
-  * [systemd](#systemd)
+  * [Service Manager](#service-manager)
  
 ## Hardware
 
@@ -605,6 +605,8 @@ E.g. "Node Exporter Server Metrics" can show multiple nodes side-by-side:
 
 
 
-## systemd
+## Service Manager
+
+Minibank uses `systemd` to make sure all processes are started in the right order and keep running even after crashes
 
 
