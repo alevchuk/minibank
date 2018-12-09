@@ -302,6 +302,10 @@ For more on BTRFS Raid see https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_w
 ```
 sudo adduser bitcoin
 
+mkdir /mnt/btrfs_bitcoind/bin
+mkdir /mnt/btrfs_bitcoind/bitcoin
+chown -R bitocoin /mnt/btrfs_bitcoind/
+
 sudo su -l bitocoin
 
 ln -s /mnt/btrfs_bitcoind/bin
@@ -320,7 +324,6 @@ Follow instruction to build bitoin core: https://github.com/alevchuk/minibank/tr
 
 Prerequisites:
 * Raspbian GNU/Linux 9
-* Create unix account "lnd"
 
 Citations:
 * This section is based on https://golang.org/doc/install/source and https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#build-go
@@ -333,13 +336,30 @@ sudo apt-get install golang-1.6
 sudo apt-get install git
 ```
 
-2. Log-in as "lnd"
+2. Log-in as user "lightning"
+
 
 ```
-sudo su -l lnd
+sudo adduser lightning
+
+sudo mkdir /mnt/btrfs_lnd/lnd-data
+sudo mkdir /mnt/btrfs_lnd/gocode
+sudo mkdir /mnt/btrfs_lnd/lnd-e2e-testing
+sudo mkdir /mnt/btrfs_lnd/src
+
+sudo chown -R lightning /mnt/btrfs_lnd/
+
+su -l lightning
+
+ln -s /mnt/btrfs_lnd/lnd-data ~/.lnd
+
+ln -s /mnt/btrfs_lnd/gocode
+ln -s /mnt/btrfs_lnd/lnd-e2e-testing
+ln -s /mnt/btrfs_lnd/src
 ```
 
---- after this all commands should be run under the "lnd" account ---
+
+--- after this all commands should be run under the "lightning" account ---
 
 3. Set bootstrap path and gopath. To ~lightning/.profile add:
 
@@ -373,18 +393,6 @@ At the end it should say "Installed commands in $GOROOT/bin"
 
 
 ## Build LND
-
-```
-sudo adduser lightning
-
-su -l lightning
-
-ln -s /mnt/btrfs_lnd/lnd-data ~/.lnd
-
-ln -s /mnt/btrfs_lnd/gocode
-ln -s /mnt/btrfs_lnd/lnd-e2e-testing
-ln -s /mnt/btrfs_lnd/src
-```
 
 
 Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#installing-lnd
