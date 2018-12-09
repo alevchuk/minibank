@@ -234,7 +234,7 @@ Check connections (initiator to target) on initiator
 iscsiadm -m session
 ```
 
-### iSCSI maintenance
+### iSCSI relocation
 
 As part of bootstrapping I first setup one of the host as target and another as initiator. I have two partitions on target that I'm exporting and two local partition of the initiator. So four total. I use BTRFS Raid 1 to have two filesystems (btrfs_lnd and btrfs_bitcoind).
 
