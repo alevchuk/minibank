@@ -296,6 +296,8 @@ So the end goal is looks like this:
 +------------------------------------+              +-------------------------------------------+
 ```
 
+(Note: /dev/sda /dev/sdb naming is can change, so it's important to use BTRFS labels in fstab instead of specific device names)
+
 
 ### BTRFS 
 
