@@ -285,7 +285,9 @@ So the end goal is looks like this:
 |      |                             |              |                                 |         |
 |      v                             |              |                                 v         |
 |                                    |              |                                           |
-|      /mnt/btrfs_bitcoind           |              |                    /mnt/btrfs_lnd         |
+|      /etc/fstab                    |              |                     /etc/fstab            |
+|        LABEL=bitcoind              |              |                       LABEL=lnd           |
+|        /mnt/btrfs_bitcoind         |              |                       /mnt/btrfs_lnd      |
 |                                    |              |                                           |
 |                                    |              |                                           |
 |                                    |              |                                           |
