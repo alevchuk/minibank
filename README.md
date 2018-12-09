@@ -14,6 +14,8 @@ WARNING: (1) This manual is incomplete. (2) The prototype described here is work
     * [Partitions](#partition)
     * [iSCSI](#iscsi)
     * [BTRFS](#btrfs)
+  * [Build Bitcoin](#build-bitcoin)
+  * [Start Bitcoin](#start-bitcoin)
   * [Build Go](#build-go)
   * [Build LND](#build-lnd)
   * [Start LND](#start-lnd)
