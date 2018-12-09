@@ -234,6 +234,66 @@ Check connections (initiator to target) on initiator
 iscsiadm -m session
 ```
 
+### iSCSI maintenance
+
+As part of bootstrapping I first setup one of the host as target and another as initiator. I have two partitions on target that I'm exporting and two local partition of the initiator. So four total. I use BTRFS Raid 1 to have two filesystems (btrfs_lnd and btrfs_bitcoind).
+
+So proceed to BTRFS setup from here, and then come back once that's done...
+
+So step one is to mount both filesystems on the same host. Step two is to re-mount one of those filesystems on the other host. So the end goal both hosts are targets and initiators at the same time.
+
+To stop one of the iSCSI for connecting on-startup, edit the "...default/default" file under /etc/iscsi/send_targets/ and comment out (add a `#` in front) the "automatic" line:
+```
+#node.startup = automatic
+```
+you can then reboot the host and see that `/dev/sd*` no longer shows up. Also, the TCP connection will stop showing up when you run:
+```
+sudo iscsiadm -m session
+```
+
+Once one of the connections is removed, go through the "iSCSI" section again to setup target and initiator in the reverse direction.
+
+So the end goal is looks like this:
+
+```
++------------------------------------+              +-------------------------------------------+
+|                                    |              |                                           |
+| l1                                 |              | b1                                        |
+|                                    |              |                                           |
+|                                    |              |                                           |
+|                                    |              |                                           |
+|                                    |              |                                           |
+|                                    |              |                                           |
+|      +-----+   /dev/mmcblk0p3 +-----------X--------------->   /dev/sda                        |
+|      |                             |              |                                           |
+|      |                             |              |                                           |
+|      |         /dev/mmcblk0p4 +-------------------------->    /dev/sdb  +-----------+         |
+|      |                             |              |                                 |         |
+|      |                             |              |                                 |         |
+|      |                             |              |                                 |         |
+|      |                             |              |                                 |         |
+|      |                             |              |                                 |         |
+|      +-------+  /dev/sda      <--------------------+   /dev/mmcblk0p3               |         |
+|      |                             |              |                                 |         |
+|      |                             |              |                                 |         |
+|      |          /dev/sdb     <-------------X--------+  /dev/mmcblk0p4 +-------------+         |
+|      |                             |              |                                 |         |
+|      |                             |              |                                 |         |
+|      |                             |              |                                 |         |
+|      |                             |              |                                 |         |
+|      |                             |              |                                 |         |
+|      |                             |              |                                 |         |
+|      v                             |              |                                 v         |
+|                                    |              |                                           |
+|      /mnt/btrfs_bitcoind           |              |                    /mnt/btrfs_lnd         |
+|                                    |              |                                           |
+|                                    |              |                                           |
+|                                    |              |                                           |
+|                                    |              |                                           |
+|                                    |              |                                           |
++------------------------------------+              +-------------------------------------------+
+```
+
 
 ### BTRFS 
 
