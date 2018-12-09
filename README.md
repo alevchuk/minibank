@@ -341,7 +341,7 @@ Citations:
 
 
 
-1. Log-in as user "lightning"
+1. Add new user "lightning" and setup storge directories on BTRFS
 
 
 ```
@@ -353,8 +353,10 @@ sudo mkdir /mnt/btrfs_lnd/lnd-e2e-testing
 sudo mkdir /mnt/btrfs_lnd/src
 
 sudo chown -R lightning /mnt/btrfs_lnd/
+```
 
-# Log-in as "lightning" user
+2. Log-in as "lightning" user and setup symlinks
+```
 sudo su -l lightning
 
 ln -s /mnt/btrfs_lnd/lnd-data ~/.lnd
@@ -364,7 +366,7 @@ ln -s /mnt/btrfs_lnd/lnd-e2e-testing
 ln -s /mnt/btrfs_lnd/src
 ```
 
-2. Follow instrutions under https://github.com/alevchuk/minibank/blob/master/go/
+3. Follow instrutions under https://github.com/alevchuk/minibank/blob/master/go/
 
 
 
