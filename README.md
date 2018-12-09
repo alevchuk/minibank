@@ -340,14 +340,8 @@ Citations:
 * This section is based on https://golang.org/doc/install/source and https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#build-go
 
 
-1. Fetch bootstrap go (as root)
 
-```
-sudo apt-get install golang-1.6
-sudo apt-get install git
-```
-
-2. Log-in as user "lightning"
+1. Log-in as user "lightning"
 
 
 ```
@@ -369,37 +363,9 @@ ln -s /mnt/btrfs_lnd/lnd-e2e-testing
 ln -s /mnt/btrfs_lnd/src
 ```
 
+2. Follow instrutions under https://github.com/alevchuk/minibank/blob/master/go/
 
---- after this all commands should be run under the "lightning" account ---
 
-3. Set bootstrap path and gopath. To ~lightning/.profile add:
-
-```
-export GOROOT_BOOTSTRAP=/usr/lib/go-1.6
-
-export GOROOT=~/src/go
-export GOPATH=~/gocode
-export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
-```
-
-4. Fetch new go
-```
-mkdir /mnt/btrfs/src
-ln -s /mnt/btrfs/src ~/src
-cd ~/src
-git clone https://go.googlesource.com/go
-cd go
-git fetch
-git checkout go1.11.2
-```
-
-5. Build new go
-```
-. ~/.profile
-cd $GOROOT/src
-./all.bash
-```
-At the end it should say "Installed commands in $GOROOT/bin"
 
 ### Build LND
 
