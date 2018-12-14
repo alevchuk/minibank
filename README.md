@@ -136,6 +136,9 @@ Number  Start   End     Size    Type     File system  Flags
 
 ### iSCSI
 
+Prerequisites:
+* [Network](#network)
+
 (Not needed for Base Station because Base Station will use an external USB Card reader)
 
 iSCSI makes a storage device available over the network. This is useful to avoid cables, USB, and extra card readers.
