@@ -390,8 +390,40 @@ Follow instruction to build bitoin core: https://github.com/alevchuk/minibank/tr
 
 ### Start Bitcoind
 
+Log-in as bitcoin
 ```
 sudo su -l bitocoin
+```
+
+Edit ~/.bitcoin/bitcoin.conf
+```
+server=1
+deamon=0
+disablewallet=1
+
+rpcbind=0.0.0.0
+rpcallowip=192.168.0.17
+rpcuser=ldjkfhg74y587ye8g985
+rpcpassword=akjnf4hwuh49hwei4
+#rpcport=18334
+onlynet=ipv4
+zmqpubrawblock=tcp://0.0.0.0:29000
+zmqpubrawtx=tcp://0.0.0.0:29001
+
+#txindex=1
+txindex=0
+prune=5000
+
+##dbcache=100
+dbcache=200  ## trying to impove catch up time, 2018-12-11
+maxorphatx=10
+maxmempool=50
+maxconnections=40
+maxuploadtarget=5000
+```
+
+Start
+```
 bitcoind
 ```
 
@@ -442,8 +474,12 @@ Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#insta
 
 ### Start LND
 
+Login as lightning:
+```
+su -l lightning
+```
 
-lnd.conf
+Edit ~/.lnd/lnd.conf
 
 ```
 [Application Options]
@@ -484,6 +520,12 @@ autopilot.maxchansize=50000
 
 [tor]
 ```
+
+Start:
+```
+lnd --externalip=$(dig +short myip.opendns.com @resolver1.opendns.com):9736
+```
+
 
 ## Monitoring
 
