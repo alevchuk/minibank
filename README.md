@@ -472,7 +472,7 @@ ln -s /mnt/btrfs_lnd/src
 ### Build LND
 
 Preprequisigtes:
-* Build Go
+* [Build Go](#build-go)
 
 Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#installing-lnd
 
@@ -484,8 +484,8 @@ sudo apt-get install dnsutils
 ### Start LND
 
 Preprequisigtes:
-* Start Bitcoind
-* Build LND
+* [Start Bitcoin](#start-bitcoind)
+* [Build LND](#build-lnd)
 * System package installed: `dnsutils`
 
 
@@ -548,8 +548,8 @@ lnd --externalip=$(dig +short myip.opendns.com @resolver1.opendns.com):9736
 ### Node exporters
 
 Prerequisites:
-* Storage
-* Build Go
+* [Storage](#storage)
+* [Build Go](#build-go)
 
 Citations:
  * This section is based on https://github.com/prometheus/prometheus#building-from-source
