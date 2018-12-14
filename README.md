@@ -548,7 +548,7 @@ lnd --externalip=$(dig +short myip.opendns.com @resolver1.opendns.com):9736
 ### Node exporters
 
 Prerequisites:
-* Filesystem for LND node
+* Storage
 * Build Go
 
 Citations:
