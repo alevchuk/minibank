@@ -390,6 +390,9 @@ Follow instruction to build bitoin core: https://github.com/alevchuk/minibank/tr
 
 ### Start Bitcoind
 
+Prerequisites:
+* Build Bitcoind
+
 Log-in as bitcoin
 ```
 sudo su -l bitocoin
@@ -468,11 +471,24 @@ ln -s /mnt/btrfs_lnd/src
 
 ### Build LND
 
+Preprequisigtes:
+* Build Go
 
 Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#installing-lnd
 
+Install package that contains `dig` utility:
+```
+sudo apt-get install dnsutils
+```
 
 ### Start LND
+
+Preprequisigtes:
+* Start Bitcoind
+* Build LND
+* System package installed: `dnsutils`
+
+
 
 Login as lightning:
 ```
