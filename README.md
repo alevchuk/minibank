@@ -52,7 +52,7 @@ Raspbian Stretch Lite https://www.raspberrypi.org/downloads/raspbian/
 Prerequisits:
 * Setup [firewall](https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#security) before connecting to the network 
 
-* The changes described in this section need to be applied to all hosts.
+(The changes described in this section need to be applied to all hosts)
 
 Edit `/etc/wpa_supplicant/wpa_supplicant.conf`
 
@@ -82,6 +82,8 @@ Edit `/etc/hosts` and add IP addresses for the 3 node, for example:
 ## Memory
 
 Pi Zero W has 433 MB of usable RAM. Additional memory needs to be added as swap.
+
+(The changes described in this section need to be applied to all hosts)
 
 Edit `/etc/dphys-swapfile`
 ```
