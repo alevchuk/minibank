@@ -442,6 +442,49 @@ Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#insta
 
 ### Start LND
 
+
+lnd.conf
+
+```
+[Application Options]
+nochanupdates=1  ; saves on resources, neccessary to run on Ras Pi Zero
+listen=0.0.0.0:9736
+rpclisten=localhost:10009
+debuglevel=ATPL=debug,CRTR=warn
+
+[Bitcoin]
+bitcoin.active=1
+bitcoin.testnet=0
+bitcoin.mainnet=1
+bitcoin.simnet=0
+bitcoin.node=bitcoind
+
+[Btcd]
+
+[Bitcoind]
+bitcoind.zmqpubrawblock=tcp://b1:29000
+bitcoind.zmqpubrawtx=tcp://b1:29001
+bitcoind.rpchost=b1
+bitcoind.rpcuser=ldjkfhg74y587ye8g985
+bitcoind.rpcpass=akjnf4hwuh49hwei4
+[neutrino]
+
+[Litecoin]
+
+[Ltcd]
+
+[Litecoind]
+
+[autopilot]
+autopilot.active=1
+autopilot.maxchannels=3
+autopilot.allocation=1.0
+autopilot.minchansize=20000  ; default for most nodes is 20000
+autopilot.maxchansize=50000
+
+[tor]
+```
+
 ## Monitoring
 
 ### Node exporters
