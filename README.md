@@ -379,15 +379,16 @@ For more on BTRFS Raid see https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_w
 ```
 sudo adduser bitcoin
 
-mkdir /mnt/btrfs_bitcoind/bin
 mkdir /mnt/btrfs_bitcoind/bitcoin
-mkdir /mnt/btrfs_bitcoind/src_github.com
-chown -R bitocoin /mnt/btrfs_bitcoind/
+mkdir /mnt/btrfs_bitcoind/bitcoin/bin
+mkdir /mnt/btrfs_bitcoind/bitcoin/bitcoin-data
+mkdir /mnt/btrfs_bitcoind/bitcoin/src
+chown -R bitocoin /mnt/btrfs_bitcoind/bitcoin
 
 sudo su -l bitocoin
 
-ln -s /mnt/btrfs_bitcoind/bin
-ln -s /mnt/btrfs_bitcoind/bitcoin .bitcoin
+ln -s /mnt/btrfs_bitcoind/bitcoin/bin
+ln -s /mnt/btrfs_bitcoind/bitcoin/bitcoin-data .bitcoin
 
 echo 'export PATH=$HOME/bin/bin:$PATH  # bitcoind is here' >> ~/.profile
 . ~/.profile
@@ -454,6 +455,7 @@ Citations:
 ```
 sudo adduser lightning
 
+sudo mkdir /mnt/btrfs_lnd/lightning
 sudo mkdir /mnt/btrfs_lnd/lightning/lnd-data
 sudo mkdir /mnt/btrfs_lnd/lightning/gocode
 sudo mkdir /mnt/btrfs_lnd/lightning/lnd-e2e-testing
@@ -568,20 +570,25 @@ Install on all nodes.
 sudo mkdir /mnt/btrfs_lnd/monitoring
 sudo mkdir /mnt/btrfs_lnd/monitoring/gocode
 sudo mkdir /mnt/btrfs_lnd/monitoring/src
-sudo chown -R monitoring /mnt/btrfs_lnd/monitoring
 
+sudo chown -R monitoring /mnt/btrfs_lnd/monitoring
+```
+
+Now [Build Go](#build-go) or copy it from lightning user like this:
+```
+sudo mkdir -p /mnt/btrfs_lnd/monitoring/src/go/bin
+sudo rsync -a --delete /mnt/btrfs_lnd/lightning/src/go/bin/ /mnt/btrfs_lnd/monitoring/src/go/bin/
+sudo rsync -a --delete /mnt/btrfs_lnd/lightning/gocode/ /mnt/btrfs_lnd/monitoring/gocode/
+sudo chown -R monitoring /mnt/btrfs_lnd/monitoring
+```
+
+Loging as "monitoring" user
+```
 sudo su -l monitoring
 cd ~
 ln -s /mnt/btrfs_lnd/monitoring/src
 ln -s /mnt/btrfs_lnd/monitoring/gocode
 ```
-
-Now [Build Go](#build-go) or copy it from lightning user like this:
-```
-sudo rsync -a --delete /mnt/btrfs_lnd/lightning/gocode/ /mnt/btrfs_lnd/monitoring/gocode/
-sudo chown -R monitoring /mnt/btrfs_lnd/monitoring
-```
-
 
 Build None Exporter
 ```
@@ -592,7 +599,7 @@ make
 
 Run exporter
 ```
-./node_exporter 
+${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter/node_exporter 
 ```
 
 
