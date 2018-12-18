@@ -454,12 +454,12 @@ Citations:
 ```
 sudo adduser lightning
 
-sudo mkdir /mnt/btrfs_lnd/lnd-data
-sudo mkdir /mnt/btrfs_lnd/gocode
-sudo mkdir /mnt/btrfs_lnd/lnd-e2e-testing
-sudo mkdir /mnt/btrfs_lnd/src
+sudo mkdir /mnt/btrfs_lnd/lightning/lnd-data
+sudo mkdir /mnt/btrfs_lnd/lightning/gocode
+sudo mkdir /mnt/btrfs_lnd/lightning/lnd-e2e-testing
+sudo mkdir /mnt/btrfs_lnd/lightning/src
 
-sudo chown -R lightning /mnt/btrfs_lnd/
+sudo chown -R lightning /mnt/btrfs_lnd/lightning
 ```
 
 2. Log-in as "lightning" user and setup symlinks
@@ -468,9 +468,9 @@ sudo su -l lightning
 
 ln -s /mnt/btrfs_lnd/lnd-data ~/.lnd
 
-ln -s /mnt/btrfs_lnd/gocode
-ln -s /mnt/btrfs_lnd/lnd-e2e-testing
-ln -s /mnt/btrfs_lnd/src
+ln -s /mnt/btrfs_lnd/lightning/gocode
+ln -s /mnt/btrfs_lnd/lightning/lnd-e2e-testing
+ln -s /mnt/btrfs_lnd/lightning/src
 ```
 
 3. Follow instrutions under https://github.com/alevchuk/minibank/blob/master/go/
@@ -565,18 +565,24 @@ Citations:
 Install on all nodes.
 
 ```
-sudo mkdir /mnt/btrfs_lnd/gocode
-sudo mkdir /mnt/btrfs_lnd/src
-sudo chown -R monitoring /mnt/btrfs_lnd
+sudo mkdir /mnt/btrfs_lnd/monitoring/gocode
+sudo mkdir /mnt/btrfs_lnd/monitoring/src
+sudo chown -R monitoring /mnt/btrfs_lnd/monitoring
 
 sudo su -l monitoring
 cd ~
-ln -s /mnt/btrfs_lnd/src
-ln -s /mnt/btrfs_lnd/gocode
+ln -s /mnt/btrfs_lnd/monitoring/src
+ln -s /mnt/btrfs_lnd/monitoring/gocode
 ```
 
-Now [Build Go](#build-go)
+Now [Build Go](#build-go) or copy it from lightning user like this:
+```
+sudo rsync -a --delete /mnt/btrfs_lnd/lightning/gocode/ /mnt/btrfs_lnd/monitoring/gocode/
+sudo chown -R monitoring /mnt/btrfs_lnd/monitoring
+```
 
+
+Build None Exporter
 ```
 go get github.com/prometheus/node_exporter
 cd ${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter
@@ -596,15 +602,14 @@ Install this on the base station to pull in all metrics into a single place.
 Setup accounts:
 ```
 sudo adduser prometheus
-sudo mkdir /mnt/btrfs/prometheus_gocode
-sudo mkdir /mnt/btrfs/prometheus_data
+sudo mkdir /mnt/btrfs/prometheus/gocode
+sudo mkdir /mnt/btrfs/prometheus/data
 
-sudo chown prometheus /mnt/btrfs/prometheus_gocode
-sudo chown prometheus /mnt/btrfs/prometheus_data
+sudo chown -R prometheus /mnt/btrfs/prometheus/
 
 su -l prometheus
 ln -s /mnt/btrfs/src ~/lightning_src # symlink to read-only go installation
-ln -s /mnt/btrfs/prometheus_gocode/ ~/gocode
+ln -s /mnt/btrfs/prometheus/gocode ~/gocode
 ```
 
 Fetch source code:
