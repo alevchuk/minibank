@@ -565,6 +565,7 @@ Citations:
 Install on all nodes.
 
 ```
+sudo mkdir /mnt/btrfs_lnd/monitoring
 sudo mkdir /mnt/btrfs_lnd/monitoring/gocode
 sudo mkdir /mnt/btrfs_lnd/monitoring/src
 sudo chown -R monitoring /mnt/btrfs_lnd/monitoring
@@ -602,6 +603,7 @@ Install this on the base station to pull in all metrics into a single place.
 Setup accounts:
 ```
 sudo adduser prometheus
+sudo mkdir /mnt/btrfs/prometheus
 sudo mkdir /mnt/btrfs/prometheus/gocode
 sudo mkdir /mnt/btrfs/prometheus/data
 
