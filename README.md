@@ -592,10 +592,10 @@ ln -s /mnt/btrfs_lnd/monitoring/gocode
 
 Build None Exporter
 ```
-cd ${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter
-
 go clean -modcache
 GO111MODULE=on go get github.com/prometheus/node_exporter
+
+cd ${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter
 GO111MODULE=on make
 ```
 
