@@ -586,14 +586,13 @@ sudo chown -R monitoring /mnt/btrfs_lnd/monitoring
 Loging as "monitoring" user
 ```
 sudo su -l monitoring
-cd ~
 ln -s /mnt/btrfs_lnd/monitoring/src
 ln -s /mnt/btrfs_lnd/monitoring/gocode
 ```
 
 Build None Exporter
 ```
-go get github.com/prometheus/node_exporter
+GO111MODULE=on go get github.com/prometheus/node_exporter
 cd ${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter
 make
 ```
