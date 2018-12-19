@@ -448,6 +448,7 @@ Citations:
 * This section is based on https://golang.org/doc/install/source and https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#build-go
 
 
+#### Setup LND environment
 
 1. Add new user "lightning" and setup storge directories on BTRFS
 
@@ -468,13 +469,13 @@ sudo chown -R lightning /mnt/btrfs_lnd/lightning
 ```
 sudo su -l lightning
 
-ln -s /mnt/btrfs_lnd/lnd-data ~/.lnd
-
+ln -s /mnt/btrfs_lnd/lightning/lnd-data ~/.lnd
 ln -s /mnt/btrfs_lnd/lightning/gocode
 ln -s /mnt/btrfs_lnd/lightning/lnd-e2e-testing
 ln -s /mnt/btrfs_lnd/lightning/src
 ```
 
+#### Build Go
 3. Follow instrutions under https://github.com/alevchuk/minibank/blob/master/go/
 
 
