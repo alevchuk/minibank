@@ -594,6 +594,7 @@ Build None Exporter
 ```
 go clean -modcache
 GO111MODULE=on go get github.com/prometheus/node_exporter
+# if you get "net/http: TLS handshake timeout" errors, you need to re-run the `go get` command above 
 
 cd ${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter
 GO111MODULE=on make
