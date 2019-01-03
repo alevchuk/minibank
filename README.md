@@ -47,7 +47,7 @@ WARNING: (1) This manual is incomplete. (2) The prototype described here is work
 
 * 2x Linux on t2.micro
 * Storage: 5G general purpose SSD for opearting system
-* Storage: Amazon EBS Volumes Magnetic 64GB for data
+* Storage: 64GB Magnetic Amazon EBS Volumes for data
 
 Amazon pricing: http://calculator.s3.amazonaws.com/index.html#r=IAD&s=EC2&key=calc-0A4D576C-6CA1-4949-A85E-BEFFEA717928
 
