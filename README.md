@@ -147,7 +147,7 @@ Number  Start   End     Size    Type     File system  Flags
  4      54.0GB  64.0GB  10.0GB  primary  btrfs        
 ```
 
-> for Amazon EC2 AWS use /dev/xvdb and skip "Second partition is for operating system" because that's on a separate device (/dev/xvda1)
+> for Amazon EC2 AWS use /dev/xvdb and skip First and Second partitions because that's already on a separate device (/dev/xvda1)
 
 
 ### iSCSI
