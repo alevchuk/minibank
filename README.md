@@ -147,7 +147,12 @@ Number  Start   End     Size    Type     File system  Flags
  4      54.0GB  64.0GB  10.0GB  primary  btrfs        
 ```
 
-> for Amazon EC2 AWS use /dev/xvdb and skip First and Second partitions because that's already on a separate device (/dev/xvda1)
+> for Amazon EC2 AWS use /dev/xvdb and skip First and Second partitions because that's already on a separate device (/dev/xvda1). So, on EC2 AWS the following should do the trick:
+> ```
+> sudo parted  -a optimal   /dev/xvdb  mklabel msdos
+> sudo parted  -a optimal   /dev/xvdb mkpart primary btrfs 0% 10G
+> sudo parted  -a optimal   /dev/xvdb mkpart primary btrfs 10G 68.7GB
+> ```
 
 
 ### iSCSI
