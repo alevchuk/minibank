@@ -43,9 +43,18 @@ WARNING: (1) This manual is incomplete. (2) The prototype described here is work
 * 2x Case with USB-A Addon Board https://camelcamelcamel.com/MakerFocus-Raspberry-Required-Connector-Protective/product/B07BK2BR6C
 * Power Supply https://camelcamelcamel.com/Tranesca-charger-foldable-Samsung-More-Black/product/B01385COIE
 
+### Model 3 VM :: LND Node on Amazon EC2
+
+* 2x Linux on t2.micro
+* Storage: Amazon EBS Volumes Magnetic 64GB
+
+Amazon pricing: http://calculator.s3.amazonaws.com/index.html
+
 ## Operating System
 
 Raspbian Stretch Lite https://www.raspberrypi.org/downloads/raspbian/
+
+> for Amazon EC2 AWS use [Debian GNU/Linux 9 (Stretch)](https://aws.amazon.com/marketplace/pp/B073HW9SP3) 
 
 ## Network
 
