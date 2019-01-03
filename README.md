@@ -46,10 +46,10 @@ WARNING: (1) This manual is incomplete. (2) The prototype described here is work
 ###  (Optional) VM :: LND Node on Amazon EC2
 
 * 2x Linux on t2.micro
-* Storage: Amazon EBS Volumes Magnetic 64GB
+* Storage: 5G general purpose SSD for opearting system
+* Storage: Amazon EBS Volumes Magnetic 64GB for data
 
-Amazon pricing: http://calculator.s3.amazonaws.com/index.html#r=IAD&s=EC2&key=calc-2C220F5D-B5C1-4C06-A7B1-D3538AA531B5
-
+Amazon pricing: http://calculator.s3.amazonaws.com/index.html#r=IAD&s=EC2&key=calc-0A4D576C-6CA1-4949-A85E-BEFFEA717928
 
 
 
