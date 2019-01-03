@@ -331,6 +331,9 @@ So the end goal is looks like this:
 
 ### BTRFS 
 
+Prerequisites: 
+ * `sudo apt-get install btrfs-progs`
+
 RAID-1
 
 Create filesystems Bitcoin and LND nodes
