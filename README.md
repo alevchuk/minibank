@@ -463,7 +463,7 @@ maxconnections=40
 maxuploadtarget=5000
 ```
 
-You'll need to set things like $$PASSWORD1_HERE$$ with unique passwords. Generate random strings (of 30 alphanumeric characters) for each password. `rpcuser` should also look like a password.
+You'll need to set things like $$PASSWORD1_HERE$$ with unique passwords. Generate random strings (of 30 alphanumeric characters) for each password. First character should be a letter. `rpcuser` should also look like a password.
 
 Start
 ```
