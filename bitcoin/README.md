@@ -6,6 +6,8 @@ sudo apt-get install build-essential libtool autotools-dev automake pkg-config l
 sudo apt-get install libboost-dev libboost-system-dev libboost-filesystem-dev libboost-chrono-dev libboost-program-options-dev libboost-test-dev libboost-thread-dev 
 sudo apt-get install libminiupnpc-dev 
 sudo apt-get install libzmq3-dev 
+
+sudo apt-get install git
 ```
 
 At this point change to unix account that will be running bitcoin, e.g.:
