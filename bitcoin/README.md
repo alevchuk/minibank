@@ -39,7 +39,7 @@ make && make install
 
 # Upgrade
 ```
-cd ~/src_github.com/bitcoin
+cd ~/src/bitcoin
 git pull
 make clean && make && make install
 ```
