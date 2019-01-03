@@ -49,7 +49,7 @@ WARNING: (1) This manual is incomplete. (2) The prototype described here is work
 * Storage: 5G general purpose SSD for opearting system
 * Storage: 64GB Magnetic Amazon EBS Volumes for software and data
 
-Amazon pricing: http://calculator.s3.amazonaws.com/index.html#r=IAD&s=EC2&key=calc-0A4D576C-6CA1-4949-A85E-BEFFEA717928
+Amazon pricing: http://calculator.s3.amazonaws.com/index.html#r=IAD&s=EC2&key=calc-3E66A912-F5FF-4323-84EF-C7C14F363459
 
 
 
