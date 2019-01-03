@@ -415,8 +415,9 @@ sudo chown -R bitcoin /mnt/btrfs_bitcoind/bitcoin
 
 sudo su -l bitcoin
 
-ln -s /mnt/btrfs_bitcoind/bitcoin/bin
-ln -s /mnt/btrfs_bitcoind/bitcoin/bitcoin-data .bitcoin
+ln -s /mnt/btrfs_bitcoind/bitcoin/bin ~/bin
+ln -s /mnt/btrfs_bitcoind/bitcoin/src ~/src
+ln -s /mnt/btrfs_bitcoind/bitcoin/bitcoin-data ~/.bitcoin
 
 echo 'export PATH=$HOME/bin/bin:$PATH  # bitcoind is here' >> ~/.profile
 . ~/.profile
