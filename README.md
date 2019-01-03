@@ -28,7 +28,14 @@ WARNING: (1) This manual is incomplete. (2) The prototype described here is work
  
 ## Hardware
 
-### Model 1 :: Base Station
+### Model 3 :: LND Node at Home
+
+* 2x Pi Zero W https://camelcamelcamel.com/Raspberry-Pi-Zero-Wireless-model/product/B06XFZC3BX
+* 2x Micro SD cards https://camelcamelcamel.com/Samsung-MicroSDXC-Adapter-MB-ME64GA-AM/product/B06XX29S9Q
+* 2x Case with USB-A Addon Board https://camelcamelcamel.com/MakerFocus-Raspberry-Required-Connector-Protective/product/B07BK2BR6C
+* Power Supply https://camelcamelcamel.com/Tranesca-charger-foldable-Samsung-More-Black/product/B01385COIE
+
+### (Optional) Model 1 :: Monitoring Node at Home
 
 * Pi 3 B+ https://camelcamelcamel.com/ELEMENT-Element14-Raspberry-Pi-Motherboard/product/B07BDR5PDW
 * 2x Micro SD cards https://camelcamelcamel.com/Samsung-MicroSDXC-Adapter-MB-ME64GA-AM/product/B06XX29S9Q
@@ -36,19 +43,15 @@ WARNING: (1) This manual is incomplete. (2) The prototype described here is work
 * Card Reader https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4
 * Case https://camelcamelcamel.com/Case-Official-Raspberry-Touchscreen-Display/product/B01HV97F64
 
-### Model 3 :: LND Node
-
-* 2x Pi Zero W https://camelcamelcamel.com/Raspberry-Pi-Zero-Wireless-model/product/B06XFZC3BX
-* 2x Micro SD cards https://camelcamelcamel.com/Samsung-MicroSDXC-Adapter-MB-ME64GA-AM/product/B06XX29S9Q
-* 2x Case with USB-A Addon Board https://camelcamelcamel.com/MakerFocus-Raspberry-Required-Connector-Protective/product/B07BK2BR6C
-* Power Supply https://camelcamelcamel.com/Tranesca-charger-foldable-Samsung-More-Black/product/B01385COIE
-
-### Model 3 VM :: LND Node on Amazon EC2
+###  (Optional) VM :: LND Node on Amazon EC2
 
 * 2x Linux on t2.micro
 * Storage: Amazon EBS Volumes Magnetic 64GB
 
 Amazon pricing: http://calculator.s3.amazonaws.com/index.html
+
+
+
 
 ## Operating System
 
