@@ -407,13 +407,13 @@ For more on BTRFS Raid see https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_w
 ```
 sudo adduser bitcoin
 
-mkdir /mnt/btrfs_bitcoind/bitcoin
-mkdir /mnt/btrfs_bitcoind/bitcoin/bin
-mkdir /mnt/btrfs_bitcoind/bitcoin/bitcoin-data
-mkdir /mnt/btrfs_bitcoind/bitcoin/src
-chown -R bitocoin /mnt/btrfs_bitcoind/bitcoin
+sudo mkdir /mnt/btrfs_bitcoind/bitcoin
+sudo mkdir /mnt/btrfs_bitcoind/bitcoin/bin
+sudo mkdir /mnt/btrfs_bitcoind/bitcoin/bitcoin-data
+sudo mkdir /mnt/btrfs_bitcoind/bitcoin/src
+sudo chown -R bitcoin /mnt/btrfs_bitcoind/bitcoin
 
-sudo su -l bitocoin
+sudo su -l bitcoin
 
 ln -s /mnt/btrfs_bitcoind/bitcoin/bin
 ln -s /mnt/btrfs_bitcoind/bitcoin/bitcoin-data .bitcoin
@@ -432,7 +432,7 @@ Prerequisites:
 
 Log-in as bitcoin
 ```
-sudo su -l bitocoin
+sudo su -l bitcoin
 ```
 
 Edit ~/.bitcoin/bitcoin.conf
