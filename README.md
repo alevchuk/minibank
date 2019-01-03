@@ -48,7 +48,8 @@ WARNING: (1) This manual is incomplete. (2) The prototype described here is work
 * 2x Linux on t2.micro
 * Storage: Amazon EBS Volumes Magnetic 64GB
 
-Amazon pricing: http://calculator.s3.amazonaws.com/index.html
+Amazon pricing: http://calculator.s3.amazonaws.com/index.html#r=IAD&s=EC2&key=
+calc-2C220F5D-B5C1-4C06-A7B1-D3538AA531B5
 
 
 
