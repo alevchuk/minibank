@@ -344,6 +344,9 @@ sudo mkfs.btrfs /dev/mmcblk0p4
 
 Mount
 ```
+sudo mkdir /mnt/btrfs_bitcoind
+sudo mount /dev/mmcblk0p3 /mnt/btrfs_bitcoind
+
 sudo mkdir /mnt/btrfs_lnd
 sudo mount /dev/mmcblk0p4 /mnt/btrfs_lnd
 ```
