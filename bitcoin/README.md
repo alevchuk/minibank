@@ -27,7 +27,7 @@ git clone https://github.com/bitcoin/bitcoin.git ~/src/bitcoin
 
 Prepare for build (one time setup):
 ```
-cd ~/src_github.com/bitcoin
+cd ~/src/bitcoin
 ./autogen.sh
 ./configure  --with-gui=no --disable-wallet --disable-tests --prefix=$HOME/bin
 ```
