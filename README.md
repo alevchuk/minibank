@@ -35,7 +35,7 @@ WARNING: (1) This manual is incomplete. (2) The prototype described here is work
 * 2x Case with USB-A Addon Board https://camelcamelcamel.com/MakerFocus-Raspberry-Required-Connector-Protective/product/B07BK2BR6C
 * Power Supply https://camelcamelcamel.com/Tranesca-charger-foldable-Samsung-More-Black/product/B01385COIE
 
-### (Optional) Model 1 :: Monitoring Node at Home
+### (Optional) Model 1 :: Monitoring Station at Home
 
 * Pi 3 B+ https://camelcamelcamel.com/ELEMENT-Element14-Raspberry-Pi-Motherboard/product/B07BDR5PDW
 * 2x Micro SD cards https://camelcamelcamel.com/Samsung-MicroSDXC-Adapter-MB-ME64GA-AM/product/B06XX29S9Q
