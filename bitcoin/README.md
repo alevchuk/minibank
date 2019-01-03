@@ -31,6 +31,7 @@ cd ~/src/bitcoin
 ./autogen.sh
 ./configure  --with-gui=no --disable-wallet --disable-tests --prefix=$HOME/bin
 ```
+> the output should include:   "with zmq  = yes"
 
 Build and Install:
 ```
