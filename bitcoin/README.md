@@ -2,15 +2,7 @@
 
 With unix account that has sudo, install dependencies:
 ```
-sudo apt-get install build-essential libtool autotools-dev automake pkg-config 
-sudo apt-get install libssl-dev libevent-dev bsdmainutils 
-
-sudo apt-get install libboost-dev libboost-system-dev libboost-filesystem-dev 
-sudo apt-get install libboost-chrono-dev libboost-program-options-dev
-sudo apt-get install libboost-test-dev libboost-thread-dev 
-
-sudo apt-get install libminiupnpc-dev 
-sudo apt-get install libzmq3-dev 
+sudo apt-get install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils  libboost-dev libboost-system-dev libboost-filesystem-dev  libboost-chrono-dev libboost-program-options-dev  libboost-test-dev libboost-thread-dev  libminiupnpc-dev  libzmq3-dev 
 
 sudo apt-get install git
 ```
