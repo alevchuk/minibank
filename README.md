@@ -297,7 +297,6 @@ So the end goal is looks like this:
 |                                    |              |                                           |
 |                                    |              |                                           |
 |      +-----+   /dev/mmcblk0p3      |              |                                           |
-|      |                             |              |                                           |
 |      |                             |    iSCSI     |                                           |
 |      |         /dev/mmcblk0p4 +-------------------------->    /dev/sda  +-----------+         |
 |      |                             |              |                                 |         |
@@ -305,8 +304,7 @@ So the end goal is looks like this:
 |      |                             |              |                                 |         |
 |      |                             |              |                                 |         |
 |      |                             |    iSCSI     |                                 |         |
-|      +-------+  /dev/sda      <--------------------+   /dev/mmcblk0p3               |         |
-|      |                             |              |                                 |         |
+|      +-------+  /dev/sda      <----------------------+ /dev/mmcblk0p3               |         |
 |      |                             |              |                                 |         |
 |      |                             |              |    /dev/mmcblk0p4 +-------------+         |
 |      |                             |              |                                 |         |
