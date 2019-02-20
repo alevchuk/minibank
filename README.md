@@ -451,9 +451,9 @@ onlynet=ipv4
 zmqpubrawblock=tcp://0.0.0.0:29000
 zmqpubrawtx=tcp://0.0.0.0:29001
 
-#txindex=1
-txindex=0
-prune=5000
+txindex=1
+# txindex=0
+# prune=5000
 
 ##dbcache=100
 dbcache=200  ## trying to impove catch up time, 2018-12-11
