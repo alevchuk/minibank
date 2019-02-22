@@ -134,6 +134,10 @@ sudo parted /dev/mmcblk0
 Allocate 50 MB to **First** and 4.5G to **Second** (you probably already have those with the Rasbian image).
 Allocate 10G to **Third**, and 241G to **Fourth**.
 
+Use `mkpart` action in `parted`.
+
+WARNING: Only do `rm` freely on new SD cards. Otherwise you're risking to loose data that was there before. To check run `sudo parted /dev/mmcblk0 print` and verify the current set of partitions before performing `rm` actions. When typing `mkpart` followed by Enter, you be in interative mode where you can type the first letter and press tab to complete the command. 
+
 Adding two partitions should look like this:
 ```
 (parted) mkpart
@@ -174,7 +178,7 @@ Number  Start    End      Size     Type     File system  Flags
  4      13.5GiB  238GiB   225GiB   primary  btrfs
 ```
 
-WARNING: Only do this on new SD cards. Otherwise you're risking to loose data that was there before. To check run `sudo parted /dev/mmcblk0 print` and verify the current set of partitions before performing `mklabel`, `rm`, or `mkpart` actions. When typing `mkpart` followed by Enter, you be in interative mode where you can type the first letter and press tab to complete the command. 
+
 
 > for Amazon EC2 AWS use /dev/xvdb and skip First and Second partitions because that's already on a separate device (/dev/xvda1). So, on EC2 AWS the following should do the trick:
 > ```
