@@ -185,8 +185,8 @@ Number  Start    End      Size     Type     File system  Flags
 > for Amazon EC2 AWS use /dev/xvdb and skip First and Second partitions because that's already on a separate device (/dev/xvda1). So, on EC2 AWS the following should do the trick:
 > ```
 > sudo parted /dev/xvdb  mklabel msdos
-> sudo parted  -a optimal   /dev/xvdb mkpart primary btrfs 0% 58.7GB
-> sudo parted  -a optimal   /dev/xvdb mkpart primary btrfs 58.7GB 68.7GB
+> sudo parted  -a optimal   /dev/xvdb mkpart primary btrfs 0% 10GB
+> sudo parted  -a optimal   /dev/xvdb mkpart primary btrfs 10GB 260GB
 > ```
 > Amazon EC2 AWS WARNING: only do this on a newly created EC2 instance and mounting a newly created EBS Volume, otherwise you're risking to loose data that was only your previous volumes. To check run `sudo parted /dev/xvdb print` and verify that there were no Partition Table before performing the `mklabel` and `mkpart` actions. 
 
