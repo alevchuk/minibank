@@ -162,6 +162,18 @@ Number  Start   End     Size    Type     File system  Flags
  4      14.5GB  256GB   242GB   primary  btrfs        lba    
 ```
 
+The default in parted is showing sizes the older units of MB=1000^2 of hard-drive manufacturers. Filesystems work in the newer unit of MiB=1024^2 so make sure to double check the final disk size by swithing the units like this:
+```
+(parted) unit GiB
+(parted) p
+
+Number  Start    End      Size     Type     File system  Flags
+ 1      0.00GiB  0.05GiB  0.04GiB  primary  fat32        lba
+ 2      0.05GiB  4.19GiB  4.14GiB  primary  ext4
+ 3      4.19GiB  13.5GiB  9.31GiB  primary  btrfs
+ 4      13.5GiB  238GiB   225GiB   primary  btrfs
+```
+
 WARNING: Only do this on new SD cards. Otherwise you're risking to loose data that was there before. To check run `sudo parted /dev/mmcblk0 print` and verify the current set of partitions before performing `mklabel`, `rm`, or `mkpart` actions. When typing `mkpart` followed by Enter, you be in interative mode where you can type the first letter and press tab to complete the command. 
 
 > for Amazon EC2 AWS use /dev/xvdb and skip First and Second partitions because that's already on a separate device (/dev/xvda1). So, on EC2 AWS the following should do the trick:
