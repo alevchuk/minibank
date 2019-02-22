@@ -136,7 +136,9 @@ Allocate 10G to **Third**, and 241G to **Fourth**.
 
 Use `mkpart` action in `parted`.
 
-WARNING: Only do `rm` freely on new SD cards. Otherwise you're risking to loose data that was there before. To check run `sudo parted /dev/mmcblk0 print` and verify the current set of partitions before performing `rm` actions. When typing `mkpart` followed by Enter, you be in interative mode where you can type the first letter and press tab to complete the command. 
+To add new partitions type `mkpart` followed by Enter, you be in interative mode where you can type the first letter and press tab to complete the command. If you mess up, you can remove the newly added partitions with `rm`.
+
+WARNING: Only do `rm` freely on new SD cards. Otherwise you're risking to loose data that was there before. To check run `sudo parted /dev/mmcblk0 print` and verify the current set of partitions before performing `rm` actions. 
 
 Adding two partitions should look like this:
 ```
