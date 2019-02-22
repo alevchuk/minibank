@@ -126,18 +126,31 @@ The two hosts `b1` and `l1` will have identical SD card partition table.
 sudo parted /dev/mmcblk0
 ```
 
-* First partition is boot
+* First partition is for boot
 * Second partition is for operating system
-* Third partition is for Bitcoin software and data
-* Fourth partition is for LND software and data
+* Third partition is for Lightning Network software and data
+* Fourth partition is for Bitcoin software and data
 
-Allocate 5G to **Second**, 10G to **Fourth**, and the rest to Third.
+Allocate 50 MB to **First** and 4.5G to **Second** (you probably already have those with the Rasbian image).
+Allocate 10G to **Third**, and 241G to **Fourth**.
 
-Results should look like this:
+Adding two partitions should look like this:
 ```
+(parted) mkpart
+Partition type?  primary/extended? primary
+File system type?  [ext2]? btrfs
+Start? 4500MB
+End? 14501MB
+
+(parted) mkpart
+Partition type?  primary/extended? primary
+File system type?  [ext2]? btrfs
+Start? 14501MB
+End? 256GB
+
 (parted) p
-Model: SD GC2QT (sd/mmc)
-Disk /dev/mmcblk0: 64.0GB
+Model: SD GE8QT (sd/mmc)
+Disk /dev/mmcblk0: 256GB
 Sector size (logical/physical): 512B/512B
 Partition Table: msdos
 Disk Flags:
@@ -145,11 +158,11 @@ Disk Flags:
 Number  Start   End     Size    Type     File system  Flags
  1      4194kB  49.5MB  45.3MB  primary  fat32        lba
  2      50.3MB  4500MB  4450MB  primary  ext4
- 3      4500MB  54.0GB  49.5GB  primary  btrfs
- 4      54.0GB  64.0GB  10.0GB  primary  btrfs        
+ 3      4500MB  14.5GB  10.0GB  primary  btrfs        lba
+ 4      14.5GB  256GB   242GB   primary  btrfs        lba    
 ```
 
-WARNING: Only do this on new SD cards. Otherwise you're risking to loose data that was there before. To check run `sudo parted /dev/mmcblk0 print` and verify the current set of partitions before performing `mklabel`, `rm`, or `mkpart` actions. 
+WARNING: Only do this on new SD cards. Otherwise you're risking to loose data that was there before. To check run `sudo parted /dev/mmcblk0 print` and verify the current set of partitions before performing `mklabel`, `rm`, or `mkpart` actions. When typing `mkpart` followed by Enter, you be in interative mode where you can type the first letter and press tab to complete the command. 
 
 > for Amazon EC2 AWS use /dev/xvdb and skip First and Second partitions because that's already on a separate device (/dev/xvda1). So, on EC2 AWS the following should do the trick:
 > ```
