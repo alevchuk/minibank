@@ -189,7 +189,7 @@ Number  Start    End      Size     Type     File system  Flags
 > sudo parted  -a optimal   /dev/xvdb mkpart primary btrfs 0% 10GiB
 > sudo parted  -a optimal   /dev/xvdb mkpart primary btrfs 10GB 299.9GiB
 > ```
-> Amazon EC2 AWS WARNING: only do this on a newly created EC2 instance and mounting a newly created EBS Volume, otherwise you're risking to loose data that was only your previous volumes. To check run `sudo parted /dev/xvdb print` and verify that there were no Partition Table before performing the `mklabel` and `mkpart` actions. 
+> Amazon EC2 AWS WARNING: `/dev/xvdb` may unexpectedly refer to a drive with valuable data. Only do this on a newly created EC2 instance and mounting a newly created EBS Volume, otherwise you're risking to loose data that was only your previous volumes. To check run `sudo parted /dev/xvdb print` and verify that there were no Partition Table before performing the `mklabel` and `mkpart` actions. 
 
 > for Azure use /dev/sdc skip First and Second partitions because that's already on a separate device. So, on Azure the following should do the trick:
 > ```
@@ -200,8 +200,7 @@ Number  Start    End      Size     Type     File system  Flags
 > sudo parted  -a optimal   /dev/sdc mkpart primary btrfs 0% 10GiB
 > sudo parted  -a optimal   /dev/sdc mkpart primary btrfs 10GB 299.9GiB
 > ```
-> Azure WARNING: Only do `rm` freely on new SD cards. Otherwise you're risking to loose data that was there before. To check run `sudo parted /dev/mmcblk0 print` and verify the current set of partitions before performing `rm` actions. 
-
+> Azure WARNING: `/dev/sdc` may unexpectedly refer to a drive with valuable data. Only do this on a newly created Virtual Machines and mounting a newly created Data Disk, otherwise you're risking to loose data that was only your previous volumes. To check, first run `sudo parted /dev/sdc print` and verify that there were no Partition Table before performing the `mklabel` and `mkpart` actions. 
 
 
 ### iSCSI
