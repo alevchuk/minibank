@@ -216,7 +216,7 @@ Notes are based on https://www.tecmint.com/setup-iscsi-target-and-initiator-on-d
 
 You'll need to set things like $$PASSWORD1_HERE$$ with unique passwords. Generate random strings (of 30 alphanumeric characters) for each password. 
 
-Part 1: Target
+Part 1: Target (host l1)
 
 On host b1 setup the following
 
@@ -257,7 +257,7 @@ Check connections (initiator to target) on target
 tgtadm --mode conn --op show --tid 1
 ```
 
-Part 2: Initiator
+Part 2: Initiator (host b1)
 
 On host b1 mount the remote filesystem
 
@@ -271,7 +271,7 @@ Restart
 service open-iscsi restart
 ``
 
-Discover targets:
+Discover targets (run this on host b1 - the initiator, host l1 is the target):
 ```
 iscsiadm  -m discovery -t st -p l1
 ```
@@ -291,7 +291,7 @@ node.session.auth.username = bankminus-iscsi-user1
 node.session.auth.password = $$PASSWORD5_HERE$$
 node.session.auth.username_in = bankminus-iscsi-target2
 node.session.auth.password_in = $$PASSWORD6_HERE$$
-node.startup = automatic
+node.startup = manual
 ```
 
 Now connect
