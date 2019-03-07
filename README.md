@@ -404,13 +404,13 @@ sudo btrfs fi label /mnt/btrfs_bitcoind bitcoind
 Add it to fstab on host `b1`:
 ```
 sudo su -l
-echo -e "LABEL=bitcoind\t/mnt/btrfs_bitcoind\tbtrfs\tnoauto\t0\t0" >> /etc/fstab
+echo -e "LABEL=bitcoind\t/mnt/btrfs_bitcoind\tbtrfs\tnoauto,compress=zstd\t0\t0" >> /etc/fstab
 ```
 
 Add it to fstab on host `l1`:
 ```
 sudo su -l
-echo -e "LABEL=lnd\t/mnt/btrfs_lnd\tbtrfs\tnoauto\t0\t0" >> /etc/fstab
+echo -e "LABEL=lnd\t/mnt/btrfs_lnd\tbtrfs\tnoauto,compress=zstd\t0\t0" >> /etc/fstab
 ```
 
 
