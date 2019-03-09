@@ -30,7 +30,7 @@ export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 git clone https://go.googlesource.com/go ~/src/go
 ~/src/go
 git fetch
-git checkout go1.11.2
+git checkout go1.11.5
 ```
 
 5. Build new go
