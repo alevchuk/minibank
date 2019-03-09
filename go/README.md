@@ -28,7 +28,7 @@ export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 4. Fetch new go
 ```
 git clone https://go.googlesource.com/go ~/src/go
-cd go
+~/src/go
 git fetch
 git checkout go1.11.2
 ```
