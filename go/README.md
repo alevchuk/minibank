@@ -15,7 +15,7 @@ sudo apt-get install git
 
 --- after this all commands should be run under the unix account where Go related services will be running. ---
 
-2. Set bootstrap path and gopath. To ~/.profile add:
+2. Set bootstrap path and gopath. To `~/.profile` add:
 
 ```
 export GOROOT_BOOTSTRAP=/usr/lib/go-1.6
