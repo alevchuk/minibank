@@ -602,8 +602,9 @@ bitcoin.node=bitcoind
 bitcoind.zmqpubrawblock=tcp://b1:29000
 bitcoind.zmqpubrawtx=tcp://b1:29001
 bitcoind.rpchost=b1
-bitcoind.rpcuser=ldjkfhg74y587ye8g985
-bitcoind.rpcpass=akjnf4hwuh49hwei4
+bitcoind.rpcuser=$$PASSWORD3_HERE$$ 
+bitcoind.rpcpass=$$PASSWORD4_HERE$$ 
+
 [neutrino]
 
 [Litecoin]
