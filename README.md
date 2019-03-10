@@ -628,6 +628,20 @@ Start:
 lnd --externalip=$(dig +short myip.opendns.com @resolver1.opendns.com):9736
 ```
 
+### Open LND port on your router
+
+In your home router, forward the port 9735 to the host running LND.
+
+Test with netcat (nc) from a different host
+```
+echo hi | nc -v <external_ip_of_LND_host> 9735
+```
+Alternetively to netcat you can use https://www.infobyip.com/tcpportchecker.php
+
+lnc logs will show
+```
+  2018-01-08 20:41:07.856 [ERR] CMGR: Can't accept connection: unexpected EOF
+```
 
 ## Monitoring
 
