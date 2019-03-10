@@ -659,11 +659,13 @@ Install on all nodes.
 ```
 sudo adduser monitoring
 
-sudo mkdir /mnt/btrfs_lnd/monitoring
-sudo mkdir /mnt/btrfs_lnd/monitoring/gocode
-sudo mkdir /mnt/btrfs_lnd/monitoring/src
+cd /mnt/btrfs_lnd  # or /mnt/btrfs_bitcoind depending on mount on this host
 
-sudo chown -R monitoring /mnt/btrfs_lnd/monitoring
+sudo mkdir ./monitoring
+sudo mkdir ./monitoring/gocode
+sudo mkdir ./monitoring/src
+
+sudo chown -R monitoring ./monitoring
 ```
 
 Now [Build Go](#build-go) or copy it from lightning user like this:
