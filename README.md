@@ -230,14 +230,14 @@ Edit
 <target iqn.2018-09.bankminus:btrfs-bitcoind>
      backing-store /dev/mmcblk0p3
      initiator-address 192.168.0.15
-     incominguser bankminus-iscsi-user1 $$PASSWORD3_HERE$$
-     outgoinguser bankminus-iscsi-target2  $$PASSWORD4_HERE$$
+     incominguser bankminus-iscsi-user1 $$PASSWORD_1_A_HERE$$
+     outgoinguser bankminus-iscsi-target1  $$PASSWORD_1_B_HERE$$
 </target>
 <target iqn.2018-09.bankminus:btrfs-lnd>
      backing-store /dev/mmcblk0p4
      initiator-address 192.168.0.15
-     incominguser bankminus-iscsi-user3 $$PASSWORD5_HERE$$
-     outgoinguser bankminus-iscsi-target4  $$PASSWORD6_HERE$$
+     incominguser bankminus-iscsi-user2 $$PASSWORD_2_A_HERE$$
+     outgoinguser bankminus-iscsi-target2  $$PASSWORD_2_B_HERE$$
 </target>
 
 ```
@@ -288,9 +288,9 @@ with:
 ```
 node.session.auth.authmethod = CHAP
 node.session.auth.username = bankminus-iscsi-user1
-node.session.auth.password = $$PASSWORD5_HERE$$
-node.session.auth.username_in = bankminus-iscsi-target2
-node.session.auth.password_in = $$PASSWORD6_HERE$$
+node.session.auth.password = $$PASSWORD_1_A_HERE$$
+node.session.auth.username_in = bankminus-iscsi-target1
+node.session.auth.password_in = $$PASSWORD_1_B_HERE$$
 node.startup = manual
 ```
 
@@ -487,8 +487,8 @@ disablewallet=1
 
 rpcbind=0.0.0.0
 rpcallowip=192.168.0.17
-rpcuser=$$PASSWORD1_HERE$$ 
-rpcpassword=$$PASSWORD2_HERE$$ 
+rpcuser=$$PASSWORD_1_A_HERE$$ 
+rpcpassword=$$PASSWORD_1_B_HERE$$ 
 #rpcport=18334
 onlynet=ipv4
 zmqpubrawblock=tcp://0.0.0.0:29000
@@ -506,7 +506,7 @@ maxconnections=40
 maxuploadtarget=5000
 ```
 
-You'll need to set things like $$PASSWORD1_HERE$$ with unique passwords. Generate random strings (of 30 alphanumeric characters) for each password. First character should be a letter. `rpcuser` should also look like a password.
+You'll need to set things like $$PASSWORD_1_A_HERE$$ with unique passwords. Generate random strings (of 30 alphanumeric characters) for each password. First character should be a letter. `rpcuser` should also look like a password.
 
 Start
 ```
@@ -602,8 +602,8 @@ bitcoin.node=bitcoind
 bitcoind.zmqpubrawblock=tcp://b1:29000
 bitcoind.zmqpubrawtx=tcp://b1:29001
 bitcoind.rpchost=b1
-bitcoind.rpcuser=$$PASSWORD3_HERE$$ 
-bitcoind.rpcpass=$$PASSWORD4_HERE$$ 
+bitcoind.rpcuser=$$PASSWORD_1_A_HERE$$ 
+bitcoind.rpcpass=$$PASSWORD_1_B_HERE$$ 
 
 [neutrino]
 
