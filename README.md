@@ -657,6 +657,8 @@ Citations:
 Install on all nodes.
 
 ```
+sudo adduser monitoring
+
 sudo mkdir /mnt/btrfs_lnd/monitoring
 sudo mkdir /mnt/btrfs_lnd/monitoring/gocode
 sudo mkdir /mnt/btrfs_lnd/monitoring/src
