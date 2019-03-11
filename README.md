@@ -31,7 +31,7 @@ WARNING: (1) This manual is incomplete. (2) The prototype described here is work
 ### Model 3 :: LND Node at Home
 
 * 2x Pi Zero W https://camelcamelcamel.com/Raspberry-Pi-Zero-Wireless-model/product/B06XFZC3BX
-* 2x Micro SD cards https://camelcamelcamel.com/Samsung-MicroSDXC-Adapter-MB-ME256GA-AM/product/B072HRDM55?active=price_amazon
+* 2x 256GB Micro SD cards https://camelcamelcamel.com/SanDisk-256GB-MicroSDXC-Memory-Adapter/product/B0758NHWS8
 * 2x Case with USB-A Addon Board https://camelcamelcamel.com/MakerFocus-Raspberry-Required-Connector-Protective/product/B07BK2BR6C
 * Power Supply https://camelcamelcamel.com/Tranesca-charger-foldable-Samsung-More-Black/product/B01385COIE
 
