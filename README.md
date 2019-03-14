@@ -685,13 +685,15 @@ ln -s /mnt/btrfs_lnd/monitoring/gocode
 
 Build None Exporter
 ```
-GO111MODULE=on go get github.com/prometheus/node_exporter
+go get github.com/prometheus/node_exporter
 # if you get "net/http: TLS handshake timeout" errors, you need to re-run the `go get` command above 
 # if the error is persistent try to see how to make the netwrok less busy (e.g. temporary stop bitcoind)
 
 cd ${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter
 
-GO111MODULE=on make
+git pull
+
+make
 ```
 
 Run node_exporter
