@@ -2,6 +2,26 @@
 
 We use Go for Lightning LND implementation and for monitoring services.
 
+## Don't Build Go (if you can avoid it)
+
+If your lucky to have a Linux distro that has go-1.11 packaged, then you don't need to build go, and just do:
+
+1. Fetch go and git
+```
+sudo apt-get install golang-1.11
+sudo apt-get install git
+```
+
+2. Set bootstrap path and gopath. To `~/.profile` add:
+
+```
+export GOROOT=/usr/lib/go-1.11
+export GOPATH=~/gocode
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+```
+
+
+otherwise...
 
 ## Build Go
 
