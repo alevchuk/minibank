@@ -584,8 +584,9 @@ Edit ~/.lnd/lnd.conf
 
 ```
 [Application Options]
-nochanupdates=1  ; saves on resources, neccessary to run on Ras Pi Zero
-listen=0.0.0.0:9736
+; saves on resources, neccessary to run on Ras Pi Zero
+nochanupdates=1
+listen=0.0.0.0:9735
 rpclisten=localhost:10009
 debuglevel=ATPL=debug,CRTR=warn
 
@@ -617,7 +618,10 @@ bitcoind.rpcpass=$$PASSWORD_1_B_HERE$$
 autopilot.active=1
 autopilot.maxchannels=3
 autopilot.allocation=1.0
-autopilot.minchansize=20000  ; default for most nodes is 20000
+
+; default for most nodes is 20000
+autopilot.minchansize=20000
+
 autopilot.maxchansize=50000
 
 [tor]
@@ -625,7 +629,7 @@ autopilot.maxchansize=50000
 
 Start:
 ```
-lnd --externalip=$(dig +short myip.opendns.com @resolver1.opendns.com):9736
+lnd --externalip=$(dig +short myip.opendns.com @resolver1.opendns.com):9735
 ```
 
 ### Open LND port on your router
