@@ -630,7 +630,7 @@ autopilot.maxchansize=50000
 Enable bash completion for lncli:
 ```
 cp /home/lightning/gocode/src/github.com/lightningnetwork/lnd/contrib/lncli.bash-completion /etc/bash_completion.d/lncli
-# in older Debian distros install "bash-completion" and uncomment "enable bash completion" in /etc/bash.bashrc
+# on Debian distros install "bash-completion" and uncomment "enable bash completion" in /etc/bash.bashrc
 ```
 
 Start:
