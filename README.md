@@ -627,6 +627,12 @@ autopilot.maxchansize=50000
 [tor]
 ```
 
+Enable bash completion for lncli:
+```
+cp /home/lightning/gocode/src/github.com/lightningnetwork/lnd/contrib/lncli.bash-completion /etc/bash_completion.d/lncli
+# in older Debian distros install "bash-completion" and uncomment "enable bash completion" in /etc/bash.bashrc
+```
+
 Start:
 ```
 lnd --externalip=$(dig +short myip.opendns.com @resolver1.opendns.com):9735
