@@ -410,7 +410,7 @@ echo -e "LABEL=bitcoind\t/mnt/btrfs_bitcoind\tbtrfs\tnoauto,compress=zstd\t0\t0"
 Add it to fstab on host `l1`:
 ```
 sudo su -l
-echo -e "LABEL=lnd\t/mnt/btrfs_lnd\tbtrfs\tnoauto,compress=zstd\t0\t0" >> /etc/fstab
+echo -e "LABEL=lnd\t/mnt/btrfs_lnd\tbtrfs\tnoauto\t0\t0" >> /etc/fstab
 ```
 
 
