@@ -6,13 +6,27 @@ import time
 import json
 import sys
 
-def r(cmd):
-    return subprocess.check_output(cmd).decode('utf-8').strip()
+
+def _r(cmd, timeout=None):
+    return subprocess.check_output(cmd, timeout=timeout).decode('utf-8').strip()
+
 
 def ts():
-    return r(['date', '+%Y-%m-%dT%H:%M:%S%z'])  # shows local timiezone
+    return _r(['date', '+%Y-%m-%dT%H:%M:%S%z'])  # shows local timiezone
 
-print(ts())
+
+def r(cmd, timeout=120):
+    print("{} running: {}".format(ts(), ' '.join(cmd)))
+
+    start_time = time.time()
+    try:
+        out = _r(cmd, timeout)
+    finally:
+        print("{} command took {} seconds".format(ts(), time.time() - start_time))
+
+    return out
+
+
 channels = json.loads(r(['lncli', 'listchannels']))['channels']
 print('Total channels: {}'.format(len(channels)))
 
