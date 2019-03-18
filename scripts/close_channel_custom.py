@@ -61,7 +61,7 @@ for c in channels:
     if FOR_REAL:
         try:
             out = r(close_cmd)
-            print(json.loads(out.decode('utf-8')))
+            print(json.loads(out))
         except Exception as e:
             print(e)
             print("Graceful attempt failed, force closing the channel!")
