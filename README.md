@@ -504,8 +504,8 @@ txindex=1
 dbcache=200  ## trying to impove catch up time, 2018-12-11
 maxorphatx=10
 maxmempool=50
-maxconnections=40
-maxuploadtarget=500  # MiB/day for the community
+maxconnections=20
+maxuploadtarget=50  # MiB/day for the community
 ```
 
 You'll need to set things like $$PASSWORD_1_A_HERE$$ with unique passwords. Generate random strings (of 30 alphanumeric characters) for each password. First character should be a letter. `rpcuser` should also look like a password.
