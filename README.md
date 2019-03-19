@@ -506,6 +506,14 @@ maxorphatx=10
 maxmempool=50
 maxconnections=20
 maxuploadtarget=50  # MiB/day for the community
+
+# Detailed logging
+debug=bench
+debug=db
+debug=reindex
+debug=cmpctblock
+debug=coindb
+debug=leveldb
 ```
 
 You'll need to set things like $$PASSWORD_1_A_HERE$$ with unique passwords. Generate random strings (of 30 alphanumeric characters) for each password. First character should be a letter. `rpcuser` should also look like a password.
