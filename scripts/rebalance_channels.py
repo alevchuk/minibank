@@ -1,4 +1,3 @@
- cat ~/lnd-e2e-testing/rebalance_channels.py
 #!/usr/bin/python3
 
 import subprocess
