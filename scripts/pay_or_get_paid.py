@@ -16,6 +16,8 @@ LOGFILE = HOME + "/pay_or_get_paid.py.log"
 RUN_TRY_NUM = 12
 RUN_TRY_SLEEP = 10
 
+SWITCH_KEYWORD = "switch"
+
 '''
 Warning: This script opens a port that allows anyone to steal money from your LND wallet.
 Yet, MICROPAYMENT_NUM_SAT is enforced, so even though anyone can easily steal from you,
@@ -74,13 +76,6 @@ def run(cmd, timeout=240):
   return json.loads(raw)
 
 
-def check_pay_ammount(pay_req):
-    decoded = run(['lncli', 'decodepayreq', '--pay_req={}'.format(pay_req)])
-    if int(decoded['num_satoshis']) != MICROPAYMENT_NUM_SAT:
-        log("FATAL: No, thank you! We agreed that we pay {} sat at a time, and isntaed you requested {}".format(MICROPAYMENT_NUM_SAT, decoded))
-        sys.exit(1)
-
-
 class MySocket:
     """
       MySocket implementation from https://docs.python.org/2/howto/sockets.html#using-a-socket
@@ -132,10 +127,15 @@ class MySocket:
         return (b''.join(chunks)).decode('UTF-8').strip()
 
 
+class PayPingPongException(Exception):
+    pass
+
+
 class PayPingPong(object):
     def __init__(self, mysocket, start_as_payee):
         self.mysocket = mysocket
 
+        self.num_payments = 0
         self.sat_paied = 0
         self.sat_received = 0
         self.drop = False
@@ -155,7 +155,7 @@ class PayPingPong(object):
         for _ in range(NUM_PAYMENTS_PER_BATCH):
             invoice = run(['lncli', 'addinvoice', '{}'.format(MICROPAYMENT_NUM_SAT)])
             invoice_list.append(invoice)
-            print("Sending invoice: {}".format(invoice))
+            log("Sending invoice: {}".format(invoice))
             self.mysocket.mysend(invoice['pay_req'])
 
         # Confirm that invoice was settled
@@ -179,13 +179,13 @@ class PayPingPong(object):
                 log("Invoice check timeout after {} seconds".format(seconds_passed))
                 break
 
-            print("{} of {} settled after {} seconds (timeout triggering a switch will be at {} seconds)".format(
+            log("{} of {} settled after {} seconds (timeout triggering a switch will be at {} seconds)".format(
                   num_settled, NUM_PAYMENTS_PER_BATCH, seconds_passed, TOTAL_TIMEOUT))
 
             if num_settled == NUM_PAYMENTS_PER_BATCH:
                 self.sat_received += (MICROPAYMENT_NUM_SAT * num_settled)
 
-                print("All settled after {}s, issuing switch".format(seconds_passed))
+                log("All settled after {}s, issuing switch".format(seconds_passed))
                 self.switch()
                 return
 
@@ -199,38 +199,41 @@ class PayPingPong(object):
                 if invoice_status['settled']:
                     self.sat_received += MICROPAYMENT_NUM_SAT
 
-            print("Cannot settle after {} seconds, issuing switch".format(seconds_passed))
+            log("Cannot settle after {} seconds, issuing switch".format(seconds_passed))
             self.switch()
             return
 
     def run_as_payer(self):
         if not self.retry:
-            pay_req = self.mysocket.myreceive()
-            print("Got invoice: {}".format(pay_req))
+            try:
+                log("Waiting to recieve info from the other side")
+                pay_req = self.mysocket.myreceive()
+
+            except Exception as e:
+                log("Failed waiting to recieve info from the other side")
+                raise
+
+            if pay_req == SWITCH_KEYWORD:
+                log("Got 'switch' !")
+                self.switch()
+                return
+            else:
+                log("Got invoice: {}".format(pay_req))
 
         self.retry = False
 
-        if pay_req == "switch":
-          log("Switch was issued. Total sat_paied was {:,} ({:,} payments)".format(
-            self.sat_paied,
-            self.sat_paied / MICROPAYMENT_NUM_SAT))
-
-          self.payee = True
-          self.drop = False
-          self.sat_paied = 0
-          self.sat_received = 0
-
-        elif self.drop:
-            print("Dropping invoce {}".format(pay_req))
+        if self.drop:
+            log("Dropping invoce")
         else:
+          self.check_pay_ammount(pay_req)
+          self.check_num_payements()
 
-          check_pay_ammount(pay_req)
-
+          self.num_payments += 1
           try:
             result = run(['lncli', 'payinvoice', '-f', '{}'.format(pay_req)], timeout=PAY_INVOICE_TIMEOUT)
           except Exception as e:
             print(e)
-            print("payinvoice FAILED: {}, dropping all further invoces until 'switch'!".format(e))
+            log("payinvoice FAILED: {}, dropping all further invoces until 'switch'!".format(e))
             self.drop = True
           else:
             if result['payment_error'] == '':
@@ -247,14 +250,42 @@ class PayPingPong(object):
                   )
                 self.drop = True
 
-    def switch(self):
-        self.mysocket.mysend("switch")
+    def check_pay_ammount(self, pay_req):
+        decoded = run(['lncli', 'decodepayreq', '--pay_req={}'.format(pay_req)])
+        if int(decoded['num_satoshis']) != MICROPAYMENT_NUM_SAT:
+            msg = (
+                "FATAL: No, thank you! "
+                "We agreed that we pay {} sat at a time, "
+                "and isntaed you requested {}"
+            ).format(MICROPAYMENT_NUM_SAT, decoded)
 
+            log(msg)
+            raise PayPingPongException(msg)
+
+    def check_num_payements(self):
+        if self.num_payments > NUM_PAYMENTS_PER_BATCH:
+            msg = (
+                "FATAL: No, thank you! NUM_PAYMENTS_PER_BATCH is {},"
+                " yet this is payment numbrer {},"
+                " so it was your turn to pay"
+            ).format(NUM_PAYMENTS_PER_BATCH, self.num_payments)
+
+            log(msg)
+            raise PayPingPongException(msg)
+
+    def switch(self):
         log("Switch. Total sat_received was {:,} ({:,} payments)".format(
-          self.sat_received,
-          self.sat_received / MICROPAYMENT_NUM_SAT))
+            self.sat_received,
+            self.sat_received / MICROPAYMENT_NUM_SAT))
 
         if self.payee:
+            log("Requesting the other side to switch")
+            try:
+                self.mysocket.mysend(SWITCH_KEYWORD)
+            except Exception as e:
+                log("Failed sending switch request")
+                raise
+
             self.payee = False
         else:
             self.payee = True
@@ -262,7 +293,7 @@ class PayPingPong(object):
         self.drop = False
         self.sat_paied = 0
         self.sat_received = 0
-
+        self.num_payments = 0
 
 if args.listen:
   serversocket = MySocket.listen(args.port)
