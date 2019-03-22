@@ -99,6 +99,10 @@ Pi Zero W has 433 MB of usable RAM. Additional memory needs to be added as swap.
 
 (The changes described in this section need to be applied to all hosts)
 
+```
+sudo apt-get install dphys-swapfile
+```
+
 Edit `/etc/dphys-swapfile`
 ```
 CONF_SWAPSIZE=600
