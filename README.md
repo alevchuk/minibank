@@ -460,6 +460,7 @@ sudo mkdir /mnt/btrfs_bitcoind/bitcoin
 sudo mkdir /mnt/btrfs_bitcoind/bitcoin/bin
 sudo mkdir /mnt/btrfs_bitcoind/bitcoin/bitcoin-data
 sudo mkdir /mnt/btrfs_bitcoind/bitcoin/src
+
 sudo chown -R bitcoin /mnt/btrfs_bitcoind/bitcoin
 
 sudo su -l bitcoin
