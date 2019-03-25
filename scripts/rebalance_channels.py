@@ -330,13 +330,13 @@ def main():
     remote_total = sum(remote_balance_list)
 
     print("Incative channels:")
-    print_channels(inactive_channels, remote_total)
+    print_channels(inactive_channels, 0)
 
     print("\nActive channels:")
     print_channels(channels, remote_total)
 
-
-    print("\nSuggested new remote balance percentage --dst-pct {:.2f}".format(100 / len(channels)))
+    if remote_total > 0:
+        print("\nSuggested new remote balance percentage --dst-pct {:.2f}".format(100 / len(channels)))
 
 
 if __name__ == "__main__":
