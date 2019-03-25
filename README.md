@@ -682,6 +682,10 @@ git clone https://github.com/alevchuk/minibank.git
 cp ~/minibank/scripts/* ~/lnd-e2e-testing/
 ```
 
+* close_channel_custom.py
+* pay_or_get_paid.py
+* rebalance_channels.py
+
 Most of those scripts are short/readable and have internal documentation.
 
 ## Monitoring
