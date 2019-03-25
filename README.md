@@ -20,6 +20,8 @@ WARNING: (1) This manual is incomplete. (2) The prototype described here is work
     * [Build Go](#build-go)
     * [Build LND](#build-lnd)
     * [Start LND](#start-lnd)
+    * [Open LND port on your router](#open-lnd-port-on-your-router)
+    * [Install LND testing scripts](#install-lnd-testing-scripts)
   * [Monitoring](#monitoring)
     * [Node exporters](#node-exporters)
     * [Prometheus](#prometheus)
