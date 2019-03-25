@@ -687,8 +687,21 @@ rsync -ai ~/minibank/scripts/ ~/lnd-e2e-testing/
 * close_channel_custom.py
 * pay_or_get_paid.py
 * rebalance_channels.py
+* treasury_report.py
 
 Most of those scripts are short/readable and have internal documentation.
+
+#### Record balance every hour automatically
+crontab -e
+'''
+
+### Text-editor will open, paste the following, save, and exit:
+
+SHELL=/bin/bash
+# m h  dom mon dow   command
+0   *  *   *   *     (source ~/.profile; ~/lnd-e2e-testing/treasury_report.py --no-header >> ~/balance_history.tab) 2> /tmp/stderr_cron_treasury_report
+
+'''
 
 ## Monitoring
 
