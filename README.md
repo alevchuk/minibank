@@ -668,7 +668,7 @@ lnc logs will show
   2018-01-08 20:41:07.856 [ERR] CMGR: Can't accept connection: unable to accept connection from <IP>:<PORT>: Act One: invalid handshake version: 49, only 0 is valid, msg=....
 ```
 
-### Inatll LND testing scripts
+### Install LND testing scripts
 
 Change into Lighting account:
 ```
