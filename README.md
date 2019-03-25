@@ -692,6 +692,7 @@ rsync -ai ~/minibank/scripts/ ~/lnd-e2e-testing/
 Most of those scripts are short/readable and have internal documentation.
 
 #### Record balance every hour automatically
+```
 crontab -e
 '''
 
@@ -702,6 +703,13 @@ SHELL=/bin/bash
 0   *  *   *   *     (source ~/.profile; ~/lnd-e2e-testing/treasury_report.py --no-header >> ~/balance_history.tab) 2> /tmp/stderr_cron_treasury_report
 
 '''
+```
+
+Now you can track the historical + realtime balance like this:
+```
+# Track balance
+while :; do (cat ~/balance_history.tab; ~/lnd-e2e-testing/treasury_report.py ) | column -t; date; sleep 60; done
+```
 
 ## Monitoring
 
