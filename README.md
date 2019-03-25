@@ -708,7 +708,7 @@ SHELL=/bin/bash
 Now you can track the historical + realtime balance like this:
 ```
 # Track balance
-while :; do echo; (cat ~/balance_history.tab; ~/lnd-e2e-testing/treasury_report.py ) | column -t; date; sleep 60; done
+while :; do echo; (cat ~/balance_history.tab; ~/lnd-e2e-testing/treasury_report.py ) | column -t; sleep 60; done
 ```
 
 #### Monitor channels
