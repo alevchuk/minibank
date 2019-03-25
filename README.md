@@ -668,6 +668,22 @@ lnc logs will show
   2018-01-08 20:41:07.856 [ERR] CMGR: Can't accept connection: unable to accept connection from <IP>:<PORT>: Act One: invalid handshake version: 49, only 0 is valid, msg=....
 ```
 
+### Inatll LND testing scripts
+
+Change into Lighting account:
+```
+sudo su -l lightning
+```
+
+Checkout scripts and copy to `lnd-e2e-testing`:
+```
+cd ~
+git clone https://github.com/alevchuk/minibank.git
+cp ~/minibank/scripts/* ~/lnd-e2e-testing/
+```
+
+Most of those scripts are short/readable and have internal documentation.
+
 ## Monitoring
 
 ### Node exporters
