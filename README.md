@@ -679,7 +679,7 @@ Checkout scripts and copy to `lnd-e2e-testing`:
 ```
 cd ~
 git clone https://github.com/alevchuk/minibank.git
-cp ~/minibank/scripts/* ~/lnd-e2e-testing/
+rsync -ai ~/minibank/scripts/ ~/lnd-e2e-testing/
 ```
 
 * close_channel_custom.py
