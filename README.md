@@ -711,6 +711,27 @@ Now you can track the historical + realtime balance like this:
 while :; do echo; (cat ~/balance_history.tab; ~/lnd-e2e-testing/treasury_report.py ) | column -t; date; sleep 60; done
 ```
 
+#### Monitor channels
+```
+while :; do echo; date; ~/lnd-e2e-testing/rebalance_channels.py; sleep 1m; done
+```
+
+Example, output:
+```
+Mon 25 Mar 21:14:04 UTC 2019
+Incative channels:
+           chan_id      pubkey       local          remote      remote-pct      mini-id
+--------------------------------------------------------------------------------
+
+Active channels:
+           chan_id      pubkey       local          remote      remote-pct      mini-id
+--------------------------------------------------------------------------------
+625373626745421824      0360f95      15789               3          33.33%      1
+625357134040268800      02d58ee      15513               6          66.67%      0
+
+Suggested new remote balance percentage --dst-pct 50.00
+```
+
 ## Monitoring
 
 ### Node exporters
