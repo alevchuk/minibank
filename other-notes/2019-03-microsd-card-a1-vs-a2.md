@@ -8,7 +8,7 @@ I compared the performance of A1 and A2 256GB micro-sd cards:
 
 According to official SanDisk docs https://www.sdcard.org/developers/overview/application/index.html the A2 version should have 4x more IOPS. Yet, A2 also has a signingfant cost premium.
 
-In my comparison A2 indeed performs better. I stated bitcoind on 2 identical clones of the blockchain running on 2 identical Pi Zero hardware, with the only difference being the SD Cards. I observed the following:
+In my comparison A2 indeed performs better. I started bitcoind on 2 identical clones of the filesystem containing the .bitcoind directory running on 2 identical Pi Zero hardware, with the only difference being the SD Cards. I observed the following:
  1. Bitcoind catch-up was faster on A2
  2. There was 2-4x higher rate of bytes being read out of the system with A2 micro-sd cards
  
