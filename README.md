@@ -8,7 +8,7 @@ bitcoin lightning node
 Table of contents
 =================
 
-~~WARNING: (1) This manual is incomplete. (2) The prototype described here is work in progress...~~ **UPDATE March 2019: This setup is tested and capable of making LN payments!**
+~~WARNING: (1) This manual is incomplete. (2) The prototype described here is work in progress...~~ **UPDATE March 2019: This setup is stable and capable of making LN payments!**
 
   * [Hardware](#hardware)
   * [Network](#network)
