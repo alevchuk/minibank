@@ -603,8 +603,9 @@ Edit ~/.lnd/lnd.conf
 
 ```
 [Application Options]
-; saves on resources, neccessary to run on Ras Pi Zero
-nochanupdates=1
+;; nochanupdates was replaced by numgraphsyncpeers
+;; https://github.com/lightningnetwork/lnd/commit/80b84eef9cc7b33b112dcde597fe68ca136a9f40
+;; nochanupdates=1  ; saves on resources, neccessary to run on Ras Pi Zero
 listen=0.0.0.0:9735
 rpclisten=localhost:10009
 debuglevel=ATPL=debug,CRTR=warn
