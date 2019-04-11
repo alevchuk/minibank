@@ -538,7 +538,7 @@ Prerequisites:
 * Raspbian GNU/Linux 9
 
 Citations:
-* This section is based on https://golang.org/doc/install/source and https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#build-go
+* This section is based on [golang official instructions](https://golang.org/doc/install/source) and [alevchuk/pstm](https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#build-go)
 
 
 #### Setup LND environment
