@@ -189,9 +189,9 @@ Number  Start    End      Size     Type     File system  Flags
 ```
 
 
+> for EC2m, Azure, or Google Cloud attach a 300GiB HDD drive.
+
 ### Amazon EC2
-> for EC2 or Azure attach a 300GiB HDD drive.
->
 > for Amazon EC2 AWS use /dev/xvdb and skip First and Second partitions because that's already on a separate device (/dev/xvda1). So, on EC2 AWS the following should do the trick:
 > ```
 > sudo parted /dev/xvdb  mklabel msdos
