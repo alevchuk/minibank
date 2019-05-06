@@ -189,6 +189,7 @@ Number  Start    End      Size     Type     File system  Flags
 ```
 
 
+### Amazon EC2
 > for EC2 or Azure attach a 300GiB HDD drive.
 >
 > for Amazon EC2 AWS use /dev/xvdb and skip First and Second partitions because that's already on a separate device (/dev/xvda1). So, on EC2 AWS the following should do the trick:
@@ -199,6 +200,7 @@ Number  Start    End      Size     Type     File system  Flags
 > ```
 > Amazon EC2 AWS WARNING: `/dev/xvdb` may unexpectedly refer to a drive with valuable data. Only do this on a newly created EC2 instance and mounting a newly created EBS Volume, otherwise you're risking to loose data that was only your previous volumes. To check run `sudo parted /dev/xvdb print` and verify that there were no Partition Table before performing the `mklabel` and `mkpart` actions. 
 
+#### Microsoft Azure (don't bother)
 > for Azure use /dev/sdc skip First and Second partitions because that's already on a separate device. So, on Azure the following should do the trick:
 > ```
 > sudo parted /dev/sdc  mklabel msdos
@@ -209,6 +211,17 @@ Number  Start    End      Size     Type     File system  Flags
 > sudo parted  -a optimal   /dev/sdc mkpart primary btrfs 10GB 299.9GiB
 > ```
 > Azure WARNING: `/dev/sdc` may unexpectedly refer to a drive with valuable data. Only do this on a newly created Virtual Machines and mounting a newly created Data Disk, otherwise you're risking to loose data that was only your previous volumes. To check, first run `sudo parted /dev/sdc print` and verify that there were no Partition Table before performing the `mklabel` and `mkpart` actions. 
+
+#### Google Cloud
+> for Google Cloud use /dev/sdb , skip First and Second partitions because that's already on a separate device.
+> ```
+> sudo parted /dev/sdb  mklabel msdos
+> ```
+> Warning: The existing disk label on /dev/sdb will be destroyed and all data on this disk will be lost. Do you want to >continue? Yes/No? yes
+> ```
+> sudo parted  -a optimal   /dev/sdb mkpart primary btrfs 0% 10GiB
+> sudo parted  -a optimal   /dev/sdb mkpart primary btrfs 10GB 299.9GiB
+> ```
 
 
 ### iSCSI
