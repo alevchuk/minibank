@@ -749,7 +749,7 @@ Suggested new remote balance percentage --dst-pct 50.00
 
 ## Monitoring
 
-### Node exporters
+### Prometheus exporters
 
 Prerequisites:
 * [Storage](#storage)
@@ -787,7 +787,10 @@ ln -s /mnt/btrfs_lnd/monitoring/src
 ln -s /mnt/btrfs_lnd/monitoring/gocode
 ```
 
-Build None Exporter
+#### Node Exporter
+
+Node Exporter is used to export system metrics to Prometheus
+
 ```
 go get github.com/prometheus/node_exporter
 # if you get "net/http: TLS handshake timeout" errors, you need to re-run the `go get` command above 
@@ -805,6 +808,44 @@ Run node_exporter
 ${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter/node_exporter 
 ```
 
+#### Bitcoin Exporter
+
+Bitcoin Exporter is used to export bitcoin node metrics to Prometheus
+
+Install pip
+```
+sudo apt-get install python3-pip
+```
+
+Install vitrualenv
+
+Vitrualenv is the only pip package that you will need to install system-wide. Everything else will be installed locally home directories called virtual environments.
+
+```
+sudo pip3 install virtualenv
+```
+
+Create a new virtual envirment and install prometheus python client library 
+```
+sudo su -l bitcoin
+virtualenv monitoring-bitcoind -p python3.5
+cd ~/monitoring-bitcoind
+. bin/activate
+pip install prometheus_client
+```
+
+Download Kevin M. Gallagher's amazing bitcoind-monitor.py 
+https://gist.github.com/ageis/a0623ae6ec9cfc72e5cb6bde5754ab1f
+
+```
+curl https://gist.githubusercontent.com/ageis/a0623ae6ec9cfc72e5cb6bde5754ab1f/raw/4aeee711a041c5a25fac4397faee8b8098a4e5d1/bitcoind-monitor.py >  exporter-bitcoind-monitor.py
+chmod +x exporter-bitcoind-monitor.py
+```
+
+Run bitcoind-monitor.py
+```
+./exporter-bitcoind-monitor.py
+```
 
 ### Prometheus
 
