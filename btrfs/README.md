@@ -42,7 +42,10 @@ cd btrfs-progs
 ./autogen.sh
 ./configure --prefix /home/pi/bin --disable-documentation --disable-convert
 make
-make install
+```
+
+```
+sudo make install  # needs root access because it will update /lib/udev/rules.d/64-btrfs-dm.rules
 ```
 
 Add /home/pi/bin/bin to your PATH in ~/.profile
