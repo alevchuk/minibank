@@ -18,7 +18,7 @@ reboot
 
 Note your kernel version after
 ```
-uname -a
+uname -a  # should print "4.19.42+" or greater
 ```
 
 ## Step 2: Build and install btrfs-progs (userspace utilities)
@@ -55,5 +55,5 @@ echo 'PATH="$HOME/bin/bin:$PATH"' >> ~/.profile
 ```
 
 ```
-btrfs --version  # shold print "btrfs-progs v5.1" or greater
+btrfs --version  # should print "btrfs-progs v5.1" or greater
 ```
