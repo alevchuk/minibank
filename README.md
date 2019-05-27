@@ -25,7 +25,7 @@ Table of contents
     * [Open LND port on your router](#open-lnd-port-on-your-router)
     * [Install LND testing scripts](#install-lnd-testing-scripts)
   * [Monitoring](#monitoring)
-    * [Node exporters](#node-exporters)
+    * [Prometheus exporters](#prometheus-exporters)
     * [Prometheus](#prometheus)
     * [Grafana](#grafana)
   * [Service Manager](#service-manager)
