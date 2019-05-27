@@ -842,9 +842,20 @@ curl https://gist.githubusercontent.com/ageis/a0623ae6ec9cfc72e5cb6bde5754ab1f/r
 chmod +x exporter-bitcoind-monitor.py
 ```
 
+Change shebang to use python3
+```
+sed -i 's|/usr/bin/python|/usr/bin/python3|g' exporter-bitcoind-monitor.py
+```
+
 Run bitcoind-monitor.py
 ```
-./exporter-bitcoind-monitor.py
+. ~/monitoring-bitcoind/bin/activate
+~/monitoring-bitcoind/exporter-bitcoind-monitor.py
+```
+
+Test
+```
+curl localhost:8334
 ```
 
 ### Prometheus
