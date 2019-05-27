@@ -50,5 +50,5 @@ sudo make install  # needs root access because it will install under /usr/local/
 
 
 ```
-btrfs --version  # should print "btrfs-progs v5.1" or greater
+sudo btrfs --version  # should print "btrfs-progs v5.1" or greater
 ```
