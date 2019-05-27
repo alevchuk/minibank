@@ -40,19 +40,14 @@ Build and install
 ```
 cd btrfs-progs
 ./autogen.sh
-./configure --prefix /home/pi/bin --disable-documentation --disable-convert
+./configure --disable-documentation --disable-convert
 make
 ```
 
 ```
-sudo make install  # needs root access because it will update /lib/udev/rules.d/64-btrfs-dm.rules
+sudo make install  # needs root access because it will install under /usr/local/bin and update /lib/udev/rules.d/64-btrfs-dm.rules
 ```
 
-Add /home/pi/bin/bin to your PATH in ~/.profile
-```
-echo 'PATH="$HOME/bin/bin:$PATH"' >> ~/.profile
-. ~/.profile  # load new path into current shell
-```
 
 ```
 btrfs --version  # should print "btrfs-progs v5.1" or greater
