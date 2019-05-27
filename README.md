@@ -35,7 +35,7 @@ Table of contents
 ### Model 3 :: LND Node at Home
 
 * 2x Pi Zero W https://camelcamelcamel.com/Raspberry-Pi-Zero-Wireless-model/product/B06XFZC3BX
-* 2x 256GB A1 Micro SD cards https://camelcamelcamel.com/SanDisk-256GB-MicroSDXC-Memory-Adapter/product/B0758NHWS8 or the faster [A2](https://camelcamelcamel.com/SanDisk-256GB-Extreme-microSD-Adapter/product/B07FCR3316) 
+* 2x 400GB A1 Micro SD cards https://camelcamelcamel.com/SanDisk-Ultra-microSDXC-Adapter-SDSQUAR-400G-GN6MA/product/B074RNRM2B
 * 2x Case with USB-A Addon Board https://camelcamelcamel.com/MakerFocus-Raspberry-Required-Connector-Protective/product/B07BK2BR6C
 * Power Supply https://camelcamelcamel.com/Tranesca-charger-foldable-Samsung-More-Black/product/B01385COIE
 
