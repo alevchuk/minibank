@@ -26,7 +26,7 @@ uname -a
 
 Install dependencies
 ```
-sudo apt-get install libuuid1 libblkid-dev liblzo2-dev zlibc libzstd-dev
+sudo apt-get install libuuid1 libblkid-dev liblzo2-dev zlibc libzstd-dev python-setuptools python3-setuptools
 ```
 original list of dependencies is here https://github.com/kdave/btrfs-progs/blob/master/INSTALL#L4
 
