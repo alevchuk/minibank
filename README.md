@@ -396,7 +396,7 @@ So the end goal is looks like this:
 ### BTRFS 
 
 Prerequisites: 
- * `sudo apt-get install btrfs-progs`
+ * Follow instructions to upgrade kernel and build new BTRFS utility programs https://github.com/alevchuk/minibank/tree/master/btrfs
 
 RAID-1
 
