@@ -1,4 +1,4 @@
-# Latest BTRFS on Raspberry Pi
+# Latest release of BTRFS on Raspberry Pi
 
 
 ## Step 1: Upgrade Kernel and Firmware
