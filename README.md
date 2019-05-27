@@ -423,10 +423,9 @@ sudo btrfs fi label /mnt/btrfs_bitcoind bitcoind
 ```
 
 Add it to fstab on host `b1`:
-> for `compress=zstd` to work, make sure you have Linux Kernel v4.14 or higher. Otherwise, use `compress=zlib`
 ```
 sudo su -l
-echo -e "LABEL=bitcoind\t/mnt/btrfs_bitcoind\tbtrfs\tnoauto,compress=zstd\t0\t0" >> /etc/fstab
+echo -e "LABEL=bitcoind\t/mnt/btrfs_bitcoind\tbtrfs\tnoauto\t0\t0" >> /etc/fstab
 ```
 
 Add it to fstab on host `l1`:
