@@ -51,4 +51,9 @@ sudo make install  # needs root access because it will update /lib/udev/rules.d/
 Add /home/pi/bin/bin to your PATH in ~/.profile
 ```
 echo 'PATH="$HOME/bin/bin:$PATH"' >> ~/.profile
+. ~/.profile  # load new path into current shell
+```
+
+```
+btrfs --version  # shold print "btrfs-progs v5.1" or greater
 ```
