@@ -8,7 +8,7 @@ bitcoin lightning node
 Table of contents
 =================
 
-**WARNING: The prototype described here is work in progress...**
+**WARNING: The work described here is a prototype and not ready for general use...**
 
 
   * [Hardware](#hardware)
