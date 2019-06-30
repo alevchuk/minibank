@@ -1,5 +1,7 @@
 # MicroSD Cards A1 vs A2 comparison
 
+## UPDATE 2019-06: I no longer feel that A2 is worth it. End-to-end bitcoin sync time is about the same AND it seems that A2 cards are less reliable
+
 A1 and A2 are SD card "Application Performance Classes"
 
 I compared the performance of A1 and A2 256GB micro-sd cards:
