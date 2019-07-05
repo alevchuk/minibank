@@ -490,7 +490,7 @@ echo 'export PATH=$HOME/bin/bin:$PATH  # bitcoind is here' >> ~/.profile
 . ~/.profile
 ```
 
-Follow instruction to build bitoin core: https://github.com/alevchuk/minibank/tree/master/bitcoin
+Follow instruction to build bitcoin core: https://github.com/alevchuk/minibank/tree/master/bitcoin
 
 
 ### Start Bitcoind
