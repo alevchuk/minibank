@@ -3,9 +3,7 @@ bitcoin lightning node
 
 ![model 4](https://raw.githubusercontent.com/alevchuk/minibank/master/minibank-2019-08-11.jpg "minibank model 4, Pi 4, 4 GB RAM, 500GB SSD, running mainnet LND")
 
-![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/minibank-2019-04-07.jpg "minibank model 3, 256GB microSD cards, running mainnet LND")
-
-![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/model3_64g.jpg "minibank model 3, 64GB microSD cards, running testnet LND")
+For older versions see https://github.com/alevchuk/minibank/blob/master/other-notes/HISTORY.md
 
 Table of contents
 =================
@@ -42,13 +40,6 @@ Table of contents
 * SanDisk 500 GB SSD (for Raid-1 mirror): https://camelcamelcamel.com/SanDisk-500GB-Extreme-Portable-External/product/B078SWJ3CF
 * Micro HDMI adaptor (for one-time setup): https://camelcamelcamel.com/UGREEN-Adapter-Compatible-Raspberry-ZenBook/product/B00B2HORKE
 
-
-### Model 3 :: Node at Home
-
-* 2x Pi Zero W https://camelcamelcamel.com/Raspberry-Pi-Zero-Wireless-model/product/B06XFZC3BX
-* 2x 400GB A1 Micro SD cards https://camelcamelcamel.com/SanDisk-Ultra-microSDXC-Adapter-SDSQUAR-400G-GN6MA/product/B074RNRM2B
-* 2x Case with USB-A Addon Board https://camelcamelcamel.com/MakerFocus-Raspberry-Required-Connector-Protective/product/B07BK2BR6C
-* Power Supply https://camelcamelcamel.com/Tranesca-charger-foldable-Samsung-More-Black/product/B01385COIE
 
 ### (Optional) Model 1 :: Monitoring Station at Home
 
