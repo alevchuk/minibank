@@ -60,8 +60,9 @@ Amazon pricing: http://calculator.s3.amazonaws.com/index.html#r=IAD&s=EC2&key=ca
 
 ## Operating System
 
-1. Install the Raspberry Pi Foundation’s official supported operating system
+1. Download the image the Raspberry Pi Foundation’s official supported operating system
 **Raspbian Buster Lite** from https://www.raspberrypi.org/downloads/raspbian/
+2. Copy it to your SD card (I use `dd`, Raspberry Pi has instcutions for doing this from [Linux](https://www.raspberrypi.org/documentation/installation/installing-images/linux.md), [Mac](https://www.raspberrypi.org/documentation/installation/installing-images/mac.md), and [Windows](https://www.raspberrypi.org/documentation/installation/installing-images/windows.md))
 
 > for Amazon EC2 AWS use [Debian GNU/Linux 9 (Stretch)](https://aws.amazon.com/marketplace/pp/B073HW9SP3) 
 
