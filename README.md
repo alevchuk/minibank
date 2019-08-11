@@ -60,7 +60,8 @@ Amazon pricing: http://calculator.s3.amazonaws.com/index.html#r=IAD&s=EC2&key=ca
 
 ## Operating System
 
-Raspbian Stretch Lite https://www.raspberrypi.org/downloads/raspbian/
+1. Install the Raspberry Pi Foundation’s official supported operating system
+**Raspbian Buster Lite** from https://www.raspberrypi.org/downloads/raspbian/
 
 > for Amazon EC2 AWS use [Debian GNU/Linux 9 (Stretch)](https://aws.amazon.com/marketplace/pp/B073HW9SP3) 
 
