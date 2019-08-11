@@ -1,6 +1,8 @@
 # minibank
 bitcoin lightning node
 
+![model 4](https://raw.githubusercontent.com/alevchuk/minibank/master/minibank-2019-08-11.jpg "minibank model 4, Pi 4, 4 GB RAM, 500GB SSD, running mainnet LND")
+
 ![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/minibank-2019-04-07.jpg "minibank model 3, 256GB microSD cards, running mainnet LND")
 
 ![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/model3_64g.jpg "minibank model 3, 64GB microSD cards, running testnet LND")
