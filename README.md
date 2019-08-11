@@ -49,7 +49,7 @@ Table of contents
 * Card Reader https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4
 * Case https://camelcamelcamel.com/Case-Official-Raspberry-Touchscreen-Display/product/B01HV97F64
 
-###  (Optional) VM :: LND Node on Amazon EC2
+###  (Optional) VM :: Node on Amazon EC2
 
 * 2x Linux on t2.micro
 * Storage: 5G general purpose SSD for opearting system
