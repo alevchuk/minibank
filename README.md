@@ -33,7 +33,15 @@ Table of contents
  
 ## Hardware
 
-### Model 3 :: LND Node at Home
+### Model 4 :: Node at Home
+
+* Pi 4: https://camelcamelcamel.com/CanaKit-Raspberry-Basic-Kit-2GB/product/B07TYK4RL8
+* Samsung 500 GB SSD (for Raid-1 mirror): https://camelcamelcamel.com/Samsung-T5-Portable-SSD-MU-PA500B/product/B073GZBT36
+* SanDisk 500 GB SSD (for Raid-1 mirror): https://camelcamelcamel.com/SanDisk-500GB-Extreme-Portable-External/product/B078SWJ3CF
+* Micro HDMI adaptor (for one-time setup): https://camelcamelcamel.com/UGREEN-Adapter-Compatible-Raspberry-ZenBook/product/B00B2HORKE
+
+
+### Model 3 :: Node at Home
 
 * 2x Pi Zero W https://camelcamelcamel.com/Raspberry-Pi-Zero-Wireless-model/product/B06XFZC3BX
 * 2x 400GB A1 Micro SD cards https://camelcamelcamel.com/SanDisk-Ultra-microSDXC-Adapter-SDSQUAR-400G-GN6MA/product/B074RNRM2B
