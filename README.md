@@ -513,20 +513,25 @@ server=1
 deamon=0
 disablewallet=1
 
-rpcbind=0.0.0.0
-rpcallowip=192.168.0.17
+# Bind to given address to listen for JSON-RPC connections. Use [host]:port notation for IPv6.
+# This option can be specified multiple times (default: bind to all interfaces)
+#rpcbind=<addr>
+
+# By default, only RPC connections from localhost are allowed.
+#rpcallowip=192.168.0.17
+
 rpcuser=$$PASSWORD_1_A_HERE$$ 
 rpcpassword=$$PASSWORD_1_B_HERE$$ 
-#rpcport=18334
+
+# Listen for RPC connections on this TCP port:
+#pcport=8332
+
 onlynet=ipv4
 zmqpubrawblock=tcp://0.0.0.0:29000
 zmqpubrawtx=tcp://0.0.0.0:29001
 
 txindex=1
-#txindex=0
-#prune=5000
-
-#dbcache=100
+#prune=5000  # No prune, were running a full node
 dbcache=200  ## trying to impove catch up time, 2018-12-11
 maxorphatx=10
 maxmempool=50
@@ -534,11 +539,11 @@ maxconnections=20
 maxuploadtarget=50  # MiB/day for the community
 
 # Detailed logging
-debug=bench
-debug=db
-debug=reindex
-debug=cmpctblock
-debug=coindb
+#debug=bench
+#debug=db
+#debug=reindex
+#debug=cmpctblock
+#debug=coindb
 #debug=leveldb
 ```
 
