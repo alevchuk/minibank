@@ -83,7 +83,7 @@ Select: **Change Password**
 Connect monitor and keyboard.
 
 1. Setup [firewall](https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#security) before connecting to the network 
-2. Make sure you changed the password in `rspi-config`
+2. Make sure you changed the password in `rspi-config`. If you don't change the password you'll get robbed.
 2. Connect enthernet cable
 3. Lookup your IP by running `ifconfig`
 4. Enable remote login over SSH. Run `rspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
