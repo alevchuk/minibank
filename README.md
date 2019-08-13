@@ -68,26 +68,32 @@ Amazon pricing: http://calculator.s3.amazonaws.com/index.html#r=IAD&s=EC2&key=ca
 
 > for Amazon EC2 AWS use [Debian GNU/Linux 9 (Stretch)](https://aws.amazon.com/marketplace/pp/B073HW9SP3) 
 
+## First time login
+
+Connect monitor and keyboard. Boot pi. Login: pi Passowrd: rpaspberry
+
+Immendiatly change the password by running:
+```
+rspi-config
+```
+Select: **Change Password**
+
 ## Network
 
-Prerequisits:
-* Setup [firewall](https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#security) before connecting to the network 
+Connect monitor and keyboard.
 
-(The changes described in this section need to be applied to all hosts)
+1. Setup [firewall](https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#security) before connecting to the network 
+2. Make sure you changed the password in `rspi-config`
+2. Connect enthernet cable
+3. Lookup your IP by running `ifconfig`
+4. Enable remote login over SSH. Run `rspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
 
-Edit `/etc/wpa_supplicant/wpa_supplicant.conf`
 
-Add WiFi network name and password:
 
-```
-network={
-    ssid="testing"
-    psk="testingPassword"
-}
-```
+Optionally [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/master/other-notes/wifi.md)
 
-For troubleshooting see:
-https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md
+
+## Naming hosts
 
 You'll need two Raspberry Pi Zero W (Model 3) one for LND and the other one for Bitcoind. I'll call all of the Pis "hosts" and use the hostnames `l1`, `b1`, and `base` in this manual. 
 
