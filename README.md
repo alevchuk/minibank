@@ -93,112 +93,13 @@ Connect monitor and keyboard.
 Optionally [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/master/other-notes/wifi.md)
 
 
-## Naming hosts
 
-You'll need two Raspberry Pi Zero W (Model 3) one for LND and the other one for Bitcoind. I'll call all of the Pis "hosts" and use the hostnames `l1`, `b1`, and `base` in this manual. 
-
-`base` host is optinal. It's touchscreen Base Station (Model 1) for monitoring. Monitoring consists of a time-series database and a web user interface. 
-
-Lookup the IP addresses by running `ip addr` on each node.
-
-Edit `/etc/hosts` and add IP addresses for the 3 node, for example:
-```
-192.168.0.10    l1
-192.168.0.11    b1
-192.168.0.12    base
-```
-
-## Memory
-
-Pi Zero W has 433 MB of usable RAM. Additional memory needs to be added as swap.
-
-(The changes described in this section need to be applied to all hosts)
-
-```
-sudo apt-get install dphys-swapfile
-```
-
-Edit `/etc/dphys-swapfile`
-```
-CONF_SWAPSIZE=600
-CONF_MAXSWAP=600
-```
-
-Test:
-```
-sudo dphys-swapfile swapoff
-sudo dphys-swapfile setup
-sudo dphys-swapfile swapon
-```
-
-A note on microSD card wear and tear from Swap: 
-
-I have been running Bitcoind + LND on this setup for over 6 months on two Pi Zero W boards and still have not seen failures related to swap wearing out the microSD cards. For context on why this is important and why it works, see "System with too little RAM" section in [https://askubuntu.com/a/652355/5191].
 
 ## Storage
 
 ### Partition
 
-The two hosts `b1` and `l1` will have identical SD card partition table. 
-
-```
-sudo parted /dev/mmcblk0
-```
-
-* First partition is for boot
-* Second partition is for operating system
-* Third partition is for Lightning Network software and data
-* Fourth partition is for Bitcoin software and data
-
-Allocate 50 MB to **First** and 4.5G to **Second** (you probably already have those with the Rasbian image).
-Allocate 10G to **Third**, and 241G to **Fourth**.
-
-Use `mkpart` action in `parted`.
-
-To add new partitions type `mkpart` followed by Enter, you be in interative mode where you can type the first letter and press tab to complete the command. If you mess up, you can remove the newly added partitions with `rm`.
-
-WARNING: Only do `rm` freely on new SD cards. Otherwise you're risking to loose data that was there before. To check run `sudo parted /dev/mmcblk0 print` and verify the current set of partitions before performing `rm` actions. 
-
-Adding two partitions should look like this:
-```
-(parted) mkpart
-Partition type?  primary/extended? primary
-File system type?  [ext2]? btrfs
-Start? 4500MB
-End? 14501MB
-
-(parted) mkpart
-Partition type?  primary/extended? primary
-File system type?  [ext2]? btrfs
-Start? 14501MB
-End? 256GB
-
-(parted) p
-Model: SD GE8QT (sd/mmc)
-Disk /dev/mmcblk0: 256GB
-Sector size (logical/physical): 512B/512B
-Partition Table: msdos
-Disk Flags:
-
-Number  Start   End     Size    Type     File system  Flags
- 1      4194kB  49.5MB  45.3MB  primary  fat32        lba
- 2      50.3MB  4500MB  4450MB  primary  ext4
- 3      4500MB  14.5GB  10.0GB  primary  btrfs        lba
- 4      14.5GB  256GB   242GB   primary  btrfs        lba    
-```
-
-The default in parted is showing sizes the older units of MB=1000^2 of hard-drive manufacturers. Filesystems work in the newer unit of MiB=1024^2 so make sure to double check the final disk size by swithing the units like this:
-```
-(parted) unit GiB
-(parted) p
-
-Number  Start    End      Size     Type     File system  Flags
- 1      0.00GiB  0.05GiB  0.04GiB  primary  fat32        lba
- 2      0.05GiB  4.19GiB  4.14GiB  primary  ext4
- 3      4.19GiB  13.5GiB  9.31GiB  primary  btrfs
- 4      13.5GiB  238GiB   225GiB   primary  btrfs
-```
-
+No need for partition changes in Model 4.
 
 > for EC2m, Azure, or Google Cloud attach a 300GiB HDD drive.
 
@@ -211,7 +112,7 @@ Number  Start    End      Size     Type     File system  Flags
 > ```
 > Amazon EC2 AWS WARNING: `/dev/xvdb` may unexpectedly refer to a drive with valuable data. Only do this on a newly created EC2 instance and mounting a newly created EBS Volume, otherwise you're risking to loose data that was only your previous volumes. To check run `sudo parted /dev/xvdb print` and verify that there were no Partition Table before performing the `mklabel` and `mkpart` actions. 
 
-#### Microsoft Azure (don't bother)
+#### Microsoft Azure (don't bother, Azure is too expensive and has shady pricing for drives)
 > for Azure use /dev/sdc skip First and Second partitions because that's already on a separate device. So, on Azure the following should do the trick:
 > ```
 > sudo parted /dev/sdc  mklabel msdos
