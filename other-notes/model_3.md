@@ -1,4 +1,46 @@
-# Model 3
+# minibank Model 3
+bitcoin lightning node
+
+![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/minibank-2019-04-07.jpg "minibank model 3, 256GB microSD cards, running mainnet LND")
+
+For older versions see https://github.com/alevchuk/minibank/blob/master/other-notes/HISTORY.md
+
+Table of contents
+=================
+
+**WARNING: The work described here is a prototype and not ready for general use...**
+
+
+  * [Hardware](#hardware)
+  * [Network](#network)
+  * [Storage](#storage)
+    * [Partitions](#partition)
+    * [iSCSI](#iscsi)
+    * [BTRFS](#btrfs)
+  * [Software](#software)
+    * [Build Bitcoin](#build-bitcoind)
+    * [Start Bitcoin](#start-bitcoind)
+    * [Build Go](#build-go)
+    * [Build LND](#build-lnd)
+    * [Start LND](#start-lnd)
+    * [Open LND port on your router](#open-lnd-port-on-your-router)
+    * [Install LND testing scripts](#install-lnd-testing-scripts)
+  * [Monitoring](#monitoring)
+    * [Prometheus exporters](#prometheus-exporters)
+    * [Prometheus](#prometheus)
+    * [Grafana](#grafana)
+  * [Service Manager](#service-manager)
+ 
+## Hardware
+
+### Model 3 :: Node at Home
+
+* 2x Pi Zero W https://camelcamelcamel.com/Raspberry-Pi-Zero-Wireless-model/product/B06XFZC3BX
+* 2x 400GB A1 Micro SD cards https://camelcamelcamel.com/SanDisk-Ultra-microSDXC-Adapter-SDSQUAR-400G-GN6MA/product/B074RNRM2B
+* 2x Case with USB-A Addon Board https://camelcamelcamel.com/MakerFocus-Raspberry-Required-Connector-Protective/product/B07BK2BR6C
+* Power Supply https://camelcamelcamel.com/Tranesca-charger-foldable-Samsung-More-Black/product/B01385COIE
+
+
 
 ## Naming hosts
 
