@@ -531,12 +531,12 @@ zmqpubrawblock=tcp://0.0.0.0:29000
 zmqpubrawtx=tcp://0.0.0.0:29001
 
 txindex=1
-#prune=5000  # No prune, were running a full node
-dbcache=200  ## trying to impove catch up time, 2018-12-11
-maxorphatx=10
-maxmempool=50
-maxconnections=20
-maxuploadtarget=50  # MiB/day for the community
+#prune=  # No prune, were running a full node
+#dbcache=200  ## trying to impove catch up time, 2018-12-11
+#maxorphatx=10
+#maxmempool=50
+#maxconnections=20
+#maxuploadtarget=50  # MiB/day for the community
 
 # Detailed logging
 #debug=bench
