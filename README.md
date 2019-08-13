@@ -515,36 +515,36 @@ disablewallet=1
 
 # Bind to given address to listen for JSON-RPC connections. Use [host]:port notation for IPv6.
 # This option can be specified multiple times (default: bind to all interfaces)
-#rpcbind=<addr>
+####rpcbind=<addr>
 
 # By default, only RPC connections from localhost are allowed.
-#rpcallowip=192.168.0.17
+####rpcallowip=192.168.0.17
 
 rpcuser=$$PASSWORD_1_A_HERE$$ 
 rpcpassword=$$PASSWORD_1_B_HERE$$ 
 
 # Listen for RPC connections on this TCP port:
-#pcport=8332
+####rpcport=8332
 
 onlynet=ipv4
 zmqpubrawblock=tcp://0.0.0.0:29000
 zmqpubrawtx=tcp://0.0.0.0:29001
 
 txindex=1
-#prune=  # No prune, were running a full node
-#dbcache=200  ## trying to impove catch up time, 2018-12-11
-#maxorphatx=10
-#maxmempool=50
-#maxconnections=20
-#maxuploadtarget=50  # MiB/day for the community
+####prune=  # No prune, were running a full node
+dbcache=200  ## trying to impove catch up time, 2018-12-11
+maxorphatx=10
+maxmempool=50
+maxconnections=20
+maxuploadtarget=50  # MiB/day for the community
 
 # Detailed logging
-#debug=bench
-#debug=db
-#debug=reindex
-#debug=cmpctblock
-#debug=coindb
-#debug=leveldb
+####debug=bench
+####debug=db
+####debug=reindex
+####debug=cmpctblock
+####debug=coindb
+####debug=leveldb
 ```
 
 You'll need to set things like $$PASSWORD_1_A_HERE$$ with unique passwords. Generate random strings (of 30 alphanumeric characters) for each password. First character should be a letter. `rpcuser` should also look like a password. Try using: `openssl rand -base64 32 | grep -o '[a-z0-9]' | xargs | tr -d ' '` to generate random strings.
