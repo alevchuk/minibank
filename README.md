@@ -14,8 +14,6 @@ Table of contents
   * [Hardware](#hardware)
   * [Network](#network)
   * [Storage](#storage)
-    * [Partitions](#partition)
-    * [iSCSI](#iscsi)
     * [BTRFS](#btrfs)
   * [Software](#software)
     * [Build Bitcoin](#build-bitcoind)
@@ -77,6 +75,8 @@ Connect monitor and keyboard. Power-up Pi. Login: `pi` Passowrd: `rpaspberry`
 
 ## Network
 
+### Remote Login
+
 Connect via monitor and keyboard.
 
 1. Setup [no-incomming-connections firewall](https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#security) before connecting to the network! If you don't add a firewall you'll get hacked.
@@ -91,7 +91,7 @@ Now the output of `sudo iptables-save` should look like this:
 -A OUTPUT -o lo -j ACCEPT
 COMMIT
 ```
-2. Make sure you changed the password in `rspi-config`. Select: **Change Password** If you don't change the password you'll get hacked.
+2. Changed the password in `rspi-config`. Select: **Change Password** If you don't change the password you'll get hacked.
 3. Connect enthernet cable
 4. Update the system: `sudo apt-get update; sudo apt-get upgrade;`. If you don't upgrade you'll get hacked.
 5. Write down your IP adress. To look it up run `ifconfig`
@@ -112,221 +112,12 @@ COMMIT
 COMMIT
 ```
 
-
-
 Optionally [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/master/other-notes/wifi.md)
-
-
 
 
 ## Storage
 
-### Partition
-
-No need for partition changes in Model 4.
-
-> for EC2m, Azure, or Google Cloud attach a 300GiB HDD drive.
-
-### Amazon EC2
-> for Amazon EC2 AWS use /dev/xvdb and skip First and Second partitions because that's already on a separate device (/dev/xvda1). So, on EC2 AWS the following should do the trick:
-> ```
-> sudo parted /dev/xvdb  mklabel msdos
-> sudo parted  -a optimal   /dev/xvdb mkpart primary btrfs 0% 10GiB
-> sudo parted  -a optimal   /dev/xvdb mkpart primary btrfs 10GB 299.9GiB
-> ```
-> Amazon EC2 AWS WARNING: `/dev/xvdb` may unexpectedly refer to a drive with valuable data. Only do this on a newly created EC2 instance and mounting a newly created EBS Volume, otherwise you're risking to loose data that was only your previous volumes. To check run `sudo parted /dev/xvdb print` and verify that there were no Partition Table before performing the `mklabel` and `mkpart` actions. 
-
-#### Microsoft Azure (don't bother, Azure is too expensive and has shady pricing for drives)
-> for Azure use /dev/sdc skip First and Second partitions because that's already on a separate device. So, on Azure the following should do the trick:
-> ```
-> sudo parted /dev/sdc  mklabel msdos
-> ```
-> Warning: The existing disk label on /dev/sdc will be destroyed and all data on this disk will be lost. Do you want to >continue? Yes/No? yes
-> ```
-> sudo parted  -a optimal   /dev/sdc mkpart primary btrfs 0% 10GiB
-> sudo parted  -a optimal   /dev/sdc mkpart primary btrfs 10GB 299.9GiB
-> ```
-> Azure WARNING: `/dev/sdc` may unexpectedly refer to a drive with valuable data. Only do this on a newly created Virtual Machines and mounting a newly created Data Disk, otherwise you're risking to loose data that was only your previous volumes. To check, first run `sudo parted /dev/sdc print` and verify that there were no Partition Table before performing the `mklabel` and `mkpart` actions. 
-
-#### Google Cloud
-> for Google Cloud use /dev/sdb , skip First and Second partitions because that's already on a separate device.
-> ```
-> sudo parted /dev/sdb  mklabel msdos
-> ```
-> Warning: The existing disk label on /dev/sdb will be destroyed and all data on this disk will be lost. Do you want to >continue? Yes/No? yes
-> ```
-> sudo parted  -a optimal   /dev/sdb mkpart primary btrfs 0% 10GiB
-> sudo parted  -a optimal   /dev/sdb mkpart primary btrfs 10GB 299.9GiB
-> ```
-
-
-### iSCSI
-
-Prerequisites:
-* [Network](#network)
-
-(Not needed for Base Station because Base Station will use an external USB Card reader)
-
-iSCSI makes a storage device available over the network. This is useful to avoid cables, USB, and extra card readers.
-
-Notes are based on https://www.tecmint.com/setup-iscsi-target-and-initiator-on-debian-9/ - yet here we avoid using LVM
-
-You'll need to set things like $$PASSWORD1_HERE$$ with unique passwords. Generate random strings (of 30 alphanumeric characters) for each password. 
-
-Part 1: Target (host l1)
-
-On host b1 setup the following
-
-```
-apt-get install tgt
-```
-
-Edit
-/etc/tgt/conf.d/bankminus_iscsi.conf
-```
-<target iqn.2018-09.bankminus:btrfs-bitcoind>
-     backing-store /dev/mmcblk0p3
-     initiator-address 192.168.0.15
-     incominguser bankminus-iscsi-user1 $$PASSWORD_1_A_HERE$$
-     outgoinguser bankminus-iscsi-target1  $$PASSWORD_1_B_HERE$$
-</target>
-<target iqn.2018-09.bankminus:btrfs-lnd>
-     backing-store /dev/mmcblk0p4
-     initiator-address 192.168.0.15
-     incominguser bankminus-iscsi-user2 $$PASSWORD_2_A_HERE$$
-     outgoinguser bankminus-iscsi-target2  $$PASSWORD_2_B_HERE$$
-</target>
-
-```
-
-Restart tgt service:
-```
-service tgt restart
-```
-
-Check exported targets:
-```
-tgtadm --mode target --op show
-```
-
-Check connections (initiator to target) on target
-```
-tgtadm --mode conn --op show --tid 1
-```
-
-Part 2: Initiator (host b1)
-
-On host b1 mount the remote filesystem
-
-
-```
-apt-get install open-iscsi
-```
-
-Restart 
-``
-service open-iscsi restart
-``
-
-Discover targets (run this on host b1 - the initiator, host l1 is the target):
-```
-iscsiadm  -m discovery -t st -p l1
-```
-Find the newly created "/default" file:
-```
-find /etc/iscsi/send_targets/
-```
-
-Edit the "...default/default" file, replace:
-```
-node.session.auth.authmethod = None
-```
-with:
-```
-node.session.auth.authmethod = CHAP
-node.session.auth.username = bankminus-iscsi-user1
-node.session.auth.password = $$PASSWORD_1_A_HERE$$
-node.session.auth.username_in = bankminus-iscsi-target1
-node.session.auth.password_in = $$PASSWORD_1_B_HERE$$
-node.startup = manual
-```
-
-Now connect
-```
-iscsiadm  -m node  --targetname "iqn.2018-12.bankminus:btrfs-lnd" --portal l1:3260 --login
-```
-
-A new sd* device should appear. Find it like this:
-```
-ls /dev/sd*
-```
-
-Check connections (initiator to target) on initiator
-```
-iscsiadm -m session
-```
-
-### iSCSI relocation
-
-As part of bootstrapping I first setup one of the host as target and another as initiator. I have two partitions on target that I'm exporting and two local partition of the initiator. So four total. I use BTRFS Raid 1 to have two filesystems (btrfs_lnd and btrfs_bitcoind).
-
-So proceed to BTRFS setup from here, and then come back once that's done...
-
-So step one is to mount both filesystems on the same host. Step two is to re-mount one of those filesystems on the other host. So the end goal both hosts are targets and initiators at the same time.
-
-To stop one of the iSCSI for connecting on-startup, edit the "...default/default" file under /etc/iscsi/send_targets/ and comment out (add a `#` in front) the "automatic" line:
-```
-#node.startup = automatic
-```
-you can then reboot the host and see that `/dev/sd*` no longer shows up. Also, the TCP connection will stop showing up when you run:
-```
-sudo iscsiadm -m session
-```
-
-Once one of the connections is removed, go through the "iSCSI" section again to setup target and initiator in the reverse direction.
-
-So the end goal is looks like this:
-
-```
-+------------------------------------+              +-------------------------------------------+
-|                                    |              |                                           |
-|  b1                                |              |  l1                                       |
-|                                    |              |                                           |
-|                                    |              |                                           |
-|                                    |              |                                           |
-|                                    |              |                                           |
-|                                    |              |                                           |
-|      +-----+   /dev/mmcblk0p3      |              |                                           |
-|      |                             |    iSCSI     |                                           |
-|      |         /dev/mmcblk0p4 +-------------------------->    /dev/sda  +-----------+         |
-|      |                             |              |                                 |         |
-|      |                             |              |                                 |         |
-|      |                             |              |                                 |         |
-|      |                             |              |                                 |         |
-|      |                             |    iSCSI     |                                 |         |
-|      +-------+  /dev/sda      <----------------------+ /dev/mmcblk0p3               |         |
-|      |                             |              |                                 |         |
-|      |                             |              |    /dev/mmcblk0p4 +-------------+         |
-|      |                             |              |                                 |         |
-|      |                             |              |                                 |         |
-|      |                             |              |                                 |         |
-|      |                             |              |                                 |         |
-|      |                             |              |                                 |         |
-|      |                             |              |                                 |         |
-|      v                             |              |                                 v         |
-|                                    |              |                                           |
-|      /etc/fstab                    |              |                     /etc/fstab            |
-|        LABEL=bitcoind              |              |                       LABEL=lnd           |
-|        /mnt/btrfs_bitcoind         |              |                       /mnt/btrfs_lnd      |
-|                                    |              |                                           |
-|                                    |              |                                           |
-|                                    |              |                                           |
-|                                    |              |                                           |
-|                                    |              |                                           |
-+------------------------------------+              +-------------------------------------------+
-```
-
-(Note: /dev/sda /dev/sdb naming is can change, so it's important to use BTRFS labels in fstab instead of specific device names)
+### Look up block device names
 
 
 ### BTRFS 
@@ -484,6 +275,23 @@ Start
 ```
 bitcoind
 ```
+
+### Convenience stuff
+
+While your chain syncs...
+
+#### Host name
+Give your host a name. Edit 2 files replacing "raspberrypi" with the name you came up with.
+```
+sudo vi /etc/hostname
+sudo vi /etc/hosts
+```
+you'll see the change after logging out of SSH (press Ctrl-d) and logging back in.
+
+#### Time-zone
+
+Run `rspi-config` and select **Localization Options --> Change Timezone** to make your system clock right. Check time by running `date`
+
 
 ### Build Go
 
@@ -954,11 +762,5 @@ E.g. "Node Exporter Server Metrics" can show multiple nodes side-by-side:
 
 ![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/grafana_screen_shot_2018-11-23.png "grafana monitoring dashboard using data from prometheus time-series store")
 
-
-
-
-## Service Manager
-
-Minibank uses `systemd` to make sure all processes are started in the right order and keep running even after crashes
 
 
