@@ -72,15 +72,10 @@ Amazon pricing: http://calculator.s3.amazonaws.com/index.html#r=IAD&s=EC2&key=ca
 
 Connect monitor and keyboard. Power-up Pi. Login: `pi` Passowrd: `rpaspberry`
 
-Immendiatly change the password by running:
-```
-rspi-config
-```
-Select: **Change Password**
 
 ## Network
 
-Connect monitor and keyboard.
+Connect via monitor and keyboard.
 
 1. Setup [no-incomming-connections firewall](https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#security) before connecting to the network! If you don't add a firewall you'll get hacked.
 Now the output of `sudo iptables-save` should look like this:
@@ -94,7 +89,7 @@ Now the output of `sudo iptables-save` should look like this:
 -A OUTPUT -o lo -j ACCEPT
 COMMIT
 ```
-2. Make sure you changed the password in `rspi-config`. If you don't change the password you'll get hacked.
+2. Make sure you changed the password in `rspi-config`. Select: **Change Password** If you don't change the password you'll get hacked.
 3. Connect enthernet cable
 4. Update the system: `sudo apt-get update; sudo apt-get upgrade;`. If you don't upgrade you'll get hacked.
 5. Write down your IP adress. To look it up run `ifconfig`
