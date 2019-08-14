@@ -96,7 +96,7 @@ COMMIT
 ```
 2. Make sure you changed the password in `rspi-config`. If you don't change the password you'll get hacked.
 3. Connect enthernet cable
-4. Update the system: `sudo apt-get update; sudo apt-get upgrade;`. If you don't update you'll get hacked.
+4. Update the system: `sudo apt-get update; sudo apt-get upgrade;`. If you don't upgrade you'll get hacked.
 5. Write down your IP adress. To look it up run `ifconfig`
 6. Enable remote login over SSH. Run `rspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
 7. Allow SSH in the firewall `sudo vi /etc/iptables/rules.v4` then add "Allow SSH" line so it's like this:
