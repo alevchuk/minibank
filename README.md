@@ -159,6 +159,10 @@ Now type `mb4` and that should log you into the Pi.
 
 ## Storage
 
+In this section will setup a Raid-1 Mirror from your two new SSD drives.
+
+WARNING: any data in the SSD drives will be deleted.
+
 ### Look up block device names
 
 
@@ -171,43 +175,31 @@ RAID-1
 
 Create filesystems Bitcoin and LND nodes
 ```
-sudo mkfs.btrfs /dev/mmcblk0p3
-sudo mkfs.btrfs /dev/mmcblk0p4
+sudo mkfs.btrfs /dev/YOUR_SSD_BLOCK_DEVICE_1_NAME_HERE
+sudo mkfs.btrfs /dev/YOUR_SSD_BLOCK_DEVICE_2_NAME_HERE
 ```
 
 Mount
 ```
-sudo mkdir /mnt/btrfs_bitcoind
-sudo mount /dev/mmcblk0p3 /mnt/btrfs_bitcoind
-
-sudo mkdir /mnt/btrfs_lnd
-sudo mount /dev/mmcblk0p4 /mnt/btrfs_lnd
+sudo mkdir /mnt/btrfs
+sudo mount /dev/YOUR_SSD_BLOCK_DEVICE_1_NAME_HERE /mnt/btrfs
 ```
 
 Label it
 ```
-sudo btrfs fi label /mnt/btrfs_lnd lnd
-sudo btrfs fi label /mnt/btrfs_bitcoind bitcoind
+sudo btrfs fi label /mnt/btrfs minibank4
 
 ```
 
-Add it to fstab on host `b1`:
+Add it to fstab:
 ```
 sudo su -l
-echo -e "LABEL=bitcoind\t/mnt/btrfs_bitcoind\tbtrfs\tnoauto\t0\t0" >> /etc/fstab
+echo -e "LABEL=minibank4\t/mnt/btrfs\tbtrfs\tnoauto\t0\t0" >> /etc/fstab
 ```
-
-Add it to fstab on host `l1`:
-> don't use compression on the LND filesystem
-```
-sudo su -l
-echo -e "LABEL=lnd\t/mnt/btrfs_lnd\tbtrfs\tnoauto\t0\t0" >> /etc/fstab
-```
-
 
 Now you can mount it like this (even if block device names change):
 ```
-sudo mount /mnt/btrfs_lnd
+sudo mount /mnt/btrfs
 ```
 
 Check BTRFS sizes like this (--si makes numbers compatible with numbers in `parted`):
@@ -215,24 +207,17 @@ Check BTRFS sizes like this (--si makes numbers compatible with numbers in `part
 sudo btrfs fi show --si
 ```
 
-If you need to shrink BTRFS you can do so safely, yet you'll need to re-size the device partition table accordingly, e.g.:
-```
-sudo parted /dev/mmcblk0
-```
-(type "p" and press enter to see the current partition table)
 
-
-To setup Raid1 you can do it at the time of running `mkfs.btrfs` or add a new device later, like this:
+To setup Raid1 mirror you can do it at the time of running `mkfs.btrfs` or add a new device later, like this:
 ```
-sudo btrfs dev add -f /dev/mmcblk0p4 /mnt/btrfs_lnd
+sudo btrfs dev add -f /dev/YOUR_SSD_BLOCK_DEVICE_2_NAME_HERE /mnt/btrfs
 
 # check current Raid setup
-sudo btrfs fi df /mnt/btrfs_lnd
+sudo btrfs fi df /mnt/btrfs
 
-# convert to Raid1
-sudo btrfs balance start -dconvert=raid1 -mconvert=raid1 /mnt/btrfs_lnd/
+# convert to Raid1 mirror
+sudo btrfs balance start -dconvert=raid1 -mconvert=raid1 /mnt/btrfs/
 ```
-For more on BTRFS Raid see https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_with_Multiple_Devices#Adding_new_devices 
 
 ## Software
 
