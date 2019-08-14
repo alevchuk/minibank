@@ -70,6 +70,8 @@ Amazon pricing: http://calculator.s3.amazonaws.com/index.html#r=IAD&s=EC2&key=ca
 
 ## First time login
 
+Don't connect to network.
+
 Connect monitor and keyboard. Power-up Pi. Login: `pi` Passowrd: `rpaspberry`
 
 
