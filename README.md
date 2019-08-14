@@ -27,7 +27,6 @@ Table of contents
     * [Prometheus exporters](#prometheus-exporters)
     * [Prometheus](#prometheus)
     * [Grafana](#grafana)
-  * [Service Manager](#service-manager)
  
 ## Hardware
 
@@ -111,8 +110,51 @@ COMMIT
 -A OUTPUT -o lo -j ACCEPT
 COMMIT
 ```
+8. Optionally [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/master/other-notes/wifi.md)
+9. From your laptop, use the IP from step 5 and run: `ssh pi@<IP>` enter your new password
 
-Optionally [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/master/other-notes/wifi.md)
+### Authorized keys
+
+So you don't have to type the password every time you need to log-in to the pi, setup autorized_key.
+
+On your laptop run:
+```
+ssh-keygen -f ~/.ssh/minibank_id_rsa
+```
+Hit enter twice when prompted for password.
+
+Print you're new public key:
+```
+cat  ~/.ssh/minibank_id_rsa.pub
+```
+
+Copy the output to clip-board.
+
+SSH into your Pi and run:
+```
+cat > ~/.ssh/autorized_keys
+```
+paste the pubkey from clipboard, press Enter, and then press Ctrl-d.
+
+Now run:
+```
+chmod o=,g= ~/.ssh/authorized_keys
+```
+Now log out, press Ctrl-d.
+
+Now try logging back in like this:
+```
+ssh -i ~/.ssh/minibank_id_rsa pi@YOUR_IP_HERE
+```
+You should not need to re-enter password.
+
+Finally, back on your laptop, add an alias
+```
+echo 'alias mb4="ssh -i ~/.ssh/minibank_id_rsa pi@YOUR_IP_HERE"' >> ~/.bash_profile
+. ~/.bash_profile
+```
+
+Now type `mb4` and that should log you into the Pi.
 
 
 ## Storage
