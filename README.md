@@ -12,9 +12,10 @@ Table of contents
 
 
   * [Hardware](#hardware)
+  * [Operating System](#operating-system)
   * [Network](#network)
   * [Storage](#storage)
-    * [BTRFS](#btrfs)
+    * [BTRFS RAID-1 Mirror](##btrfs-raid-1-mirror)
   * [Software](#software)
     * [Build Bitcoin](#build-bitcoind)
     * [Start Bitcoin](#start-bitcoind)
