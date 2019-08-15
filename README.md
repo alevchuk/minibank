@@ -331,13 +331,15 @@ while :; do /opt/vc/bin/vcgencmd measure_temp; sleep 1; done
 
 While your bitcoin chain syncs...
 
-#### Host name
-Give your host a name. Edit 2 files replacing "raspberrypi" with the name you came up with.
+#### Name your Pi
+
+Give your host a name. Edit 2 files replacing "raspberrypi" with the name you came up with. No spaces or punctuation.
 ```
 sudo vi /etc/hostname
 sudo vi /etc/hosts  # edit the line with 127.0.1.1
 ```
-you'll see the change after rebooting, run `sudo reboot`, re-SSH back in run `sudo mount /mnt/btrfs/` and resume the chain sync:
+
+you'll see the change after rebooting, run sudo reboot, re-SSH back in run `sudo mount /mnt/btrfs/` and resume the chain sync:
 ```
 sudo su -l bitcoin
 bitcoind
@@ -364,6 +366,30 @@ in /etc/default/keyboard
 
 
 #### Vim
+
+More text editing features.
+ 
+```
+sudo apt-get install vim
+```
+This will replace "vi" as well.
+
+Vi has a very inconvinient feature of making selection not native to the OS that your SSHing from.
+To make selection of Copy-and-paste to go to the laptop's OS instead of saying in Vi, run `echo set mouse= >> ~/.vimrc`
+
+
+#### Bash
+
+To the end of `~/.bashrc` add
+```
+# https://unix.stackexchange.com/a/48113/4058
+export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
+export HISTSIZE=100000                   # big big history
+export HISTFILESIZE=100000               # big big history
+shopt -s histappend                      # append to history, don't overwrite it
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+```
 
 
 #### GNU Screen
@@ -397,6 +423,7 @@ Now you don't have to worry about loosing SSH connection or logging out.
 To deatch from screen press Ctrl-b and then press "d"
 
 To re-attach, run `screen -r`
+
 
 
 ### Build Go
