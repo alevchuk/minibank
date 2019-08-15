@@ -343,7 +343,26 @@ you'll see the change after logging out of SSH (press Ctrl-d) and logging back i
 
 Run `rspi-config` and select **Localization Options --> Change Timezone** to make your system clock right. Check time by running `date`
 
-### GNU Screen
+#### Non-British Keyboard
+
+When attaching with Monitor and a US Keyboard, you may find that your not able to type things like "|". This is not a problem when going over SSH. Yet the fix this replace 
+```
+XKBMODEL="pc105"
+XKBLAYOUT="gb"
+```
+with
+```
+XKBMODEL="pc104"
+XKBLAYOUT="us"
+```
+in /etc/default/keyboard
+
+
+
+#### Vim
+
+
+#### GNU Screen
 
 ```
 sudo apt-get install screen
