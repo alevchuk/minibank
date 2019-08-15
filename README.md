@@ -15,7 +15,7 @@ Table of contents
   * [Operating System](#operating-system)
   * [Network](#network)
   * [Storage](#storage)
-    * [BTRFS RAID-1 Mirror](##btrfs-raid-1-mirror)
+    * [BTRFS RAID-1 Mirror](#btrfs-raid-1-mirror)
   * [Software](#software)
     * [Build Bitcoin](#build-bitcoind)
     * [Start Bitcoin](#start-bitcoind)
