@@ -457,6 +457,8 @@ sudo chown -R lightning /mnt/btrfs_lnd/lightning
 ```
 
 2. Log-in as "lightning" user and setup symlinks
+
+
 ```
 sudo su -l lightning
 
