@@ -329,7 +329,7 @@ while :; do /opt/vc/bin/vcgencmd measure_temp; sleep 1; done
 
 ### Convenience stuff
 
-While your chain syncs...
+While your bitcoin chain syncs...
 
 #### Host name
 Give your host a name. Edit 2 files replacing "raspberrypi" with the name you came up with.
@@ -359,6 +359,22 @@ maptimeout 0
 defhstatus "^EH"
 hardstatus alwayslastline '%{= G}[ %{G} %h %{g} ][%= %{= w}%?%-Lw%?%{= B}%n*%f %t%?%{= B}(%u)%?%{= w}%+Lw%?%= %{= g}][%{B} %Y-%m-%d %{W}%c %{g}]'
 ```
+
+Now you can re-start bitcoin in screen, log-out, and it will continue running. To do that:
+1. Find where `bticoind` is currently running, click on that, and press Ctrl-c
+2. Wait for bitcoin to exit
+3. Run `screen`
+4. Start Bitcoin
+```
+sudo su -l bitcoin
+bitcoind
+```
+Now you don't have to worry about loosing SSH connection or logging out.
+
+To deatch from screen press Ctrl-b and then press "d"
+
+To re-attach, run `screen -r`
+
 
 ### Build Go
 
