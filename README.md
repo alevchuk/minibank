@@ -375,7 +375,11 @@ sudo apt-get install vim
 This will replace "vi" as well.
 
 Vi has a very inconvinient feature of making selection not native to the OS that your SSHing from.
-To make selection of Copy-and-paste to go to the laptop's OS instead of saying in Vi, run `echo set mouse= >> ~/.vimrc`
+
+To make selection for Copy-and-paste use laptop's OS instead of staying in Vi, run
+```
+echo set mouse= >> ~/.vimrc
+```
 
 
 #### Bash
