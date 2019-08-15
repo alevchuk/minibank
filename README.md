@@ -179,17 +179,19 @@ The relevant output of `dmesg --follow` would look like this:
 ![Block Device name lookup](https://raw.githubusercontent.com/alevchuk/minibank/master/block_device_name_lookup.png "Block Device name lookup")
 
 
-### BTRFS 
+### BTRFS RAID-1 Mirror
 
-Prerequisites: 
- * Follow instructions to upgrade kernel and build new BTRFS utility programs https://github.com/alevchuk/minibank/tree/master/btrfs
+Install BTRFS progs:
+```
+sudo apt-get install btrfs-progs
+```
 
-RAID-1
+WARNING: any data in the SSD drives will be deleted. If you don't konw what your doing, try running the command without `--force` first.
 
 Create filesystems Bitcoin and LND nodes
 ```
-sudo mkfs.btrfs /dev/YOUR_SSD_BLOCK_DEVICE_1_NAME_HERE
-sudo mkfs.btrfs /dev/YOUR_SSD_BLOCK_DEVICE_2_NAME_HERE
+sudo mkfs.btrfs --force /dev/YOUR_SSD_BLOCK_DEVICE_1_NAME_HERE
+sudo mkfs.btrfs --force /dev/YOUR_SSD_BLOCK_DEVICE_2_NAME_HERE
 ```
 
 Mount
