@@ -4,7 +4,7 @@ bitcoin lightning node
 ![model 4](https://raw.githubusercontent.com/alevchuk/minibank/master/minibank-2019-08-11.jpg "minibank model 4, Pi 4, 4 GB RAM, 500GB SSD, running mainnet LND")
 
 * For older models see [History](https://github.com/alevchuk/minibank/blob/master/other-notes/HISTORY.md)
-* For improved reading experience try the GitHub Pages view of this README here https://alevchuk.github.io/minibank/
+* For improved reading experience try the GitHub Pages view of this README at https://alevchuk.github.io/minibank/
 
 Table of contents
 =================
