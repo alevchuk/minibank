@@ -19,6 +19,8 @@ Table of contents
   * [Software](#software)
     * [Build Bitcoin](#build-bitcoind)
     * [Start Bitcoin](#start-bitcoind)
+    * [Heat](#heat)
+    * [Convenience stuff](#convenience-stuff)
     * [Build Go](#build-go)
     * [Build LND](#build-lnd)
     * [Start LND](#start-lnd)
