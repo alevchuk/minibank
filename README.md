@@ -337,7 +337,11 @@ Give your host a name. Edit 2 files replacing "raspberrypi" with the name you ca
 sudo vi /etc/hostname
 sudo vi /etc/hosts  # edit the line with 127.0.1.1
 ```
-you'll see the change after rebooting, run `sudo reboot`
+you'll see the change after rebooting, run `sudo reboot`, re-SSH back in run `sudo mount /mnt/btrfs/` and re-start the chain sync:
+```
+sudo su -l bitcoin
+bitcoind
+```
 
 #### Time-zone
 
