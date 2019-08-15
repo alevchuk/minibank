@@ -335,7 +335,7 @@ While your bitcoin chain syncs...
 Give your host a name. Edit 2 files replacing "raspberrypi" with the name you came up with.
 ```
 sudo vi /etc/hostname
-sudo vi /etc/hosts
+sudo vi /etc/hosts  # edit the line with 127.0.1.1
 ```
 you'll see the change after logging out of SSH (press Ctrl-d) and logging back in.
 
