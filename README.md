@@ -343,6 +343,22 @@ you'll see the change after logging out of SSH (press Ctrl-d) and logging back i
 
 Run `rspi-config` and select **Localization Options --> Change Timezone** to make your system clock right. Check time by running `date`
 
+### GNU Screen
+
+```
+sudo apt-get install screen
+```
+
+Edit default screen config by running `sudo vi /etc/screenrc` and to the end add:
+```
+startup_message off
+
+escape ^Bb
+defscrollback 6000
+maptimeout 0
+defhstatus "^EH"
+hardstatus alwayslastline '%{= G}[ %{G} %h %{g} ][%= %{= w}%?%-Lw%?%{= B}%n*%f %t%?%{= B}(%u)%?%{= w}%+Lw%?%= %{= g}][%{B} %Y-%m-%d %{W}%c %{g}]'
+```
 
 ### Build Go
 
