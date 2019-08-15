@@ -105,8 +105,7 @@ COMMIT
 :OUTPUT ACCEPT [52247:3125304]
 -A INPUT -i lo -j ACCEPT
 
-# Allow SSH !
--A INPUT -p tcp -s 192.168.0.0/16 --dport 22 -j ACCEPT
+-A INPUT -p tcp -s 192.168.0.0/16 --dport 22 -j ACCEPT  # Allow SSH !
 
 -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 -A OUTPUT -o lo -j ACCEPT
