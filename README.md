@@ -165,6 +165,19 @@ WARNING: any data in the SSD drives will be deleted.
 
 ### Look up block device names
 
+Run `dmesg --follow` and un-plung/re-plug the external SSD drives one by one.
+
+Look for "sd" followed by a small english letter. Write that down.
+
+Also write down which drive it belongs to.
+
+From now I will refer to these as:
+* YOUR_SSD_BLOCK_DEVICE_1
+* YOUR_SSD_BLOCK_DEVICE_2
+
+The relevant output of `dmesg --follow` would look like this:
+![Block Device name lookup](https://raw.githubusercontent.com/alevchuk/minibank/master/block_device_name_lookup.png "Block Device name lookup")
+
 
 ### BTRFS 
 
