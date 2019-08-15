@@ -32,7 +32,7 @@ Table of contents
 
 ### Model 4 :: Node at Home
 
-* Pi 4: https://www.canakit.com/raspberry-pi-4-4gb.html
+* Pi 4: https://camelcamelcamel.com/CanaKit-Raspberry-4GB-Basic-Starter/product/B07VYC6S56
 * Samsung 500 GB SSD (for Raid-1 mirror): https://camelcamelcamel.com/Samsung-T5-Portable-SSD-MU-PA500B/product/B073GZBT36
 * SanDisk 500 GB SSD (for Raid-1 mirror): https://camelcamelcamel.com/SanDisk-500GB-Extreme-Portable-External/product/B078SWJ3CF
 * Micro HDMI adaptor (for one-time setup): https://camelcamelcamel.com/UGREEN-Adapter-Compatible-Raspberry-ZenBook/product/B00B2HORKE
