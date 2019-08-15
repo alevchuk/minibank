@@ -303,6 +303,15 @@ Start
 bitcoind
 ```
 
+### Heat
+
+Now it's a good time to [attach Heatsink and start the fan](https://blog.hackster.io/do-you-need-to-use-a-fan-for-cooling-with-the-new-raspberry-pi-4-6d523ca12453). Connect the red cord of the fan to GPIO pin 4 and the black to pin 6.
+
+To measure the temperature, run:
+```
+while :; do /opt/vc/bin/vcgencmd measure_temp; sleep 1; done
+```
+
 ### Convenience stuff
 
 While your chain syncs...
