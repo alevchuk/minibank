@@ -337,7 +337,7 @@ Give your host a name. Edit 2 files replacing "raspberrypi" with the name you ca
 sudo vi /etc/hostname
 sudo vi /etc/hosts  # edit the line with 127.0.1.1
 ```
-you'll see the change after logging out of SSH (press Ctrl-d) and logging back in.
+you'll see the change after rebooting, run `sudo reboot`
 
 #### Time-zone
 
