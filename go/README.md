@@ -12,12 +12,16 @@ sudo apt-get install golang-1.11
 sudo apt-get install git
 ```
 
-2. Set bootstrap path and gopath. To `~/.profile` add:
+2. Set bootstrap path and gopath.
 
+Change to a user:
 ```
 # sudo su -l USERNAME_THAT_WILL_NEED_GO
 # For example: sudo su -l lightning
+```
 
+To `~/.profile` add:
+```
 export GOROOT=/usr/lib/go-1.11
 export GOPATH=~/gocode
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
