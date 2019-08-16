@@ -31,6 +31,9 @@ Table of contents
     * [Prometheus exporters](#prometheus-exporters)
     * [Prometheus](#prometheus)
     * [Grafana](#grafana)
+  * [Operatons](#operations)
+    * Failed SSD drive
+    * Temporary connection failuer to SSD drive 
  
 ## Hardware
 
