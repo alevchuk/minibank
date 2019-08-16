@@ -274,7 +274,7 @@ Log-in as bitcoin
 sudo su -l bitcoin
 ```
 
-Edit ~/.bitcoin/bitcoin.conf
+Edit `~/.bitcoin/bitcoin.conf`
 ```
 server=1
 deamon=0
@@ -502,7 +502,7 @@ Login as lightning:
 su -l lightning
 ```
 
-Edit ~/.lnd/lnd.conf
+Edit `~/.lnd/lnd.conf`
 
 ```
 [Application Options]
