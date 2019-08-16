@@ -39,7 +39,7 @@ Table of contents
 
 ### Model 4 :: Node at Home
 
-Powerful 4 GB Pi with two high-speed SSDs for Raid-1 mirroring. Different manufacturers so they don't fail at the same time.
+Pi 4 with 4 GB RAM. Two high-speed SSDs for Raid-1 mirroring. Different manufacturers so they don't fail at the same time.
 
 * Pi 4 kit (4GB RAM, heat sinks, fan, micro-hdmi cable): https://camelcamelcamel.com/CanaKit-Raspberry-4GB-Basic-Starter/product/B07VYC6S56
 * Samsung 500 GB SSD (for Raid-1 mirror): https://camelcamelcamel.com/Samsung-T5-Portable-SSD-MU-PA500B/product/B073GZBT36
