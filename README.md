@@ -287,8 +287,8 @@ disablewallet=1
 # By default, only RPC connections from localhost are allowed.
 ####rpcallowip=192.168.0.17
 
-rpcuser=$$PASSWORD_1_A_HERE$$ 
-rpcpassword=$$PASSWORD_1_B_HERE$$ 
+rpcuser=$$PASSWORD_1_HERE$$ 
+rpcpassword=$$PASSWORD_2_HERE$$ 
 
 # Listen for RPC connections on this TCP port:
 ####rpcport=8332
@@ -314,7 +314,7 @@ txindex=1
 ####debug=leveldb
 ```
 
-You'll need to set things like $$PASSWORD_1_A_HERE$$ with unique passwords. Generate random strings (of 30 alphanumeric characters) for each password. First character should be a letter. `rpcuser` should also look like a password. Try using: `openssl rand -base64 32 | grep -o '[a-z0-9]' | xargs | tr -d ' '` to generate random strings.
+You'll need to set things like $$PASSWORD_1_HERE$$ and $$PASSWORD_2_HERE$$ with unique passwords. Generate random strings (of 30 alphanumeric characters) for each password. First character should be a letter. `rpcuser` should also look like a password. Try using: `openssl rand -base64 32 | grep -o '[a-z0-9]' | xargs | tr -d ' '` to generate random strings.
 
 Start
 ```
@@ -523,11 +523,11 @@ bitcoin.node=bitcoind
 [Btcd]
 
 [Bitcoind]
-bitcoind.zmqpubrawblock=tcp://b1:29000
-bitcoind.zmqpubrawtx=tcp://b1:29001
+bitcoind.zmqpubrawblock=tcp://localhost:29000
+bitcoind.zmqpubrawtx=tcp://localhost:29001
 bitcoind.rpchost=b1
-bitcoind.rpcuser=$$PASSWORD_1_A_HERE$$ 
-bitcoind.rpcpass=$$PASSWORD_1_B_HERE$$ 
+bitcoind.rpcuser=$$PASSWORD_1_HERE$$ 
+bitcoind.rpcpass=$$PASSWORD_2_HERE$$ 
 
 [neutrino]
 
@@ -549,6 +549,8 @@ autopilot.maxchansize=50000
 
 [tor]
 ```
+
+Replace $$PASSWORD_1_HERE$$ and $$PASSWORD_2_HERE$$ with the same passwords that you set in `~bitcoin/.bitcoin/bitcoin.conf`
 
 Enable bash completion for lncli:
 ```
