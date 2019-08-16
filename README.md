@@ -906,3 +906,9 @@ E.g. "Node Exporter Server Metrics" can show multiple nodes side-by-side:
 
 
 
+# Operations
+
+This section is planned
+
+For now, use BTRFS Raid wiki https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_with_Multiple_Devices#Adding_new_devices
+
