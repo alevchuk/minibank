@@ -447,13 +447,13 @@ Citations:
 ```
 sudo adduser lightning
 
-sudo mkdir /mnt/btrfs_lnd/lightning
-sudo mkdir /mnt/btrfs_lnd/lightning/lnd-data
-sudo mkdir /mnt/btrfs_lnd/lightning/gocode
-sudo mkdir /mnt/btrfs_lnd/lightning/lnd-e2e-testing
-sudo mkdir /mnt/btrfs_lnd/lightning/src
+sudo mkdir /mnt/btrfs/lightning
+sudo mkdir /mnt/btrfs/lightning/lnd-data
+sudo mkdir /mnt/btrfs/lightning/gocode
+sudo mkdir /mnt/btrfs/lightning/lnd-e2e-testing
+sudo mkdir /mnt/btrfs/lightning/src
 
-sudo chown -R lightning /mnt/btrfs_lnd/lightning
+sudo chown -R lightning /mnt/btrfs/lightning
 ```
 
 2. Log-in as "lightning" user and setup symlinks
@@ -462,10 +462,10 @@ sudo chown -R lightning /mnt/btrfs_lnd/lightning
 ```
 sudo su -l lightning
 
-ln -s /mnt/btrfs_lnd/lightning/lnd-data ~/.lnd
-ln -s /mnt/btrfs_lnd/lightning/gocode
-ln -s /mnt/btrfs_lnd/lightning/lnd-e2e-testing
-ln -s /mnt/btrfs_lnd/lightning/src
+ln -s /mnt/btrfs/lightning/lnd-data ~/.lnd
+ln -s /mnt/btrfs/lightning/gocode
+ln -s /mnt/btrfs/lightning/lnd-e2e-testing
+ln -s /mnt/btrfs/lightning/src
 ```
 
 #### Build Go
