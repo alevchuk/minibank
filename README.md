@@ -33,7 +33,7 @@ Table of contents
     * [Grafana](#grafana)
   * [Operatons](#operations)
     * Failed SSD drive
-    * Temporary connection failuer to SSD drive 
+    * Temporary connection failure to SSD drive 
  
 ## Hardware
 
@@ -57,7 +57,7 @@ The powerful Pi 4 with plenty of RAM removing the need for swap. Two high-speed 
 ###  (Optional) VM :: Node on Amazon EC2
 
 * 2x Linux on t2.micro
-* Storage: 5G general purpose SSD for opearting system
+* Storage: 5G general purpose SSD for operating system
 * Storage: 64GB Magnetic Amazon EBS Volumes for software and data
 
 Amazon pricing: http://calculator.s3.amazonaws.com/index.html#r=IAD&s=EC2&key=calc-3E66A912-F5FF-4323-84EF-C7C14F363459
@@ -73,11 +73,11 @@ Amazon pricing: http://calculator.s3.amazonaws.com/index.html#r=IAD&s=EC2&key=ca
 
 > for Amazon EC2 AWS use [Debian GNU/Linux 9 (Stretch)](https://aws.amazon.com/marketplace/pp/B073HW9SP3) 
 
-## First time login
+## First-time login
 
 Don't connect to network.
 
-Connect monitor and keyboard. Power-up Pi. Login: `pi` Passowrd: `rpaspberry`
+Connect monitor and keyboard. Power-up Pi. Login: `pi` Password: `rpaspberry`
 
 
 ## Network
@@ -133,7 +133,7 @@ Print you're new public key:
 cat  ~/.ssh/minibank_id_rsa.pub
 ```
 
-Copy the output to clip-board.
+Copy the output to clipboard.
 
 SSH into your Pi and run:
 ```
@@ -168,7 +168,7 @@ In this section will setup a Raid-1 Mirror from your two new SSD drives.
 
 WARNING: any data in the SSD drives will be deleted.
 
-### Look up block device names
+### Lookup block device names
 
 Run `dmesg --follow` and un-plung/re-plug the external SSD drives one by one.
 
@@ -191,7 +191,7 @@ Install BTRFS progs:
 sudo apt-get install btrfs-progs
 ```
 
-WARNING: any data in the SSD drives will be deleted. If you don't konw what your doing, try running the command without `--force` first.
+WARNING: any data in the SSD drives will be deleted. If you don't know what your doing, try running the command without `--force` first.
 
 Create filesystems Bitcoin and LND nodes
 ```
