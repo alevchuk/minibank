@@ -4,7 +4,7 @@ bitcoin lightning node
 ![model 4](https://raw.githubusercontent.com/alevchuk/minibank/master/minibank-2019-08-11.jpg "minibank model 4, Pi 4, 4 GB RAM, 500GB SSD, running mainnet LND")
 
 * For older models see [History](https://github.com/alevchuk/minibank/blob/master/other-notes/HISTORY.md)
-* For improved reading experience try the GitHub Pages view of this README at https://alevchuk.github.io/minibank/
+* For improved reading experience use https://alevchuk.github.io/minibank/
 
 Table of contents
 =================
@@ -241,6 +241,14 @@ sudo btrfs balance start -dconvert=raid1 -mconvert=raid1 /mnt/btrfs/
 
 ## Software
 
+### Tor
+
+Install Tor
+```
+apt-get install tor
+```
+Minibank needs tor version 0.3.3.6 or above. Fortunaly Rasiban 10 already has that.
+
 ### Build Bitcoind
 
 ```
@@ -261,6 +269,11 @@ ln -s /mnt/btrfs/bitcoin/bitcoin-data ~/.bitcoin
 
 echo 'export PATH=$HOME/bin/bin:$PATH  # bitcoind is here' >> ~/.profile
 . ~/.profile
+```
+
+Add bitcoin to have access to Tor locally:
+```
+sudo  addgroup bitcoin debian-tor
 ```
 
 Follow instruction to build bitcoin core: https://github.com/alevchuk/minibank/tree/master/bitcoin
@@ -295,7 +308,7 @@ rpcpassword=$$PASSWORD_2_HERE$$
 # Listen for RPC connections on this TCP port:
 ####rpcport=8332
 
-onlynet=ipv4
+onlynet=onion
 zmqpubrawblock=tcp://0.0.0.0:29000
 zmqpubrawtx=tcp://0.0.0.0:29001
 
@@ -461,7 +474,12 @@ sudo mkdir /mnt/btrfs/lightning/src
 sudo chown -R lightning /mnt/btrfs/lightning
 ```
 
-2. Log-in as "lightning" user and setup symlinks
+2. Add lightning to have access to Tor locally:
+```
+sudo  addgroup lightning debian-tor
+```
+
+3. Log-in as "lightning" user and setup symlinks
 
 
 ```
