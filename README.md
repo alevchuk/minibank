@@ -251,6 +251,7 @@ Minibank needs tor version 0.3.3.6 or above. Fortunaly Rasiban 10 already has th
 
 ### Build Bitcoind
 
+1. Create bitcoin user unix account
 ```
 sudo adduser bitcoin
 
@@ -271,9 +272,14 @@ echo 'export PATH=$HOME/bin/bin:$PATH  # bitcoind is here' >> ~/.profile
 . ~/.profile
 ```
 
-Add bitcoin to have access to Tor locally:
+2. Add bitcoin to have access to Tor locally:
 ```
 sudo  addgroup bitcoin debian-tor
+```
+
+3. Copy the .vimrc which convinience imporvements
+```
+cp ~pi/.vimrc  ~/
 ```
 
 Follow instruction to build bitcoin core: https://github.com/alevchuk/minibank/tree/master/bitcoin
@@ -459,8 +465,7 @@ Citations:
 
 #### Setup LND environment
 
-1. Add new user "lightning" and setup storge directories on BTRFS
-
+1. Add new unix user account "lightning" and setup storge directories on BTRFS
 
 ```
 sudo adduser lightning
@@ -477,6 +482,11 @@ sudo chown -R lightning /mnt/btrfs/lightning
 2. Add lightning to have access to Tor locally:
 ```
 sudo  addgroup lightning debian-tor
+```
+
+3. Copy the .vimrc which convinience imporvements (also do the same for bitcoin user)
+```
+cp ~pi/.vimrc  ~/
 ```
 
 3. Log-in as "lightning" user and setup symlinks
