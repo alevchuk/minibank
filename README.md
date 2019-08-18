@@ -249,6 +249,8 @@ apt-get install tor
 ```
 Minibank needs tor version 0.3.3.6 or above. Fortunaly Rasiban 10 already has that.
 
+Minibank use Tor for LND. Yet not for Bitcoin sync traffic because that seems to introduce delays.
+
 ### Build Bitcoind
 
 1. Create bitcoin user unix account
