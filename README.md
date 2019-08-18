@@ -272,12 +272,7 @@ echo 'export PATH=$HOME/bin/bin:$PATH  # bitcoind is here' >> ~/.profile
 . ~/.profile
 ```
 
-2. Add bitcoin to have access to Tor locally:
-```
-sudo  addgroup bitcoin debian-tor
-```
-
-3. Copy the .vimrc which convinience imporvements
+2. Copy the .vimrc which convinience imporvements
 ```
 cp ~pi/.vimrc  ~/
 ```
@@ -314,7 +309,7 @@ rpcpassword=$$PASSWORD_2_HERE$$
 # Listen for RPC connections on this TCP port:
 ####rpcport=8332
 
-onlynet=onion
+onlynet=ipv4
 zmqpubrawblock=tcp://0.0.0.0:29000
 zmqpubrawtx=tcp://0.0.0.0:29001
 
@@ -454,10 +449,10 @@ To re-attach, run `screen -r`
 
 
 
-### Build Go
+### Install Go
 
 Prerequisites:
-* Raspbian GNU/Linux 9
+* Raspbian GNU/Linux 10
 
 Citations:
 * This section is based on [golang official instructions](https://golang.org/doc/install/source) and [alevchuk/pstm](https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#build-go)
