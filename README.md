@@ -533,9 +533,6 @@ Edit `~/.lnd/lnd.conf`
 
 ```
 [Application Options]
-;; nochanupdates was replaced by numgraphsyncpeers
-;; https://github.com/lightningnetwork/lnd/commit/80b84eef9cc7b33b112dcde597fe68ca136a9f40
-;; nochanupdates=1  ; saves on resources, neccessary to run on Ras Pi Zero
 listen=0.0.0.0:9735
 rpclisten=localhost:10009
 debuglevel=ATPL=debug,CRTR=warn
@@ -564,17 +561,21 @@ bitcoind.rpcpass=$$PASSWORD_2_HERE$$
 
 [Litecoind]
 
+[tor]
+; The port that Tor's exposed SOCKS5 proxy is listening on. Using Tor allows
+; outbound-only connections (listening will be disabled) -- NOTE port must be
+; between 1024 and 65535
+tor.socks=9050
+tor.active=1
+tor.v3=1
+
 [autopilot]
-autopilot.active=1
+autopilot.active=0
 autopilot.maxchannels=3
 autopilot.allocation=1.0
-
 ; default for most nodes is 20000
 autopilot.minchansize=20000
-
 autopilot.maxchansize=50000
-
-[tor]
 ```
 
 Replace $$PASSWORD_1_HERE$$ and $$PASSWORD_2_HERE$$ with the same passwords that you set in `~bitcoin/.bitcoin/bitcoin.conf`
