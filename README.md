@@ -255,7 +255,7 @@ Minibank uses Tor for LND. Yet not for Bitcoin sync traffic because that seems t
 
 1. Create bitcoin user unix account
 ```
-sudo adduser bitcoin
+sudo adduser --disabled-password bitcoin
 
 sudo mkdir /mnt/btrfs/bitcoin
 sudo mkdir /mnt/btrfs/bitcoin/bin
@@ -465,7 +465,7 @@ Citations:
 1. Add new unix user account "lightning" and setup storge directories on BTRFS
 
 ```
-sudo adduser lightning
+sudo adduser --disabled-password lightning
 
 sudo mkdir /mnt/btrfs/lightning
 sudo mkdir /mnt/btrfs/lightning/lnd-data
@@ -682,9 +682,9 @@ Citations:
 Install on all nodes.
 
 ```
-sudo adduser monitoring
+sudo adduser --disabled-password monitoring
 
-cd /mnt/btrfs_lnd  # or /mnt/btrfs_bitcoind depending on mount on this host
+cd /mnt/btrfs 
 
 sudo mkdir ./monitoring
 sudo mkdir ./monitoring/gocode
@@ -695,17 +695,17 @@ sudo chown -R monitoring ./monitoring
 
 Now [Build Go](#build-go) or copy it from lightning user like this:
 ```
-sudo mkdir -p /mnt/btrfs_lnd/monitoring/src/go/bin
-sudo rsync -a --delete /mnt/btrfs_lnd/lightning/src/go/bin/ /mnt/btrfs_lnd/monitoring/src/go/bin/
-sudo rsync -a --delete /mnt/btrfs_lnd/lightning/gocode/ /mnt/btrfs_lnd/monitoring/gocode/
-sudo chown -R monitoring /mnt/btrfs_lnd/monitoring
+sudo mkdir -p /mnt/btrfs/monitoring/src/go/bin
+sudo rsync -a --delete /mnt/btrfs/lightning/src/go/bin/ /mnt/btrfs_lnd/monitoring/src/go/bin/
+sudo rsync -a --delete /mnt/btrfs/lightning/gocode/ /mnt/btrfs_lnd/monitoring/gocode/
+sudo chown -R monitoring /mnt/btrfs/monitoring
 ```
 
 Loging as "monitoring" user
 ```
 sudo su -l monitoring
-ln -s /mnt/btrfs_lnd/monitoring/src
-ln -s /mnt/btrfs_lnd/monitoring/gocode
+ln -s /mnt/btrfs/monitoring/src
+ln -s /mnt/btrfs/monitoring/gocode
 ```
 
 #### Node Exporter
@@ -785,7 +785,7 @@ Install this on the base station to pull in all metrics into a single place.
 
 Setup accounts:
 ```
-sudo adduser prometheus
+sudo adduser --disabled-password prometheus
 sudo mkdir /mnt/btrfs/prometheus
 sudo mkdir /mnt/btrfs/prometheus/gocode
 sudo mkdir /mnt/btrfs/prometheus/data
@@ -841,7 +841,7 @@ Prereqisits:
 * ssh into `base`
 
 ```
-sudo adduser grafana
+sudo adduser --disabled-password grafana
 sudo mkdir /mnt/btrfs/src_grafana
 sudo mkdir /mnt/btrfs/gocode_grafana
 sudo mkdir /mnt/btrfs/bin_grafana
