@@ -305,10 +305,16 @@ disablewallet=1
 
 # Bind to given address to listen for JSON-RPC connections. Use [host]:port notation for IPv6.
 # This option can be specified multiple times (default: bind to all interfaces)
-####rpcbind=<addr>
+####rpcbind=<addr>:<port>
+####rpcbind=192.168.0.17:8332
+rpcbind=127.0.0.1:8332
+
 
 # By default, only RPC connections from localhost are allowed.
+# You can speficy multiple rpcallowip lines to allow different IPs
+####rpcallowip=<addr>
 ####rpcallowip=192.168.0.17
+rpcallowip=127.0.0.1
 
 rpcuser=$$PASSWORD_1_HERE$$ 
 rpcpassword=$$PASSWORD_2_HERE$$ 
