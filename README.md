@@ -732,6 +732,12 @@ Run node_exporter
 ${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter/node_exporter 
 ```
 
+To `/etc/iptables/rules.v4` add:
+```
+# monitoring / node_exporter
+-A INPUT -p tcp -s 192.168.0.0/16 --dport 9100 -j ACCEPT
+```
+
 #### Bitcoin Exporter
 
 Bitcoin Exporter is used to export bitcoin node metrics to Prometheus
