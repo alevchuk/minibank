@@ -4,7 +4,7 @@ bitcoin lightning node
 ![model 4](https://raw.githubusercontent.com/alevchuk/minibank/master/minibank-2019-08-11.jpg "minibank model 4, Pi 4, 4 GB RAM, 500GB SSD, running mainnet LND")
 
 * For older models see [History](https://github.com/alevchuk/minibank/blob/master/other-notes/HISTORY.md)
-* For improved reading experience use https://alevchuk.github.io/minibank/
+* For improved reading experience use [https://alevchuk.github.io/minibank/](https://alevchuk.github.io/minibank/)
 
 Table of contents
 =================
@@ -41,20 +41,19 @@ Table of contents
 
 The powerful Pi 4 with plenty of RAM removing the need for swap. Two high-speed SSDs for Raid-1 mirroring. Different manufacturers so they don't fail at the same time.
 
-* Pi 4 kit (4GB RAM, heat sinks, fan, micro-hdmi cable): https://camelcamelcamel.com/CanaKit-Raspberry-4GB-Basic-Starter/product/B07VYC6S56
-* Micro SD card https://camelcamelcamel.com/Samsung-MicroSDXC-Adapter-MB-ME64GA-AM/product/B06XX29S9Q
-* Card Reader (for 1 time setup) https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4
-* Samsung 500 GB SSD (for Raid-1 mirror): https://camelcamelcamel.com/Samsung-T5-Portable-SSD-MU-PA500B/product/B073GZBT36
-* SanDisk 500 GB SSD (for Raid-1 mirror): https://camelcamelcamel.com/SanDisk-500GB-Extreme-Portable-External/product/B078SWJ3CF
+* Pi 4 kit (4GB RAM, heat sinks, fan, micro-hdmi cable): [CanaKit-Raspberry-4GB-Basic-Starter](https://camelcamelcamel.com/CanaKit-Raspberry-4GB-Basic-Starter/product/B07VYC6S56)
+* Micro SD card [Samsung-MicroSDXC-Adapter-MB-ME64GA-AM](https://camelcamelcamel.com/Samsung-MicroSDXC-Adapter-MB-ME64GA-AM/product/B06XX29S9Q)
+* Card Reader (for 1 time setup) [Transcend-microSDHC-Reader-TS-RDF5K-Black](https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4)
+* Samsung 500 GB SSD (for Raid-1 mirror): [Samsung-T5-Portable-SSD-MU-PA500B](https://camelcamelcamel.com/Samsung-T5-Portable-SSD-MU-PA500B/product/B073GZBT36)
+* SanDisk 500 GB SSD (for Raid-1 mirror): [SanDisk-500GB-Extreme-Portable-External](https://camelcamelcamel.com/SanDisk-500GB-Extreme-Portable-External/product/B078SWJ3CF)
 
 
 
 ### (Optional) Model 1 :: Monitoring Station at Home
 
-* Pi 3 B+ https://camelcamelcamel.com/ELEMENT-Element14-Raspberry-Pi-Motherboard/product/B07BDR5PDW
-* 2x Micro SD cards https://camelcamelcamel.com/Samsung-MicroSDXC-Adapter-MB-ME64GA-AM/product/B06XX29S9Q
-* Card Reader https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4
-* Case https://camelcamelcamel.com/Case-Official-Raspberry-Touchscreen-Display/product/B01HV97F64
+* Pi 3 B+ [ELEMENT-Element14-Raspberry-Pi-Motherboard](https://camelcamelcamel.com/ELEMENT-Element14-Raspberry-Pi-Motherboard/product/B07BDR5PDW)
+* 2x Micro SD cards [Samsung-MicroSDXC-Adapter-MB-ME64GA-AM](https://camelcamelcamel.com/Samsung-MicroSDXC-Adapter-MB-ME64GA-AM/product/B06XX29S9Q)
+* Card Reader [Transcend-microSDHC-Reader-TS-RDF5K-Black](https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4)
 
 ###  (Optional) VM :: Node on Amazon EC2
 
@@ -62,14 +61,14 @@ The powerful Pi 4 with plenty of RAM removing the need for swap. Two high-speed 
 * Storage: 5G general purpose SSD for operating system
 * Storage: 64GB Magnetic Amazon EBS Volumes for software and data
 
-Amazon pricing: http://calculator.s3.amazonaws.com/index.html#r=IAD&s=EC2&key=calc-3E66A912-F5FF-4323-84EF-C7C14F363459
+Amazon pricing: [AWS Calculator File](http://calculator.s3.amazonaws.com/index.html#r=IAD&s=EC2&key=calc-3E66A912-F5FF-4323-84EF-C7C14F363459)
 
 
 
 ## Operating System
 
 1. Download the image the Raspberry Pi Foundation’s official supported operating system
-**Raspbian Buster Lite** from https://www.raspberrypi.org/downloads/raspbian/
+**Raspbian Buster Lite** from [official raspberrypi link](https://www.raspberrypi.org/downloads/raspbian/)
 3. Uncompress the file: `unzip 2019-07-10-raspbian-buster-lite.zip`
 2. Transfer the contents on the ".img" file to your SD card (I use `dd`, Raspberry Pi has instcutions for doing this from [Linux](https://www.raspberrypi.org/documentation/installation/installing-images/linux.md), [Mac](https://www.raspberrypi.org/documentation/installation/installing-images/mac.md), and [Windows](https://www.raspberrypi.org/documentation/installation/installing-images/windows.md))
 
@@ -285,7 +284,7 @@ echo 'export PATH=$HOME/bin/bin:$PATH  # bitcoind is here' >> ~/.profile
 cp ~pi/.vimrc  ~/
 ```
 
-Follow instruction to build bitcoin core: https://github.com/alevchuk/minibank/tree/master/bitcoin
+Follow instruction to build bitcoin core: [alevchuk/minibank/bitcoin](https://github.com/alevchuk/minibank/tree/master/bitcoin)
 
 
 ### Start Bitcoind
@@ -505,7 +504,7 @@ ln -s /mnt/btrfs/lightning/src
 ```
 
 #### Build Go
-3. Follow instrutions under https://github.com/alevchuk/minibank/blob/master/go/
+3. Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/minibank/blob/master/go/)
 
 
 
@@ -605,7 +604,7 @@ Test with netcat (nc) from a different host
 ```
 seq 100 | nc -v <external_ip_of_LND_host> 9735
 ```
-Alternetively to netcat you can use https://www.infobyip.com/tcpportchecker.php
+Alternetively to netcat you can use [tcpportchecker](https://www.infobyip.com/tcpportchecker.php)
 
 lnc logs will show
 ```
@@ -683,7 +682,7 @@ Prerequisites:
 * [Build Go](#build-go)
 
 Citations:
- * This section is based on https://github.com/prometheus/prometheus#building-from-source
+ * This section is based on [github.com/prometheus](https://github.com/prometheus/prometheus#building-from-source)
 
 Install on all nodes.
 
@@ -774,8 +773,7 @@ cd ~/monitoring-bitcoind
 pip install prometheus_client
 ```
 
-Download Kevin M. Gallagher's amazing bitcoind-monitor.py 
-https://gist.github.com/ageis/a0623ae6ec9cfc72e5cb6bde5754ab1f
+Download Kevin M. Gallagher's amazing [bitcoind-monitor.py](https://gist.github.com/ageis/a0623ae6ec9cfc72e5cb6bde5754ab1f)
 
 ```
 curl https://gist.githubusercontent.com/ageis/a0623ae6ec9cfc72e5cb6bde5754ab1f/raw/4aeee711a041c5a25fac4397faee8b8098a4e5d1/bitcoind-monitor.py >  exporter-bitcoind-monitor.py
@@ -851,7 +849,7 @@ prometheus --config.file=$HOME/.prometheus/prometheus.yml --storage.tsdb.path=$H
 Grafana is a monitoring/analytics web interface. This is a web server. Install it on the base station.
 
 Citations:
-* This section is based on http://docs.grafana.org/project/building_from_source/
+* This section is based on the [officail grafana doc](http://docs.grafana.org/project/building_from_source/)
 
 Prereqisits:
 * [Build Go](#build-go) 
@@ -959,5 +957,5 @@ E.g. "Node Exporter Server Metrics" can show multiple nodes side-by-side:
 
 This section is planned
 
-For now, use BTRFS Raid wiki https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_with_Multiple_Devices#Adding_new_devices
+For now, use [BTRFS Raid wiki](https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_with_Multiple_Devices#Adding_new_devices)
 
