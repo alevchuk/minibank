@@ -114,6 +114,10 @@ COMMIT
 -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 -A OUTPUT -o lo -j ACCEPT
 COMMIT
+``` 
+and run 
+```
+sudo /etc/init.d/netfilter-persistent restart
 ```
 8. Optionally [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/master/other-notes/wifi.md)
 9. From your laptop, use the IP from step 5 and run: `ssh pi@YOUR_IP_HERE` enter your new password
@@ -736,6 +740,10 @@ To `/etc/iptables/rules.v4` add:
 ```
 # monitoring / node_exporter
 -A INPUT -p tcp -s 192.168.0.0/16 --dport 9100 -j ACCEPT
+```
+and run 
+```
+sudo /etc/init.d/netfilter-persistent restart
 ```
 
 #### Bitcoin Exporter
