@@ -123,7 +123,7 @@ def print_channels(channels, remote_total):
       if remote_total > 0:
         ratio = pad_float(int(c["remote_balance"]) * 100 / remote_total)
       else:
-        ratio = "N/A"
+        ratio = pad("N/A")
 
       print("\t".join([
         c["chan_id"],
@@ -323,8 +323,8 @@ def main():
 
   else:
     # TODO: switch to python pretty-table library after documenting an easy way to install the dependency on any platform
-    channels = [c for c in channels if c["active"]]
     inactive_channels = [c for c in channels if not c["active"]]
+    channels = [c for c in channels if c["active"]]
 
     remote_balance_list = [int(c["remote_balance"]) for c in channels]
     remote_total = sum(remote_balance_list)
