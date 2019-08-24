@@ -42,6 +42,8 @@ Table of contents
 The powerful Pi 4 with plenty of RAM removing the need for swap. Two high-speed SSDs for Raid-1 mirroring. Different manufacturers so they don't fail at the same time.
 
 * Pi 4 kit (4GB RAM, heat sinks, fan, micro-hdmi cable): https://camelcamelcamel.com/CanaKit-Raspberry-4GB-Basic-Starter/product/B07VYC6S56
+* Micro SD card https://camelcamelcamel.com/Samsung-MicroSDXC-Adapter-MB-ME64GA-AM/product/B06XX29S9Q
+* Card Reader (for 1 time setup) https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4
 * Samsung 500 GB SSD (for Raid-1 mirror): https://camelcamelcamel.com/Samsung-T5-Portable-SSD-MU-PA500B/product/B073GZBT36
 * SanDisk 500 GB SSD (for Raid-1 mirror): https://camelcamelcamel.com/SanDisk-500GB-Extreme-Portable-External/product/B078SWJ3CF
 
