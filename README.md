@@ -693,20 +693,14 @@ sudo mkdir ./monitoring/src
 sudo chown -R monitoring ./monitoring
 ```
 
-Now [Build Go](#build-go) or copy it from lightning user like this:
-```
-sudo mkdir -p /mnt/btrfs/monitoring/src/go/bin
-sudo rsync -a --delete /mnt/btrfs/lightning/src/go/bin/ /mnt/btrfs/monitoring/src/go/bin/
-sudo rsync -a --delete /mnt/btrfs/lightning/gocode/ /mnt/btrfs/monitoring/gocode/
-sudo chown -R monitoring /mnt/btrfs/monitoring
-```
-
 Loging as "monitoring" user
 ```
 sudo su -l monitoring
 ln -s /mnt/btrfs/monitoring/src
 ln -s /mnt/btrfs/monitoring/gocode
 ```
+
+and install node exporter
 
 #### Node Exporter
 
