@@ -598,13 +598,23 @@ lnd --externalip=$(dig +short myip.opendns.com @resolver1.opendns.com):9735
 
 ### Open LND port on your router
 
-In your home router, forward the port 9735 to the host running LND.
+In your minibank, to `/etc/iptables/rules.v4` add:
+```
+# Allow LND peers
+-A INPUT -p tcp --dport 9712 -j ACCEPT
+```
+and run 
+```
+sudo /etc/init.d/netfilter-persistent restart
+```
+
+In your home router, forward the port 9735 to the host running LND. Here is [a guide](https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/) on how to do that.
 
 Test with netcat (nc) from a different host
 ```
 seq 100 | nc -v <external_ip_of_LND_host> 9735
 ```
-Alternetively to netcat you can use [tcpportchecker](https://www.infobyip.com/tcpportchecker.php)
+Alternetively to netcat you can test with [tcpportchecker](https://www.infobyip.com/tcpportchecker.php)
 
 lnc logs will show
 ```
