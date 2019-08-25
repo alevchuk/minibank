@@ -73,7 +73,7 @@ Amazon pricing: [AWS Calculator File](http://calculator.s3.amazonaws.com/index.h
 3. Uncompress the file: `unzip 2019-07-10-raspbian-buster-lite.zip`
 2. Transfer the contents on the ".img" file to your SD card (I use `dd`, Raspberry Pi has instcutions for doing this from [Linux](https://www.raspberrypi.org/documentation/installation/installing-images/linux.md), [Mac](https://www.raspberrypi.org/documentation/installation/installing-images/mac.md), and [Windows](https://www.raspberrypi.org/documentation/installation/installing-images/windows.md))
 
-### [optional] AWS
+### (Optional) AWS
 Instead of using a Rasberry Pi at your home, you can test in the cloud with Amazon AWS:
 > for Amazon EC2 AWS use [Debian GNU/Linux 9 (Stretch)](https://aws.amazon.com/marketplace/pp/B073HW9SP3) and then upgrade to Debain 10 (Buster)
 
