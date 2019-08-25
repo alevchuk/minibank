@@ -250,7 +250,7 @@ sudo btrfs balance start -dconvert=raid1 -mconvert=raid1 /mnt/btrfs/
 
 Install Tor
 ```
-apt-get install tor
+sudo apt-get install tor
 ```
 Minibank needs tor version 0.3.3.6 or above. Fortunaly Rasiban 10 already has that.
 
