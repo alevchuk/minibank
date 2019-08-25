@@ -87,7 +87,7 @@ sudo sed -i 's/stretch/buster/g' /etc/apt/sources.list
 ```
 sudo apt update
 ```
-3. Pre upgrade some packages. When prompted say "yes" to everything:
+3. Pre upgrade some packages. When prompted say "yes" to everything, except for NTP (network time) say "N" to keep current config:
 ```
 sudo apt upgrade
 ```
