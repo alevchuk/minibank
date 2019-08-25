@@ -18,6 +18,7 @@ Table of contents
   * [Storage](#storage)
     * [BTRFS RAID-1 Mirror](#btrfs-raid-1-mirror)
   * [Software](#software)
+    * [Tor](#tor)
     * [Build Bitcoin](#build-bitcoind)
     * [Start Bitcoin](#start-bitcoind)
     * [Heat](#heat)
