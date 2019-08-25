@@ -73,7 +73,32 @@ Amazon pricing: [AWS Calculator File](http://calculator.s3.amazonaws.com/index.h
 3. Uncompress the file: `unzip 2019-07-10-raspbian-buster-lite.zip`
 2. Transfer the contents on the ".img" file to your SD card (I use `dd`, Raspberry Pi has instcutions for doing this from [Linux](https://www.raspberrypi.org/documentation/installation/installing-images/linux.md), [Mac](https://www.raspberrypi.org/documentation/installation/installing-images/mac.md), and [Windows](https://www.raspberrypi.org/documentation/installation/installing-images/windows.md))
 
-> for Amazon EC2 AWS use [Debian GNU/Linux 9 (Stretch)](https://aws.amazon.com/marketplace/pp/B073HW9SP3) 
+### [optional] AWS
+Instead of using a Rasberry Pi at your home, you can test in the cloud with Amazon AWS:
+> for Amazon EC2 AWS use [Debian GNU/Linux 9 (Stretch)](https://aws.amazon.com/marketplace/pp/B073HW9SP3) and then upgrade to Debain 10 (Buster)
+
+This upgrade is based on the [cyberciti.biz manual](https://www.cyberciti.biz/faq/update-upgrade-debian-9-to-debian-10-buster/)
+
+1. Replace /etc/apt/sources.list with new version:
+```
+sudo sed -i 's/stretch/buster/g' /etc/apt/sources.list
+```
+2. Refresh apt cache:
+```
+sudo apt update
+```
+3. Pre upgrade some packages. When prompted say "yes" to everything:
+```
+sudo apt upgrade
+```
+4. Do the actual upgrade:
+```
+sudo apt full-upgrade
+```
+5. Reboot:
+```
+sudo reboot
+```
 
 ## First-time login
 
