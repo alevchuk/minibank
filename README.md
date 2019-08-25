@@ -79,23 +79,25 @@ Instead of using a Rasberry Pi at your home, you can test in the cloud with Amaz
 
 This upgrade is based on the [cyberciti.biz manual](https://www.cyberciti.biz/faq/update-upgrade-debian-9-to-debian-10-buster/)
 
-1. Replace /etc/apt/sources.list with new version:
+1. In AWS console take a snapshot for a backup of the hard drive.
+
+2. Replace /etc/apt/sources.list with new version:
 ```
 sudo sed -i 's/stretch/buster/g' /etc/apt/sources.list
 ```
-2. Refresh apt cache:
+3. Refresh apt cache:
 ```
 sudo apt update
 ```
-3. Pre upgrade some packages. When prompted say "yes" to everything, except for **NTP (network time)** say "N" (hit Enter) to keep current config and for **Configuring openssh-server** also hit Enter to keep current config, and for **Grub (boot loader)** continue without installing anything:
+4. Pre upgrade some packages. When prompted say "yes" to everything, except for **NTP (network time)** say "N" (hit Enter) to keep current config and for **Configuring openssh-server** also hit Enter to keep current config, and for **Grub (boot loader)** continue without installing anything:
 ```
 sudo apt upgrade
 ```
-4. Do the actual upgrade:
+5. Do the actual upgrade:
 ```
 sudo apt full-upgrade
 ```
-5. Reboot:
+6. Reboot:
 ```
 sudo reboot
 ```
