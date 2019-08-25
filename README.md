@@ -22,8 +22,8 @@ Table of contents
     * [Start Bitcoin](#start-bitcoind)
     * [Heat](#heat)
     * [Convenience stuff](#convenience-stuff)
-    * [Tor](#tor)
-    * [Build Go](#build-go)
+    * [Install Tor](#install-tor)
+    * [Install Go](#install-go)
     * [Build LND](#build-lnd)
     * [Start LND](#start-lnd)
     * [Open LND port on your router](#open-lnd-port-on-your-router)
@@ -247,16 +247,6 @@ sudo btrfs balance start -dconvert=raid1 -mconvert=raid1 /mnt/btrfs/
 
 ## Software
 
-### Tor
-
-Install Tor
-```
-sudo apt-get install tor
-```
-Minibank needs tor version 0.3.3.6 or above. Fortunaly Rasiban 10 already has that.
-
-Minibank uses Tor for LND. Yet not for Bitcoin sync traffic because that seems to introduce delays.
-
 ### Build Bitcoind
 
 1. Create bitcoin user unix account
@@ -461,6 +451,16 @@ To deatch from screen press Ctrl-b and then press "d"
 
 To re-attach, run `screen -r`
 
+
+### Install Tor
+
+Install Tor
+```
+sudo apt-get install tor
+```
+Minibank needs tor version 0.3.3.6 or above. Fortunaly Rasiban 10 already has that.
+
+Minibank uses Tor for LND. Yet not for Bitcoin sync traffic because that seems to introduce delays.
 
 
 ### Install Go
