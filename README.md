@@ -428,7 +428,7 @@ Vi has a very inconvinient feature of making selection not native to the OS that
 
 To make selection for Copy-and-paste use laptop's OS instead of staying in Vi, run
 ```
-echo set mouse= >> ~/.vimrc
+sudo su -c "echo set mouse= >> /usr/share/vim/vim81/defaults.vim"
 ```
 
 
