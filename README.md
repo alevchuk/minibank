@@ -297,12 +297,7 @@ echo 'export PATH=$HOME/bin/bin:$PATH  # bitcoind is here' >> ~/.profile
 . ~/.profile
 ```
 
-2. Copy the .vimrc which convinience imporvements
-```
-cp ~pi/.vimrc  ~/
-```
-
-Follow instruction to build bitcoin core: [alevchuk/minibank/bitcoin](https://github.com/alevchuk/minibank/tree/master/bitcoin)
+2. Follow instruction to build bitcoin: [alevchuk/minibank/bitcoin](https://github.com/alevchuk/minibank/tree/master/bitcoin)
 
 
 ### Start Bitcoind
@@ -518,11 +513,6 @@ sudo chown -R lightning /mnt/btrfs/lightning
 2. Add lightning to have access to Tor locally:
 ```
 sudo  addgroup lightning debian-tor
-```
-
-3. Copy the .vimrc which convinience imporvements (also do the same for bitcoin user)
-```
-cp ~pi/.vimrc  ~/
 ```
 
 3. Log-in as "lightning" user and setup symlinks
