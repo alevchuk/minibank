@@ -29,7 +29,6 @@ Table of contents
       * [Create your Lightning wallet](#create-your-lightning-wallet)
       * [Fund your LND wallet and enable AutoPilot](#fund-your-lnd-wallet-and-enable-autopilot)
       * [Keep track of your total balance](#keep-track-of-your-total-balance)
-      * [Record balance every hour automatically](#record-balance-every-hour-automatically)
     * [Open LND port on your router](#open-lnd-port-on-your-router)
     * [Install LND testing scripts](#install-lnd-testing-scripts)
   * [Monitoring](#monitoring)
@@ -684,23 +683,8 @@ while :; do echo; (cat ~/balance_history.tab; ~/scripts/treasury_report.py ) | c
 ~/scripts/treasury_report.py | grep -v Time  >> ~/balance_history.tab
 ```
 
-
-### Record balance every hour automatically
-
-```
-crontab -e
-'''
-
-### Text-editor will open, paste the following, save, and exit:
-
-SHELL=/bin/bash
-# m h  dom mon dow   command
-0   *  *   *   *     (source ~/.profile; ~/scripts/treasury_report.py --no-header >> ~/balance_history.tab) 2> /tmp/stderr_cron_treasury_report
-
-'''
-```
-
 As channels open and close you may see total balance go down but should it recover eventually. That's because LND overestimates the fees for the channel closing transactions.
+
 
 
 ### Open LND port on your router
@@ -750,6 +734,7 @@ rsync -ai ~/minibank/scripts/ ~/lnd-e2e-testing/
 Most of those scripts are short/readable and have internal documentation.
 
 #### Record balance every hour automatically
+
 ```
 crontab -e
 '''
