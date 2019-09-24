@@ -629,18 +629,12 @@ Create a wallet
 
 ```
 lncli create
-
-# LND logs should start printing:
-
-2018-07-02 15:44:58.038 [INF] LNWL: Caught up to height 760000
-2018-07-02 15:44:59.956 [INF] LNWL: Caught up to height 770000
-2018-07-02 15:45:01.920 [INF] LNWL: Caught up to height 780000
-2018-07-02 15:45:03.974 [INF] LNWL: Caught up to height 790000
-2018-07-02 15:45:06.014 [INF] LNWL: Caught up to height 800000
-2018-07-02 15:45:08.038 [INF] LNWL: Caught up to height 810000
-...
-Done catching up block hashes
 ```
+
+This will create:
+1. Your bitcoin private key stored on disk
+2. A mnemonic phrase that you can backup to paper and use to restore the bitcoin funds
+3. A password that will need to be entered every time LND starts
 
 
 ### Fund your LND wallet and enable AutoPilot
@@ -651,16 +645,17 @@ Done catching up block hashes
 lncli newaddress np2wkh  # Nested SegWit address
 ```
 
-Wait for 6 confirmations
+2. Send the funds from an external bitcoin wallet.
 
+3. Check that the funds arrived
 ```
 lncli walletbalance  # will show unconfirmed balance within a few seconds. One confirmation will happen roughly every 10 minutes
 ```
+4. Wait for 6 confirmations. About 1 hour.
 
-2. Enable autopilot by changing "autopilot.active=0" to "autopilot.active=1" in lnd.conf
-3. Restart LND
-4. Then check activity in 1 hour:
-
+5. [Optional] Enable autopilot by changing "autopilot.active=0" to "autopilot.active=1" in lnd.conf
+6. Restart LND
+7. Then check activity in 1 hour:
 ```
 lncli walletbalance
 lncli channelbalance
@@ -670,20 +665,38 @@ lncli listpeers | grep inbound | uniq -c  # to be a relay you'll need to get inb
 
 ### Keep track of your total balance
 
-Use [get_balance_report.py script](get_balance_report.py)
+Use [treasury_report.py script](scripts/treasury_report.py)
 ```
 # One-time setup:
 mkdir ~/lnd-e2e-testing
-curl https://raw.githubusercontent.com/alevchuk/pstm/master/lnd-e2e-testing/get_balance_report.py > ~/lnd-e2e-testing/get_balance_report.py
-chmod +x ~/lnd-e2e-testing/get_balance_report.py
-~/lnd-e2e-testing/get_balance_report.py >> ~/balance_history.tab
+curl https://raw.githubusercontent.com/alevchuk/minibank/master/scripts/treasury_report.py > ~/scripts/treasury_report.py
+chmod +x ~/scripts/treasury_report.py
+~/scripts/treasury_report.py >> ~/balance_history.tab
 
 # Track balance
-while :; do echo; (cat ~/balance_history.tab; ~/lnd-e2e-testing/get_balance_report.py ) | column -t; date; sleep 60; done
+while :; do echo; (cat ~/balance_history.tab; ~/scripts/treasury_report.py ) | column -t; date; sleep 60; done
 
 # Record balance
-~/lnd-e2e-testing/get_balance_report.py | grep -v Time  >> ~/balance_history.tab
+~/scripts/treasury_report.py | grep -v Time  >> ~/balance_history.tab
 ```
+
+
+### Record balance every hour automatically
+
+```
+crontab -e
+'''
+
+### Text-editor will open, paste the following, save, and exit:
+
+SHELL=/bin/bash
+# m h  dom mon dow   command
+0   *  *   *   *     (source ~/.profile; ~/scripts/treasury_report.py --no-header >> ~/balance_history.tab) 2> /tmp/stderr_cron_treasury_report
+
+'''
+```
+
+As channels open and close you may see total balance go down but should it recover eventually. That's because LND overestimates the fees for the channel closing transactions.
 
 
 ### Open LND port on your router
