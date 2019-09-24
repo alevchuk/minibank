@@ -9,9 +9,6 @@ bitcoin lightning node
 Table of contents
 =================
 
-**WARNING: The work described here is a prototype and not ready for general use...**
-
-
   * [Hardware](#hardware)
   * [Operating System](#operating-system)
   * [Network](#network)
