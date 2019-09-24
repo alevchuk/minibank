@@ -620,6 +620,72 @@ Start:
 lnd --externalip=$(dig +short myip.opendns.com @resolver1.opendns.com):9735
 ```
 
+
+### Create your Lightning wallet
+
+
+
+Create a wallet
+
+```
+lncli create
+
+# LND logs should start printing:
+
+2018-07-02 15:44:58.038 [INF] LNWL: Caught up to height 760000
+2018-07-02 15:44:59.956 [INF] LNWL: Caught up to height 770000
+2018-07-02 15:45:01.920 [INF] LNWL: Caught up to height 780000
+2018-07-02 15:45:03.974 [INF] LNWL: Caught up to height 790000
+2018-07-02 15:45:06.014 [INF] LNWL: Caught up to height 800000
+2018-07-02 15:45:08.038 [INF] LNWL: Caught up to height 810000
+...
+Done catching up block hashes
+```
+
+
+### Fund your LND wallet and enable AutoPilot
+
+1. Create a one-time-use address and transfer some bitcoin to it
+
+ ```
+lncli newaddress np2wkh  # Nested SegWit address
+```
+
+Wait for 6 confirmations
+
+```
+lncli walletbalance  # will show unconfirmed balance within a few seconds. One confirmation will happen roughly every 10 minutes
+```
+
+2. Enable autopilot by changing "autopilot.active=0" to "autopilot.active=1" in lnd.conf
+3. Restart LND
+4. Then check activity in 1 hour:
+
+```
+lncli walletbalance
+lncli channelbalance
+lncli listchannels  | grep active | sort | uniq -c  # number of open channels
+lncli listpeers | grep inbound | uniq -c  # to be a relay you'll need to get inbound peers
+```
+
+### Keep track of your total balance
+
+Use [get_balance_report.py script](get_balance_report.py)
+```
+# One-time setup:
+mkdir ~/lnd-e2e-testing
+curl https://raw.githubusercontent.com/alevchuk/pstm/master/lnd-e2e-testing/get_balance_report.py > ~/lnd-e2e-testing/get_balance_report.py
+chmod +x ~/lnd-e2e-testing/get_balance_report.py
+~/lnd-e2e-testing/get_balance_report.py >> ~/balance_history.tab
+
+# Track balance
+while :; do echo; (cat ~/balance_history.tab; ~/lnd-e2e-testing/get_balance_report.py ) | column -t; date; sleep 60; done
+
+# Record balance
+~/lnd-e2e-testing/get_balance_report.py | grep -v Time  >> ~/balance_history.tab
+```
+
+
 ### Open LND port on your router
 
 In your minibank, to `/etc/iptables/rules.v4` add:
