@@ -866,7 +866,7 @@ sudo pip3 install virtualenv
 Create a new virtual envirment and install prometheus python client library 
 ```
 sudo su -l bitcoin
-virtualenv monitoring-bitcoind -p python3.5
+virtualenv monitoring-bitcoind
 cd ~/monitoring-bitcoind
 . bin/activate
 pip install prometheus_client
