@@ -22,7 +22,7 @@ Change to a user:
 
 To `~/.profile` add:
 ```
-export GOROOT=/usr/lib/go-1.11
+export GOROOT=/usr/lib/go-1.13
 export GOPATH=~/gocode
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 ```
@@ -45,7 +45,7 @@ sudo apt-get install git
 2. Set bootstrap path and gopath. To `~/.profile` add:
 
 ```
-export GOROOT_BOOTSTRAP=/usr/lib/go-1.6
+export GOROOT_BOOTSTRAP="$(ls -1d /usr/lib/go-* | tail -n1)"
 
 export GOROOT=~/src/go
 export GOPATH=~/gocode
@@ -57,7 +57,7 @@ export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 git clone https://go.googlesource.com/go ~/src/go
 cd ~/src/go
 git fetch
-git checkout go1.11.5
+git checkout go1.13.1
 ```
 
 5. Build new go
