@@ -24,7 +24,7 @@ Prepare for build (one time setup):
 ```
 cd ~/src/bitcoin
 ./autogen.sh
-./configure  --with-gui=no --disable-wallet --disable-tests --prefix=$HOME/bin  --with-boost-libdir=/usr/lib/arm-linux-gnueabihf
+./configure  --with-gui=no --disable-wallet --disable-tests --prefix=$HOME/bin 
 ```
 > - For ARM achitectures, in some cases you might need to add `--with-boost-libdir=/usr/lib/arm-linux-gnueabihf` 
 > - The final output of `configure` should include:   "with zmq  = yes"
