@@ -32,7 +32,7 @@ cd ~/src/bitcoin
 
 Build and Install:
 ```
-make && make install
+make clean && make && make install
 ```
 
 # Upgrade
