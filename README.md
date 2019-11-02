@@ -139,14 +139,18 @@ COMMIT
 :FORWARD DROP [0:0]
 :OUTPUT ACCEPT [52247:3125304]
 -A INPUT -i lo -j ACCEPT
--A INPUT -p tcp -s 192.168.0.0/16 --dport 22 -j ACCEPT  # <-------- Allow SSH from home network only !
+
+# <-------- Allow SSH from home network only !
+-A INPUT -p tcp -s 192.168.0.0/16  --dport 22 -j ACCEPT
+
 -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 -A OUTPUT -o lo -j ACCEPT
 COMMIT
 ``` 
 If this is on Amazon or Google Cloud then remove `-s 192.16.0.0/16` part:
 ```
-A INPUT -p tcp --dport 22 -j ACCEPT  # <-------- Allow SSH from anywere !
+# ---------------------- Allow SSH from anywhere !
+-A INPUT -p tcp --dport 22 -j ACCEPT
 ```
 and run 
 ```
