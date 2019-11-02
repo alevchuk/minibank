@@ -576,7 +576,7 @@ Preprequisigtes:
 
 Login as lightning:
 ```
-su -l lightning
+sudo su -l lightning
 ```
 
 Edit `~/.lnd/lnd.conf`
@@ -929,7 +929,7 @@ sudo mkdir /mnt/btrfs/prometheus/data
 
 sudo chown -R prometheus /mnt/btrfs/prometheus/
 
-su -l prometheus
+sudo su -l prometheus
 ln -s /mnt/btrfs/src ~/lightning_src # symlink to read-only go installation
 ln -s /mnt/btrfs/prometheus/gocode ~/gocode
 ```
@@ -987,7 +987,7 @@ sudo chown grafana /mnt/btrfs/src_grafana
 sudo chown grafana /mnt/btrfs/gocode_grafana
 sudo chown grafana /mnt/btrfs/bin_grafana
 
-su -l grafana
+sudo su -l grafana
 ln -s /mnt/btrfs/src ~/src_readonly # symlink to read-only go installation
 ln -s /mnt/btrfs/src_grafana ~/src
 ln -s /mnt/btrfs/gocode_grafana ~/gocode
