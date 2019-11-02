@@ -152,6 +152,7 @@ and run
 ```
 sudo /etc/init.d/netfilter-persistent restart
 ```
+Repeate step 7 for IPv6 rules file /etc/iptables/rules.v6
 8. Optionally [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/master/other-notes/wifi.md)
 9. From your laptop, use the IP from step 5 and run: `ssh pi@YOUR_IP_HERE` enter your new password
 
