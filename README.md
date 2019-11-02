@@ -440,7 +440,7 @@ sudo apt-get install vim
 ```
 This will replace "vi" as well.
 
-Vi has a very inconvinient feature of making selection not native to the OS that your SSHing from.
+Vi has a very inconvenient feature of making selection not native to the OS that your SSHing from.
 
 To make selection for Copy-and-paste use laptop's OS instead of staying in Vi, run
 ```
