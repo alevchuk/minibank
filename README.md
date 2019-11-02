@@ -468,7 +468,7 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 sudo apt-get install screen
 ```
 
-Edit default screen config by running `sudo vi /etc/screenrc` and to the end add:
+To the end of default screen config add the following lines by running `sudo vi /etc/screenrc` 
 ```
 startup_message off
 
