@@ -287,7 +287,7 @@ sudo adduser --disabled-password bitcoin
 
 sudo mkdir /mnt/btrfs/bitcoin
 sudo mkdir /mnt/btrfs/bitcoin/bin
-sudo mkdir /mnt/btrfs/bitcoin/bitcoin-data
+sudo mkdir /mnt/btrfs/bitcoin/dot-bitcoin-data
 sudo mkdir /mnt/btrfs/bitcoin/src
 
 sudo chown -R bitcoin /mnt/btrfs/bitcoin
@@ -296,7 +296,7 @@ sudo su -l bitcoin
 
 ln -s /mnt/btrfs/bitcoin/bin ~/bin
 ln -s /mnt/btrfs/bitcoin/src ~/src
-ln -s /mnt/btrfs/bitcoin/bitcoin-data ~/.bitcoin
+ln -s /mnt/btrfs/bitcoin/dot-bitcoin-data ~/.bitcoin
 
 echo 'export PATH=$HOME/bin/bin:$PATH  # bitcoind is here' >> ~/.profile
 . ~/.profile
