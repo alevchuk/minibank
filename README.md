@@ -385,6 +385,11 @@ while :; do /opt/vc/bin/vcgencmd measure_temp; sleep 1; done
 
 While your bitcoin chain syncs...
 
+Skip the following sections if your setting up a node on Amazon AWS or Google cloud:
+* Name your Pi
+* Time-zone
+* Non-British Keyboard
+
 #### Name your Pi
 
 Give your host a name. Edit 2 files replacing "raspberrypi" with the name you came up with. No spaces or punctuation.
@@ -400,6 +405,7 @@ bitcoind
 ```
 
 #### Time-zone
+
 
 Run `rspi-config` and select **Localization Options --> Change Timezone** to make your system clock right. Check time by running `date`
 
@@ -417,6 +423,12 @@ XKBLAYOUT="us"
 ```
 in /etc/default/keyboard
 
+
+#### bash-completion
+
+```
+sudo apt-get install bash-completion
+```
 
 
 #### Vim
