@@ -27,7 +27,7 @@ Table of contents
       * [Fund your LND wallet and enable AutoPilot](#fund-your-lnd-wallet-and-enable-autopilot)
       * [Keep track of your total balance](#keep-track-of-your-total-balance)
     * [Open LND port on your router](#open-lnd-port-on-your-router)
-    * [Install LND testing scripts](#install-lnd-testing-scripts)
+    * [Install LND operations scripts](#install-lnd-operations-scripts)
   * [Monitoring](#monitoring)
     * [Prometheus exporters](#prometheus-exporters)
     * [Prometheus](#prometheus)
@@ -732,7 +732,7 @@ lnc logs will show
   2018-01-08 20:41:07.856 [ERR] CMGR: Can't accept connection: unable to accept connection from <IP>:<PORT>: Act One: invalid handshake version: 49, only 0 is valid, msg=....
 ```
 
-### Install LND testing scripts
+### Install LND operations scripts
 
 Change into Lighting account:
 ```
