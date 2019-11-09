@@ -348,13 +348,14 @@ onlynet=ipv4
 zmqpubrawblock=tcp://0.0.0.0:29000
 zmqpubrawtx=tcp://0.0.0.0:29001
 
-txindex=1
-####prune=  # No prune, were running a full node
-####dbcache=200  ## trying to impove catch up time, 2018-12-11
-####maxorphatx=10
-####maxmempool=50
-####maxconnections=20
-####maxuploadtarget=50  # MiB/day for the community
+### prune=  # No prune, were running a full node
+txindex=1  # Maintain a full transaction index, LND uses this, otherewise there will be a lot of disk scans
+
+dbcache=200  # Maximum database cache size <n> MiB
+maxorphantx=10  # Keep at most <n> unconnectable transactions in memory (default: 100)
+maxmempool=50  # Keep the transaction memory pool below <n> megabytes
+maxconnections=20  # Maintain at most <n> connections to peers
+maxuploadtarget=50  # MiB/day for the community
 
 # Detailed logging
 ####debug=bench
