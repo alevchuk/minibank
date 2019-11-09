@@ -16,7 +16,7 @@ Checkout source code:
 ```
 git clone https://github.com/bitcoin/bitcoin.git ~/src/bitcoin
 cd ~/src/bitcoin
-git checkout v0.18.0
+git checkout v0.18.1
 ```
 The reason we need to check out the 0.18 tag, is because there is an RPC change in bitocoin 0.19 which is incompatible with LND, until this issue is fixed https://github.com/lightningnetwork/lnd/issues/2961
 
