@@ -2,7 +2,7 @@
 
 ## Build from source
 
-Install dependencies: `apt-get install libevent-dev dirmngr`
+Install dependencies: `apt-get install libevent-dev`
 
 ### Download source:
 ```
