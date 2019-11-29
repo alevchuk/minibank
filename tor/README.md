@@ -169,8 +169,19 @@ WantedBy=multi-user.target
 ```
 
 
-## Enable Tor in LND
+## Configure LND to use Tor
 Run lnd with two extra arguments:
 ```
 lnd --externalip=$(dig +short myip.opendns.com @resolver1.opendns.com):9735 --tor.active --tor.v3
+```
+
+to make this permanent, add to ~/.lnd/lnd.conf
+```
+[tor]
+; The port that Tor's exposed SOCKS5 proxy is listening on. Using Tor allows
+; outbound-only connections (listening will be disabled) -- NOTE port must be
+; between 1024 and 65535
+tor.socks=9050
+tor.active=1
+tor.v3=1
 ```
