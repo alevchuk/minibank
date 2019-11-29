@@ -31,5 +31,10 @@ Date:   Thu Sep 19 08:08:39 2019 -0400
 
 ### Build and install:
 ```
-sh autogen.sh && ./configure --disable-asciidoc && make && make install
+sh autogen.sh && ./configure --disable-asciidoc && make
+```
+
+### Install
+```
+sudo make install
 ```
