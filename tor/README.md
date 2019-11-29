@@ -2,7 +2,7 @@
 
 ## Build from source
 
-Install dependencies: `apt-get install libevent-dev`
+Install dependencies: `apt-get install libevent-dev zlib1g-dev`
 
 ### Download source:
 ```
@@ -31,5 +31,5 @@ Date:   Thu Sep 19 08:08:39 2019 -0400
 
 ### Build and install:
 ```
-sh autogen.sh && ./configure && make && make install
+sh autogen.sh && ./configure --disable-asciidoc && make && make install
 ```
