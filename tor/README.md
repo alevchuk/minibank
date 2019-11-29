@@ -39,6 +39,7 @@ This should show:
 > `HEAD detached at tor-0.4.1.6` <br />
 > `nothing to commit, working tree clean`
 
+
 ### Build and install:
 ```
 sh autogen.sh && ./configure --disable-asciidoc && make
@@ -47,4 +48,26 @@ sh autogen.sh && ./configure --disable-asciidoc && make
 ### Install
 ```
 sudo make install
+```
+
+## Configure
+
+Edit /etc/tor/torrc
+uncomment "ControlPort 9051"
+
+TODO: figure out how to use HashedControlPassword
+
+## Run Tor
+
+```
+/usr/local/bin/tor -f /etc/tor/torrc
+```
+
+TODO: config for systemd to run tor automatically
+
+
+## Enable Tor in LND
+Run lnd with two extra arguments:
+```
+lnd --externalip=$(dig +short myip.opendns.com @resolver1.opendns.com):9735 --tor.active --tor.v3
 ```
