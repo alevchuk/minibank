@@ -68,7 +68,6 @@ TODO: figure out how to use HashedControlPassword
 Add 3 files:
 * /lib/systemd/system/tor@default.service
 * /lib/systemd/system/tor.service
-* /lib/systemd/system/tor@.service
 
 **/lib/systemd/system/tor@default.service**
 ```
@@ -127,46 +126,6 @@ WantedBy=multi-user.target
 ```
 
 
-**/lib/systemd/system/tor@.service**
-```
-[Unit]
-Description=Anonymizing overlay network for TCP (instance %i)
-After=network.target nss-lookup.target
-PartOf=tor.service
-ReloadPropagatedFrom=tor.service
-
-[Service]
-Type=notify
-NotifyAccess=all
-PIDFile=/run/tor-instances/%i/tor.pid
-PermissionsStartOnly=yes
-ExecStartPre=/usr/bin/install -Z -m 02755 -o _tor-%i -g _tor-%i -d /run/tor-instances/%i
-ExecStartPre=/bin/sed -e 's/@@NAME@@/%i/g; w /run/tor-instances/%i.defaults' /usr/local/share/tor/tor-service-defaults-torrc-instances
-ExecStartPre=/usr/local/bin/tor --defaults-torrc /run/tor-instances/%i.defaults -f /etc/tor/instances/%i/torrc --verify-config
-ExecStart=/usr/local/bin/tor --defaults-torrc /run/tor-instances/%i.defaults -f /etc/tor/instances/%i/torrc
-ExecReload=/bin/kill -HUP ${MAINPID}
-KillSignal=SIGINT
-TimeoutStartSec=300
-TimeoutStopSec=60
-Restart=on-failure
-LimitNOFILE=65536
-
-# Hardening
-NoNewPrivileges=yes
-PrivateTmp=yes
-PrivateDevices=yes
-ProtectHome=yes
-ProtectSystem=full
-ReadOnlyDirectories=/
-# We would really like to restrict the next item to [..]/%i but we can't,
-# as systemd does not support that yet.  See also #781730.
-ReadWriteDirectories=-/var/lib/tor-instances
-ReadWriteDirectories=-/run
-CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_NET_BIND_SERVICE CAP_DAC_READ_SEARCH
-
-[Install]
-WantedBy=multi-user.target
-```
 
 
 ## Configure LND to use Tor
