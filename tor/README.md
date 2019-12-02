@@ -65,7 +65,7 @@ TODO: figure out how to use HashedControlPassword
 
 ## Config for systemd to run tor automatically
 
-Add 3 files:
+Add 2 files:
 * /lib/systemd/system/tor@default.service
 * /lib/systemd/system/tor.service
 
