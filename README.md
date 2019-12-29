@@ -890,31 +890,30 @@ Vitrualenv is the only pip package that you will need to install system-wide. Ev
 sudo pip3 install virtualenv
 ```
 
-Create a new virtual envirment and install prometheus python client library 
+Create a new virtual envirment and install dependencies
 ```
 sudo su -l bitcoin
+
 virtualenv monitoring-bitcoind
 cd ~/monitoring-bitcoind
 . bin/activate
-pip install prometheus_client
+pip install \
+        prometheus_client \
+        python-bitcoinlib \
+        riprova
 ```
 
-Download Kevin M. Gallagher's amazing [bitcoind-monitor.py](https://gist.github.com/ageis/a0623ae6ec9cfc72e5cb6bde5754ab1f)
+Download Kevin M. Gallagher's amazing [bitcoind-monitor.py](https://gist.github.com/ageis/a0623ae6ec9cfc72e5cb6bde5754ab1f) and maintaned by Jeff Stein: 
 
 ```
-curl https://gist.githubusercontent.com/ageis/a0623ae6ec9cfc72e5cb6bde5754ab1f/raw/4aeee711a041c5a25fac4397faee8b8098a4e5d1/bitcoind-monitor.py >  exporter-bitcoind-monitor.py
-chmod +x exporter-bitcoind-monitor.py
-```
-
-Change shebang to use python3
-```
-sed -i 's|/usr/bin/python|/usr/bin/python3|g' exporter-bitcoind-monitor.py
+curl https://raw.githubusercontent.com/jvstein/bitcoin-prometheus-exporter/master/bitcoind-monitor.py > bitcoind-monitor.py
+chmod +x bitcoind-monitor.py
 ```
 
 Run bitcoind-monitor.py
 ```
 . ~/monitoring-bitcoind/bin/activate
-~/monitoring-bitcoind/exporter-bitcoind-monitor.py
+~/monitoring-bitcoind/bitcoind-monitor.py
 ```
 
 Test
