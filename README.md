@@ -894,13 +894,14 @@ Create a new virtual envirment and install dependencies
 ```
 sudo su -l bitcoin
 
-virtualenv monitoring-bitcoind
-cd ~/monitoring-bitcoind
-. bin/activate
-pip3 install \
-        prometheus_client \
-        python-bitcoinlib \
-        riprova
+virtualenv monitoring-bitcoind && (
+  cd ~/monitoring-bitcoind &&
+  . bin/activate &&
+  pip3 install \
+          prometheus_client \
+          python-bitcoinlib \
+          riprova
+)
 ```
 
 Download Kevin M. Gallagher's amazing [bitcoind-monitor.py](https://gist.github.com/ageis/a0623ae6ec9cfc72e5cb6bde5754ab1f) and maintaned by Jeff Stein: 
