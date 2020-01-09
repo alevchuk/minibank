@@ -30,6 +30,8 @@ Table of contents
     * [Install LND operations scripts](#install-lnd-operations-scripts)
   * [Monitoring](#monitoring)
     * [Prometheus exporters](#prometheus-exporters)
+      * [Host Metrics](#host-metrics)
+      * [Bitcoin Metrics](#bitcoin-metrics)
     * [Prometheus](#prometheus)
     * [Grafana](#grafana)
   * [Operatons](#operations)
@@ -842,7 +844,7 @@ export PATH=$HOME/bin/bin:$PATH
 
 and  now install node exporter
 
-#### Node Exporter
+#### Host metrics
 
 Node Exporter is used to export system metrics to Prometheus
 
