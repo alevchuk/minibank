@@ -906,14 +906,13 @@ pip install \
 Download Kevin M. Gallagher's amazing [bitcoind-monitor.py](https://gist.github.com/ageis/a0623ae6ec9cfc72e5cb6bde5754ab1f) and maintaned by Jeff Stein: 
 
 ```
-curl https://raw.githubusercontent.com/jvstein/bitcoin-prometheus-exporter/master/bitcoind-monitor.py > bitcoind-monitor.py
-chmod +x bitcoind-monitor.py
+git clone https://github.com/jvstein/bitcoin-prometheus-exporter.git ~/jvstein/bitcoin-prometheus-exporter
+chmod +x ~/jvstein/bitcoin-prometheus-exporter/bitcoind-monitor.py
 ```
 
 Run bitcoind-monitor.py
 ```
-. ~/monitoring-bitcoind/bin/activate
-~/monitoring-bitcoind/bitcoind-monitor.py
+(. ~/monitoring-bitcoind/bin/activate && REFRESH_SECONDS=30 ~/jvstein/bitcoin-prometheus-exporter/bitcoind-monitor.py)
 ```
 
 Test
