@@ -897,7 +897,7 @@ sudo su -l bitcoin
 virtualenv monitoring-bitcoind
 cd ~/monitoring-bitcoind
 . bin/activate
-pip install \
+pip3 install \
         prometheus_client \
         python-bitcoinlib \
         riprova
