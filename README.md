@@ -977,9 +977,8 @@ Enable Go. To `~/.profile` add:
 ```
 export GOROOT=~/src_readonly/go
 export GOPATH=~/gocode
-export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+export PATH=$GOROOT/bin:$GOPATH/bin:$HOME/bin/bin:$PATH
 
-export PATH=$HOME/bin/bin:$PATH
 ```
 
 
