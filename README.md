@@ -1034,6 +1034,8 @@ Citations:
 
 ```
 sudo adduser --disabled-password grafana
+
+sudo mkdir /mnt/btrfs/grafana
 sudo mkdir /mnt/btrfs/grafana/src
 sudo mkdir /mnt/btrfs/grafana/gocode
 sudo mkdir /mnt/btrfs/grafana/bin
@@ -1055,6 +1057,8 @@ export GOPATH=~/gocode
 export PATH=$GOROOT/bin:$GOPATH/bin:$HOME/bin/bin:$PATH
 
 export PATH=$HOME/prometheus_bin/bin:$PATH
+export PATH=$HOME/lightning_src/go/bin:$PATH
+
 ```
 
 
