@@ -951,7 +951,7 @@ sudo mkdir /mnt/btrfs/prometheus/data
 sudo chown -R prometheus /mnt/btrfs/prometheus/
 
 sudo su -l prometheus
-ln -s /mnt/btrfs/src ~/lightning_src # symlink to read-only go installation
+ln -s /mnt/btrfs/lightning/src ~/lightning_src # symlink to read-only go installation
 ln -s /mnt/btrfs/prometheus/gocode ~/gocode
 ```
 
