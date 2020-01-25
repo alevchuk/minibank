@@ -948,12 +948,14 @@ sudo mkdir /mnt/btrfs/prometheus
 sudo mkdir /mnt/btrfs/prometheus/gocode
 sudo mkdir /mnt/btrfs/prometheus/data
 sudo mkdir /mnt/btrfs/prometheus/src
+sudo mkdir /mnt/btrfs/prometheus/bin
 
 sudo chown -R prometheus /mnt/btrfs/prometheus/
 
 sudo su -l prometheus
 ln -s /mnt/btrfs/lightning/src ~/lightning_src # symlink to read-only go installation
 ln -s /mnt/btrfs/prometheus/src ~/src
+ln -s /mnt/btrfs/prometheus/bin ~/bin
 ln -s /mnt/btrfs/prometheus/gocode ~/gocode
 ```
 
