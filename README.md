@@ -997,16 +997,20 @@ make build
 
 Configure:
 ```
-mkdir /mnt/btrfs/prometheus_data
-ln -s /mnt/btrfs/prometheus_data ~/.prometheus
+ln -s /mnt/btrfs/prometheus/data ~/.prometheus
 vi ~/.prometheus/prometheus.yml
 ```
 Configure to collect from node exporters from all managed hosts, including self, e.g.:
 ```
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
 scrape_configs:
-- job_name: 'node'
+- job_name: 'node3'
   static_configs:
-  - targets: ['b1:9100', 'l1:9100', 'base:9100']
+  - targets: ['bl3:9100', 'bl4:9100', 'bl5:9100', 'bl3:8334', 'bl4:8334', 'bl5:8334']
 ```
 
 Run prometheus:
