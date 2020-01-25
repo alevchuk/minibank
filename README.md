@@ -939,7 +939,10 @@ curl localhost:8334
 
 ### Prometheus
 
-Install this on the base station to pull in all metrics into a single place.
+Requierments
+ * Lightning (because we re-use Go build)
+ 
+If you have multiple nodes, install this on the base station to pull in all metrics into a single place.
 
 Setup accounts:
 ```
@@ -1013,7 +1016,10 @@ prometheus --config.file=$HOME/.prometheus/prometheus.yml --storage.tsdb.path=$H
 
 ### Grafana
 
-Grafana is a monitoring/analytics web interface. This is a web server. Install it on the base station.
+Requierments
+ * Prometheus
+
+Grafana is a monitoring/analytics web interface. This is a web server. Install it on the same node as Prometheus.
 
 Citations:
 * This section is based on the [officail grafana doc](http://docs.grafana.org/project/building_from_source/)
