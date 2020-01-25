@@ -947,14 +947,15 @@ sudo adduser --disabled-password prometheus
 sudo mkdir /mnt/btrfs/prometheus
 sudo mkdir /mnt/btrfs/prometheus/gocode
 sudo mkdir /mnt/btrfs/prometheus/data
+sudo mkdir /mnt/btrfs/prometheus/src
 
 sudo chown -R prometheus /mnt/btrfs/prometheus/
 
 sudo su -l prometheus
 ln -s /mnt/btrfs/lightning/src ~/lightning_src # symlink to read-only go installation
+ln -s /mnt/btrfs/prometheus/src ~/src
 ln -s /mnt/btrfs/prometheus/gocode ~/gocode
 ```
-
 
 To `~/.profile` add:
 ```
@@ -963,6 +964,19 @@ export GOPATH=~/gocode
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 export PATH=$HOME/bin/bin:$PATH
+```
+
+Build node.js (includes NPM)
+
+```
+cd ~/src
+git clone https://github.com/nodejs/node.git
+cd node
+git fetch
+git checkout v11.2.0
+./configure --prefix $HOME/bin
+make
+make install
 ```
 
 Fetch source code:
@@ -1050,9 +1064,9 @@ Build node.js (includes NPM)
 ```
 cd ~/src
 git clone https://github.com/nodejs/node.git
+cd node
 git fetch
 git checkout v11.2.0
-cd node
 ./configure --prefix $HOME/bin
 make
 make install
