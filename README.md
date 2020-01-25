@@ -1015,7 +1015,7 @@ scrape_configs:
 
 Run prometheus:
 ```
-prometheus --config.file=$HOME/.prometheus/prometheus.yml --storage.tsdb.path=$HOME/.prometheus/data
+cd ~prometheus/.prometheus && ~/gocode/src/github.com/prometheus/prometheus/prometheus --storage.tsdb.retention 5y
 ```
 
 ### Grafana
