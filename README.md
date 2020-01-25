@@ -981,14 +981,14 @@ export PATH=$GOROOT/bin:$GOPATH/bin:$HOME/bin/bin:$PATH
 
 ```
 
+Install Yarn:
+```
+npm install -g yarn
+```
 
-Fetch source code:
+Fetch source code and build prometheus:
 ```
 go get github.com/prometheus/prometheus/cmd/...
-```
-
-Build:
-```
 cd /home/prometheus/gocode/src/github.com/prometheus/prometheus/
 make build
 ```
@@ -1075,11 +1075,14 @@ make
 make install
 ```
 
+Install Yarn:
+```
+npm install -g yarn
+```
+
 Build Grafana front-end:
 ```
 cd $GOPATH/src/github.com/grafana/grafana
-
-npm install -g yarn
 
 # IMPORTANT: before running `yarn install` you need to remove
 #            "phantomjs-prebuilt" form ./github.com/grafana/grafana/package.json
