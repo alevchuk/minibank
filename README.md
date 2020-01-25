@@ -1072,23 +1072,6 @@ go run build.go setup
 go run build.go build    
 ```
 
-Build node.js (includes NPM)
-
-```
-cd ~/src
-git clone https://github.com/nodejs/node.git
-cd node
-git fetch
-git checkout v13.7.0
-./configure --prefix $HOME/bin
-make
-make install
-```
-
-Install Yarn:
-```
-npm install -g yarn
-```
 
 Build Grafana front-end:
 ```
