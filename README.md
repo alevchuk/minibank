@@ -959,15 +959,6 @@ ln -s /mnt/btrfs/prometheus/bin ~/bin
 ln -s /mnt/btrfs/prometheus/gocode ~/gocode
 ```
 
-To `~/.profile` add:
-```
-export GOROOT=~/src_readonly/go
-export GOPATH=~/gocode
-export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
-
-export PATH=$HOME/bin/bin:$PATH
-```
-
 Build node.js (includes NPM)
 
 ```
@@ -980,6 +971,17 @@ git checkout v11.2.0
 make
 make install
 ```
+
+
+Enable Go. To `~/.profile` add:
+```
+export GOROOT=~/src_readonly/go
+export GOPATH=~/gocode
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+
+export PATH=$HOME/bin/bin:$PATH
+```
+
 
 Fetch source code:
 ```
