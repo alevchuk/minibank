@@ -1068,9 +1068,7 @@ Install grafana:
 ```
 go get github.com/grafana/grafana
 
-cd $GOPATH/src/github.com/grafana/grafana
-go run build.go setup
-go run build.go build    
+cd $GOPATH/src/github.com/grafana/grafana 
 ```
 
 
@@ -1085,6 +1083,13 @@ cd $GOPATH/src/github.com/grafana/grafana
 
 yarn install --pure-lockfile
 yarn start
+```
+
+
+Build Grafana back-end:
+```
+cd $GOPATH/src/github.com/grafana/grafana
+make run
 ```
 
 Run grafana:
