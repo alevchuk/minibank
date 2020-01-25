@@ -1084,7 +1084,7 @@ cd $GOPATH/src/github.com/grafana/grafana
 #            https://github.com/grafana/grafana/issues/14115
 
 yarn install --pure-lockfile
-yarn watch
+yarn watch  # if this one throws errors, (e.g. /bin/sh: 1: grafana-toolkit: not found) it's OK
 ```
 
 Run grafana:
