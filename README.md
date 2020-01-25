@@ -1020,44 +1020,41 @@ cd ~prometheus/.prometheus && ~/gocode/src/github.com/prometheus/prometheus/prom
 
 ### Grafana
 
-Requierments
- * Prometheus
+Prereqisits:
+ * node exporter running on all nodes
+ * Prometheus run on the same node as grafana (because we re-use node.js)
+ * Lightning (because we re-use Go build)
+
 
 Grafana is a monitoring/analytics web interface. This is a web server. Install it on the same node as Prometheus.
 
 Citations:
 * This section is based on the [officail grafana doc](http://docs.grafana.org/project/building_from_source/)
 
-Prereqisits:
-* [Build Go](#build-go) 
-* node exporter running on all nodes
-* prometheus of `base`
-* ssh into `base`
 
 ```
 sudo adduser --disabled-password grafana
-sudo mkdir /mnt/btrfs/src_grafana
-sudo mkdir /mnt/btrfs/gocode_grafana
-sudo mkdir /mnt/btrfs/bin_grafana
+sudo mkdir /mnt/btrfs/grafana/src
+sudo mkdir /mnt/btrfs/grafana/gocode
+sudo mkdir /mnt/btrfs/grafana/bin
 
-sudo chown grafana /mnt/btrfs/src_grafana
-sudo chown grafana /mnt/btrfs/gocode_grafana
-sudo chown grafana /mnt/btrfs/bin_grafana
+sudo chown -R grafana /mnt/btrfs/grafana
 
 sudo su -l grafana
-ln -s /mnt/btrfs/src ~/src_readonly # symlink to read-only go installation
-ln -s /mnt/btrfs/src_grafana ~/src
-ln -s /mnt/btrfs/gocode_grafana ~/gocode
-ln -s /mnt/btrfs/bin_grafana ~/bin
+ln -s /mnt/btrfs/lightning/src ~/lightning_src # symlink to read-only go installation
+ln -s /mnt/btrfs/prometheus/bin ~/prometheus_bin # symlink to read-only node.js installation
+ln -s /mnt/btrfs/grafana/src ~/src
+ln -s /mnt/btrfs/grafana/gocode ~/gocode
+ln -s /mnt/btrfs/grafana/bin ~/bin
 ```
 
 to `~/.profile` add:
 ```
-export GOROOT=~/src_readonly/go
+export GOROOT=~/lightning_src/go
 export GOPATH=~/gocode
-export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+export PATH=$GOROOT/bin:$GOPATH/bin:$HOME/bin/bin:$PATH
 
-export PATH=$HOME/bin/bin:$PATH
+export PATH=$HOME/prometheus_bin/bin:$PATH
 ```
 
 
