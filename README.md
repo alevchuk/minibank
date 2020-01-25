@@ -955,6 +955,16 @@ ln -s /mnt/btrfs/lightning/src ~/lightning_src # symlink to read-only go install
 ln -s /mnt/btrfs/prometheus/gocode ~/gocode
 ```
 
+
+To `~/.profile` add:
+```
+export GOROOT=~/src_readonly/go
+export GOPATH=~/gocode
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+
+export PATH=$HOME/bin/bin:$PATH
+```
+
 Fetch source code:
 ```
 go get github.com/prometheus/prometheus/cmd/...
