@@ -1025,7 +1025,7 @@ Grafana is a monitoring/analytics web interface.
 
 Warning: This is a web server, so be especially careful with security.
 
-To install and run Grafana follow https://github.com/alevchuk/minibank/blob/master/grafana/README.md
+To install and run Grafana follow [alevchuk/minibank/grafana](https://github.com/alevchuk/minibank/blob/master/grafana/README.md)
 
 ![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/grafana_screen_shot_2018-11-23.png "grafana monitoring dashboard using data from prometheus time-series store")
 
