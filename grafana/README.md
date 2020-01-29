@@ -34,7 +34,7 @@ ln -s /mnt/btrfs/grafana/bin ~/bin
 ```
 
 ```
-sudo schroot -c pi64 -- apt install -y python3.7 golang git
+sudo schroot -c pi64 -- apt install -y python3.7 python3-distutils golang git
 ```
 
 
