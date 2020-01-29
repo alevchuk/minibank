@@ -968,7 +968,7 @@ Build node.js (includes NPM)
 git clone https://github.com/nodejs/node.git ~/src/node
 cd ~/src/node
 git fetch
-git checkout v12.14.1
+git checkout v11.2.0  # version higher then this will not build on the 32-bit rasbian
 ./configure --prefix $HOME/bin
 make
 make install
