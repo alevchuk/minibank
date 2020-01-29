@@ -12,7 +12,7 @@ Grafana is a monitoring/analytics web interface.
 
 
 Citations:
-* This section is based on the [officail grafana doc](http://docs.grafana.org/project/building_from_source/)
+* This section is based on the [officail grafana doc](https://github.com/grafana/grafana/blob/master/contribute/developer-guide.md#build-grafana)
 
 ## Chroot for 64-bit environment
 
