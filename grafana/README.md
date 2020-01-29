@@ -5,10 +5,9 @@ This manual documents how to build and run Grafana on Pi 4. The main challenge i
 Grafana is a monitoring/analytics web interface.
 
 
-## Prereqisits:
+Prereqisits:
  * [Node exporter running on all nodes](https://github.com/alevchuk/minibank/blob/master/README.md#prometheus-exporters) (calculates metrics locally)
  * [Prometheus running on one of the nodes](https://github.com/alevchuk/minibank/blob/master/README.md#prometheus) (aggragetes and stores all metrics in one place)
-
 
 
 Citations:
@@ -35,6 +34,13 @@ ln -s /mnt/btrfs/grafana/bin ~/bin
 ```
 
 
+## Build Node.js 
+
+
+```
+git clone https://github.com/nodejs/node.git ~/src/node
+```
+
 ## Build Go
 
 ```
@@ -53,16 +59,14 @@ export PATH=$HOME/lightning_src/go/bin:$PATH
 ```
 
 
-Install grafana:
+# Download grafana
 
 ```
 go get github.com/grafana/grafana
-
-cd $GOPATH/src/github.com/grafana/grafana 
 ```
 
 
-Build Grafana front-end:
+# Build Grafana front-end
 ```
 cd $GOPATH/src/github.com/grafana/grafana
 
@@ -76,19 +80,19 @@ yarn start
 ```
 
 
-Build Grafana back-end:
+# Build Grafana back-end
 ```
 cd $GOPATH/src/github.com/grafana/grafana
 make run
 ```
 
-Run grafana:
+# Run
 ```
 cd ~/gocode/src/github.com/grafana/grafana
 ./bin/linux-arm/grafana-server
 ```
 
-Update firefall:
+# Update firefall
 ```
 sudo vi /etc/iptables/rules.v4
 ```
@@ -102,6 +106,7 @@ Reload firewall:
 sudo systemctl restart netfilter-persistent.service
 ```
 
+# Use
 
 Use grafana: connect your browser to http://localhost:3000
 
