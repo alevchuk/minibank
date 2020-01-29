@@ -6,8 +6,8 @@ Grafana is a monitoring/analytics web interface.
 
 
 ## Prereqisits:
- * Node exporter running on all nodes (calculates metrics locally)
- * Prometheus running on one of the nodes (aggragetes and stores all metrics in one place)
+ * [Node exporter running on all nodes](https://github.com/alevchuk/minibank/blob/master/README.md#prometheus-exporters) (calculates metrics locally)
+ * [Prometheus running on one of the nodes](https://github.com/alevchuk/minibank/blob/master/README.md#prometheus) (aggragetes and stores all metrics in one place)
 
 
 
