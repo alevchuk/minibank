@@ -14,6 +14,7 @@ Grafana is a monitoring/analytics web interface.
 Citations:
 * This section is based on the [officail grafana doc](http://docs.grafana.org/project/building_from_source/)
 
+## Chroot for 64-bit environment
 
 ```
 sudo adduser --disabled-password grafana
@@ -31,6 +32,13 @@ ln -s /mnt/btrfs/prometheus/bin ~/prometheus_bin # symlink to read-only node.js 
 ln -s /mnt/btrfs/grafana/src ~/src
 ln -s /mnt/btrfs/grafana/gocode ~/gocode
 ln -s /mnt/btrfs/grafana/bin ~/bin
+```
+
+
+## Build Go
+
+```
+sudo schroot -c pi64 -- apt install -y golang git
 ```
 
 to `~/.profile` add:
