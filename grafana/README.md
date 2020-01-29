@@ -46,7 +46,7 @@ git clone https://github.com/nodejs/node.git ~/src/node
 cd ~/src/node
 git checkout $(git tag | grep v1 | sort -V | tail -n1)
 
-cd ~/src/node && ./configure --prefix $HOME/bin && make clean && make && make install
+cd ~/src/node && make clean && ./configure --prefix $HOME/bin && make && make install
 ```
 
 ## Build Go
