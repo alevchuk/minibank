@@ -33,6 +33,10 @@ ln -s /mnt/btrfs/grafana/gocode ~/gocode
 ln -s /mnt/btrfs/grafana/bin ~/bin
 ```
 
+```
+sudo schroot -c pi64 -- apt install -y python3.7 golang git
+```
+
 
 ## Build Node.js 
 
