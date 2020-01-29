@@ -51,9 +51,6 @@ make clean && make && make install
 
 ## Build Go
 
-```
-sudo schroot -c pi64 -- apt install -y golang git
-```
 
 to `~/.profile` add:
 ```
