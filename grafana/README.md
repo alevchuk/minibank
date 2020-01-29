@@ -39,6 +39,10 @@ ln -s /mnt/btrfs/grafana/bin ~/bin
 
 ```
 git clone https://github.com/nodejs/node.git ~/src/node
+cd ~/src/node
+git checkout $(git tag | grep v1 | sort -V | tail -n1)
+./configure --prefix $HOME/bin
+make clean && make && make install
 ```
 
 ## Build Go
