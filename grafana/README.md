@@ -46,19 +46,9 @@ sudo mkdir /mnt/btrfs/pi64/mnt/btrfs/grafana/bin
 sudo chown -R grafana /mnt/btrfs/pi64/mnt/btrfs/grafana
 ```
 
-# Update firefall
-```
-sudo vi /etc/iptables/rules.v4
-```
-Add rule (modify -s if your subnet is different):
-```
-# Allow Grafana Web UI on local network
--A INPUT -p tcp -s 192.168.0.0/24 --dport 3000 -j ACCEPT
-```
-Reload firewall:
-```
-sudo systemctl restart netfilter-persistent.service
-```
+# Setup firefall
+https://github.com/alevchuk/minibank#network
+
 
 # Install needed packages
 ```
@@ -163,6 +153,21 @@ make run
 ```
 cd ~/gocode/src/github.com/grafana/grafana
 ./bin/linux-arm/grafana-server
+```
+
+# Punch a hole in the firewall
+
+```
+sudo vi /etc/iptables/rules.v4
+```
+Add rule (modify -s if your subnet is different):
+```
+# Allow Grafana Web UI on local network
+-A INPUT -p tcp -s 192.168.0.0/24 --dport 3000 -j ACCEPT
+```
+Reload firewall:
+```
+sudo systemctl restart netfilter-persistent.service
 ```
 
 
