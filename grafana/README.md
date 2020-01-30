@@ -135,10 +135,9 @@ If you see "can't load package" - that's OK, keep going...
 ```
 cd $GOPATH/src/github.com/grafana/grafana
 
-# IMPORTANT: before running `yarn install` you need to remove
-#            "phantomjs-prebuilt" form ./github.com/grafana/grafana/package.json
-#            more details on this here
-#            https://github.com/grafana/grafana/issues/14115
+# IMPORTANT: before running `yarn install`
+#            from ./package.json file remove "phantomjs-prebuilt"
+#            (more details here https://github.com/grafana/grafana/issues/14115 )
 
 yarn install --pure-lockfile
 yarn start
