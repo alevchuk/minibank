@@ -99,6 +99,7 @@ cd ~/src/node && make clean && ./configure --prefix $HOME/bin && make && make in
 ## Build Go
 
 
+1. Set bootstrap path and gopath. Add the following to `~/.profile`
 to `~/.profile` add:
 ```
 export GOROOT=~/src/go
@@ -108,6 +109,28 @@ export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 export PATH=$HOME/bin/bin:$PATH
 
 ```
+
+Load ~/.profile
+```
+. ~/.profile
+```
+
+4. Fetch new go
+```
+git clone https://go.googlesource.com/go ~/src/go
+cd ~/src/go
+git fetch
+git checkout go1.13.1
+```
+
+5. Build new go
+```
+. ~/.profile
+cd $GOROOT/src
+./all.bash
+```
+At the end it should say "Installed commands in $GOROOT/bin"
+
 
 
 # Download grafana
