@@ -25,7 +25,7 @@ export GOPATH=~/gocode
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 ```
 
-Re-load `~/.profile`
+Load `~/.profile`
 ```
 . ~/.profile
 ```
