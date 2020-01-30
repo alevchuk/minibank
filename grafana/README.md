@@ -128,6 +128,8 @@ cd ~/src/node && make clean && ./configure --prefix $HOME/bin && make && make in
 go get github.com/grafana/grafana
 ```
 
+If you see "can't load package" - that's OK, keep going...
+
 
 # Build Grafana front-end
 ```
