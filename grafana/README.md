@@ -13,6 +13,8 @@ Prereqisits:
 Citations:
 * This section is based on the [officail grafana doc](https://github.com/grafana/grafana/blob/master/contribute/developer-guide.md#build-grafana)
 
+
+
 ## Chroot for 64-bit environment
 
 ```
@@ -44,10 +46,25 @@ sudo mkdir /mnt/btrfs/pi64/mnt/btrfs/grafana/bin
 sudo chown -R grafana /mnt/btrfs/pi64/mnt/btrfs/grafana
 ```
 
+# Update firefall
+```
+sudo vi /etc/iptables/rules.v4
+```
+Add rule (modify -s if your subnet is different):
+```
+# Allow Grafana Web UI on local network
+-A INPUT -p tcp -s 192.168.0.0/24 --dport 3000 -j ACCEPT
+```
+Reload firewall:
+```
+sudo systemctl restart netfilter-persistent.service
+```
+
 # Install needed packages
 ```
 sudo schroot -c pi64 -- apt install -y python3.7 python3-distutils g++ make golang git
 ```
+
 
 # Change user
 Login as grafana user and drop into 64-bin environment:
@@ -84,12 +101,11 @@ cd ~/src/node && make clean && ./configure --prefix $HOME/bin && make && make in
 
 to `~/.profile` add:
 ```
-export GOROOT=~/lightning_src/go
+export GOROOT=~/src/go
 export GOPATH=~/gocode
-export PATH=$GOROOT/bin:$GOPATH/bin:$HOME/bin/bin:$PATH
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
-export PATH=$HOME/prometheus_bin/bin:$PATH
-export PATH=$HOME/lightning_src/go/bin:$PATH
+export PATH=$HOME/bin/bin:$PATH
 
 ```
 
@@ -127,19 +143,6 @@ cd ~/gocode/src/github.com/grafana/grafana
 ./bin/linux-arm/grafana-server
 ```
 
-# Update firefall
-```
-sudo vi /etc/iptables/rules.v4
-```
-Add rule (modify -s if your subnet is different):
-```
-# Allow Grafana Web UI on local network
--A INPUT -p tcp -s 192.168.0.0/24 --dport 3000 -j ACCEPT
-```
-Reload firewall:
-```
-sudo systemctl restart netfilter-persistent.service
-```
 
 # Use
 
