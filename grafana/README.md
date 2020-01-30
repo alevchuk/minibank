@@ -17,26 +17,41 @@ Citations:
 
 ```
 sudo adduser --disabled-password grafana
+sudo apt install -y debootstrap schroot
 
-sudo mkdir /mnt/btrfs/grafana
-sudo mkdir /mnt/btrfs/grafana/src
-sudo mkdir /mnt/btrfs/grafana/gocode
-sudo mkdir /mnt/btrfs/grafana/bin
+sudo apt install -y debootstrap schroot
+cat << EOF | sudo tee /etc/schroot/chroot.d/pi64
+[pi64]
+description=builds that need 64-bit environment
+type=directory
+directory=/mnt/btrfs/pi64
+users=grafana
+root-groups=root
+profile=desktop
+personality=linux
+preserve-environment=true
+EOF
 
-sudo chown -R grafana /mnt/btrfs/grafana
+sudo debootstrap --arch arm64 /mnt/btrfs/pi64
+sudo schroot -c pi64 -- apt install -y mesa-utils sudo
+
+
+sudo mkdir /mnt/btrfs/pi64/mnt/btrfs/grafana
+sudo mkdir /mnt/btrfs/pi64/mnt/btrfs/grafana/src
+sudo mkdir /mnt/btrfs/pi64/mnt/btrfs/grafana/gocode
+sudo mkdir /mnt/btrfs/pi64/mnt/btrfs/grafana/bin
+
+sudo chown -R grafana /mnt/btrfs/pi64/mnt/btrfs/grafana
+
+sudo schroot -c pi64 -- apt install -y python3.7 python3-distutils g++ make golang git
 
 sudo su -l grafana
-ln -s /mnt/btrfs/lightning/src ~/lightning_src # symlink to read-only go installation
-ln -s /mnt/btrfs/prometheus/bin ~/prometheus_bin # symlink to read-only node.js installation
+schroot -c pi64
+
 ln -s /mnt/btrfs/grafana/src ~/src
 ln -s /mnt/btrfs/grafana/gocode ~/gocode
 ln -s /mnt/btrfs/grafana/bin ~/bin
 ```
-
-```
-sudo schroot -c pi64 -- apt install -y python3.7 python3-distutils g++ make golang git
-```
-
 
 ## Build Node.js 
 
