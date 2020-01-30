@@ -146,6 +146,9 @@ yarn start
 
 # Build Grafana back-end
 ```
+sudo su -l grafana
+schroot -c pi64
+
 cd $GOPATH/src/github.com/grafana/grafana
 make run
 ```
