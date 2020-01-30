@@ -70,24 +70,8 @@ ln -s /mnt/btrfs/grafana/bin ~/bin
 The remainging parts of this manual will assume you are logged into the 64-bin environment.
 
 
-## Build Node.js 
-
-Login as grafana user and drop into 64-bin environment:
-```
-sudo su -l grafana
-schroot -c pi64
-```
-
-```
-git clone https://github.com/nodejs/node.git ~/src/node
-cd ~/src/node
-git checkout $(git tag | grep v1 | sort -V | tail -n1)
-
-cd ~/src/node && make clean && ./configure --prefix $HOME/bin && make && make install
-```
 
 ## Build Go
-
 
 1. Set bootstrap path and gopath. Add the following to `~/.profile`
 
@@ -120,6 +104,22 @@ cd $GOROOT/src
 ```
 At the end it should say "Installed commands in $GOROOT/bin"
 
+
+## Build Node.js 
+
+Login as grafana user and drop into 64-bin environment:
+```
+sudo su -l grafana
+schroot -c pi64
+```
+
+```
+git clone https://github.com/nodejs/node.git ~/src/node
+cd ~/src/node
+git checkout $(git tag | grep v12 | sort -V | tail -n1)
+
+cd ~/src/node && make clean && ./configure --prefix $HOME/bin && make && make install
+```
 
 
 # Download grafana
