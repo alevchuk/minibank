@@ -115,7 +115,7 @@ Load ~/.profile
 . ~/.profile
 ```
 
-4. Fetch new go
+2. Fetch new go
 ```
 git clone https://go.googlesource.com/go ~/src/go
 cd ~/src/go
@@ -123,7 +123,7 @@ git fetch
 git checkout go1.13.1
 ```
 
-5. Build new go
+3. Build new go
 ```
 . ~/.profile
 cd $GOROOT/src
