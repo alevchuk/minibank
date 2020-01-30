@@ -125,7 +125,6 @@ git checkout go1.13.1
 
 3. Build new go
 ```
-. ~/.profile
 cd $GOROOT/src
 ./all.bash
 ```
