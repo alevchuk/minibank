@@ -52,7 +52,7 @@ https://github.com/alevchuk/minibank#network
 
 # Install needed packages
 ```
-sudo schroot -c pi64 -- apt install -y python3.7 python3-distutils g++ make golang git
+sudo schroot -c pi64 -- apt install -y python3.7 python3-distutils g++ make golang git python2
 ```
 
 
