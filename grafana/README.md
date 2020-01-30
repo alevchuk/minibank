@@ -42,9 +42,16 @@ sudo mkdir /mnt/btrfs/pi64/mnt/btrfs/grafana/gocode
 sudo mkdir /mnt/btrfs/pi64/mnt/btrfs/grafana/bin
 
 sudo chown -R grafana /mnt/btrfs/pi64/mnt/btrfs/grafana
+```
 
+# Install needed packages
+```
 sudo schroot -c pi64 -- apt install -y python3.7 python3-distutils g++ make golang git
+```
 
+# Change user
+Login as grafana user and drop into 64-bin environment:
+```
 sudo su -l grafana
 schroot -c pi64
 
@@ -53,8 +60,16 @@ ln -s /mnt/btrfs/grafana/gocode ~/gocode
 ln -s /mnt/btrfs/grafana/bin ~/bin
 ```
 
+The remainging parts of this manual will assume you are logged into the 64-bin environment.
+
+
 ## Build Node.js 
 
+Login as grafana user and drop into 64-bin environment:
+```
+sudo su -l grafana
+schroot -c pi64
+```
 
 ```
 git clone https://github.com/nodejs/node.git ~/src/node
