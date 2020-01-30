@@ -25,6 +25,11 @@ export GOPATH=~/gocode
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 ```
 
+Re-load `~/.profile`
+```
+. ~/.profile
+```
+
 4. Fetch new go
 ```
 git clone https://go.googlesource.com/go ~/src/go
