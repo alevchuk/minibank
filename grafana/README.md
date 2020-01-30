@@ -100,7 +100,7 @@ cd ~/src/node && make clean && ./configure --prefix $HOME/bin && make && make in
 
 
 1. Set bootstrap path and gopath. Add the following to `~/.profile`
-to `~/.profile` add:
+
 ```
 export GOROOT=~/src/go
 export GOPATH=~/gocode
