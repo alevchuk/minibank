@@ -190,3 +190,5 @@ E.g. "Node Exporter Server Metrics" can show multiple nodes side-by-side:
 
 
 ![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/grafana_screen_shot_2018-11-23.png "grafana monitoring dashboard using data from prometheus time-series store")
+
+# Configure Hostnames
