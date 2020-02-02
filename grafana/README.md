@@ -185,9 +185,13 @@ sudo systemctl restart netfilter-persistent.service
 
 Use grafana: connect your browser to http://localhost:3000
 
-Follow web-ui wizard. Import dashboards node_exporter for Grafana app store.
-E.g. "Node Exporter Server Metrics" can show multiple nodes side-by-side:
+Follow web-ui wizard. Import dashboars:
+* Node Exporter Server Metrics dashboard https://gist.github.com/alevchuk/2a28d484945c86d3ffef0f7e671b065d
+* Bitcoin dashboard https://gist.github.com/alevchuk/4235aefb3b8389b62c75878f5b1f7d04
 
+
+
+E.g. "Node Exporter Server Metrics" can show multiple nodes side-by-side:
 
 ![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/grafana_screen_shot_2018-11-23.png "grafana monitoring dashboard using data from prometheus time-series store")
 
