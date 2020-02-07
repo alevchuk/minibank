@@ -238,7 +238,7 @@ The relevant output of `dmesg --follow` would look like this:
 
 Install BTRFS progs:
 ```
-sudo apt-get install btrfs-progs
+sudo apt install btrfs-progs
 ```
 
 WARNING: any data in the SSD drives will be deleted. If you don't know what your doing, try running the command without `--force` first.
@@ -436,7 +436,7 @@ in /etc/default/keyboard
 #### bash-completion
 
 ```
-sudo apt-get install bash-completion
+sudo apt install bash-completion
 ```
 
 
@@ -445,7 +445,7 @@ sudo apt-get install bash-completion
 More text editing features.
  
 ```
-sudo apt-get install vim
+sudo apt install vim
 ```
 This will replace "vi" as well.
 
@@ -474,7 +474,7 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 #### GNU Screen
 
 ```
-sudo apt-get install screen
+sudo apt install screen
 ```
 
 To the end of default screen config add the following lines by running `sudo vi /etc/screenrc` 
@@ -510,7 +510,7 @@ To re-attach, run `screen -r`
 
 Install Tor
 ```
-sudo apt-get install tor
+sudo apt install tor
 ```
 
 * Minibank needs tor version **0.3.3.6** or above. Fortunaly Rasiban 10 already has that. On older distos [build tor from source](https://github.com/alevchuk/minibank/tree/master/tor#build-from-source). 
@@ -576,7 +576,7 @@ Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#insta
 
 Install package that contains `dig` utility:
 ```
-sudo apt-get install dnsutils
+sudo apt install dnsutils
 ```
 
 ### Start LND
@@ -890,7 +890,7 @@ Bitcoin Exporter is used to export bitcoin node metrics to Prometheus
 
 Install pip
 ```
-sudo apt-get install python3-pip
+sudo apt install python3-pip
 ```
 
 Install vitrualenv
