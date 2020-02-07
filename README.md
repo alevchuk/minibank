@@ -513,12 +513,20 @@ Install Tor
 sudo apt install tor
 ```
 
-* Minibank needs tor version **0.3.3.6** or above. Fortunaly Rasiban 10 already has that. On older distos [build tor from source](https://github.com/alevchuk/minibank/tree/master/tor#build-from-source). 
-* Minibank uses Tor for LND. Yet not for Bitcoin sync traffic because that seems to introduce delays.
+ * Minibank needs tor version **0.3.3.6** or above. Fortunaly Rasiban 10 already has that. On older distos [build tor from source](https://github.com/alevchuk/minibank/tree/master/tor#build-from-source). 
+ * Minibank uses Tor for LND. Yet not for Bitcoin sync traffic because that seems to introduce delays.
 
-1. Edit /etc/tor/torrc uncomment "ControlPort 9051"
-2. Run `sudo systemctl restart tor@default.service`
+1. Edit `/etc/tor/torrc` 
+* Uncomment "ControlPort 9051"
+2. Run 
+```
+sudo systemctl restart tor@default.service
+```
 
+Add lightning user to be part of the Tor group (e.g. it needs read permissions to /run/tor/control.authcookie )
+```
+sudo /usr/sbin/adduser lightning debian-tor
+```
 
 ### Install Go
 
