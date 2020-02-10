@@ -53,8 +53,7 @@ Debian 10 (buster) does not have this, yet if you have a Linux distro that has g
 
 1. Fetch go and git
 ```
-sudo apt-get install golang-1.13
-sudo apt-get install git
+sudo apt install golang-1.13 git
 ```
 
 2. Set bootstrap path and gopath.
