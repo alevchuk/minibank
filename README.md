@@ -951,7 +951,7 @@ make
 
 Run node_exporter
 ```
-${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter/node_exporter 
+${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter/node_exporter --no-collector.mdadm
 ```
 
 To `/etc/iptables/rules.v4` add:
