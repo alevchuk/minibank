@@ -153,13 +153,15 @@ COMMIT
 
 
 Now the output of `sudo iptables-save` should look like this:
+
+ * numbers at the end of the line may be different, those are your network statistics
+ 
 ```
 *filter
 :INPUT DROP [152:211958]
 :FORWARD DROP [0:0]
 :OUTPUT ACCEPT [52247:3125304]
 -A INPUT -i lo -j ACCEPT
--A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 -A OUTPUT -o lo -j ACCEPT
 COMMIT
 ```
