@@ -279,7 +279,23 @@ echo 'alias mb4="ssh -i ~/.ssh/minibank_id_rsa pi@YOUR_IP_HERE"' >> ~/.bash_prof
 Now type `mb4` and that should log you into the Pi.
 
 
-## Storage
+## Storage (AWS node)
+
+If you're setting-up Raspbery Pi at Home then skip this section.
+
+Usually your root drive will not be large enough to host a full Bitcoin node (310G in 2020 + account for future growth) so create a separate EBS (Elastic Block Store) device, format it, and mount it under /mnt/btrfs
+
+```
+sudo mkdir /mnt/btrfs
+
+# more steps here to format and mount EBS to /mnt/btrfs
+# you can format it as any filesystem (does not have to be BTRFS) yet keep the name or symlic at /mnt/btrfs because we use this in the rest of the manual
+```
+
+
+## Storage (Home node)
+
+If your seting up an Amazon AWS instatnce (not Raspbery Pi at Home) then skip this section.
 
 In this section will setup a Raid-1 Mirror from your two new SSD drives.
 
@@ -287,7 +303,7 @@ WARNING: any data in the SSD drives will be deleted.
 
 ### Lookup block device names
 
-Run `dmesg --follow` and un-plung/re-plug the external SSD drives one by one.
+Run `sudo dmesg --follow` and un-plung/re-plug the external SSD drives one by one.
 
 Look for "sd" followed by a small english letter. Write that down.
 
