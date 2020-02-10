@@ -49,7 +49,7 @@ At the end it should say "Installed commands in $GOROOT/bin"
 
 ## Don't Build Go (if you can avoid it)
 
-If your lucky to have a Linux distro that has go-1.13.1 or higher packaged, then you don't need to build go, and just do:
+Debian 10 (buster) does not have this, yet if you have a Linux distro that has go-1.13.1 or higher packaged, then you don't need to build go, and just do:
 
 1. Fetch go and git
 ```
