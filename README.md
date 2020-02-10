@@ -558,6 +558,8 @@ shopt -s histappend                      # append to history, don't overwrite it
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 ```
 
+Now do the same for `/etc/skel/.bashrc`
+* so that every new accounts gets this
 
 #### GNU Screen
 
