@@ -53,15 +53,14 @@ The powerful Pi 4 with plenty of RAM removing the need for swap. Two high-speed 
 
 
 
-### (Optional) Model 1 :: Monitoring Station at Home
+### (Optional) Monitoring Station at Home
 
-* Pi 3 B+ [ELEMENT-Element14-Raspberry-Pi-Motherboard](https://camelcamelcamel.com/ELEMENT-Element14-Raspberry-Pi-Motherboard/product/B07BDR5PDW)
-* 2x Micro SD cards [Samsung-MicroSDXC-Adapter-MB-ME64GA-AM](https://camelcamelcamel.com/Samsung-MicroSDXC-Adapter-MB-ME64GA-AM/product/B06XX29S9Q)
-* Card Reader [Transcend-microSDHC-Reader-TS-RDF5K-Black](https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4)
+* Same hardware as Node at Home
+
 
 ###  (Optional) VM :: Node on Amazon EC2
 
-* 2x Linux on t2.micro
+* 2x Linux on t2.small (2GB RAM is a minimum requirement)
 * Storage: 5G general purpose SSD for operating system
 * Storage: 64GB Magnetic Amazon EBS Volumes for software and data
 
