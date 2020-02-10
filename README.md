@@ -254,7 +254,7 @@ Copy the output to clipboard.
 
 SSH into your Pi and run:
 ```
-cat > ~/.ssh/autorized_keys
+cat >> ~/.ssh/autorized_keys
 ```
 paste the pubkey from clipboard, press Enter, and then press Ctrl-d.
 
