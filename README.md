@@ -119,11 +119,39 @@ Connect monitor and keyboard. Power-up Pi. Login: `pi` Password: `rpaspberry`
 
 ## Network
 
-### Remote Login
+### Remote Login (Home node)
 
 Connect via monitor and keyboard.
 
-1. Setup [no-incomming-connections firewall](https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#security) **before connecting to the network!** If you don't add a firewall you'll get hacked.
+1. Setup [no-incomming-connections firewall](https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#security) **before connecting to the network!** If you don't add a firewall you'll get hacked:
+
+```
+sudo apt install iptables-persistent
+sudo iptables-save  # show current rules
+```
+
+With your favourite command-line text editor, e.g. `sudo vi /etc/iptables/rules.v4` edit /etc/iptables/rules.v4
+```
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i lo -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
+COMMIT
+```
+
+Edit /etc/iptables/rules.v6
+```
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i lo -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
+COMMIT
+```
+
+
 Now the output of `sudo iptables-save` should look like this:
 ```
 *filter
