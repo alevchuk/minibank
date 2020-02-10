@@ -652,12 +652,8 @@ Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/mini
 
 ### Build LND
 
-Preprequisigtes:
-* [Build Go](#build-go)
-
-Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#installing-lnd
-
-Install package that contains `dig` utility:
+1. Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#installing-lnd
+2. Install package that contains `dig` utility:
 ```
 sudo apt install dnsutils
 ```
