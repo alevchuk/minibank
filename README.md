@@ -658,8 +658,12 @@ Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/mini
 sudo apt-get install build-essential dnsutils
 ```
 
+2. Log in as "lightning"
+```
+sudo su -l lightning
+```
 
-2. Build and Install LND:
+3. Build and Install LND:
 ```
 go get -d github.com/lightningnetwork/lnd
 cd $GOPATH/src/github.com/lightningnetwork/lnd
