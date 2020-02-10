@@ -11,13 +11,13 @@ Table of contents
 
   * [Hardware](#hardware)
   * [Operating System](#operating-system)
+  * [Heat](#heat)
   * [Network](#network)
   * [Storage](#storage)
     * [BTRFS RAID-1 Mirror](#btrfs-raid-1-mirror)
   * [Software](#software)
     * [Build Bitcoin](#build-bitcoind)
     * [Start Bitcoin](#start-bitcoind)
-    * [Heat](#heat)
     * [Convenience stuff](#convenience-stuff)
     * [Install Tor](#install-tor)
     * [Install Go](#install-go)
@@ -115,6 +115,17 @@ sudo apt autoremove
 Don't connect to network.
 
 Connect monitor and keyboard. Power-up Pi. Login: `pi` Password: `rpaspberry`
+
+
+
+## Heat
+
+Now it's a good time to [attach Heatsink and start the fan](https://blog.hackster.io/do-you-need-to-use-a-fan-for-cooling-with-the-new-raspberry-pi-4-6d523ca12453). Connect the red cord of the fan to GPIO pin 4 and the black to pin 6.
+
+To measure the temperature, run:
+```
+while :; do /opt/vc/bin/vcgencmd measure_temp; sleep 1; done
+```
 
 
 ## Network
@@ -462,15 +473,6 @@ You'll need to set things like $$PASSWORD_1_HERE$$ and $$PASSWORD_2_HERE$$ with 
 Start
 ```
 bitcoind
-```
-
-### Heat
-
-Now it's a good time to [attach Heatsink and start the fan](https://blog.hackster.io/do-you-need-to-use-a-fan-for-cooling-with-the-new-raspberry-pi-4-6d523ca12453). Connect the red cord of the fan to GPIO pin 4 and the black to pin 6.
-
-To measure the temperature, run:
-```
-while :; do /opt/vc/bin/vcgencmd measure_temp; sleep 1; done
 ```
 
 ### Convenience stuff
