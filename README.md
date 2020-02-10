@@ -122,7 +122,7 @@ Connect monitor and keyboard. Power-up Pi. Login: `pi` Password: `rpaspberry`
 
 Now it's a good time to [attach Heatsink and start the fan](https://blog.hackster.io/do-you-need-to-use-a-fan-for-cooling-with-the-new-raspberry-pi-4-6d523ca12453).
 
-Connect the fan to GPIO pins. Quiet-mode works best for me https://www.raspberrypi.org/forums/viewtopic.php?t=248918#p1519636
+Connect the fan to GPIO pins. Quiet cooling mode works best for me https://www.raspberrypi.org/forums/viewtopic.php?t=248918#p1519636
 
 To measure the temperature, run:
 ```
