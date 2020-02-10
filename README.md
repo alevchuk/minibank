@@ -652,17 +652,20 @@ Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/mini
 
 ### Build LND
 
-1. Build and Install LND:
+1. Install dependencies:
+* Fun fact: build-essential contains `make` and dnsutils contains `dig`
+```
+sudo apt-get install build-essential dnsutils
+```
+
+
+2. Build and Install LND:
 ```
 go get -d github.com/lightningnetwork/lnd
 cd $GOPATH/src/github.com/lightningnetwork/lnd
-make clean && make && make install
+(cd $GOPATH/src/github.com/lightningnetwork/lnd && make clean && make && make install)
 ```
 
-2. Install package that contains `dig` utility:
-```
-sudo apt install dnsutils
-```
 
 
 ### Start LND
