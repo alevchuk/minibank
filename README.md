@@ -491,7 +491,7 @@ Skip the following sections if your setting up a node on Amazon AWS or Google cl
 Give your host a name. Edit 2 files replacing "raspberrypi" with the name you came up with. No spaces or punctuation.
 ```
 sudo vi /etc/hostname
-sudo vi /etc/hosts  # edit the line with 127.0.1.1
+sudo vi /etc/hosts  # edit the line with 127.0.0.1 adding a space and you new hostname at the end of that line
 ```
 
 you'll see the change after rebooting, run sudo reboot, re-SSH back in run `sudo mount /mnt/btrfs/` and resume the chain sync:
