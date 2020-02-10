@@ -919,6 +919,7 @@ Loging as "monitoring" user
 sudo su -l monitoring
 ln -s /mnt/btrfs/monitoring/src
 ln -s /mnt/btrfs/monitoring/gocode
+ln -s /mnt/btrfs/lightning/src/ ~/src_readonly
 ```
 
 to `~/.profile` add:
