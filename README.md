@@ -492,6 +492,7 @@ Give your host a name. Edit 2 files replacing "raspberrypi" with the name you ca
 ```
 sudo vi /etc/hostname
 sudo vi /etc/hosts  # edit the line with 127.0.0.1 adding a space and you new hostname at the end of that line
+sudo vi /etc/cloud/templates/hosts.debian.tmpl  # do the same as for  /etc/hosts  (if this file does not exist then skip this step)
 ```
 
 you'll see the change after rebooting, run sudo reboot, re-SSH back in run `sudo mount /mnt/btrfs/` and resume the chain sync:
