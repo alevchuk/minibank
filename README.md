@@ -134,7 +134,7 @@ while :; do /opt/vc/bin/vcgencmd measure_temp; sleep 1; done
 
 ### Remote Login (AWS node)
 
-If your seting up Rasperry Pi node at home then skip this section and proceed to **Remote Login (Home node)**.
+If your seting up Raspberry Pi node at home then skip this section and proceed to **Remote Login (Home node)**.
 
 AWS has a default firewall setup for you. You can manage it from the Amazon AWS web console under Security Groups. Yet, to be sure your in control, you should also setup a local firewall.
 
