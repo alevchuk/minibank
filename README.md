@@ -20,9 +20,9 @@ Table of contents
     * [Start Bitcoin](#start-bitcoind)
     * [Convenience stuff](#convenience-stuff)
     * [Setup LND environment](#setup-lnd-environment)
-    * [Install Go](#install-go)
-    * [Install Tor](#install-tor)
+    * [Build Go](#build-go)
     * [Build LND](#build-lnd)
+    * [Install Tor](#install-tor)
     * [Start LND](#start-lnd)
       * [Create your Lightning wallet](#create-your-lightning-wallet)
       * [Fund your LND wallet and enable AutoPilot](#fund-your-lnd-wallet-and-enable-autopilot)
@@ -629,6 +629,23 @@ ln -s /mnt/btrfs/lightning/src
 ```
 
 
+### Build Go
+Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/minibank/blob/master/go/)
+
+
+### Build LND
+
+Preprequisigtes:
+* [Build Go](#build-go)
+
+Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#installing-lnd
+
+Install package that contains `dig` utility:
+```
+sudo apt install dnsutils
+```
+
+
 ### Install Tor
 
 ```
@@ -650,21 +667,6 @@ Add lightning user to be part of the Tor group (e.g. it needs read permissions t
 sudo /usr/sbin/adduser lightning debian-tor
 ```
 
-### Build Go
-Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/minibank/blob/master/go/)
-
-
-### Build LND
-
-Preprequisigtes:
-* [Build Go](#build-go)
-
-Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#installing-lnd
-
-Install package that contains `dig` utility:
-```
-sudo apt install dnsutils
-```
 
 ### Start LND
 
