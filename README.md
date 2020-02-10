@@ -119,6 +119,47 @@ Connect monitor and keyboard. Power-up Pi. Login: `pi` Password: `rpaspberry`
 
 ## Network
 
+### Remote Login (AWS node)
+
+If your seting up Rasperry Pi node at home then skip this section and proceed to **Remote Login (Home node)**.
+
+AWS has a default firewall setup for you. You can manage it from the Amazon AWS web console under Security Groups. Yet, to be sure your in control, you should also setup a local firewall:
+
+
+```
+sudo apt install iptables-persistent
+sudo iptables-save  # show current rules
+```
+
+With your favourite command-line text editor, e.g. `sudo vi /etc/iptables/rules.v4` edit /etc/iptables/rules.v4
+```
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i lo -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
+-A INPUT -p tcp --dport 22 -j ACCEPT
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+COMMIT
+```
+
+
+Edit /etc/iptables/rules.v6
+* We allow SSH in IPv6 rules as well in case AWS IPv4 network has issues and we need to be able to log-in. Other than SSH no need to edit any other rules in this file because we are not going to use IPv6 here. 
+```
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i lo -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
+-A INPUT -p tcp --dport 22 -j ACCEPT
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+COMMIT
+```
+
+
+
 ### Remote Login (Home node)
 
 Connect via monitor and keyboard.
@@ -177,24 +218,21 @@ COMMIT
 :FORWARD DROP [0:0]
 :OUTPUT ACCEPT [52247:3125304]
 -A INPUT -i lo -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
 
 # <-------- Allow SSH from home network only !
 -A INPUT -p tcp -s 192.168.0.0/16  --dport 22 -j ACCEPT
-
 -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
--A OUTPUT -o lo -j ACCEPT
+
 COMMIT
 ``` 
-If this is on Amazon or Google Cloud then remove `-s 192.16.0.0/16` part:
-```
-# ---------------------- Allow SSH from anywhere !
--A INPUT -p tcp --dport 22 -j ACCEPT
-```
-and run 
+* Leave IPv6 rules as the inital "Drop-everything" setup because most home networks do not need IPv6.
+* If this is on Amazon then see **Remote Login (HomeAWS node)** section above.
+
+Run 
 ```
 sudo /etc/init.d/netfilter-persistent restart
 ```
-Repeate step 7 for IPv6 rules file /etc/iptables/rules.v6
 8. Optionally [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/master/other-notes/wifi.md)
 9. From your laptop, use the IP from step 5 and run: `ssh pi@YOUR_IP_HERE` enter your new password
 
