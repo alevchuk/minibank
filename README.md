@@ -123,7 +123,9 @@ Connect monitor and keyboard. Power-up Pi. Login: `pi` Password: `rpaspberry`
 
 If your seting up Rasperry Pi node at home then skip this section and proceed to **Remote Login (Home node)**.
 
-AWS has a default firewall setup for you. You can manage it from the Amazon AWS web console under Security Groups. Yet, to be sure your in control, you should also setup a local firewall:
+AWS has a default firewall setup for you. You can manage it from the Amazon AWS web console under Security Groups. Yet, to be sure your in control, you should also setup a local firewall.
+
+NOTE: In this setup it's easy to make a mistake and get locked out of the remote server, so I recomend takeing a snapshot of the root-drive in AWS at this point in time.
 
 
 ```
@@ -145,19 +147,16 @@ COMMIT
 ```
 
 
-Edit /etc/iptables/rules.v6
+Duplicate this initial setup to /etc/iptables/rules.v6
 * We allow SSH in IPv6 rules as well in case AWS IPv4 network has issues and we need to be able to log-in. Other than SSH no need to edit any other rules in this file because we are not going to use IPv6 here. 
 ```
-:INPUT DROP [0:0]
-:FORWARD DROP [0:0]
-:OUTPUT ACCEPT [0:0]
--A INPUT -i lo -j ACCEPT
--A OUTPUT -o lo -j ACCEPT
--A INPUT -p tcp --dport 22 -j ACCEPT
--A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-COMMIT
+sudo cp /etc/iptables/rules.v4 /etc/iptables/rules.v6
 ```
 
+Run 
+```
+sudo /etc/init.d/netfilter-persistent restart
+```
 
 
 ### Remote Login (Home node)
