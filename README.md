@@ -663,10 +663,9 @@ sudo apt-get install build-essential dnsutils
 sudo su -l lightning
 ```
 
-3. Build and Install LND:
+3. Download, build, and Install LND:
 ```
 go get -d github.com/lightningnetwork/lnd
-cd $GOPATH/src/github.com/lightningnetwork/lnd
 (cd $GOPATH/src/github.com/lightningnetwork/lnd && make clean && make && make install)
 ```
 
