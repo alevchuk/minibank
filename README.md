@@ -20,9 +20,9 @@ Table of contents
     * [Start Bitcoin](#start-bitcoind)
     * [Convenience stuff](#convenience-stuff)
     * [Setup LND environment](#setup-lnd-environment)
+    * [Install Tor](#install-tor)
     * [Build Go](#build-go)
     * [Build LND](#build-lnd)
-    * [Install Tor](#install-tor)
     * [Start LND](#start-lnd)
       * [Create your Lightning wallet](#create-your-lightning-wallet)
       * [Fund your LND wallet and enable AutoPilot](#fund-your-lnd-wallet-and-enable-autopilot)
@@ -611,12 +611,7 @@ sudo mkdir /mnt/btrfs/lightning/src
 sudo chown -R lightning /mnt/btrfs/lightning
 ```
 
-2. Add lightning to have access to Tor locally:
-```
-sudo  addgroup lightning debian-tor
-```
-
-3. Log-in as "lightning" user and setup symlinks
+2. Log-in as "lightning" user and setup symlinks
 
 
 ```
@@ -628,22 +623,6 @@ ln -s /mnt/btrfs/lightning/lnd-e2e-testing
 ln -s /mnt/btrfs/lightning/src
 ```
 
-
-### Build Go
-Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/minibank/blob/master/go/)
-
-
-### Build LND
-
-Preprequisigtes:
-* [Build Go](#build-go)
-
-Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#installing-lnd
-
-Install package that contains `dig` utility:
-```
-sudo apt install dnsutils
-```
 
 
 ### Install Tor
@@ -665,6 +644,23 @@ sudo systemctl restart tor@default.service
 Add lightning user to be part of the Tor group (e.g. it needs read permissions to /run/tor/control.authcookie )
 ```
 sudo /usr/sbin/adduser lightning debian-tor
+```
+
+
+### Build Go
+Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/minibank/blob/master/go/)
+
+
+### Build LND
+
+Preprequisigtes:
+* [Build Go](#build-go)
+
+Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#installing-lnd
+
+Install package that contains `dig` utility:
+```
+sudo apt install dnsutils
 ```
 
 
