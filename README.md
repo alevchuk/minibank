@@ -595,17 +595,7 @@ To deatch from screen press Ctrl-b and then press "d"
 
 To re-attach, run `screen -r`
 
-
-### Install Go
-
-Prerequisites:
-* Raspbian GNU/Linux 10
-
-Citations:
-* This section is based on [golang official instructions](https://golang.org/doc/install/source) and [alevchuk/pstm](https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#build-go)
-
-
-#### Setup LND environment
+### Setup LND environment
 
 1. Add new unix user account "lightning" and setup storge directories on BTRFS
 
@@ -639,9 +629,8 @@ ln -s /mnt/btrfs/lightning/src
 ```
 
 
-#### Install Tor
+### Install Tor
 
-Install Tor
 ```
 sudo apt install tor
 ```
@@ -661,9 +650,8 @@ Add lightning user to be part of the Tor group (e.g. it needs read permissions t
 sudo /usr/sbin/adduser lightning debian-tor
 ```
 
-#### Build Go
-3. Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/minibank/blob/master/go/)
-
+### Build Go
+Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/minibank/blob/master/go/)
 
 
 ### Build LND
