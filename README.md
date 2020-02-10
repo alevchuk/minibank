@@ -700,22 +700,12 @@ bitcoin.mainnet=1
 bitcoin.simnet=0
 bitcoin.node=bitcoind
 
-[Btcd]
-
 [Bitcoind]
 bitcoind.zmqpubrawblock=tcp://localhost:29000
 bitcoind.zmqpubrawtx=tcp://localhost:29001
 bitcoind.rpchost=b1
 bitcoind.rpcuser=$$PASSWORD_1_HERE$$ 
 bitcoind.rpcpass=$$PASSWORD_2_HERE$$ 
-
-[neutrino]
-
-[Litecoin]
-
-[Ltcd]
-
-[Litecoind]
 
 [tor]
 ; The port that Tor's exposed SOCKS5 proxy is listening on. Using Tor allows
