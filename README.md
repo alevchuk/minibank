@@ -786,15 +786,15 @@ Use [treasury_report.py script](scripts/treasury_report.py)
 ```
 # One-time setup:
 mkdir ~/lnd-e2e-testing
-curl https://raw.githubusercontent.com/alevchuk/minibank/master/scripts/treasury_report.py > ~/scripts/treasury_report.py
-chmod +x ~/scripts/treasury_report.py
-~/scripts/treasury_report.py >> ~/balance_history.tab
+curl https://raw.githubusercontent.com/alevchuk/minibank/master/scripts/treasury_report.py > ~/lnd-e2e-testing/treasury_report.py
+chmod +x ~/lnd-e2e-testing/treasury_report.py
+~/lnd-e2e-testing/treasury_report.py >> ~/balance_history.tab
 
 # Track balance
-while :; do echo; (cat ~/balance_history.tab; ~/scripts/treasury_report.py ) | column -t; date; sleep 60; done
+while :; do echo; (cat ~/balance_history.tab; ~/lnd-e2e-testing/treasury_report.py ) | column -t; date; sleep 60; done
 
 # Record balance
-~/scripts/treasury_report.py | grep -v Time  >> ~/balance_history.tab
+~/lnd-e2e-testing/treasury_report.py | grep -v Time  >> ~/balance_history.tab
 ```
 
 As channels open and close you may see total balance go down but should it recover eventually. That's because LND overestimates the fees for the channel closing transactions.
