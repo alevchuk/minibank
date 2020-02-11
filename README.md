@@ -734,7 +734,7 @@ cp /home/lightning/gocode/src/github.com/lightningnetwork/lnd/contrib/lncli.bash
 
 Start:
 ```
-lnd --externalip=$(dig +short myip.opendns.com @resolver1.opendns.com):9735
+lnd --externalip=$(dig +short myip.opendns.com @resolver1.opendns.com):9735  --tor.active --tor.v3
 ```
 
 
