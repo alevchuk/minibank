@@ -806,12 +806,14 @@ As channels open and close you may see total balance go down but should it recov
 In your minibank, to `/etc/iptables/rules.v4` add:
 ```
 # Allow LND peers
--A INPUT -p tcp --dport 9712 -j ACCEPT
+-A INPUT -p tcp --dport 9735 -j ACCEPT
 ```
 and run 
 ```
 sudo /etc/init.d/netfilter-persistent restart
 ```
+
+If this is on AWS then also update the Secutrity Group in AWS web console.
 
 In your home router, forward the port 9735 to the host running LND. Here is [a guide](https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/) on how to do that.
 
