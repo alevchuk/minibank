@@ -780,27 +780,6 @@ lncli listchannels  | grep active | sort | uniq -c  # number of open channels
 lncli listpeers | grep inbound | uniq -c  # to be a relay you'll need to get inbound peers
 ```
 
-### Keep track of your total balance
-
-Use [treasury_report.py script](scripts/treasury_report.py)
-```
-# One-time setup:
-mkdir ~/lnd-e2e-testing
-curl https://raw.githubusercontent.com/alevchuk/minibank/master/scripts/treasury_report.py > ~/lnd-e2e-testing/treasury_report.py
-chmod +x ~/lnd-e2e-testing/treasury_report.py
-~/lnd-e2e-testing/treasury_report.py >> ~/balance_history.tab
-
-# Track balance
-while :; do echo; (cat ~/balance_history.tab; ~/lnd-e2e-testing/treasury_report.py ) | column -t; date; sleep 60; done
-
-# Record balance
-~/lnd-e2e-testing/treasury_report.py | grep -v Time  >> ~/balance_history.tab
-```
-
-As channels open and close you may see total balance go down but should it recover eventually. That's because LND overestimates the fees for the channel closing transactions.
-
-
-
 ### Open LND port on your router
 
 In your minibank, to `/etc/iptables/rules.v4` add:
@@ -839,7 +818,7 @@ Checkout scripts and copy to `lnd-e2e-testing`:
 ```
 cd ~
 git clone https://github.com/alevchuk/minibank.git
-rsync -ai ~/minibank/scripts/ ~/lnd-e2e-testing/
+cp -r ~/minibank/scripts/* ~/lnd-e2e-testing/
 ```
 
 * close_channel_custom.py
@@ -848,6 +827,26 @@ rsync -ai ~/minibank/scripts/ ~/lnd-e2e-testing/
 * treasury_report.py
 
 Most of those scripts are short/readable and have internal documentation.
+
+
+
+### Keep track of your total balance
+
+Use [treasury_report.py script](scripts/treasury_report.py)
+```
+# One-time setup:
+~/lnd-e2e-testing/treasury_report.py >> ~/balance_history.tab
+
+# Track balance
+while :; do echo; (cat ~/balance_history.tab; ~/lnd-e2e-testing/treasury_report.py ) | column -t; date; sleep 60; done
+
+# Record balance
+~/lnd-e2e-testing/treasury_report.py | grep -v Time  >> ~/balance_history.tab
+```
+
+As channels open and close you may see total balance go down but should it recover eventually. That's because LND overestimates the fees for the channel closing transactions.
+
+
 
 #### Record balance every hour automatically
 
