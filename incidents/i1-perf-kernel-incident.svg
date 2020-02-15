@@ -1,0 +1,840 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="1200" height="422" onload="init(evt)" viewBox="0 0 1200 422" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- Flame graph stack visualization. See https://github.com/brendangregg/FlameGraph for latest version, and http://www.brendangregg.com/flamegraphs.html for examples. -->
+<!-- NOTES:  -->
+<defs>
+	<linearGradient id="background" y1="0" y2="1" x1="0" x2="0" >
+		<stop stop-color="#eeeeee" offset="5%" />
+		<stop stop-color="#eeeeb0" offset="95%" />
+	</linearGradient>
+</defs>
+<style type="text/css">
+	text { font-family:Verdana; font-size:12px; fill:rgb(0,0,0); }
+	#search, #ignorecase { opacity:0.1; cursor:pointer; }
+	#search:hover, #search.show, #ignorecase:hover, #ignorecase.show { opacity:1; }
+	#subtitle { text-anchor:middle; font-color:rgb(160,160,160); }
+	#title { text-anchor:middle; font-size:17px}
+	#unzoom { cursor:pointer; }
+	#frames > *:hover { stroke:black; stroke-width:0.5; cursor:pointer; }
+	.hide { display:none; }
+	.parent { opacity:0.5; }
+</style>
+<script type="text/ecmascript">
+<![CDATA[
+	"use strict";
+	var details, searchbtn, unzoombtn, matchedtxt, svg, searching, currentSearchTerm, ignorecase, ignorecaseBtn;
+	function init(evt) {
+		details = document.getElementById("details").firstChild;
+		searchbtn = document.getElementById("search");
+		ignorecaseBtn = document.getElementById("ignorecase");
+		unzoombtn = document.getElementById("unzoom");
+		matchedtxt = document.getElementById("matched");
+		svg = document.getElementsByTagName("svg")[0];
+		searching = 0;
+		currentSearchTerm = null;
+	}
+
+	window.addEventListener("click", function(e) {
+		var target = find_group(e.target);
+		if (target) {
+			if (target.nodeName == "a") {
+				if (e.ctrlKey === false) return;
+				e.preventDefault();
+			}
+			if (target.classList.contains("parent")) unzoom();
+			zoom(target);
+		}
+		else if (e.target.id == "unzoom") unzoom();
+		else if (e.target.id == "search") search_prompt();
+		else if (e.target.id == "ignorecase") toggle_ignorecase();
+	}, false)
+
+	// mouse-over for info
+	// show
+	window.addEventListener("mouseover", function(e) {
+		var target = find_group(e.target);
+		if (target) details.nodeValue = "Function: " + g_to_text(target);
+	}, false)
+
+	// clear
+	window.addEventListener("mouseout", function(e) {
+		var target = find_group(e.target);
+		if (target) details.nodeValue = ' ';
+	}, false)
+
+	// ctrl-F for search
+	window.addEventListener("keydown",function (e) {
+		if (e.keyCode === 114 || (e.ctrlKey && e.keyCode === 70)) {
+			e.preventDefault();
+			search_prompt();
+		}
+	}, false)
+
+	// ctrl-I to toggle case-sensitive search
+	window.addEventListener("keydown",function (e) {
+		if (e.ctrlKey && e.keyCode === 73) {
+			e.preventDefault();
+			toggle_ignorecase();
+		}
+	}, false)
+
+	// functions
+	function find_child(node, selector) {
+		var children = node.querySelectorAll(selector);
+		if (children.length) return children[0];
+		return;
+	}
+	function find_group(node) {
+		var parent = node.parentElement;
+		if (!parent) return;
+		if (parent.id == "frames") return node;
+		return find_group(parent);
+	}
+	function orig_save(e, attr, val) {
+		if (e.attributes["_orig_" + attr] != undefined) return;
+		if (e.attributes[attr] == undefined) return;
+		if (val == undefined) val = e.attributes[attr].value;
+		e.setAttribute("_orig_" + attr, val);
+	}
+	function orig_load(e, attr) {
+		if (e.attributes["_orig_"+attr] == undefined) return;
+		e.attributes[attr].value = e.attributes["_orig_" + attr].value;
+		e.removeAttribute("_orig_"+attr);
+	}
+	function g_to_text(e) {
+		var text = find_child(e, "title").firstChild.nodeValue;
+		return (text)
+	}
+	function g_to_func(e) {
+		var func = g_to_text(e);
+		// if there's any manipulation we want to do to the function
+		// name before it's searched, do it here before returning.
+		return (func);
+	}
+	function update_text(e) {
+		var r = find_child(e, "rect");
+		var t = find_child(e, "text");
+		var w = parseFloat(r.attributes.width.value) -3;
+		var txt = find_child(e, "title").textContent.replace(/\([^(]*\)$/,"");
+		t.attributes.x.value = parseFloat(r.attributes.x.value) + 3;
+
+		// Smaller than this size won't fit anything
+		if (w < 2 * 12 * 0.59) {
+			t.textContent = "";
+			return;
+		}
+
+		t.textContent = txt;
+		// Fit in full text width
+		if (/^ *$/.test(txt) || t.getSubStringLength(0, txt.length) < w)
+			return;
+
+		for (var x = txt.length - 2; x > 0; x--) {
+			if (t.getSubStringLength(0, x + 2) <= w) {
+				t.textContent = txt.substring(0, x) + "..";
+				return;
+			}
+		}
+		t.textContent = "";
+	}
+
+	// zoom
+	function zoom_reset(e) {
+		if (e.attributes != undefined) {
+			orig_load(e, "x");
+			orig_load(e, "width");
+		}
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_reset(c[i]);
+		}
+	}
+	function zoom_child(e, x, ratio) {
+		if (e.attributes != undefined) {
+			if (e.attributes.x != undefined) {
+				orig_save(e, "x");
+				e.attributes.x.value = (parseFloat(e.attributes.x.value) - x - 10) * ratio + 10;
+				if (e.tagName == "text")
+					e.attributes.x.value = find_child(e.parentNode, "rect[x]").attributes.x.value + 3;
+			}
+			if (e.attributes.width != undefined) {
+				orig_save(e, "width");
+				e.attributes.width.value = parseFloat(e.attributes.width.value) * ratio;
+			}
+		}
+
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_child(c[i], x - 10, ratio);
+		}
+	}
+	function zoom_parent(e) {
+		if (e.attributes) {
+			if (e.attributes.x != undefined) {
+				orig_save(e, "x");
+				e.attributes.x.value = 10;
+			}
+			if (e.attributes.width != undefined) {
+				orig_save(e, "width");
+				e.attributes.width.value = parseInt(svg.width.baseVal.value) - (10 * 2);
+			}
+		}
+		if (e.childNodes == undefined) return;
+		for (var i = 0, c = e.childNodes; i < c.length; i++) {
+			zoom_parent(c[i]);
+		}
+	}
+	function zoom(node) {
+		var attr = find_child(node, "rect").attributes;
+		var width = parseFloat(attr.width.value);
+		var xmin = parseFloat(attr.x.value);
+		var xmax = parseFloat(xmin + width);
+		var ymin = parseFloat(attr.y.value);
+		var ratio = (svg.width.baseVal.value - 2 * 10) / width;
+
+		// XXX: Workaround for JavaScript float issues (fix me)
+		var fudge = 0.0001;
+
+		unzoombtn.classList.remove("hide");
+
+		var el = document.getElementById("frames").children;
+		for (var i = 0; i < el.length; i++) {
+			var e = el[i];
+			var a = find_child(e, "rect").attributes;
+			var ex = parseFloat(a.x.value);
+			var ew = parseFloat(a.width.value);
+			var upstack;
+			// Is it an ancestor
+			if (0 == 0) {
+				upstack = parseFloat(a.y.value) > ymin;
+			} else {
+				upstack = parseFloat(a.y.value) < ymin;
+			}
+			if (upstack) {
+				// Direct ancestor
+				if (ex <= xmin && (ex+ew+fudge) >= xmax) {
+					e.classList.add("parent");
+					zoom_parent(e);
+					update_text(e);
+				}
+				// not in current path
+				else
+					e.classList.add("hide");
+			}
+			// Children maybe
+			else {
+				// no common path
+				if (ex < xmin || ex + fudge >= xmax) {
+					e.classList.add("hide");
+				}
+				else {
+					zoom_child(e, xmin, ratio);
+					update_text(e);
+				}
+			}
+		}
+		search();
+	}
+	function unzoom() {
+		unzoombtn.classList.add("hide");
+		var el = document.getElementById("frames").children;
+		for(var i = 0; i < el.length; i++) {
+			el[i].classList.remove("parent");
+			el[i].classList.remove("hide");
+			zoom_reset(el[i]);
+			update_text(el[i]);
+		}
+		search();
+	}
+
+	// search
+	function toggle_ignorecase() {
+		ignorecase = !ignorecase;
+		if (ignorecase) {
+			ignorecaseBtn.classList.add("show");
+		} else {
+			ignorecaseBtn.classList.remove("show");
+		}
+		reset_search();
+		search();
+	}
+	function reset_search() {
+		var el = document.querySelectorAll("#frames rect");
+		for (var i = 0; i < el.length; i++) {
+			orig_load(el[i], "fill")
+		}
+	}
+	function search_prompt() {
+		if (!searching) {
+			var term = prompt("Enter a search term (regexp " +
+			    "allowed, eg: ^ext4_)"
+			    + (ignorecase ? ", ignoring case" : "")
+			    + "\nPress Ctrl-i to toggle case sensitivity", "");
+			if (term != null) {
+				currentSearchTerm = term;
+				search();
+			}
+		} else {
+			reset_search();
+			searching = 0;
+			currentSearchTerm = null;
+			searchbtn.classList.remove("show");
+			searchbtn.firstChild.nodeValue = "Search"
+			matchedtxt.classList.add("hide");
+			matchedtxt.firstChild.nodeValue = ""
+		}
+	}
+	function search(term) {
+		if (currentSearchTerm === null) return;
+		var term = currentSearchTerm;
+
+		var re = new RegExp(term, ignorecase ? 'i' : '');
+		var el = document.getElementById("frames").children;
+		var matches = new Object();
+		var maxwidth = 0;
+		for (var i = 0; i < el.length; i++) {
+			var e = el[i];
+			var func = g_to_func(e);
+			var rect = find_child(e, "rect");
+			if (func == null || rect == null)
+				continue;
+
+			// Save max width. Only works as we have a root frame
+			var w = parseFloat(rect.attributes.width.value);
+			if (w > maxwidth)
+				maxwidth = w;
+
+			if (func.match(re)) {
+				// highlight
+				var x = parseFloat(rect.attributes.x.value);
+				orig_save(rect, "fill");
+				rect.attributes.fill.value = "rgb(230,0,230)";
+
+				// remember matches
+				if (matches[x] == undefined) {
+					matches[x] = w;
+				} else {
+					if (w > matches[x]) {
+						// overwrite with parent
+						matches[x] = w;
+					}
+				}
+				searching = 1;
+			}
+		}
+		if (!searching)
+			return;
+
+		searchbtn.classList.add("show");
+		searchbtn.firstChild.nodeValue = "Reset Search";
+
+		// calculate percent matched, excluding vertical overlap
+		var count = 0;
+		var lastx = -1;
+		var lastw = 0;
+		var keys = Array();
+		for (k in matches) {
+			if (matches.hasOwnProperty(k))
+				keys.push(k);
+		}
+		// sort the matched frames by their x location
+		// ascending, then width descending
+		keys.sort(function(a, b){
+			return a - b;
+		});
+		// Step through frames saving only the biggest bottom-up frames
+		// thanks to the sort order. This relies on the tree property
+		// where children are always smaller than their parents.
+		var fudge = 0.0001;	// JavaScript floating point
+		for (var k in keys) {
+			var x = parseFloat(keys[k]);
+			var w = matches[keys[k]];
+			if (x >= lastx + lastw - fudge) {
+				count += w;
+				lastx = x;
+				lastw = w;
+			}
+		}
+		// display matched percent
+		matchedtxt.classList.remove("hide");
+		var pct = 100 * count / maxwidth;
+		if (pct != 100) pct = pct.toFixed(1)
+		matchedtxt.firstChild.nodeValue = "Matched: " + pct + "%";
+	}
+]]>
+</script>
+<rect x="0.0" y="0" width="1200.0" height="422.0" fill="url(#background)"  />
+<text id="title" x="600.00" y="24" >Flame Graph</text>
+<text id="details" x="10.00" y="405" > </text>
+<text id="unzoom" x="10.00" y="24" class="hide">Reset Zoom</text>
+<text id="search" x="1090.00" y="24" >Search</text>
+<text id="ignorecase" x="1174.00" y="24" >ic</text>
+<text id="matched" x="1090.00" y="405" > </text>
+<g id="frames">
+<g >
+<title>runtime.(*itabTableType).find (4 samples, 2.13%)</title><rect x="932.7" y="277" width="25.1" height="15.0" fill="rgb(209,115,11)" rx="2" ry="2" />
+<text  x="935.66" y="287.5" >r..</text>
+</g>
+<g >
+<title>runtime.heapBitsSetType (8 samples, 4.26%)</title><rect x="807.1" y="197" width="50.2" height="15.0" fill="rgb(248,142,2)" rx="2" ry="2" />
+<text  x="810.13" y="207.5" >runti..</text>
+</g>
+<g >
+<title>runtime.newobject (3 samples, 1.60%)</title><rect x="901.3" y="261" width="18.8" height="15.0" fill="rgb(253,12,37)" rx="2" ry="2" />
+<text  x="904.28" y="271.5" ></text>
+</g>
+<g >
+<title>runtime.deductSweepCredit (6 samples, 3.19%)</title><rect x="769.5" y="149" width="37.6" height="15.0" fill="rgb(244,126,28)" rx="2" ry="2" />
+<text  x="772.47" y="159.5" >run..</text>
+</g>
+<g >
+<title>runtime.memclrNoHeapPointers (1 samples, 0.53%)</title><rect x="1133.5" y="293" width="6.3" height="15.0" fill="rgb(220,79,10)" rx="2" ry="2" />
+<text  x="1136.51" y="303.5" ></text>
+</g>
+<g >
+<title>runtime.jmpdefer (1 samples, 0.53%)</title><rect x="625.1" y="197" width="6.3" height="15.0" fill="rgb(250,27,5)" rx="2" ry="2" />
+<text  x="628.11" y="207.5" ></text>
+</g>
+<g >
+<title>runtime.scang (1 samples, 0.53%)</title><rect x="129.3" y="229" width="6.2" height="15.0" fill="rgb(206,132,30)" rx="2" ry="2" />
+<text  x="132.26" y="239.5" ></text>
+</g>
+<g >
+<title>runtime.(*mheap).freeSpan.func1 (1 samples, 0.53%)</title><rect x="794.6" y="69" width="6.3" height="15.0" fill="rgb(235,82,22)" rx="2" ry="2" />
+<text  x="797.57" y="79.5" ></text>
+</g>
+<g >
+<title>runtime.(*mcache).prepareForSweep (1 samples, 0.53%)</title><rect x="110.4" y="293" width="6.3" height="15.0" fill="rgb(210,27,25)" rx="2" ry="2" />
+<text  x="113.43" y="303.5" ></text>
+</g>
+<g >
+<title>runtime.(*mspan).scavenge (1 samples, 0.53%)</title><rect x="10.0" y="277" width="6.3" height="15.0" fill="rgb(254,229,2)" rx="2" ry="2" />
+<text  x="13.00" y="287.5" ></text>
+</g>
+<g >
+<title>arch_tlb_finish_mmu (1 samples, 0.53%)</title><rect x="10.0" y="165" width="6.3" height="15.0" fill="rgb(230,44,39)" rx="2" ry="2" />
+<text  x="13.00" y="175.5" ></text>
+</g>
+<g >
+<title>runtime.(*mspan).sweep (4 samples, 2.13%)</title><rect x="782.0" y="117" width="25.1" height="15.0" fill="rgb(225,41,51)" rx="2" ry="2" />
+<text  x="785.02" y="127.5" >r..</text>
+</g>
+<g >
+<title>net.(*conn).Read (63 samples, 33.51%)</title><rect x="474.5" y="245" width="395.4" height="15.0" fill="rgb(228,224,5)" rx="2" ry="2" />
+<text  x="477.47" y="255.5" >net.(*conn).Read</text>
+</g>
+<g >
+<title>runtime.findObject (1 samples, 0.53%)</title><rect x="16.3" y="277" width="6.3" height="15.0" fill="rgb(234,165,25)" rx="2" ry="2" />
+<text  x="19.28" y="287.5" ></text>
+</g>
+<g >
+<title>runtime.(*mcentral).cacheSpan (4 samples, 2.13%)</title><rect x="1102.1" y="245" width="25.1" height="15.0" fill="rgb(237,11,2)" rx="2" ry="2" />
+<text  x="1105.13" y="255.5" >r..</text>
+</g>
+<g >
+<title>runtime.(*mcache).refill (8 samples, 4.26%)</title><rect x="756.9" y="181" width="50.2" height="15.0" fill="rgb(215,218,24)" rx="2" ry="2" />
+<text  x="759.91" y="191.5" >runti..</text>
+</g>
+<g >
+<title>runtime.selectnbrecv (5 samples, 2.66%)</title><rect x="1146.1" y="309" width="31.3" height="15.0" fill="rgb(225,88,24)" rx="2" ry="2" />
+<text  x="1149.06" y="319.5" >ru..</text>
+</g>
+<g >
+<title>runtime.heapBitsSetType (2 samples, 1.06%)</title><rect x="1014.3" y="293" width="12.5" height="15.0" fill="rgb(232,213,37)" rx="2" ry="2" />
+<text  x="1017.26" y="303.5" ></text>
+</g>
+<g >
+<title>runtime.freedefer (1 samples, 0.53%)</title><rect x="618.8" y="197" width="6.3" height="15.0" fill="rgb(213,23,18)" rx="2" ry="2" />
+<text  x="621.83" y="207.5" ></text>
+</g>
+<g >
+<title>runtime.bgscavenge.func2 (1 samples, 0.53%)</title><rect x="10.0" y="309" width="6.3" height="15.0" fill="rgb(226,67,48)" rx="2" ry="2" />
+<text  x="13.00" y="319.5" ></text>
+</g>
+<g >
+<title>runtime.assertI2I2 (8 samples, 4.26%)</title><rect x="957.8" y="309" width="50.2" height="15.0" fill="rgb(249,42,16)" rx="2" ry="2" />
+<text  x="960.77" y="319.5" >runti..</text>
+</g>
+<g >
+<title>runtime.gcWriteBarrier (1 samples, 0.53%)</title><rect x="643.9" y="229" width="6.3" height="15.0" fill="rgb(222,86,35)" rx="2" ry="2" />
+<text  x="646.94" y="239.5" ></text>
+</g>
+<g >
+<title>runtime.wbBufFlush1 (1 samples, 0.53%)</title><rect x="643.9" y="181" width="6.3" height="15.0" fill="rgb(248,210,21)" rx="2" ry="2" />
+<text  x="646.94" y="191.5" ></text>
+</g>
+<g >
+<title>runtime.deferreturn (1 samples, 0.53%)</title><rect x="637.7" y="213" width="6.2" height="15.0" fill="rgb(249,16,2)" rx="2" ry="2" />
+<text  x="640.66" y="223.5" ></text>
+</g>
+<g >
+<title>runtime.memclrNoHeapPointers (1 samples, 0.53%)</title><rect x="1108.4" y="213" width="6.3" height="15.0" fill="rgb(234,116,46)" rx="2" ry="2" />
+<text  x="1111.40" y="223.5" ></text>
+</g>
+<g >
+<title>runtime.markroot (1 samples, 0.53%)</title><rect x="129.3" y="261" width="6.2" height="15.0" fill="rgb(222,165,4)" rx="2" ry="2" />
+<text  x="132.26" y="271.5" ></text>
+</g>
+<g >
+<title>runtime.deductSweepCredit (2 samples, 1.06%)</title><rect x="1114.7" y="229" width="12.5" height="15.0" fill="rgb(215,197,0)" rx="2" ry="2" />
+<text  x="1117.68" y="239.5" ></text>
+</g>
+<g >
+<title>all (188 samples, 100%)</title><rect x="10.0" y="373" width="1180.0" height="15.0" fill="rgb(252,120,45)" rx="2" ry="2" />
+<text  x="13.00" y="383.5" ></text>
+</g>
+<g >
+<title>runtime.(*mcache).refill (4 samples, 2.13%)</title><rect x="1102.1" y="261" width="25.1" height="15.0" fill="rgb(230,184,39)" rx="2" ry="2" />
+<text  x="1105.13" y="271.5" >r..</text>
+</g>
+<g >
+<title>github.com/lightninglabs/gozmq.(*Conn).readMessage (97 samples, 51.60%)</title><rect x="311.3" y="293" width="608.8" height="15.0" fill="rgb(254,152,27)" rx="2" ry="2" />
+<text  x="314.28" y="303.5" >github.com/lightninglabs/gozmq.(*Conn).readMessage</text>
+</g>
+<g >
+<title>net.(*OpError).Timeout (1 samples, 0.53%)</title><rect x="1177.4" y="325" width="6.3" height="15.0" fill="rgb(244,220,1)" rx="2" ry="2" />
+<text  x="1180.45" y="335.5" ></text>
+</g>
+<g >
+<title>runtime.scanobject (14 samples, 7.45%)</title><rect x="135.5" y="261" width="87.9" height="15.0" fill="rgb(222,163,3)" rx="2" ry="2" />
+<text  x="138.53" y="271.5" >runtime.sc..</text>
+</g>
+<g >
+<title>internal/poll.(*pollDesc).prepare (2 samples, 1.06%)</title><rect x="593.7" y="197" width="12.6" height="15.0" fill="rgb(230,139,22)" rx="2" ry="2" />
+<text  x="596.72" y="207.5" ></text>
+</g>
+<g >
+<title>runtime.procresize (1 samples, 0.53%)</title><rect x="110.4" y="309" width="6.3" height="15.0" fill="rgb(210,192,36)" rx="2" ry="2" />
+<text  x="113.43" y="319.5" ></text>
+</g>
+<g >
+<title>runtime.(*itabTableType).find (4 samples, 2.13%)</title><rect x="970.3" y="293" width="25.1" height="15.0" fill="rgb(236,47,3)" rx="2" ry="2" />
+<text  x="973.32" y="303.5" >r..</text>
+</g>
+<g >
+<title>runtime.memclrNoHeapPointers (1 samples, 0.53%)</title><rect x="756.9" y="133" width="6.3" height="15.0" fill="rgb(249,20,26)" rx="2" ry="2" />
+<text  x="759.91" y="143.5" ></text>
+</g>
+<g >
+<title>runtime.findObject (5 samples, 2.66%)</title><rect x="179.5" y="245" width="31.4" height="15.0" fill="rgb(226,66,29)" rx="2" ry="2" />
+<text  x="182.47" y="255.5" >ru..</text>
+</g>
+<g >
+<title>runtime.markroot.func1 (1 samples, 0.53%)</title><rect x="129.3" y="245" width="6.2" height="15.0" fill="rgb(254,14,44)" rx="2" ry="2" />
+<text  x="132.26" y="255.5" ></text>
+</g>
+<g >
+<title>do_syscall_64 (1 samples, 0.53%)</title><rect x="10.0" y="229" width="6.3" height="15.0" fill="rgb(227,79,11)" rx="2" ry="2" />
+<text  x="13.00" y="239.5" ></text>
+</g>
+<g >
+<title>entry_SYSCALL_64_after_hwframe (1 samples, 0.53%)</title><rect x="10.0" y="245" width="6.3" height="15.0" fill="rgb(207,44,31)" rx="2" ry="2" />
+<text  x="13.00" y="255.5" ></text>
+</g>
+<g >
+<title>runtime.wbBufFlush.func1 (1 samples, 0.53%)</title><rect x="643.9" y="197" width="6.3" height="15.0" fill="rgb(218,33,51)" rx="2" ry="2" />
+<text  x="646.94" y="207.5" ></text>
+</g>
+<g >
+<title>runtime.systemstack (17 samples, 9.04%)</title><rect x="116.7" y="309" width="106.7" height="15.0" fill="rgb(233,160,12)" rx="2" ry="2" />
+<text  x="119.70" y="319.5" >runtime.syste..</text>
+</g>
+<g >
+<title>runtime.(*mcentral).freeSpan (2 samples, 1.06%)</title><rect x="788.3" y="101" width="12.6" height="15.0" fill="rgb(233,58,36)" rx="2" ry="2" />
+<text  x="791.30" y="111.5" ></text>
+</g>
+<g >
+<title>runtime.(*mTreap).insert (1 samples, 0.53%)</title><rect x="794.6" y="37" width="6.3" height="15.0" fill="rgb(249,15,35)" rx="2" ry="2" />
+<text  x="797.57" y="47.5" ></text>
+</g>
+<g >
+<title>runtime.sweepone (2 samples, 1.06%)</title><rect x="1114.7" y="213" width="12.5" height="15.0" fill="rgb(215,172,51)" rx="2" ry="2" />
+<text  x="1117.68" y="223.5" ></text>
+</g>
+<g >
+<title>runtime.(*mcentral).uncacheSpan (1 samples, 0.53%)</title><rect x="110.4" y="261" width="6.3" height="15.0" fill="rgb(246,213,1)" rx="2" ry="2" />
+<text  x="113.43" y="271.5" ></text>
+</g>
+<g >
+<title>internal/poll.(*FD).readUnlock (4 samples, 2.13%)</title><rect x="543.5" y="197" width="25.1" height="15.0" fill="rgb(227,210,34)" rx="2" ry="2" />
+<text  x="546.51" y="207.5" >i..</text>
+</g>
+<g >
+<title>runtime.(*mcache).nextFree (2 samples, 1.06%)</title><rect x="650.2" y="213" width="12.6" height="15.0" fill="rgb(246,57,15)" rx="2" ry="2" />
+<text  x="653.21" y="223.5" ></text>
+</g>
+<g >
+<title>runtime.newobject (35 samples, 18.62%)</title><rect x="650.2" y="229" width="219.7" height="15.0" fill="rgb(241,1,33)" rx="2" ry="2" />
+<text  x="653.21" y="239.5" >runtime.newobject</text>
+</g>
+<g >
+<title>runtime.gcDrain (17 samples, 9.04%)</title><rect x="116.7" y="277" width="106.7" height="15.0" fill="rgb(253,7,47)" rx="2" ry="2" />
+<text  x="119.70" y="287.5" >runtime.gcDrain</text>
+</g>
+<g >
+<title>net.(*OpError).Timeout (6 samples, 3.19%)</title><rect x="920.1" y="309" width="37.7" height="15.0" fill="rgb(211,205,1)" rx="2" ry="2" />
+<text  x="923.11" y="319.5" >net..</text>
+</g>
+<g >
+<title>runtime.scanframeworker (1 samples, 0.53%)</title><rect x="129.3" y="165" width="6.2" height="15.0" fill="rgb(249,172,11)" rx="2" ry="2" />
+<text  x="132.26" y="175.5" ></text>
+</g>
+<g >
+<title>[unknown] (34 samples, 18.09%)</title><rect x="10.0" y="325" width="213.4" height="15.0" fill="rgb(240,49,47)" rx="2" ry="2" />
+<text  x="13.00" y="335.5" >[unknown]</text>
+</g>
+<g >
+<title>runtime.mallocgc (1 samples, 0.53%)</title><rect x="1008.0" y="309" width="6.3" height="15.0" fill="rgb(213,8,15)" rx="2" ry="2" />
+<text  x="1010.98" y="319.5" ></text>
+</g>
+<g >
+<title>runtime.sweepone (6 samples, 3.19%)</title><rect x="769.5" y="133" width="37.6" height="15.0" fill="rgb(208,33,32)" rx="2" ry="2" />
+<text  x="772.47" y="143.5" >run..</text>
+</g>
+<g >
+<title>runtime.(*mheap).freeSpanLocked (1 samples, 0.53%)</title><rect x="794.6" y="53" width="6.3" height="15.0" fill="rgb(236,219,32)" rx="2" ry="2" />
+<text  x="797.57" y="63.5" ></text>
+</g>
+<g >
+<title>internal/poll.(*fdMutex).rwlock (4 samples, 2.13%)</title><rect x="568.6" y="197" width="25.1" height="15.0" fill="rgb(219,212,29)" rx="2" ry="2" />
+<text  x="571.62" y="207.5" >i..</text>
+</g>
+<g >
+<title>runtime.scanobject (14 samples, 7.45%)</title><rect x="22.6" y="277" width="87.8" height="15.0" fill="rgb(247,108,5)" rx="2" ry="2" />
+<text  x="25.55" y="287.5" >runtime.sc..</text>
+</g>
+<g >
+<title>runtime.(*mheap).alloc_m (1 samples, 0.53%)</title><rect x="763.2" y="101" width="6.3" height="15.0" fill="rgb(241,41,4)" rx="2" ry="2" />
+<text  x="766.19" y="111.5" ></text>
+</g>
+<g >
+<title>madvise_free_single_vma (1 samples, 0.53%)</title><rect x="10.0" y="197" width="6.3" height="15.0" fill="rgb(211,114,33)" rx="2" ry="2" />
+<text  x="13.00" y="207.5" ></text>
+</g>
+<g >
+<title>runtime.(*mheap).scavengeLocked (1 samples, 0.53%)</title><rect x="10.0" y="293" width="6.3" height="15.0" fill="rgb(216,182,0)" rx="2" ry="2" />
+<text  x="13.00" y="303.5" ></text>
+</g>
+<g >
+<title>runtime.scanblock (1 samples, 0.53%)</title><rect x="129.3" y="149" width="6.2" height="15.0" fill="rgb(229,74,21)" rx="2" ry="2" />
+<text  x="132.26" y="159.5" ></text>
+</g>
+<g >
+<title>internal/poll.(*fdMutex).rwunlock (4 samples, 2.13%)</title><rect x="543.5" y="181" width="25.1" height="15.0" fill="rgb(239,96,46)" rx="2" ry="2" />
+<text  x="546.51" y="191.5" >i..</text>
+</g>
+<g >
+<title>runtime.deferprocStack (1 samples, 0.53%)</title><rect x="606.3" y="197" width="6.3" height="15.0" fill="rgb(246,127,7)" rx="2" ry="2" />
+<text  x="609.28" y="207.5" ></text>
+</g>
+<g >
+<title>[unknown] (34 samples, 18.09%)</title><rect x="10.0" y="341" width="213.4" height="15.0" fill="rgb(217,142,39)" rx="2" ry="2" />
+<text  x="13.00" y="351.5" >[unknown]</text>
+</g>
+<g >
+<title>runtime.(*mheap).allocSpanLocked (1 samples, 0.53%)</title><rect x="763.2" y="85" width="6.3" height="15.0" fill="rgb(233,52,17)" rx="2" ry="2" />
+<text  x="766.19" y="95.5" ></text>
+</g>
+<g >
+<title>runtime.getitab (2 samples, 1.06%)</title><rect x="995.4" y="293" width="12.6" height="15.0" fill="rgb(238,85,29)" rx="2" ry="2" />
+<text  x="998.43" y="303.5" ></text>
+</g>
+<g >
+<title>runtime.scanstack (1 samples, 0.53%)</title><rect x="129.3" y="213" width="6.2" height="15.0" fill="rgb(225,191,47)" rx="2" ry="2" />
+<text  x="132.26" y="223.5" ></text>
+</g>
+<g >
+<title>github.com/lightninglabs/gozmq.(*Conn).readFrame (92 samples, 48.94%)</title><rect x="342.7" y="277" width="577.4" height="15.0" fill="rgb(219,116,6)" rx="2" ry="2" />
+<text  x="345.66" y="287.5" >github.com/lightninglabs/gozmq.(*Conn).readFrame</text>
+</g>
+<g >
+<title>runtime.newobject (21 samples, 11.17%)</title><rect x="1014.3" y="309" width="131.8" height="15.0" fill="rgb(247,58,26)" rx="2" ry="2" />
+<text  x="1017.26" y="319.5" >runtime.newobject</text>
+</g>
+<g >
+<title>tlb_finish_mmu (1 samples, 0.53%)</title><rect x="10.0" y="181" width="6.3" height="15.0" fill="rgb(210,68,39)" rx="2" ry="2" />
+<text  x="13.00" y="191.5" ></text>
+</g>
+<g >
+<title>runtime.(*mcentral).grow (2 samples, 1.06%)</title><rect x="756.9" y="149" width="12.6" height="15.0" fill="rgb(211,144,49)" rx="2" ry="2" />
+<text  x="759.91" y="159.5" ></text>
+</g>
+<g >
+<title>github.com/lightninglabs/gozmq.(*Conn).Receive (102 samples, 54.26%)</title><rect x="279.9" y="309" width="640.2" height="15.0" fill="rgb(208,49,52)" rx="2" ry="2" />
+<text  x="282.89" y="319.5" >github.com/lightninglabs/gozmq.(*Conn).Receive</text>
+</g>
+<g >
+<title>runtime.(*mcache).nextFree (9 samples, 4.79%)</title><rect x="750.6" y="197" width="56.5" height="15.0" fill="rgb(216,88,28)" rx="2" ry="2" />
+<text  x="753.64" y="207.5" >runti..</text>
+</g>
+<g >
+<title>flush_tlb_mm_range (1 samples, 0.53%)</title><rect x="10.0" y="149" width="6.3" height="15.0" fill="rgb(238,217,6)" rx="2" ry="2" />
+<text  x="13.00" y="159.5" ></text>
+</g>
+<g >
+<title>runtime.(*mspan).countAlloc (1 samples, 0.53%)</title><rect x="775.7" y="117" width="6.3" height="15.0" fill="rgb(222,75,11)" rx="2" ry="2" />
+<text  x="778.74" y="127.5" ></text>
+</g>
+<g >
+<title>runtime.gcDrainN (15 samples, 7.98%)</title><rect x="16.3" y="293" width="94.1" height="15.0" fill="rgb(221,167,47)" rx="2" ry="2" />
+<text  x="19.28" y="303.5" >runtime.gcD..</text>
+</g>
+<g >
+<title>runtime.gcBgMarkWorker.func2 (17 samples, 9.04%)</title><rect x="116.7" y="293" width="106.7" height="15.0" fill="rgb(215,23,21)" rx="2" ry="2" />
+<text  x="119.70" y="303.5" >runtime.gcBgM..</text>
+</g>
+<g >
+<title>io.ReadAtLeast (74 samples, 39.36%)</title><rect x="405.4" y="261" width="464.5" height="15.0" fill="rgb(228,104,40)" rx="2" ry="2" />
+<text  x="408.43" y="271.5" >io.ReadAtLeast</text>
+</g>
+<g >
+<title>runtime.greyobject (2 samples, 1.06%)</title><rect x="210.9" y="245" width="12.5" height="15.0" fill="rgb(227,208,29)" rx="2" ry="2" />
+<text  x="213.85" y="255.5" ></text>
+</g>
+<g >
+<title>internal/poll.(*fdMutex).rwlock (1 samples, 0.53%)</title><rect x="631.4" y="213" width="6.3" height="15.0" fill="rgb(252,113,7)" rx="2" ry="2" />
+<text  x="634.38" y="223.5" ></text>
+</g>
+<g >
+<title>runtime.gcAssistAlloc1 (15 samples, 7.98%)</title><rect x="16.3" y="309" width="94.1" height="15.0" fill="rgb(235,150,19)" rx="2" ry="2" />
+<text  x="19.28" y="319.5" >runtime.gcA..</text>
+</g>
+<g >
+<title>runtime.convI2I (5 samples, 2.66%)</title><rect x="869.9" y="261" width="31.4" height="15.0" fill="rgb(207,127,47)" rx="2" ry="2" />
+<text  x="872.89" y="271.5" >ru..</text>
+</g>
+<g >
+<title>runtime.(*mcache).releaseAll (1 samples, 0.53%)</title><rect x="110.4" y="277" width="6.3" height="15.0" fill="rgb(253,206,25)" rx="2" ry="2" />
+<text  x="113.43" y="287.5" ></text>
+</g>
+<g >
+<title>net.(*netFD).Read (22 samples, 11.70%)</title><rect x="505.9" y="229" width="138.0" height="15.0" fill="rgb(231,172,37)" rx="2" ry="2" />
+<text  x="508.85" y="239.5" >net.(*netFD).Read</text>
+</g>
+<g >
+<title>runtime.systemstack (1 samples, 0.53%)</title><rect x="763.2" y="133" width="6.3" height="15.0" fill="rgb(226,101,21)" rx="2" ry="2" />
+<text  x="766.19" y="143.5" ></text>
+</g>
+<g >
+<title>runtime.greyobject (4 samples, 2.13%)</title><rect x="85.3" y="261" width="25.1" height="15.0" fill="rgb(250,179,9)" rx="2" ry="2" />
+<text  x="88.32" y="271.5" >r..</text>
+</g>
+<g >
+<title>runtime.mallocgc (31 samples, 16.49%)</title><rect x="662.8" y="213" width="194.5" height="15.0" fill="rgb(241,54,47)" rx="2" ry="2" />
+<text  x="665.77" y="223.5" >runtime.mallocgc</text>
+</g>
+<g >
+<title>runtime.publicationBarrier (1 samples, 0.53%)</title><rect x="1139.8" y="293" width="6.3" height="15.0" fill="rgb(230,65,38)" rx="2" ry="2" />
+<text  x="1142.79" y="303.5" ></text>
+</g>
+<g >
+<title>runtime.scanstack.func1 (1 samples, 0.53%)</title><rect x="129.3" y="181" width="6.2" height="15.0" fill="rgb(237,77,33)" rx="2" ry="2" />
+<text  x="132.26" y="191.5" ></text>
+</g>
+<g >
+<title>runtime.mallocgc (3 samples, 1.60%)</title><rect x="901.3" y="245" width="18.8" height="15.0" fill="rgb(237,94,11)" rx="2" ry="2" />
+<text  x="904.28" y="255.5" ></text>
+</g>
+<g >
+<title>__x64_sys_madvise (1 samples, 0.53%)</title><rect x="10.0" y="213" width="6.3" height="15.0" fill="rgb(213,149,51)" rx="2" ry="2" />
+<text  x="13.00" y="223.5" ></text>
+</g>
+<g >
+<title>runtime.getitab (2 samples, 1.06%)</title><rect x="888.7" y="245" width="12.6" height="15.0" fill="rgb(244,133,30)" rx="2" ry="2" />
+<text  x="891.72" y="255.5" ></text>
+</g>
+<g >
+<title>runtime.(*mTreap).mutate (1 samples, 0.53%)</title><rect x="763.2" y="69" width="6.3" height="15.0" fill="rgb(225,49,40)" rx="2" ry="2" />
+<text  x="766.19" y="79.5" ></text>
+</g>
+<g >
+<title>runtime.newMarkBits (1 samples, 0.53%)</title><rect x="800.9" y="101" width="6.2" height="15.0" fill="rgb(245,54,19)" rx="2" ry="2" />
+<text  x="803.85" y="111.5" ></text>
+</g>
+<g >
+<title>runtime.unlock (1 samples, 0.53%)</title><rect x="110.4" y="245" width="6.3" height="15.0" fill="rgb(250,130,50)" rx="2" ry="2" />
+<text  x="113.43" y="255.5" ></text>
+</g>
+<g >
+<title>lnd (188 samples, 100.00%)</title><rect x="10.0" y="357" width="1180.0" height="15.0" fill="rgb(254,163,0)" rx="2" ry="2" />
+<text  x="13.00" y="367.5" >lnd</text>
+</g>
+<g >
+<title>runtime.heapBitsSetType (1 samples, 0.53%)</title><rect x="1127.2" y="277" width="6.3" height="15.0" fill="rgb(230,168,15)" rx="2" ry="2" />
+<text  x="1130.23" y="287.5" ></text>
+</g>
+<g >
+<title>runtime.deferreturn (1 samples, 0.53%)</title><rect x="612.6" y="197" width="6.2" height="15.0" fill="rgb(238,226,50)" rx="2" ry="2" />
+<text  x="615.55" y="207.5" ></text>
+</g>
+<g >
+<title>runtime.madvise (1 samples, 0.53%)</title><rect x="10.0" y="261" width="6.3" height="15.0" fill="rgb(248,31,2)" rx="2" ry="2" />
+<text  x="13.00" y="271.5" ></text>
+</g>
+<g >
+<title>runtime.systemstack (1 samples, 0.53%)</title><rect x="794.6" y="85" width="6.3" height="15.0" fill="rgb(215,19,29)" rx="2" ry="2" />
+<text  x="797.57" y="95.5" ></text>
+</g>
+<g >
+<title>runtime.(*mcache).nextFree (4 samples, 2.13%)</title><rect x="1102.1" y="277" width="25.1" height="15.0" fill="rgb(224,197,10)" rx="2" ry="2" />
+<text  x="1105.13" y="287.5" >r..</text>
+</g>
+<g >
+<title>github.com/btcsuite/btcwallet/chain.(*BitcoindConn).txEventHandler (152 samples, 80.85%)</title><rect x="223.4" y="325" width="954.0" height="15.0" fill="rgb(205,163,33)" rx="2" ry="2" />
+<text  x="226.40" y="335.5" >github.com/btcsuite/btcwallet/chain.(*BitcoindConn).txEventHandler</text>
+</g>
+<g >
+<title>runtime.gentraceback (1 samples, 0.53%)</title><rect x="129.3" y="197" width="6.2" height="15.0" fill="rgb(231,193,8)" rx="2" ry="2" />
+<text  x="132.26" y="207.5" ></text>
+</g>
+<g >
+<title>runtime.(*mcentral).grow (1 samples, 0.53%)</title><rect x="1108.4" y="229" width="6.3" height="15.0" fill="rgb(243,16,2)" rx="2" ry="2" />
+<text  x="1111.40" y="239.5" ></text>
+</g>
+<g >
+<title>runtime.(*itabTableType).find (3 samples, 1.60%)</title><rect x="869.9" y="245" width="18.8" height="15.0" fill="rgb(215,72,6)" rx="2" ry="2" />
+<text  x="872.89" y="255.5" ></text>
+</g>
+<g >
+<title>runtime.chanrecv (4 samples, 2.13%)</title><rect x="1152.3" y="293" width="25.1" height="15.0" fill="rgb(214,149,48)" rx="2" ry="2" />
+<text  x="1155.34" y="303.5" >r..</text>
+</g>
+<g >
+<title>runtime.assertI2I2 (5 samples, 2.66%)</title><rect x="926.4" y="293" width="31.4" height="15.0" fill="rgb(222,24,43)" rx="2" ry="2" />
+<text  x="929.38" y="303.5" >ru..</text>
+</g>
+<g >
+<title>runtime.goexit (154 samples, 81.91%)</title><rect x="223.4" y="341" width="966.6" height="15.0" fill="rgb(251,138,51)" rx="2" ry="2" />
+<text  x="226.40" y="351.5" >runtime.goexit</text>
+</g>
+<g >
+<title>runtime.systemstack (1 samples, 0.53%)</title><rect x="643.9" y="213" width="6.3" height="15.0" fill="rgb(221,75,25)" rx="2" ry="2" />
+<text  x="646.94" y="223.5" ></text>
+</g>
+<g >
+<title>runtime.mallocgc (17 samples, 9.04%)</title><rect x="1026.8" y="293" width="106.7" height="15.0" fill="rgb(242,31,17)" rx="2" ry="2" />
+<text  x="1029.81" y="303.5" >runtime.mallo..</text>
+</g>
+<g >
+<title>runtime.(*mheap).alloc.func1 (1 samples, 0.53%)</title><rect x="763.2" y="117" width="6.3" height="15.0" fill="rgb(246,166,46)" rx="2" ry="2" />
+<text  x="766.19" y="127.5" ></text>
+</g>
+<g >
+<title>runtime.(*mcentral).cacheSpan (8 samples, 4.26%)</title><rect x="756.9" y="165" width="50.2" height="15.0" fill="rgb(241,51,17)" rx="2" ry="2" />
+<text  x="759.91" y="175.5" >runti..</text>
+</g>
+<g >
+<title>runtime.assertI2I2 (1 samples, 0.53%)</title><rect x="1183.7" y="325" width="6.3" height="15.0" fill="rgb(244,156,0)" rx="2" ry="2" />
+<text  x="1186.72" y="335.5" ></text>
+</g>
+<g >
+<title>runtime.memclrNoHeapPointers (2 samples, 1.06%)</title><rect x="857.3" y="213" width="12.6" height="15.0" fill="rgb(248,222,29)" rx="2" ry="2" />
+<text  x="860.34" y="223.5" ></text>
+</g>
+<g >
+<title>internal/poll.(*FD).Read (16 samples, 8.51%)</title><rect x="531.0" y="213" width="100.4" height="15.0" fill="rgb(219,52,13)" rx="2" ry="2" />
+<text  x="533.96" y="223.5" >internal/pol..</text>
+</g>
+</g>
+</svg>
