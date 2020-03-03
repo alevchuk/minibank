@@ -100,7 +100,11 @@ sudo sed -i 's/stretch/buster/g' /etc/apt/sources.list
 ```
 sudo apt update
 ```
-5. Pre upgrade some packages. When prompted say "yes" to everything, except for **NTP (network time)** say "N" (hit Enter) to keep current config and for **Configuring openssh-server** also hit Enter to keep current config, and for **Grub (boot loader)** continue without installing anything:
+5. Pre upgrade some packages. When prompted:
+  * when text readers open, press "q" to continue
+  * say "yes" to everything, except for **NTP (network time)** say "N" (hit Enter) to keep current config 
+  * for **Configuring openssh-server** also hit Enter to keep current config
+  * for **Grub (boot loader)** continue without installing anything:
 ```
 sudo apt upgrade
 ```
