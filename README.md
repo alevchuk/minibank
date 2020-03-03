@@ -85,27 +85,37 @@ This upgrade is based on the [cyberciti.biz manual](https://www.cyberciti.biz/fa
 
 1. In AWS console take a snapshot for a backup of the hard drive.
 
-2. Replace /etc/apt/sources.list with new version:
+2. Get latest update for Stretch:
+```
+sudo apt update
+sudo apt upgrade
+```
+
+3. Replace /etc/apt/sources.list with new version:
 ```
 sudo sed -i 's/stretch/buster/g' /etc/apt/sources.list
 ```
-3. Refresh apt cache:
+
+4. Refresh apt cache:
 ```
 sudo apt update
 ```
-4. Pre upgrade some packages. When prompted say "yes" to everything, except for **NTP (network time)** say "N" (hit Enter) to keep current config and for **Configuring openssh-server** also hit Enter to keep current config, and for **Grub (boot loader)** continue without installing anything:
+5. Pre upgrade some packages. When prompted say "yes" to everything, except for **NTP (network time)** say "N" (hit Enter) to keep current config and for **Configuring openssh-server** also hit Enter to keep current config, and for **Grub (boot loader)** continue without installing anything:
 ```
 sudo apt upgrade
 ```
-5. Do the actual upgrade:
+
+6. Do the actual upgrade:
 ```
 sudo apt full-upgrade
 ```
-6. Reboot:
+
+7. Reboot:
 ```
 sudo reboot
 ```
-7. Remove unused packages:
+
+8. Remove unused packages:
 ```
 sudo apt autoremove
 ```
