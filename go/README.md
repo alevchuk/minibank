@@ -37,7 +37,19 @@ git fetch
 git checkout go1.13.1
 ```
 
-5. Build new go
+5. (for 1 GB RAM hosts only) Add swap
+
+If you have 1 GB of RAM or less then add another 1 GB of swap so that the build can finish.
+
+```
+sudo fallocate -l 1G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+```
+
+
+6. Build new go
 ```
 . ~/.profile
 cd $GOROOT/src
