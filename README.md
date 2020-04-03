@@ -558,6 +558,15 @@ To make selection for Copy-and-paste use laptop's OS instead of staying in Vi, r
 sudo su -c "echo set mouse= >> /usr/share/vim/vim81/defaults.vim"
 ```
 
+Python IDE:
+```
+sudo su -c "cat <<EOF >> /etc/vim/vimrc
+set paste
+syntax on
+set tabstop=4 shiftwidth=4 expandtab
+EOF
+"
+```
 
 #### Bash
 
