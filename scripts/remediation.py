@@ -5,8 +5,8 @@ import os
 import logging
 import glob
 
-POLL_INTERVAL_SECONDS = 15
 CPU_THRESHOLD_SECONDS = 0.3
+POLL_INTERVAL_SECONDS = 15
 DETECTION_WINDOW_MINUTES = 5  # set to something like 60 if you want to test, 
                               # otherwise remediation is too fast for most metrics to show that there was an actual issue
     
