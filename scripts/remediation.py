@@ -52,7 +52,7 @@ class Detector(object):
                 if self.condition(x["value"], self.threshold):
                     points_violate_threshold += 1
 
-        if points_within_window >= self.min_datapoints:
+        if points_within_window < self.min_datapoints:
             log.info("Not enough datapoints available")
         else:
             if (points_violate_threshold / points_within_window) * 100 >= self.window_pct:
