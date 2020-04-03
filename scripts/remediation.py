@@ -7,7 +7,9 @@ import glob
 
 POLL_INTERVAL_SECONDS = 15
 CPU_THRESHOLD_SECONDS = 0.3
-DETECTION_WINDOW_MINUTES = 65
+DETECTION_WINDOW_MINUTES = 5  # set to something like 60 if you want to test, 
+                              # otherwise remediation is too fast for most metrics to show that there was an actual issue
+    
 DETECTION_WINDOW_PCT = 50  # If X% of data points are above the threshold then the detector fires
 MIN_DATAPOINTS = 10  # the minimum number of data points to consider the alert to fire
 
