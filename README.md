@@ -45,8 +45,8 @@ Table of contents
 
 The powerful Pi 4 with plenty of RAM removing the need for swap. Two high-speed SSDs for Raid-1 mirroring. Different manufacturers so they don't fail at the same time.
 
-* Pi 4 kit (4GB RAM, heat sinks, power supply): [CanaKit Raspberry Pi 4 4GB Basic Kit](CanaKit-Raspberry-4GB-Basic-Kit/dp/B07TXKY4Z9)
-* FLIRC Passive cooling case [Flirc Raspberry Pi 4 Case (Silver)](https://www.amazon.com/Flirc-Raspberry-Pi-Case-Silver/dp/B07WG4DW52)
+* Pi 4 kit (4GB RAM, heat sinks, power supply): [CanaKit Raspberry Pi 4 4GB Basic Kit](https://camelcamelcamel.com/CanaKit-Raspberry-4GB-Basic-Kit/product/B07TXKY4Z9)
+* FLIRC Passive cooling case [Flirc Raspberry Pi 4 Case (Silver)](https://camelcamelcamel.com/Flirc-Raspberry-Pi-Case-Silver/product/B07WG4DW52)
 * Micro SD card [Samsung-MicroSDXC-Adapter-MB-ME64GA-AM](https://camelcamelcamel.com/Samsung-MicroSDXC-Adapter-MB-ME64GA-AM/product/B06XX29S9Q)
 * Card Reader (for 1 time setup) [Transcend-microSDHC-Reader-TS-RDF5K-Black](https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4)
 * Samsung 500 GB SSD (for Raid-1 mirror): [Samsung-T5-Portable-SSD-MU-PA500B](https://camelcamelcamel.com/Samsung-T5-Portable-SSD-MU-PA500B/product/B073GZBT36)
