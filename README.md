@@ -1,7 +1,7 @@
 # minibank
 bitcoin lightning node
 
-![model 4](https://raw.githubusercontent.com/alevchuk/minibank/master/minibank-2019-08-11.jpg "minibank model 4, Pi 4, 4 GB RAM, 500GB SSD, running mainnet LND")
+![model 4](https://raw.githubusercontent.com/alevchuk/minibank/master/minibank-2020-04-10.jpg "minibank model 4, Pi 4, 4 GB RAM, 500GB SSD, running mainnet LND")
 
 * For older models see [History](https://github.com/alevchuk/minibank/blob/master/other-notes/HISTORY.md)
 * For improved reading experience use [https://alevchuk.github.io/minibank/](https://alevchuk.github.io/minibank/)
@@ -45,7 +45,8 @@ Table of contents
 
 The powerful Pi 4 with plenty of RAM removing the need for swap. Two high-speed SSDs for Raid-1 mirroring. Different manufacturers so they don't fail at the same time.
 
-* Pi 4 kit (4GB RAM, heat sinks, fan, micro-hdmi cable): [CanaKit-Raspberry-4GB-Basic-Starter](https://camelcamelcamel.com/CanaKit-Raspberry-4GB-Basic-Starter/product/B07VYC6S56)
+* Pi 4 kit (4GB RAM, heat sinks, power supply): [CanaKit Raspberry Pi 4 4GB Basic Kit](CanaKit-Raspberry-4GB-Basic-Kit/dp/B07TXKY4Z9)
+* FLIRC Passive cooling case [Flirc Raspberry Pi 4 Case (Silver)](https://www.amazon.com/Flirc-Raspberry-Pi-Case-Silver/dp/B07WG4DW52)
 * Micro SD card [Samsung-MicroSDXC-Adapter-MB-ME64GA-AM](https://camelcamelcamel.com/Samsung-MicroSDXC-Adapter-MB-ME64GA-AM/product/B06XX29S9Q)
 * Card Reader (for 1 time setup) [Transcend-microSDHC-Reader-TS-RDF5K-Black](https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4)
 * Samsung 500 GB SSD (for Raid-1 mirror): [Samsung-T5-Portable-SSD-MU-PA500B](https://camelcamelcamel.com/Samsung-T5-Portable-SSD-MU-PA500B/product/B073GZBT36)
@@ -134,9 +135,12 @@ Connect monitor and keyboard. Power-up Pi. Login: `pi` Password: `rpaspberry`
 
 ## Heat
 
-Now it's a good time to [attach Heatsink and start the fan](https://blog.hackster.io/do-you-need-to-use-a-fan-for-cooling-with-the-new-raspberry-pi-4-6d523ca12453).
+I recomend using FLIRC passive cooling:
+- Pi temp under 50C
+- No more worries of airflow obstruction
+- Fan won't fail cuz it ain't got one
 
-Connect the fan to GPIO pins. Quiet cooling mode works best for me https://www.raspberrypi.org/forums/viewtopic.php?t=248918#p1519636
+If you still want to go with a fan, follow [this howto](https://blog.hackster.io/do-you-need-to-use-a-fan-for-cooling-with-the-new-raspberry-pi-4-6d523ca12453). Tip: Connect the fan to GPIO pins with quiet cooling mode works best for me https://www.raspberrypi.org/forums/viewtopic.php?t=248918#p1519636
 
 To measure the temperature, run:
 ```
