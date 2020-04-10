@@ -143,6 +143,8 @@ To measure the temperature, run:
 while :; do /opt/vc/bin/vcgencmd measure_temp; sleep 1; done
 ```
 
+Anything bellow 70C is good. The trotteling [kicks in at 80 C](https://www.theregister.co.uk/2019/07/22/raspberry_pi_4_too_hot_to_handle/).
+ 
 
 ## Network
 
