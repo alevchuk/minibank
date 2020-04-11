@@ -58,6 +58,8 @@ The powerful Pi 4 with plenty of RAM removing the need for swap. Two high-speed 
 
 * Same hardware as Node at Home
 
+You can have a dedicated setup for better secutiry or combine LND / BTC / Monitroing into one Pi.
+
 
 ###  (Optional) VM :: Node on Amazon EC2
 
