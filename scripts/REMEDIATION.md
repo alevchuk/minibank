@@ -9,9 +9,9 @@ Table of contents
   * [Detection](#detection)
   * [Remediation](#remediation)
   * [Setup](#setup)
-    * [Run LND so that it restarts automatically](run-lnd-so-that-it-restarts-automatically)
+    * [Run LND so that it restarts automatically](#run-lnd-so-that-it-restarts-automatically)
     * [Auto Unlocker via cron](asdf)
-    * [Run remediation](asdf)
+    * [Run remediation](#run-remediation)
   
 ## Issue and Cause
 
