@@ -56,8 +56,10 @@ Put the password on disk:
 sudo mkdir /etc/secret
 sudo touch /etc/secret/lnd_password
 sudo chown unlocker /etc/secret/lnd_password
-sudo sudo chgrp root /etc/secret/lnd_password
+sudo chgrp root /etc/secret/lnd_password
 sudo chmod u=rw,g=,o= /etc/secret/lnd_password
+
+ls -l /etc/secret/lnd_password
 
 sudo su -l unlocker
 
