@@ -33,7 +33,7 @@ LND launcher needs to be setup so that it restarts itself automatically. Auto-un
 while :; do lnd; sleep 5; done
 ```
 
-### Auto Unlocker via chronos
+### Auto Unlocker via cron
 
 For additional security create a separate user account for the unlocker. The password will be stored in a plain text file with only the unlocker and root having read access.
 
