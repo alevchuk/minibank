@@ -10,7 +10,7 @@ Table of contents
   * [Remediation](#remediation)
   * [Setup](#setup)
     * [Run LND so that it restarts automatically](#run-lnd-so-that-it-restarts-automatically)
-    * [Auto Unlocker via cron](asdf)
+    * [Auto Unlocker via cron](#auto-unlocker-via-cron)
     * [Run remediation](#run-remediation)
   
 ## Issue and Cause
