@@ -7,11 +7,12 @@ import glob
 
 CPU_THRESHOLD_SECONDS = 0.3
 POLL_INTERVAL_SECONDS = 15
-DETECTION_WINDOW_MINUTES = 5  # set to something like 60 if you want to test, 
-                              # otherwise remediation is too fast for most metrics to show that there was an actual issue
-    
-DETECTION_WINDOW_PCT = 50  # If X% of data points are above the threshold then the detector fires
+
+# NOTE: remediation is too fast for most metrics to show that there was an actual issue
+DETECTION_WINDOW_MINUTES = 4  # set window to 60 and min_datapoints to 200 if you want to test / see the issue in metrics
 MIN_DATAPOINTS = 10  # the minimum number of data points to consider the alert to fire
+
+DETECTION_WINDOW_PCT = 50  # If X% of data points are above the threshold then the detector fires
 
 LOG_LEVEL = logging.INFO
 #LOG_LEVEL = logging.DEBUG
@@ -96,6 +97,10 @@ class LNDProc(object):
                 pass
 
     def kill(self):
+        if self.pid is None:
+            log.info("Cannot kill, PID is unknown")
+            return
+
         log.info("Killing PID (with SIGTERM): {}".format(self.pid))
 
         try:
