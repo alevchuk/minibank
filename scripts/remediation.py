@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+
+import time
 import os
 import logging
 import glob
@@ -13,8 +16,8 @@ MIN_DATAPOINTS = 10  # the minimum number of data points to consider the alert t
 
 DETECTION_WINDOW_PCT = 50  # If X% of data points are above the threshold then the detector fires
 
-LOG_LEVEL = logging.DEBUG
-#LOG_LEVEL = logging.INFO
+#LOG_LEVEL = logging.DEBUG
+LOG_LEVEL = logging.INFO
 
 logging.basicConfig(level=LOG_LEVEL, format='%(levelname).1s %(asctime)-15s %(pathname)s:%(lineno)s: %(message)s')
 log = logging.getLogger("proc_stat")
@@ -114,7 +117,7 @@ class LNDProc(object):
             return
 
         pre_kill_sleep = 30
-        log.debug("Sleeping for {} seconds".format(pre_kill_sleep))
+        log.info("Sleeping for {} seconds".format(pre_kill_sleep))
         time.sleep(POLL_INTERVAL_SECONDS)
 
         if self._find_proc() == self.pid:
