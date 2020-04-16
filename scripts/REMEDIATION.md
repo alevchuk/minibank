@@ -31,7 +31,7 @@ To find the time when the remediation is necessary do the following:
 
 ## Remediation
 
-Find the PID of LND and issue a kill 15. If the process is still alive after 30 seconds issue a kill 9.
+Find the PID of LND and issue a kill 15. If the process is still alive after 1 minute issue a kill 9.
 
 LND launcher needs to be set up so that it restarts itself automatically. Auto-unlock also needs to be in place.
 
