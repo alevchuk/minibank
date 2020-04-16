@@ -33,7 +33,7 @@ LND launcher needs to be setup so that it restarts itself automatically. Auto-un
 while :; do lnd; sleep 5; done
 ```
 
-### Auto Unlocker
+### Auto Unlocker via chronos
 
 For additional security create a separate user account for the unlocker. The password will be stored in a plain text file with only the unlocker and root having read access.
 
@@ -81,7 +81,7 @@ crontab -e
 '''
 ```
 
-### Run remediation script continuously
+### Run remediation
 
 Unlder the account that runs LND
 
@@ -102,5 +102,5 @@ chmod +x ./remediation.py
 
 Run it:
 ```
-while :; do ./remediation.py; sleep 5; done
+./remediation.py
 ```
