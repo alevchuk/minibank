@@ -35,6 +35,51 @@ while :; do lnd; sleep 5; done
 
 ### Auto Unlocker
 
+For additional security create a separate user account for the unlocker. The password will be stored in a plain text file with only the unlocker and root having read access.
+
+```
+sudo /usr/sbin/adduser unlocker
+
+sudo su -l unlocker
+
+cat <<EOF > ./unlock
+#!/bin/sh
+
+cat /etc/secret/lnd_password | ~lightning/gocode/bin/lncli --tlscertpath=/home/lightning/.lnd/tls.cert unlock --stdin
+EOF
+
+logout
+```
+
+Put the password on disk:
+```
+sudo mkdir /etc/secret
+sudo touch /etc/secret/lnd_password
+sudo chown unlocker /etc/secret/lnd_password
+sudo sudo chgrp root /etc/secret/lnd_password
+sudo chmod u=rw,g=,o= /etc/secret/lnd_password
+
+sudo su -l unlocker
+
+cat >> /etc/secret/lnd_password
+```
+
+After entering the password, press `Ctrl-d` and run `logout`
+
+Run unlocker every minute:
+```
+sudo su -l unlocker
+crontab -e
+'''
+
+### Text-editor will open, paste the following, save, and exit:
+
+
+# m h  dom mon dow   command
+* *    *   *   *     $HOME/unlock
+
+'''
+```
 
 ### Run remediation script continuously
 
