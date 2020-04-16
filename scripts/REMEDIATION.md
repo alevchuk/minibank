@@ -2,7 +2,7 @@
 
 ## Issues and Cause
 
-CPU at 100%. In this state, sometimes LND times out when trying to generate or list invoices over RPC. See issue https://github.com/lightningnetwork/lnd/issues/3370 open since Aug 2019. LND `go` seems to be stuck in GC / Malloc for the ZMQ.
+CPU at 100%. In this state, LND times out when trying to generate or list invoices over RPC. See issue https://github.com/lightningnetwork/lnd/issues/3370 open since Aug 2019. LND `go` seems to be stuck in GC / Malloc for the ZMQ.
 
 
 ## Detection
