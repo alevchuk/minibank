@@ -83,5 +83,24 @@ crontab -e
 
 ### Run remediation script continuously
 
+Unlder the account that runs LND
 
+Download the remediation script:
+```
+curl https://raw.githubusercontent.com/alevchuk/minibank/master/scripts/remediation.py > ./remediation.py
+```
 
+Instpect it:
+```
+vim ./remediation.py
+```
+
+Make it runnable:
+```
+chmod +x ./remediation.py
+```
+
+Run it:
+```
+while :; do ./remediation.py; sleep 5; done
+```
