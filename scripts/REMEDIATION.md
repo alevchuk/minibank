@@ -26,14 +26,14 @@ To find the time when the remediation is necessary do the following:
 1. Read out the CPU utilization from /proc/stat
 2. Sum up the relevant types of CPU use `user + nice + system  + steal`
 3. Attempt to measure this every 15 seconds
-4. Check if this metrics exceeds 0.3 in more than 50% of measurments within a 4 minute window
+4. Check if this metrics exceeds 0.3 in more than 50% of measurements within a 4 minute window
 
 
 ## Remediation
 
 Find the PID of LND and issue a kill 15. If the process is still alive after 30 seconds issue a kill 9.
 
-LND launcher needs to be setup so that it restarts itself automatically. Auto-unlock also needs to be in place.
+LND launcher needs to be set up so that it restarts itself automatically. Auto-unlock also needs to be in place.
 
 
 ## Setup
@@ -98,14 +98,14 @@ crontab -e
 
 ### Run remediation
 
-Unlder the account that runs LND
+Under the account that runs LND
 
 Download the remediation script:
 ```
 curl https://raw.githubusercontent.com/alevchuk/minibank/master/scripts/remediation.py > ./remediation.py
 ```
 
-Instpect it:
+Inspect it:
 ```
 vim ./remediation.py
 ```
