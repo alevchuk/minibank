@@ -29,6 +29,9 @@ LND launcher needs to be setup so that it restarts itself automatically. Auto-un
 
 ### Run LND so that it restarts automatically
 
+```
+while :; do lnd; sleep 5; done
+```
 
 ### Auto Unlocker
 
