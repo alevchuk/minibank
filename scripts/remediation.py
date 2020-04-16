@@ -193,7 +193,7 @@ def main():
     )
 
     while True:
-        log.debug("Sleeping for {} seconds".format(POLL_INTERVAL_SECONDS))
+        log.info("Sleeping for {} seconds".format(POLL_INTERVAL_SECONDS))
         time.sleep(POLL_INTERVAL_SECONDS)
 
         cpu = stats.get_cpu()
