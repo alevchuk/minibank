@@ -9,11 +9,11 @@ Table of contents
   * [Detection](#detection)
   * [Remediation](#remediation)
   * [Setup](#setup)
-    * [Run LND so that it restarts automatically](ads)
+    * [Run LND so that it restarts automatically](run-lnd-so-that-it-restarts-automatically)
     * [Auto Unlocker via cron](asdf)
     * [Run remediation](asdf)
   
-## Issues and Cause
+## Issue and Cause
 
 CPU at 100%. In this state, LND times out when trying to generate or list invoices over RPC. See issue https://github.com/lightningnetwork/lnd/issues/3370 open since Aug 2019. LND `go` seems to be stuck in GC / Malloc for the ZMQ.
 
