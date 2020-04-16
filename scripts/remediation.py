@@ -116,7 +116,7 @@ class LNDProc(object):
             log.info("Process already dead")
             return
 
-        pre_kill_sleep = 30
+        pre_kill_sleep = 60
         log.info("Sleeping for {} seconds".format(pre_kill_sleep))
         time.sleep(POLL_INTERVAL_SECONDS)
 
