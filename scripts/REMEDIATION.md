@@ -59,6 +59,8 @@ cat <<EOF > ./unlock
 cat /etc/secret/lnd_password | ~lightning/gocode/bin/lncli --tlscertpath=/home/lightning/.lnd/tls.cert unlock --stdin
 EOF
 
+chmod +x ./unlock
+
 logout
 ```
 
