@@ -1,6 +1,3 @@
-#!/usr/bin/python3
-
-import time
 import os
 import logging
 import glob
@@ -16,11 +13,16 @@ MIN_DATAPOINTS = 10  # the minimum number of data points to consider the alert t
 
 DETECTION_WINDOW_PCT = 50  # If X% of data points are above the threshold then the detector fires
 
-LOG_LEVEL = logging.INFO
-#LOG_LEVEL = logging.DEBUG
+LOG_LEVEL = logging.DEBUG
+#LOG_LEVEL = logging.INFO
 
 logging.basicConfig(level=LOG_LEVEL, format='%(levelname).1s %(asctime)-15s %(pathname)s:%(lineno)s: %(message)s')
 log = logging.getLogger("proc_stat")
+
+# Parameter checking
+max_num_datapoints =  int(DETECTION_WINDOW_MINUTES * 60 / POLL_INTERVAL_SECONDS)
+assert max_num_datapoints > MIN_DATAPOINTS, \
+    "MIN_DATAPOINTS should not exceed {} - the number of datapoint in the DETECTION_WINDOW".format(max_num_datapoints)
 
 
 class Detector(object):
