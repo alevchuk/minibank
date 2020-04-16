@@ -1,6 +1,6 @@
 # Remediation
 
-The following is implemented in a python scrip as a stand-alone single file with no dependencies: https://github.com/alevchuk/minibank/blob/master/scripts/remediation.py
+The following is implemented in a python script as a single file with no dependencies: https://github.com/alevchuk/minibank/blob/master/scripts/remediation.py
 
 ## Issues and Cause
 
