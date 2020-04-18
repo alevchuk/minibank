@@ -518,7 +518,7 @@ sudo hostname minibank1
 Edit 2 files replacing "raspberrypi" with the name you came up with. No spaces or punctuation.
 ```
 sudo vi /etc/hostname
-sudo vi /etc/hosts  # edit the line with 127.0.0.1 adding a space and you new hostname at the end of that line
+sudo vi /etc/hosts  # edit the line with 127.0.0.1 adding a space and your new hostname at the end of that line
 
 sudo vi /etc/cloud/templates/hosts.debian.tmpl  # do the same as for  /etc/hosts  
 # yet if this file does not exist then skip this step.
