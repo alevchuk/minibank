@@ -519,7 +519,7 @@ Edit 2 files replacing "raspberrypi" with the name you came up with. No spaces o
 ```
 sudo vi /etc/hostname
 sudo vi /etc/hosts  # edit the line with 127.0.0.1 adding a space and you new hostname at the end of that line
-sudo vi /etc/cloud/templates/hosts.debian.tmpl  # do the same as for  /etc/hosts  (if this file does not exist then skip this step)
+sudo vi /etc/cloud/templates/hosts.debian.tmpl  # do the same as for  /etc/hosts  (if this file does not exist then skip this step). don't rely on the {{hostname}} sytax (it will not do what you most likely expect), instead add a space and the new hostname at the end, after "{{hostname}} "
 ```
 
 you'll see the change after rebooting, run sudo reboot, re-SSH back in run `sudo mount /mnt/btrfs/` and resume the chain sync:
