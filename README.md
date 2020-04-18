@@ -587,7 +587,7 @@ EOF
 
 #### Bash
 
-To the end of `~/.bashrc` add
+To the end of the bash rc file add the following lines after running `vi ~/.bashrc`
 ```
 # https://unix.stackexchange.com/a/48113/4058
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
@@ -598,7 +598,7 @@ shopt -s histappend                      # append to history, don't overwrite it
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 ```
 
-Now do the same for `/etc/skel/.bashrc`
+Now do the same /etc/skel by running `sudo vi /etc/skel/.bashrc`
 * so that every new accounts gets this
 
 #### GNU Screen
