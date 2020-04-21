@@ -12,6 +12,7 @@ POLL_INTERVAL_SECONDS = 15
 
 # NOTE: remediation is too fast for most metrics to show that there was an actual issue
 DETECTION_WINDOW_MINUTES = 4  # set window to 60 and min_datapoints to 200 if you want to test / see the issue in metrics
+BLACKOUT_WINDOW_MINUTES = 60  # after remediation ran, how long to wait and not do aything
 MIN_DATAPOINTS = 10  # the minimum number of data points to consider the alert to fire
 
 DETECTION_WINDOW_PCT = 50  # If X% of data points are above the threshold then the detector fires
@@ -35,6 +36,7 @@ class Detector(object):
         self.window_pct = window_pct
         self.min_datapoints = min_datapoints
         self.condition = lambda value, threshold: value > threshold
+        self.last_remediation_time = time.time()
 
         self.data = []
 
@@ -52,7 +54,7 @@ class Detector(object):
             log.debug("Deleted {}".format(self.data[i]))
             del self.data[i]
 
-    def _check(self):
+    def _detect(self):
         points_within_window = 0
         points_violate_threshold = 0
 
@@ -62,8 +64,16 @@ class Detector(object):
                 if self.condition(x["value"], self.threshold):
                     points_violate_threshold += 1
 
-        if points_within_window < self.min_datapoints:
+        if self.last_remediation_time + BLACKOUT_WINDOW_MINUTES * 60 > time.time():
+            log.info(
+                (
+                    "Restart or last remediation was {:.2f} minutes ago, we're still in blackout period"
+                ).format((time.time() - self.last_remediation_time) / 60.0)
+            )
+
+        elif points_within_window < self.min_datapoints:
             log.info("Not enough datapoints available")
+
         else:
             if (points_violate_threshold / points_within_window) * 100 >= self.window_pct:
                 log.info(
@@ -74,6 +84,8 @@ class Detector(object):
                         points_within_window
                     )
                 )
+                self.last_remediation_time = time.time()
+
                 return True
 
         return False
@@ -82,7 +94,7 @@ class Detector(object):
         self.data.append({"ts": time.time(), "value": value})
         self._cleanup()
 
-        return self._check()
+        return self._detect()
 
 
 class LNDProc(object):
