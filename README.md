@@ -840,7 +840,13 @@ Test with netcat (nc) from a different host
 ```
 seq 100 | nc -v <external_ip_of_LND_host> 9735
 ```
+For onoin addresses (e.g. z123zxczxc87z6xc6zx87c6zxc876zxxyz.onino) use:
+```
+seq 100 | torify nc -v <onoin_address> 9735
+```
+
 Alternetively to netcat you can test with [tcpportchecker](https://www.infobyip.com/tcpportchecker.php)
+
 
 lnc logs will show
 ```
