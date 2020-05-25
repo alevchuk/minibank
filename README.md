@@ -845,13 +845,11 @@ For onion addresses (e.g. z123zxczxc87z6xc6zx87c6zxc876zxxyz.onion) use:
 seq 100 | torify nc -v <onion_address> 9735
 ```
 
-Alternetively to netcat you can test with [tcpportchecker](https://www.infobyip.com/tcpportchecker.php)
-
-
-lnc logs will show
+lnd logs will show
 ```
-  2018-01-08 20:41:07.856 [ERR] CMGR: Can't accept connection: unable to accept connection from <IP>:<PORT>: Act One: invalid handshake version: 49, only 0 is valid, msg=....
+2018-01-08 20:41:07.856 [ERR] BTCN: Can't accept connection: unable to accept connection from ...
 ```
+- this error is good. it means the netword delivered the packets. error is expected because the packet is malformed.
 
 ### Install LND operations scripts
 
