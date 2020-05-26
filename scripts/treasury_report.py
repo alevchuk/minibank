@@ -51,8 +51,8 @@ if len(sys.argv) < 2 or sys.argv[1] != '--no-header':
       "Pending\t\t"
       "Channel\t\t"
       "Fees\t\t"
+      "Fees\t\t"
       "Balance\t\t"
-      "Balance+Fees"
     )
 
 print(
@@ -61,8 +61,8 @@ print(
   "\t{:,}".format(pending) + \
   "\t{:,}".format(channel) + \
   "\t{:,}".format(fees) + \
-  "\t{:,}".format(balance) + \
-  "\t{:,}".format(balance + fees)
+  "\t{:.2f}%".format((fees / (balance + fees)) * 100) + \
+  "\t{:,}".format(balance)
 )
 
 # Setup:
@@ -83,8 +83,7 @@ SHELL=/bin/bash
 while :; do (cat ~/balance_history.tab; ~/lnd-e2e-testing/get_balance_report.py) | column -t; sleep 60; done
 '''
 # Example Output:
-# Time                       Wallet       Pending      Channel      Fees         Balance      Balance+Fees
-# 2018-07-15T13:00:01-07:00  1,599,749    208,344,076  150,652,120  248,117      360,595,945  360,844,062
-# 2018-00-15T19:00:01-0700   18,113,811   208,312,757  134,928,908  248,117      361,355,476  361,603,593
-# 2018-00-15T20:00:01-0700   18,113,811   208,312,757  134,611,917  248,117      361,038,485  361,286,602
-# 2018-26-15T20:26:36-0700   18,113,811   208,312,757  134,007,409  248,117      360,433,977  360,682,094
+# Time                      Wallet  Pending  Channel    Fees     Fees   Balance
+# 2020-05-26T12:34:27+0000  5,338   0        1,335,398  128,053  8.72%  1,340,736
+# 2020-05-26T12:34:27+0000  5,338   0        1,335,123  128,055  8.73%  1,340,345
+# 2020-05-26T12:34:27+0000  5,338   0        1,335,543  128,066  8.71%  1,340,123
