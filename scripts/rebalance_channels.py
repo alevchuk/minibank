@@ -4,6 +4,11 @@ import subprocess
 import json
 import sys
 
+PUBKEY_MAP = {
+    "031015a": "-BREEZ-",
+    "02247d9": "-BIG26-"
+}
+
 def pretty(raw):
   return json.dumps(raw, sort_keys=True, indent=4, separators=(',', ': '))
 
@@ -113,7 +118,6 @@ def print_route(route):
 
   print()
 
-
 def print_channels(channels, remote_total):
     channels = sorted(channels, key=lambda c: int(c["remote_balance"]))
     print("           chan_id\tpubkey\t{}\t{}\t{}\tmini-id".format(pad("local"), pad("remote"), pad("remote-pct")))
@@ -125,9 +129,12 @@ def print_channels(channels, remote_total):
       else:
         ratio = pad("N/A")
 
+      pubkey = c["remote_pubkey"][:7]
+      pubkey = PUBKEY_MAP.get(pubkey, pubkey)
+
       print("\t".join([
         c["chan_id"],
-        c["remote_pubkey"][:7],
+        pubkey,
         pad(c["local_balance"]),
         pad(c["remote_balance"]),
         ratio,
@@ -140,8 +147,8 @@ def active_channels_with_remote_balances(channels):
   results = []
   for c in channels:
     if c["active"] == True:
-      if int(c["remote_balance"]) > 0:
-        results.append(c)
+        if int(c["remote_balance"]) > 0 or True:
+            results.append(c)
 
   if len(results) == 0:
       print("ERROR: no channels with remote balances, so there is nothing to balance")
@@ -224,7 +231,7 @@ def main():
 
     desired_amt = int(total_remote_balance * (dst_pct / 100.0))
     print("Destination remote balance {}, desired destination remote balance {}".format(dst_remote_balance, desired_amt))
-
+    
     # Amount to transfer
     amt = desired_amt - dst_remote_balance
 
