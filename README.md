@@ -1083,6 +1083,7 @@ virtualenv --python=python3.7 monitoring-env
 cd monitoring-env
 . ./bin/activate
 pip3 install prometheus_client
+deactivate
 ```
 
 Run liquidity_mon
