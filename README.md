@@ -1068,6 +1068,11 @@ curl localhost:8334
 
 #### LND metrics
 
+Install pip
+```
+sudo apt install python3-pip
+```
+
 Vitrualenv is the only pip package that you will need to install system-wide. Everything else will be installed locally home directories called virtual environments.
 ```
 sudo pip3 install virtualenv
