@@ -1075,6 +1075,10 @@ git clone https://github.com/alevchuk/minibank.git minibank/
 cd minibank
 git pull
 
+mkdir ~/lnd-e2e-testing
+cp scripts/liquidity_mon.py ~/lnd-e2e-testing/
+
+cd ~/lnd-e2e-testing/
 virtualenv --python=python3.7 monitoring-env
 cd monitoring-env
 . ./bin/activate
@@ -1083,12 +1087,12 @@ pip3 install prometheus_client
 
 Run liquidity_mon
 ```
-(. ~/monitoring-env/bin/activate && ~/lnd-e2e-testing/liquidity_mon.py)
+( cd ~/lnd-e2e-testing/ && . ./monitoring-env/bin/activate && ./liquidity_mon.py )
 ```
 
 Test
 ```
-curl localhost:8334
+curl localhost:6549
 ```
 
 ### Prometheus
