@@ -165,6 +165,7 @@ NOTE: In this setup it's easy to make a mistake and get locked out of the remote
 
 
 ```
+sudo apt update
 sudo apt install iptables-persistent
 sudo iptables-save  # show current rules
 ```
