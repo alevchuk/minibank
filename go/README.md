@@ -61,7 +61,12 @@ At the end it should say "Installed commands in $GOROOT/bin"
 
 ## Don't Build Go (if you can avoid it)
 
-Debian 10 (buster) does not have this, yet if you have a Linux distro that has go-1.13.1 or higher packaged, then you don't need to build go, and just do:
+
+If you have a Linux distro that has go-1.13.1 or higher packaged, then you don't need to build go, and just do:
+
+
+* AWS Debian 10 (buster) image has this
+* When Upgrading from Debian 9, you will not have this and will need to build
 
 1. Fetch go and git
 ```
