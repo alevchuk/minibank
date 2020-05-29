@@ -1,7 +1,7 @@
 # minibank Model 3
 bitcoin lightning node
 
-![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/minibank-2019-04-07.jpg "minibank model 3, 256GB microSD cards, running mainnet LND")
+![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/img/minibank-2019-04-07.jpg "minibank model 3, 256GB microSD cards, running mainnet LND")
 
 For older versions see https://github.com/alevchuk/minibank/blob/master/other-notes/HISTORY.md
 
@@ -976,6 +976,6 @@ Follow web-ui wizard. Import dashboards node_exporter for Grafana app store.
 E.g. "Node Exporter Server Metrics" can show multiple nodes side-by-side:
 
 
-![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/grafana_screen_shot_2018-11-23.png "grafana monitoring dashboard using data from prometheus time-series store")
+![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/img/grafana_screen_shot_2018-11-23.png "grafana monitoring dashboard using data from prometheus time-series store")
 
 

@@ -1,7 +1,7 @@
 # minibank
 bitcoin lightning node
 
-![model 4](https://raw.githubusercontent.com/alevchuk/minibank/master/minibank-2020-04-10.jpg "minibank model 4, Pi 4, 4 GB RAM, 500GB SSD, running mainnet LND")
+![model 4](https://raw.githubusercontent.com/alevchuk/minibank/master/img/minibank-2020-04-10.jpg "minibank model 4, Pi 4, 4 GB RAM, 500GB SSD, running mainnet LND")
 
 * For older models see [History](https://github.com/alevchuk/minibank/blob/master/other-notes/HISTORY.md)
 * For improved reading experience use [https://alevchuk.github.io/minibank/](https://alevchuk.github.io/minibank/)
@@ -350,7 +350,7 @@ From now I will refer to these as:
 * YOUR_SSD_BLOCK_DEVICE_2
 
 The relevant output of `dmesg --follow` would look like this:
-![Block Device name lookup](https://raw.githubusercontent.com/alevchuk/minibank/master/block_device_name_lookup.png "Block Device name lookup")
+![Block Device name lookup](https://raw.githubusercontent.com/alevchuk/minibank/master/img/block_device_name_lookup.png "Block Device name lookup")
 
 
 ### BTRFS RAID-1 Mirror
@@ -1196,7 +1196,7 @@ Warning: This is a web server, so be especially careful with security.
 
 To install and run Grafana follow [alevchuk/minibank/grafana](https://github.com/alevchuk/minibank/blob/master/grafana/README.md)
 
-![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/grafana_screen_shot_2018-11-23.png "grafana monitoring dashboard using data from prometheus time-series store")
+![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/img/grafana_screen_shot_2018-11-23.png "grafana monitoring dashboard using data from prometheus time-series store")
 
 
 
