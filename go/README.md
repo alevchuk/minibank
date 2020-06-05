@@ -12,7 +12,7 @@ sudo apt install golang git
 ```
 
 
---- after this all commands should be run under the unix account where Go related services will be running. ---
+--- after this commands should be run under the unix account where Go related services will be running. ---
 
 2. Set bootstrap path and gopath. Add the following to `~/.profile`
 
@@ -41,12 +41,16 @@ git checkout go1.13.1
 
 If you have 1 GB of RAM or less then add another 1 GB of swap so that the build can finish.
 
+
+"Log-out" (e.g. Ctrl-d) back to admin account.
 ```
 sudo fallocate -l 1G /tmp/swapfile
 sudo chmod 600 /tmp/swapfile
 sudo mkswap /tmp/swapfile
 sudo swapon /tmp/swapfile
 ```
+
+Now log back into the user account where Go related services will be running.
 
 
 6. Build new go
