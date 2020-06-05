@@ -358,6 +358,7 @@ The relevant output of `dmesg --follow` would look like this:
 
 Install BTRFS progs:
 ```
+sudo apt update
 sudo apt install btrfs-progs
 ```
 
@@ -557,6 +558,7 @@ in /etc/default/keyboard
 #### bash-completion
 
 ```
+sudo apt update
 sudo apt install bash-completion
 ```
 
