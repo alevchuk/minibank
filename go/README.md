@@ -44,7 +44,7 @@ If you have 1 GB of RAM or less then add another 1 GB of swap so that the build 
 
 "Log-out" (e.g. Ctrl-d) back to admin account.
 ```
-sudo fallocate -l 4G /tmp/swapfile  # note, in some cases 1G may also be enough
+sudo fallocate -l 2G /tmp/swapfile  # note, in some cases 1G may also be enough
 sudo chmod 600 /tmp/swapfile
 sudo mkswap /tmp/swapfile
 sudo swapon /tmp/swapfile
