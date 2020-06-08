@@ -17,22 +17,28 @@ from prometheus_client import Gauge, start_http_server
 
 METRICS_PORT = 6549
 
-LOCAL_BALANCE_GAUGE = Gauge(
-    'local_balance_sats',
-    'Amount of outbound liquidity (sats)',
-    ["remote_node"]
-)
-
-REMOTE_BALANCE_GAUGE = Gauge(
-    'remote_balance_sats',
-    'Amount of inbound liquidity (sats)',
-    ["remote_node"]
-)
-
 PUBKEY_MAP = {
     "031015a": "breez1",
     "02247d9": "lnbig26"
 }
+
+LOCAL_BALANCE_GAUGE = Gauge(
+    "local_balance_sats",
+    "Amount of outbound liquidity (sats)",
+    ["remote_node"]
+)
+
+REMOTE_BALANCE_GAUGE = Gauge(
+    "remote_balance_sats",
+    "Amount of inbound liquidity (sats)",
+    ["remote_node"]
+)
+
+NETWORK_INFO_GAUGE = Gauge(
+    "network_info",
+    "Various metrics",
+    ["metric"]
+)
 
 def getLogger(name):
     logger = logging.getLogger(name)
@@ -112,6 +118,11 @@ def main():
 
         logger.debug("total remote: {}".format(total_remote_balance))
         REMOTE_BALANCE_GAUGE.labels("total").set(total_remote_balance)
+
+        # Get Netwrok Info
+        info = json.loads(subprocess.check_output(["lncli", "getnetworkinfo"]).decode("utf-8"))
+        for metric, value in info.items():
+            NETWORK_INFO_GAUGE.labels(metric).set(value)
 
         time.sleep(5)
     
