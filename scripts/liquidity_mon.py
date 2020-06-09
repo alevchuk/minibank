@@ -124,7 +124,7 @@ def main():
         for metric, value in info.items():
             NETWORK_INFO_GAUGE.labels(metric).set(value)
 
-        time.sleep(5)
+        time.sleep(60)
     
 
 if __name__ == "__main__":
