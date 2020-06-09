@@ -9,7 +9,7 @@ if len(sys.argv) > 1 and '--testnet' in sys.argv:
 else:
   net = []
 
-date = subprocess.check_output(["date", "+%Y-%m-%dT%H:%M:%S%z"]).decode("utf-8").strip()  # shows local Timezone
+date = subprocess.check_output(["date", "+%Y-%m-%dT%H:%M:%S%Z"]).decode("utf-8").strip()  # shows local Timezone
 wallet_balance = json.loads(subprocess.check_output(["lncli", "walletbalance"]).decode("utf-8"))
 channel_balance = json.loads(subprocess.check_output(["lncli", "channelbalance"]).decode("utf-8"))
 pendingchannels = json.loads(subprocess.check_output(["lncli", "pendingchannels"]).decode("utf-8"))
@@ -55,13 +55,18 @@ if len(sys.argv) < 2 or sys.argv[1] != '--no-header':
       "Balance\t\t"
     )
 
+if balance + fees > 0:
+    pct = (fees / (balance + fees)) * 100
+else:
+    pct = 0
+
 print(
   date + \
   "\t{:,}".format(wallet + wallet_unconfirmed) + \
   "\t{:,}".format(pending) + \
   "\t{:,}".format(channel) + \
   "\t{:,}".format(fees) + \
-  "\t{:.2f}%".format((fees / (balance + fees)) * 100) + \
+  "\t{:.2f}%".format(pct) + \
   "\t{:,}".format(balance)
 )
 
