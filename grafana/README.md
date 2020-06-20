@@ -6,12 +6,12 @@ Grafana is a monitoring/analytics web interface.
 
 
 Prereqisits:
- * [Node exporter running on all nodes](https://github.com/alevchuk/minibank/blob/master/README.md#prometheus-exporters) (calculates metrics locally)
- * [Prometheus running on one of the nodes](https://github.com/alevchuk/minibank/blob/master/README.md#prometheus) (aggragetes and stores all metrics in one place)
+ * [Node exporter running on all nodes](https://github.com/alevchuk/minibank/blob/first/README.md#prometheus-exporters) (calculates metrics locally)
+ * [Prometheus running on one of the nodes](https://github.com/alevchuk/minibank/blob/first/README.md#prometheus) (aggragetes and stores all metrics in one place)
 
 
 Citations:
-* This section is based on the [officail grafana doc](https://github.com/grafana/grafana/blob/master/contribute/developer-guide.md#build-grafana)
+* This section is based on the [officail grafana doc](https://github.com/grafana/grafana/blob/first/contribute/developer-guide.md#build-grafana)
 
 
 
@@ -193,6 +193,6 @@ Follow web-ui wizard. Import dashboars:
 
 E.g. "Node Exporter Server Metrics" can show multiple nodes side-by-side:
 
-![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/img/grafana_screen_shot_2018-11-23.png "grafana monitoring dashboard using data from prometheus time-series store")
+![alt text](https://raw.githubusercontent.com/alevchuk/minibank/first/img/grafana_screen_shot_2018-11-23.png "grafana monitoring dashboard using data from prometheus time-series store")
 
 # Configure Hostnames

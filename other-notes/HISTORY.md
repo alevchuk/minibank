@@ -1,14 +1,14 @@
 # History of Minibank Models
 
 ## 2019-08-11
-![model 4](https://raw.githubusercontent.com/alevchuk/minibank/master/img/minibank-2019-08-11.jpg "minibank model 4, Pi 4, 4 GB RAM, 500GB SSD, running mainnet LND")
+![model 4](https://raw.githubusercontent.com/alevchuk/minibank/first/img/minibank-2019-08-11.jpg "minibank model 4, Pi 4, 4 GB RAM, 500GB SSD, running mainnet LND")
 
 ## 2019-? (Model 3 full node 256GB microSD cards)
-![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/img/minibank-2019-04-07.jpg "minibank model 3, 256GB microSD cards, running mainnet LND")
+![alt text](https://raw.githubusercontent.com/alevchuk/minibank/first/img/minibank-2019-04-07.jpg "minibank model 3, 256GB microSD cards, running mainnet LND")
 
 ## 2018-09-28 (Model 3)
 
-![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/img/model3_64g.jpg "minibank model 3, 64GB microSD cards, running testnet LND")
+![alt text](https://raw.githubusercontent.com/alevchuk/minibank/first/img/model3_64g.jpg "minibank model 3, 64GB microSD cards, running testnet LND")
 
 ### Model 3 :: Node at Home
 
@@ -20,7 +20,7 @@
 
 ### Model 2
 
-![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/img/model2_64gb.jpg "minibank model 2, running testnet LND")
+![alt text](https://raw.githubusercontent.com/alevchuk/minibank/first/img/model2_64gb.jpg "minibank model 2, running testnet LND")
 
 #### Hardware
 * 2x Micro SD cards https://camelcamelcamel.com/Sandisk-Ultra-200GB-Micro-Adapter/product/B073JY5T7T 

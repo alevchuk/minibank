@@ -1,9 +1,9 @@
 # minibank
 bitcoin lightning node
 
-![model 4](https://raw.githubusercontent.com/alevchuk/minibank/master/img/minibank-2020-04-10.jpg "minibank model 4, Pi 4, 4 GB RAM, 500GB SSD, running mainnet LND")
+![model 4](https://raw.githubusercontent.com/alevchuk/minibank/first/img/minibank-2020-04-10.jpg "minibank model 4, Pi 4, 4 GB RAM, 500GB SSD, running mainnet LND")
 
-* For older models see [History](https://github.com/alevchuk/minibank/blob/master/other-notes/HISTORY.md)
+* For older models see [History](https://github.com/alevchuk/minibank/blob/first/other-notes/HISTORY.md)
 * For improved reading experience use [https://alevchuk.github.io/minibank/](https://alevchuk.github.io/minibank/)
 
 Table of contents
@@ -200,7 +200,7 @@ sudo /etc/init.d/netfilter-persistent restart
 
 Connect via monitor and keyboard.
 
-1. Setup [no-incomming-connections firewall](https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#security) **before connecting to the network!** If you don't add a firewall you'll get hacked:
+1. Setup [no-incomming-connections firewall](https://github.com/alevchuk/pstm/blob/first/lnd-e2e-testing/README.md#security) **before connecting to the network!** If you don't add a firewall you'll get hacked:
 
 ```
 sudo apt install iptables-persistent
@@ -269,7 +269,7 @@ Run
 ```
 sudo /etc/init.d/netfilter-persistent restart
 ```
-8. Optionally [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/master/other-notes/wifi.md)
+8. Optionally [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/first/other-notes/wifi.md)
 9. From your laptop, use the IP from step 5 and run: `ssh pi@YOUR_IP_HERE` enter your new password
 
 ### Authorized keys
@@ -351,7 +351,7 @@ From now I will refer to these as:
 * YOUR_SSD_BLOCK_DEVICE_2
 
 The relevant output of `dmesg --follow` would look like this:
-![Block Device name lookup](https://raw.githubusercontent.com/alevchuk/minibank/master/img/block_device_name_lookup.png "Block Device name lookup")
+![Block Device name lookup](https://raw.githubusercontent.com/alevchuk/minibank/first/img/block_device_name_lookup.png "Block Device name lookup")
 
 
 ### BTRFS RAID-1 Mirror
@@ -435,7 +435,7 @@ echo 'export PATH=$HOME/bin/bin:$PATH  # bitcoind is here' >> ~/.profile
 . ~/.profile
 ```
 
-2. Follow instruction to build bitcoin: [alevchuk/minibank/bitcoin](https://github.com/alevchuk/minibank/tree/master/bitcoin)
+2. Follow instruction to build bitcoin: [alevchuk/minibank/bitcoin](https://github.com/alevchuk/minibank/tree/first/bitcoin)
 
 
 ### Start Bitcoind
@@ -674,7 +674,7 @@ ln -s /mnt/btrfs/lightning/src
 sudo apt install tor
 ```
 
- * Minibank needs tor version **0.3.3.6** or above. Fortunaly Rasiban 10 already has that. On older distos [build tor from source](https://github.com/alevchuk/minibank/tree/master/tor#build-from-source). 
+ * Minibank needs tor version **0.3.3.6** or above. Fortunaly Rasiban 10 already has that. On older distos [build tor from source](https://github.com/alevchuk/minibank/tree/first/tor#build-from-source). 
  * Minibank uses Tor for LND. Yet not for Bitcoin sync traffic because that seems to introduce delays.
 
 1. Edit `/etc/tor/torrc` 
@@ -691,7 +691,7 @@ sudo /usr/sbin/adduser lightning debian-tor
 
 
 ### Build Go
-Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/minibank/blob/master/go/)
+Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/minibank/blob/first/go/)
 
 
 ### Build LND
@@ -1197,9 +1197,9 @@ Grafana is a monitoring/analytics web interface.
 
 Warning: This is a web server, so be especially careful with security.
 
-To install and run Grafana follow [alevchuk/minibank/grafana](https://github.com/alevchuk/minibank/blob/master/grafana/README.md)
+To install and run Grafana follow [alevchuk/minibank/grafana](https://github.com/alevchuk/minibank/blob/first/grafana/README.md)
 
-![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/img/grafana_screen_shot_2018-11-23.png "grafana monitoring dashboard using data from prometheus time-series store")
+![alt text](https://raw.githubusercontent.com/alevchuk/minibank/first/img/grafana_screen_shot_2018-11-23.png "grafana monitoring dashboard using data from prometheus time-series store")
 
 
 

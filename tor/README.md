@@ -113,7 +113,7 @@ CapabilityBoundingSet=CAP_SETUID CAP_SETGID CAP_NET_BIND_SERVICE CAP_DAC_READ_SE
 # but we are using a service since targets cannot be reloaded.
 
 [Unit]
-Description=Anonymizing overlay network for TCP (multi-instance-master)
+Description=Anonymizing overlay network for TCP (multi-instance-first)
 
 [Service]
 Type=oneshot

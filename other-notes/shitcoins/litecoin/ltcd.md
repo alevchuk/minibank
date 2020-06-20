@@ -8,7 +8,7 @@ Cancelling my LTC attempt... See [README.md](README.md)
 
 # Prerequsits
 
-LND and it's dependencies need to be fetched. See https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#get-lnd--btcd
+LND and it's dependencies need to be fetched. See https://github.com/alevchuk/pstm/blob/first/lnd-e2e-testing/README.md#get-lnd--btcd
 
 # Build and Install
 
@@ -24,7 +24,7 @@ go install . ./cmd/...
 
 mkdir ~/.ltcd
 cd ~/.ltcd/
-wget https://raw.githubusercontent.com/ltcsuite/ltcd/master/sample-ltcd.conf
+wget https://raw.githubusercontent.com/ltcsuite/ltcd/first/sample-ltcd.conf
 
 diff sample-ltcd.conf ltcd.conf  # Check if you already have existing config
 mv sample-ltcd.conf ltcd.conf  # Overwrite

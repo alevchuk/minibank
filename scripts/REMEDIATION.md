@@ -1,6 +1,6 @@
 # Remediation
 
-The following is implemented in a python script as a single file with no dependencies: https://github.com/alevchuk/minibank/blob/master/scripts/remediation.py
+The following is implemented in a python script as a single file with no dependencies: https://github.com/alevchuk/minibank/blob/first/scripts/remediation.py
 
 Table of contents
 =================
@@ -15,7 +15,7 @@ Table of contents
   
 ## Issue and Cause
 
-CPU at 100%. In this state, LND times out when trying to generate or list invoices over RPC. See issue https://github.com/lightningnetwork/lnd/issues/3370 open since Aug 2019. LND `go` seems to be stuck in GC / Malloc for the ZMQ. More details on the incident in [i1](https://github.com/alevchuk/minibank/blob/master/incidents/i1.md).
+CPU at 100%. In this state, LND times out when trying to generate or list invoices over RPC. See issue https://github.com/lightningnetwork/lnd/issues/3370 open since Aug 2019. LND `go` seems to be stuck in GC / Malloc for the ZMQ. More details on the incident in [i1](https://github.com/alevchuk/minibank/blob/first/incidents/i1.md).
 
 
 ## Detection
@@ -102,7 +102,7 @@ Under the account that runs LND
 
 Download the remediation script:
 ```
-curl https://raw.githubusercontent.com/alevchuk/minibank/master/scripts/remediation.py > ./remediation.py
+curl https://raw.githubusercontent.com/alevchuk/minibank/first/scripts/remediation.py > ./remediation.py
 ```
 
 Inspect it:

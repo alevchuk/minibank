@@ -1,9 +1,9 @@
 # minibank Model 3
 bitcoin lightning node
 
-![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/img/minibank-2019-04-07.jpg "minibank model 3, 256GB microSD cards, running mainnet LND")
+![alt text](https://raw.githubusercontent.com/alevchuk/minibank/first/img/minibank-2019-04-07.jpg "minibank model 3, 256GB microSD cards, running mainnet LND")
 
-For older versions see https://github.com/alevchuk/minibank/blob/master/other-notes/HISTORY.md
+For older versions see https://github.com/alevchuk/minibank/blob/first/other-notes/HISTORY.md
 
 Table of contents
 =================
@@ -356,7 +356,7 @@ So the end goal is looks like this:
 ### BTRFS 
 
 Prerequisites: 
- * Follow instructions to upgrade kernel and build new BTRFS utility programs https://github.com/alevchuk/minibank/tree/master/btrfs
+ * Follow instructions to upgrade kernel and build new BTRFS utility programs https://github.com/alevchuk/minibank/tree/first/btrfs
 
 RAID-1
 
@@ -449,7 +449,7 @@ echo 'export PATH=$HOME/bin/bin:$PATH  # bitcoind is here' >> ~/.profile
 . ~/.profile
 ```
 
-Follow instruction to build bitcoin core: https://github.com/alevchuk/minibank/tree/master/bitcoin
+Follow instruction to build bitcoin core: https://github.com/alevchuk/minibank/tree/first/bitcoin
 
 
 ### Start Bitcoind
@@ -515,7 +515,7 @@ Prerequisites:
 * Raspbian GNU/Linux 9
 
 Citations:
-* This section is based on [golang official instructions](https://golang.org/doc/install/source) and [alevchuk/pstm](https://github.com/alevchuk/pstm/blob/master/lnd-e2e-testing/README.md#build-go)
+* This section is based on [golang official instructions](https://golang.org/doc/install/source) and [alevchuk/pstm](https://github.com/alevchuk/pstm/blob/first/lnd-e2e-testing/README.md#build-go)
 
 
 #### Setup LND environment
@@ -546,7 +546,7 @@ ln -s /mnt/btrfs_lnd/lightning/src
 ```
 
 #### Build Go
-3. Follow instrutions under https://github.com/alevchuk/minibank/blob/master/go/
+3. Follow instrutions under https://github.com/alevchuk/minibank/blob/first/go/
 
 
 
@@ -555,7 +555,7 @@ ln -s /mnt/btrfs_lnd/lightning/src
 Preprequisigtes:
 * [Build Go](#build-go)
 
-Follow https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#installing-lnd
+Follow https://github.com/lightningnetwork/lnd/blob/first/docs/INSTALL.md#installing-lnd
 
 Install package that contains `dig` utility:
 ```
@@ -976,6 +976,6 @@ Follow web-ui wizard. Import dashboards node_exporter for Grafana app store.
 E.g. "Node Exporter Server Metrics" can show multiple nodes side-by-side:
 
 
-![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/img/grafana_screen_shot_2018-11-23.png "grafana monitoring dashboard using data from prometheus time-series store")
+![alt text](https://raw.githubusercontent.com/alevchuk/minibank/first/img/grafana_screen_shot_2018-11-23.png "grafana monitoring dashboard using data from prometheus time-series store")
 
 

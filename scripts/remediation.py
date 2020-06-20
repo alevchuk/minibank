@@ -5,7 +5,7 @@ import os
 import logging
 import glob
 
-# Documentation is here https://github.com/alevchuk/minibank/blob/master/scripts/REMEDIATION.md
+# Documentation is here https://github.com/alevchuk/minibank/blob/first/scripts/REMEDIATION.md
 
 CPU_THRESHOLD_SECONDS = 0.3
 POLL_INTERVAL_SECONDS = 15

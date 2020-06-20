@@ -12,7 +12,7 @@ from prometheus_client import Gauge, start_http_server
 # A prometheus client to monitor LND inbound liquidity
 #
 # For documentation see
-# https://github.com/alevchuk/minibank/blob/master/README.md#lnd-metrics
+# https://github.com/alevchuk/minibank/blob/first/README.md#lnd-metrics
 #
 
 METRICS_PORT = 6549

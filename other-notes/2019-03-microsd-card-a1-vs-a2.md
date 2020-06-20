@@ -16,4 +16,4 @@ In my comparison A2 indeed performs better. I started bitcoind on 2 identical cl
  1. Bitcoind catch-up was faster on A2
  2. There was 2-4x higher rate of bytes being read out of the system with A2 micro-sd cards
  
- ![alt text](https://raw.githubusercontent.com/alevchuk/minibank/master/other-notes/a1-vs-a2.png "Raid-1 of 256GB microSD cards running bitcoind, A1 to A2 card class comparison")
+ ![alt text](https://raw.githubusercontent.com/alevchuk/minibank/first/other-notes/a1-vs-a2.png "Raid-1 of 256GB microSD cards running bitcoind, A1 to A2 card class comparison")
