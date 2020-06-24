@@ -21,7 +21,6 @@ Citations:
 sudo adduser --disabled-password grafana
 sudo apt install -y debootstrap schroot
 
-sudo apt install -y debootstrap schroot
 cat << EOF | sudo tee /etc/schroot/chroot.d/pi64
 [pi64]
 description=builds that need 64-bit environment
