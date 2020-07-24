@@ -3,12 +3,12 @@ bitcoin lightning node
 
 ![model 4](https://raw.githubusercontent.com/alevchuk/minibank/first/img/minibank-2020-04-10.jpg "minibank model 4, Pi 4, 4 GB RAM, 500GB SSD, running mainnet LND")
 
-* For older models see [History](https://github.com/alevchuk/minibank/blob/first/other-notes/HISTORY.md)
-* For improved reading experience use [https://alevchuk.github.io/minibank/](https://alevchuk.github.io/minibank/)
+For older models see [History](https://github.com/alevchuk/minibank/blob/first/other-notes/HISTORY.md). For improved reading experience use [https://alevchuk.github.io/minibank/](https://alevchuk.github.io/minibank/)
 
 Table of contents
 =================
 
+  * [About](#about)
   * [Hardware](#hardware)
   * [Operating System](#operating-system)
   * [Heat](#heat)
@@ -40,6 +40,23 @@ Table of contents
     * Failed SSD drive
     * Temporary connection failure to SSD drive 
  
+## About
+
+Minibank is a HOWTO for building a Lighthing Netwrok node from scratch. Limited set of features: 
+* Components are built from source code
+* Mirror Raid with 2 exteranl storage devices
+* Development environment (CLI only) 
+* Monitoring
+
+Comparison to alternatives, it the order of difficulty of use:
+1. Minibank - for technically advanced users, aims to increase security by limiting surface area (less add-ons)
+2. RaspiBlitz - for technically interested / "geeky" users, building projects, trying stuff out, tinkering
+3. RoninDojo - **no lightning**, for privacy focused users, maximally focused on Samourai Wallet's Dojo
+4. nodl - for less technical users that still want improved security, e.g. merchants
+5. nodl DOJO - for privacy focused users, Lightning lnd is available as a 1-click install 
+6. mynode - for non-technical users, works out of the box, web interface prioritized
+
+
 ## Hardware
 
 ### Model 4 :: Node at Home
