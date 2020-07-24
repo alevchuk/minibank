@@ -42,7 +42,8 @@ Table of contents
  
 ## About
 
-Minibank is a HOWTO for building a Lighthing Netwrok node from scratch. Limited set of features: 
+Minibank is a HOWTO for building a Lighthing Netwrok node from scratch
+* Limited set of features: bitcoind, lnd, tor 
 * Components are built from source code
 * Mirror Raid with 2 exteranl storage devices
 * Development environment (CLI only) 
