@@ -1,9 +1,19 @@
-NOTE: work in progress, starting 2020-09-12
+# Minibank - Lindy Edition
+
+NOTE: work in progress, doc started on 2020-09-12
+
+Instructions on how to install the same hardware and software as https://github.com/alevchuk/minibank yet on Slackware operating system. The adavantage of Slackware is it's design phelosophy of keeping packages simple with as little modifications to upstream as possible.
 
 
-# install Slackware
+Minibank currently uses the Rasbian operating system, however setting it up on Slackware would provide several advantages:
+- Native 64-bit operating system
+- No middleman for OS distribution (Debian -> Rasbian) - reduces changes of supply chain attacks
+- Focus on simplicity. E.g. less packages and less changes, resulting in a smaller to [Slacker Security Advisory](http://www.slackware.com/security/list.php?l=slackware-security&y=2020) as compared to [Debian Security Advisory](https://www.debian.org/security/2020/)
 
-## follow official instructions
+
+## install Slackware
+
+follow official instructions
 
 https://docs.slackware.com/howtos:hardware:arm:raspberrypi4
 
