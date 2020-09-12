@@ -7,7 +7,10 @@ NOTE: work in progress, starting 2020-09-12
 
 https://docs.slackware.com/howtos:hardware:arm:raspberrypi4
 
-1. In step 3 (putting Slackware ARM mini root file system in the SD Card), here is small modification to the script that makes things safer (by using /dev/sda2 instaed your root disk, enable error checking in bash):
+
+Here are small modification to the script that makes things safer (by using /dev/sda2 instaed your root disk, enable error checking in bash)
+ 
+* In step 2 (Put the Raspberry Pi firmware in the SD Card):
 ```
 #!/bin/bash
 
@@ -16,9 +19,31 @@ set -o
 set -u
 set -x
 
+mkdir -p ~/mnt
+
+git clone https://github.com/raspberrypi/firmware.git
+sudo mount /dev/sda1 ~/mnt
+sudo cp -r firmware/boot/* ~/mnt
+sudo umount ~/mnt
+sudo mount /dev/sda2 ~/mnt
+sudo mkdir -p ~/mnt/lib/modules
+sudo cp -r firmware/modules/* ~/mnt/lib/modules
+sudo umount ~/mnt
+```
+
+
+* In step 3 (putting Slackware ARM mini root file system in the SD Card),:
+```
+#!/bin/bash
+
+set -e
+set -o
+set -u
+set -x
+
+mkdir -p ~/mnt
 
 wget -c ftp://ftp.arm.slackware.com/slackwarearm/slackwarearm-devtools/minirootfs/roots/slack-14.2-miniroot_01Jul16.tar.xz
-mkdir -p ~/mnt
 mount /dev/sda2 ~/mnt
 tar -C ~/mnt -xf slack-14.2-miniroot_01Jul16.tar.xz
 echo "/dev/sda2 /boot vfat defaults 0 0" | sudo tee ~/mnt/etc/fstab
