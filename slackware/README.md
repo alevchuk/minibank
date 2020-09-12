@@ -24,7 +24,7 @@ tar -C ~/mnt -xf slack-14.2-miniroot_01Jul16.tar.xz
 echo "/dev/sda2 /boot vfat defaults 0 0" | sudo tee ~/mnt/etc/fstab
 echo "/dev/sda2 /     ext4 defaults 0 0" | sudo tee -a ~/mnt/etc/fstab
 echo "proc           /proc proc defaults 0 0" | sudo tee -a ~/mnt/etc/fstab
-PASSWD=$(openssl passwd -1 -salt cetkq/enZx6/c2 password)
+PASSWD=$(openssl passwd -1 -salt cetkq/enZx6/c2 password_goes_here)
 sed -i "s|\(root:\).*\(:16983:0:::::\)|\1${PASSWD}\2|" ~/mnt/etc/shadow
 sed -i 's|USE_DHCP\[1\]=""|USE_DHCP\[1\]="yes"|' ~/mnt/etc/rc.d/rc.inet1.conf
 echo "PermitRootLogin yes" | sudo tee -a ~/mnt/etc/ssh/sshd_config
