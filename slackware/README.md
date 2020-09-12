@@ -11,7 +11,7 @@ https://docs.slackware.com/howtos:hardware:arm:raspberrypi4
 Here are small modification to the script that makes things safer (by using /dev/sda2 instaed your root disk, enable error checking in bash)
  
 * In step 2 (Put the Raspberry Pi firmware in the SD Card):
-```
+```bash
 #!/bin/bash
 
 set -e
@@ -33,7 +33,7 @@ sudo umount ~/mnt
 
 
 * In step 3 (putting Slackware ARM mini root file system in the SD Card),:
-```
+```bash
 #!/bin/bash
 
 set -e
