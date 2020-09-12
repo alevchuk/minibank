@@ -7,8 +7,7 @@ NOTE: work in progress, starting 2020-09-12
 
 https://docs.slackware.com/howtos:hardware:arm:raspberrypi4
 
-a small modification to the script for putting Slackware ARM mini root file system in the SD Card:
-
+1. A small modification to the script for putting Slackware ARM mini root file system in the SD Card:
 ```
 #!/bin/bash
 
@@ -32,3 +31,4 @@ echo "PermitRootLogin yes" | sudo tee -a ~/mnt/etc/ssh/sshd_config
 umount ~/mnt
 ```
 
+2. Set the temparary password (PASSWD) to something unique for good measure.
