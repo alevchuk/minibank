@@ -7,7 +7,7 @@ NOTE: work in progress, starting 2020-09-12
 
 https://docs.slackware.com/howtos:hardware:arm:raspberrypi4
 
-1. A small modification to the script for putting Slackware ARM mini root file system in the SD Card:
+1. In step 3 (putting Slackware ARM mini root file system in the SD Card), here is small modification to the script that makes things safer (by using /dev/sda2 instaed your root disk, enable error checking in bash):
 ```
 #!/bin/bash
 
