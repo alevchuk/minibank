@@ -1,4 +1,4 @@
-# Minibank - Lindy Edition
+# Minibank on Slackware
 
 NOTE: work in progress, doc started on 2020-09-12
 
@@ -11,9 +11,9 @@ Minibank currently uses the Rasbian operating system, however setting it up on S
 - Focus on simplicity. E.g. less packages and less changes, resulting in a smaller to [Slacker Security Advisory](http://www.slackware.com/security/list.php?l=slackware-security&y=2020) as compared to [Debian Security Advisory](https://www.debian.org/security/2020/)
 
 
-## Install Slackware
+## Install Slackware (without a Raspbian image)
 
-Follow official instructions: https://docs.slackware.com/howtos:hardware:arm:raspberrypi4
+Follow official instructions: https://docs.slackware.com/howtos:hardware:arm:raspberrypi4#manual_install_method_without_a_raspbian_image
 
 Here are small modification to the script that makes things safer (by using /dev/sda2 instaed your root disk, enable error checking in bash)
  
