@@ -11,12 +11,9 @@ Minibank currently uses the Rasbian operating system, however setting it up on S
 - Focus on simplicity. E.g. less packages and less changes, resulting in a smaller to [Slacker Security Advisory](http://www.slackware.com/security/list.php?l=slackware-security&y=2020) as compared to [Debian Security Advisory](https://www.debian.org/security/2020/)
 
 
-## install Slackware
+## Install Slackware
 
-follow official instructions
-
-https://docs.slackware.com/howtos:hardware:arm:raspberrypi4
-
+Follow official instructions: https://docs.slackware.com/howtos:hardware:arm:raspberrypi4
 
 Here are small modification to the script that makes things safer (by using /dev/sda2 instaed your root disk, enable error checking in bash)
  
