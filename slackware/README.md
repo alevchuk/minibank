@@ -53,8 +53,8 @@ mkdir -p ~/mnt
 wget -c ftp://ftp.arm.slackware.com/slackwarearm/slackwarearm-devtools/minirootfs/roots/slack-14.2-miniroot_01Jul16.tar.xz
 sudo mount /dev/sda2 ~/mnt
 sudo tar -C ~/mnt -xf slack-14.2-miniroot_01Jul16.tar.xz
-echo "/dev/sda2 /boot vfat defaults 0 0" | sudo tee ~/mnt/etc/fstab
-echo "/dev/sda2 /     ext4 defaults 0 0" | sudo tee -a ~/mnt/etc/fstab
+echo "/dev/mmcblk0p1 /boot vfat defaults 0 0" | sudo tee ~/mnt/etc/fstab
+echo "/dev/mmcblk0p2 /     ext4 defaults 0 0" | sudo tee -a ~/mnt/etc/fstab
 echo "proc           /proc proc defaults 0 0" | sudo tee -a ~/mnt/etc/fstab
 PASSWD=$(openssl passwd -1 -salt cetkq/enZx6/c2 temporary_password_goes_here)
 sudo sed -i "s|\(root:\).*\(:16983:0:::::\)|\1${PASSWD}\2|" ~/mnt/etc/shadow
