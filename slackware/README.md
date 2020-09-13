@@ -40,6 +40,7 @@ sudo umount ~/mnt
 
 
 * In step 3 (putting Slackware ARM mini root file system in the SD Card),:
+  1. Set the temparary password (PASSWD) to something unique for good measure.
 ```bash
 #!/bin/bash
 
@@ -62,5 +63,3 @@ sudo sed -i 's|USE_DHCP\[1\]=""|USE_DHCP\[1\]="yes"|' ~/mnt/etc/rc.d/rc.inet1.co
 echo "PermitRootLogin yes" | sudo tee -a ~/mnt/etc/ssh/sshd_config
 sudo umount ~/mnt
 ```
-
-2. Set the temparary password (PASSWD) to something unique for good measure.
