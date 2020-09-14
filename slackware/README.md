@@ -63,3 +63,5 @@ sudo sed -i 's|USE_DHCP\[1\]=""|USE_DHCP\[1\]="yes"|' ~/mnt/etc/rc.d/rc.inet1.co
 echo "PermitRootLogin yes" | sudo tee -a ~/mnt/etc/ssh/sshd_config
 sudo umount ~/mnt
 ```
+
+* TODO: Somewhere in between steps 2 and 3, figure out a way to install "screen" because step 3 takes a long time and you could get disconnected.
