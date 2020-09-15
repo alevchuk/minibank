@@ -85,7 +85,6 @@ adduser pi
 * add `sudo:x:1000:pi` at the end of the file
 
 3. Give sudo to user
-* create sudoers group
 * run `visudo` and uncomment sudoers part, add "NOPASSWD:" so you don't have to retype password every time
 
 
