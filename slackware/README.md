@@ -15,7 +15,7 @@ Minibank currently uses the Rasbian operating system, however setting it up on S
 
 Follow official instructions: https://docs.slackware.com/howtos:hardware:arm:raspberrypi4#manual_install_method_without_a_raspbian_image
 
-Here are small modification to the script that makes things safer (by using /dev/sda2 instaed your root disk, enable error checking in bash)
+Here are small modification to the script that makes things safer (by using /dev/sda2 instead your root disk, enable error checking in bash)
  
 * In step 2 (Put the Raspberry Pi firmware in the SD Card):
 ```bash
@@ -40,7 +40,7 @@ sudo umount ~/mnt
 
 
 * In step 3 (putting Slackware ARM mini root file system in the SD Card),:
-  1. Set the temparary password (PASSWD) to something unique for good measure.
+  1. Set the temporary password (PASSWD) to something unique for good measure.
 ```bash
 #!/bin/bash
 
@@ -79,7 +79,7 @@ ln -s /usr/bin/vim /usr/bin/vi
 2. Run `slackpkg update gpg`
 3. Run `slackpkg update`
 
-Instuctions on how to use package managers are here https://docs.slackware.com/slackware:slackpkg
+Instructions on how to use package managers are here https://docs.slackware.com/slackware:slackpkg
 
 # Create user
 
