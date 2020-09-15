@@ -128,7 +128,7 @@ COMMIT
 ```
 
 
-2. Generate firewall script form here http://www.slackware.com/~alien/efg/ (be warned, it's not HTTPS)
+2. Generate firewall script form here http://www.slackware.com/~alien/efg/ (be warned, it's not HTTPS) make sure to add "Allow Inbound Services" -> SSH
 or just use the copy of the script provided bellow
 
 3. Run `sudo vi /etc/rc.d/rc.firewal`
