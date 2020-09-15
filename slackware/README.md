@@ -129,7 +129,12 @@ COMMIT
 
 
 2. Generate firewall script form here http://www.slackware.com/~alien/efg/ (be warned, it's not HTTPS)
-or just use this
+or just use the copy of the script provided bellow
+
+3. Run `sudo vi /etc/rc.d/rc.firewal`
+4. Paste the script
+5. `sudo chmod +x /etc/rc.d/rc.firewall`
+
 ```bash
 #!/bin/sh
 #
