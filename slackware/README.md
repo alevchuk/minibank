@@ -73,6 +73,14 @@ rm /usr/bin/vi
 ln -s /usr/bin/vim /usr/bin/vi
 ```
 
+# Update
+
+1. Uncomment a single URL in the file `/etc/slackpkg/mirrors`
+2. Run `slackpkg update gpg`
+3. Run `slackpkg update`
+
+Instuctions on how to use package managers are here https://docs.slackware.com/slackware:slackpkg
+
 # Create user
 
 1. New user
