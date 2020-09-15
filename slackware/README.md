@@ -130,7 +130,7 @@ COMMIT
 
 2. Generate firewall script form here http://www.slackware.com/~alien/efg/ (be warned, it's not HTTPS)
 or just use this
-```
+```bash
 #!/bin/sh
 #
 # Generated iptables firewall script for the Linux 2.4 kernel and later.
