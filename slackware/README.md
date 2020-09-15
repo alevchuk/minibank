@@ -641,6 +641,9 @@ $IPT -A udp_outbound -p UDP -s 0/0 -j ACCEPT
 # system/gateway.  Use with care.  It defaults to none.
 # It's applied on INPUT from the external or Internet interface.
 
+# sshd
+$IPT -A tcp_inbound -p TCP -s 0/0 --destination-port 22 -j ACCEPT
+
 
 # Not matched, so return so it will be logged
 $IPT -A tcp_inbound -p TCP -j RETURN
