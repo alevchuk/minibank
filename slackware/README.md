@@ -105,3 +105,24 @@ adduser pi
 
 1. Run `sudo  vipw -s`
 2. Replace `root:something_is_here:` with `root:*:`
+
+
+# Firewall
+
+1. Run
+```
+sudo mkdir /etc/sysconfig
+sudo vi /etc/sysconfig/iptables
+```
+and copy-paste the following
+```
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i lo -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
+-A INPUT -p tcp --dport 22 -j ACCEPT
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+COMMIT
+```
