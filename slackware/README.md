@@ -65,3 +65,28 @@ sudo umount ~/mnt
 ```
 
 * TODO: Somewhere in between steps 2 and 3, figure out a way to install "screen" because step 3 takes a long time and you could get disconnected.
+
+# Enable vi
+
+```
+rm /usr/bin/vi
+ln -s /usr/bin/vim /usr/bin/vi
+```
+
+# Create user
+
+1. New user
+```
+adduser pi
+```
+
+2. Create sudoers group
+* run `vigr`
+* add "sudo:x:1000:pi"
+
+3. Give sudo to user
+* create sudoers group
+* run `visudo` and uncomment sudoers part, add "NOPASSWD:" so you don't have to retype password every time
+
+
+
