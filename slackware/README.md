@@ -96,4 +96,12 @@ adduser pi
 * run `visudo` and uncomment sudoers part, add "NOPASSWD:" so you don't have to retype password every time
 
 
+# Disable SSH root login
 
+1. Run `sudo vi /etc/ssh/sshd_config` and comment out `PermitRootLogin yes`
+2. Run `sudo /etc/rc.d/rc.sshd restart`
+
+# Remove root password
+
+1. Run `sudo  vipw -s`
+2. Replace `root:something_is_here:` with `root:*:`
