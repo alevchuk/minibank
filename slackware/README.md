@@ -134,6 +134,9 @@ or just use the copy of the script provided bellow
 3. Run `sudo vi /etc/rc.d/rc.firewal`
 4. Paste the script
 5. `sudo chmod +x /etc/rc.d/rc.firewall`
+6. `sudo /etc/rc.d/rc.firewall restore`
+7. Check with `sudo iptables-save`
+8. Reboot and check again
 
 ```bash
 #!/bin/sh
