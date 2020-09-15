@@ -82,7 +82,7 @@ adduser pi
 
 2. Create sudoers group
 * run `vigr`
-* add "sudo:x:1000:pi"
+* add `sudo:x:1000:pi` at the end of the file
 
 3. Give sudo to user
 * create sudoers group
