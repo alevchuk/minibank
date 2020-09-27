@@ -128,8 +128,12 @@ COMMIT
 ```
 
 
-2. Generate firewall script form here http://www.slackware.com/~alien/efg/ (be warned, it's not HTTPS) make sure to add "Allow Inbound Services" -> SSH
-or just use the copy of the script provided bellow
+2. Generate firewall script form here http://www.slackware.com/~alien/efg/ (be warned, it's not HTTPS).
+
+You can just use the copy of the script provided bellow.
+
+The script provided bellow is a truncated copy on the ~alien/efg script. With a modification to have "start" and "restore" be the same thing. If you want to use the original version that has a more complicated "start" function, make sure to add "Allow Inbound Services" -> SSH
+
 
 3. Run `sudo vi /etc/rc.d/rc.firewal`
 4. Paste the script
