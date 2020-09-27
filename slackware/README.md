@@ -132,7 +132,7 @@ COMMIT
 
 You can just use the copy of the script provided bellow.
 
-The script provided bellow is a truncated copy on the ~alien/efg script. With a modification to have "start" and "restore" be the same thing. If you want to use the original version that has a more complicated "start" function, make sure to add "Allow Inbound Services" -> SSH
+The script provided bellow is a truncated copy on the ~alien/efg script with a modification to have "start" and "restore" be the same thing. If you want to use the original version that has a more complicated "start" function, make sure to add "Allow Inbound Services" -> SSH
 
 
 3. Run `sudo vi /etc/rc.d/rc.firewal`
