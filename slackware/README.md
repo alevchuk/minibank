@@ -412,7 +412,7 @@ make clean && make && make install
 before building bitcoin, run
 ```
 cd ~/src/bitcoin
-./configure  --with-gui=no --disable-wallet --disable-tests --prefix=$HOME/bin  
+./configure  --with-gui=no --disable-wallet --disable-tests --prefix=$HOME/bin   LDFLAGS=-L/home/bitcoin/bin/libzmq/lib/ CPPFLAGS=-I/home/bitcoin/bin/libzmq/include/
 ```
 
 
