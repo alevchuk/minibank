@@ -389,3 +389,17 @@ Same as https://github.com/alevchuk/minibank#authorized-keys
 Same as https://github.com/alevchuk/minibank#btrfs-raid-1-mirror
 yet no need to istall anything (skip the `apt` commands)
 
+# Software
+
+## Build Bitcoind
+
+Create bitcoin user unix account
+```
+sudo /usr/sbin/useradd --system bitcoin
+```
+
+the rest is same as https://github.com/alevchuk/minibank#build-bitcoind
+
+
+
+
