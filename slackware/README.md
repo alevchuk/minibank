@@ -404,8 +404,15 @@ sudo su -l bitcoin
 cd ~/src
 git clone https://github.com/zeromq/libzmq.git
 ./autogen.sh
-./configure
+./configure --prefix ~/bin/libzmq
 make clean && make && make install
+```
+
+
+before building bitcoin, run
+```
+cd ~/src/bitcoin
+./configure  --with-gui=no --disable-wallet --disable-tests --prefix=$HOME/bin  
 ```
 
 
