@@ -377,3 +377,15 @@ else
     $SYSCTL net.ipv4.conf.all.log_martians="1"
 fi
 ```
+
+
+# Authorized SSH keys
+
+Same as https://github.com/alevchuk/minibank#authorized-keys
+
+
+# Storage (RAID-0)
+
+Same as https://github.com/alevchuk/minibank#btrfs-raid-1-mirror
+yet no need to istall anything (skip the `apt` commands)
+
