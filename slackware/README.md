@@ -2,7 +2,7 @@
 
 NOTE: work in progress, doc started on 2020-09-12
 
-UPDATE 2020-09-29: Not able to build. Likely because binaries are not 64-bit. https://github.com/bitcoin/bitcoin/issues/20038 - likely going to have to do this cross compilation https://docs.slackware.com/howtos:hardware:arm:gcc-9.x_aarch64_cross-compiler
+UPDATE 2020-09-29: Not able to build bitcoin https://github.com/bitcoin/bitcoin/issues/20038 . Likely because binaries are not 64-bit and going to have to do this cross compilation https://docs.slackware.com/howtos:hardware:arm:gcc-9.x_aarch64_cross-compiler
 
 Instructions on how to install the same hardware and software as https://github.com/alevchuk/minibank yet on Slackware operating system. The advantage of Slackware is it's design philosophy of keeping packages simple with as little modifications to upstream as possible.
 
