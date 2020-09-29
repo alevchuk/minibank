@@ -1,12 +1,12 @@
 # Minibank on Slackware
 
 NOTE: work in progress, doc started on 2020-09-12
+UPDATE 2020-09-29: Not able to build. Likely because binaries are not 64-bit. https://github.com/bitcoin/bitcoin/issues/20038 - likely going to have to do this cross compilation https://docs.slackware.com/howtos:hardware:arm:gcc-9.x_aarch64_cross-compiler
 
-Instructions on how to install the same hardware and software as https://github.com/alevchuk/minibank yet on Slackware operating system. The adavantage of Slackware is it's design phelosophy of keeping packages simple with as little modifications to upstream as possible.
+Instructions on how to install the same hardware and software as https://github.com/alevchuk/minibank yet on Slackware operating system. The advantage of Slackware is it's design philosophy of keeping packages simple with as little modifications to upstream as possible.
 
 
 Minibank currently uses the Rasbian operating system, however setting it up on Slackware would provide several advantages:
-- Native 64-bit operating system
 - No middleman for OS distribution (Debian -> Rasbian) - reduces changes of supply chain attacks
 - Focus on simplicity. E.g. less packages and less changes, resulting in a smaller to [Slacker Security Advisory](http://www.slackware.com/security/list.php?l=slackware-security&y=2020) as compared to [Debian Security Advisory](https://www.debian.org/security/2020/)
 
@@ -422,7 +422,7 @@ sudo make install
 ```
 
 the rest is same as https://github.com/alevchuk/minibank/tree/first/bitcoin 
-yet no need to istall anything (skip the `apt` commands)
+yet no need to install anything (skip the `apt` commands)
 
 make sure the output of bitcoin `configure` returns `with zmq      = yes`
 
