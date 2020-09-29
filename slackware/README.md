@@ -415,8 +415,11 @@ cd ~bitcoin/src/libzmq
 sudo make install
 ```
 
-the rest is same as https://github.com/alevchuk/minibank#build-bitcoind
+the rest is same as https://github.com/alevchuk/minibank/tree/first/bitcoin 
 yet no need to istall anything (skip the `apt` commands)
 
 make sure the output of bitcoin `configure` returns `with zmq      = yes`
 
+## Start bitcoin
+
+Same as https://github.com/alevchuk/minibank#start-bitcoind
