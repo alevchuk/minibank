@@ -399,9 +399,9 @@ sudo /usr/sbin/useradd --system bitcoin
 ```
 
 Setup symlinks:
-```
+
 https://github.com/alevchuk/minibank#build-bitcoind
-```
+
 (don't proceed to build yet, just the symlinks for now)
 
 Build and install libzmq
