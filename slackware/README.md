@@ -398,26 +398,20 @@ Create bitcoin user unix account
 sudo /usr/sbin/useradd --system bitcoin
 ```
 
-Build libzmq
+Build and install libzmq
 ```
 sudo su -l bitcoin
 cd ~/src
 git clone https://github.com/zeromq/libzmq.git
+git checkout v4.3.3
+
 ./autogen.sh
-./configure --prefix ~/bin/libzmq
-make clean && make && make install
+./configure
+make clean && make && sudo make install
 ```
-
-
-before building bitcoin, run
-```
-cd ~/src/bitcoin
-./configure  --with-gui=no --disable-wallet --disable-tests --prefix=$HOME/bin   LDFLAGS=-L/home/bitcoin/bin/libzmq/lib/ CPPFLAGS=-I/home/bitcoin/bin/libzmq/include/
-```
-
 
 the rest is same as https://github.com/alevchuk/minibank#build-bitcoind
 yet no need to istall anything (skip the `apt` commands)
 
-
+make sure the output of bitcoin `configure` returns `with zmq      = yes`
 
