@@ -407,7 +407,12 @@ git checkout v4.3.3
 
 ./autogen.sh
 ./configure
-make clean && make && sudo make install
+make clean && make
+
+logout
+
+cd ~bitcoin/src/libzmq
+sudo make install
 ```
 
 the rest is same as https://github.com/alevchuk/minibank#build-bitcoind
