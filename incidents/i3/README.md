@@ -16,7 +16,7 @@ Elevated gossip chatter was causing many `channelUpdate` events. It appears that
 
 Looks like the team is focusing on preventing this incident by filtering out gossip chatter that is not interesting to nodes. Network events like "Zombie channels" with no heartbeat yet generating a lot of `channelUpdate` events gossip are suspected to be the primary source of the observerd behaviour.
 
-I think this may not be the most effective prevention for this incident for reasons which I'll explain in the next section "O(1) vs O(N) I/O", yet the of course team is free to prioritize as they see fit. I admit that there are probably additional objectives and constraints that are not obvious from the outside.
+I think this may not be the most effective prevention for this incident for reasons which I'll explain in the next section "O(1) vs O(N) I/O", yet of course team is free to prioritize as they see fit. I admit that there are probably additional objectives and constraints that are not obvious from the outside.
 
 
 ## Proposal: O(1) vs O(N) I/O
