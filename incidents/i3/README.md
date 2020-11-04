@@ -1,4 +1,4 @@
-# LND iowait 100%
+# Incident i3: LND iowait 100%
 
 ## Investigation
 https://github.com/lightningnetwork/lnd/issues/4689
