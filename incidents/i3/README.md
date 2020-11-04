@@ -2,11 +2,11 @@
 
 ## Investigation
 https://github.com/lightningnetwork/lnd/issues/4689
-high write load on hdd
+"high write load on hdd"
 
 ## Follow up
 https://github.com/lightningnetwork/lnd/issues/4724
-discovery: investigate node/channel level channel update throttling
+"discovery: investigate node/channel level channel update throttling"
 
 ## Root-cause
 
