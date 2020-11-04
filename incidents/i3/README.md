@@ -6,14 +6,14 @@ https://github.com/lightningnetwork/lnd/issues/4689
 
 Elevated gossip chatter was causing many `channelUpdate` events. It appears that channelUpdates are flushed to disk is a way that amount I/O is proportional to the amount of `channelUpdate` events.
 
-## Prevention
+## Current prevention plan
 
 Looks like the team is focusing a a prevent for this by filtering out gossip chatter that is not interesting to nodes. "Zombie channels" with no heartbeat yet generating a lot of `channelUpdate` events gossip are suspected.
 
 I think this may not be the most effective prevention for this incident for reasons which I'll explain in the next section "O(1) vs O(N) I/O", yet the of course team is free to prioritize as they see fit. I admint that there are probably additional objectives and constraints that are not obvious from the outside.
 
 
-## O(1) vs O(N) I/O
+## Proposal: O(1) vs O(N) I/O
 
 [Memory access in 50x to 500x faster than SSD disk access](https://www.quora.com/Is-the-speed-of-SSD-and-RAM-the-same/answer/Gediz-Gursu). Even without filtering gossip keeping the network topology of channels updates in memory only would not cause a this incident. The issue arises when network topology updates are persisted from memory to disk.
 
