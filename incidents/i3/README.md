@@ -10,7 +10,7 @@ https://github.com/lightningnetwork/lnd/issues/4724
 
 ## Root-cause
 
-Elevated gossip chatter was causing many `channelUpdate` events. It appears that channelUpdates are flushed to disk is a way that amount I/O is proportional to the amount of `channelUpdate` events.
+Elevated gossip chatter was causing many `channelUpdate` events. It appears that channelUpdates are flushed to disk in a way that make the amount of I/O proportional to the amount of `channelUpdate` events.
 
 ## Current prevention plan
 
