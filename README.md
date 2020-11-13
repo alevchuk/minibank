@@ -362,9 +362,10 @@ WARNING: any data in the SSD drives will be deleted.
 
 Run `sudo dmesg --follow` and un-plung/re-plug the external SSD drives one by one.
 
-Look for "sd" followed by a small english letter. Write that down.
+1. Look for "sd" followed by a lowercase english letter. Write that down.
+2. Label "sd" followed the lowercase on the storage device that was re-plugged last.
 
-Also write down which drive it belongs to.
+NOTE: it's important to label the storage devices in case one of them fails and you'll need to know which one to replace. 
 
 From now I will refer to these as:
 * YOUR_SSD_BLOCK_DEVICE_1
