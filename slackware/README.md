@@ -1,6 +1,7 @@
 # Minibank on Slackware
 
-NOTE: work in progress, doc started on 2020-09-12
+NOTE (2020-09-12): Work in progress, doc started
+NOTE (2020-11-22): Whis work is not finished and not clear if this would even work. I did not go far enough to know for sure it this will work.
 
 UPDATE 2020-09-29: Not able to build bitcoin https://github.com/bitcoin/bitcoin/issues/20038 . Likely because binaries are not 64-bit and have to do this cross compilation https://docs.slackware.com/howtos:hardware:arm:gcc-9.x_aarch64_cross-compiler to get to 64-bit
 
