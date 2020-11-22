@@ -56,6 +56,7 @@ Comparison to alternatives, it the order of difficulty of use:
 4. nodl - for less technical users that still want improved security, e.g. merchants
 5. nodl DOJO - for privacy focused users, Lightning lnd is available as a 1-click install 
 6. mynode - for non-technical users, works out of the box, web interface prioritized
+7. embassy - operating by start9labs, no need to even have a laptop/desktop, designed so that grandma would be able to run Lighting and other self-hosted apps
 
 
 ## Hardware
