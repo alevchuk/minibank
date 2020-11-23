@@ -247,7 +247,7 @@ Now the output of `sudo iptables-save` should look like this:
 -A OUTPUT -o lo -j ACCEPT
 COMMIT
 ```
-2. Changed the password in `rspi-config`. Select: **Change Password** If you don't change the password you'll get hacked.
+2. Changed the password. Run `sudo raspi-config`. Select: **Change Password** If you don't change the password you'll get hacked.
 3. Connect enthernet cable
 4. Update the system: `sudo apt-get update; sudo apt-get upgrade;`. If you don't upgrade you'll get hacked.
 5. Write down your IP adress. To look it up run `ifconfig`
