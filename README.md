@@ -321,6 +321,14 @@ HiddenServicePort 22 127.0.0.1:22
 sudo systemctl restart tor@default.service
 ```
 
+21. Reveal the hidden hostname
+```
+cat /var/lib/tor/hidden_service/hostname
+```
+write it down in a safe place
+
+22.
+
 
 15. Write down your IP adress. To look it up run `sudo ifconfig`
 17. Allow SSH in the firewall `sudo vi /etc/iptables/rules.v4` then add "Allow SSH" line so it's like this:
