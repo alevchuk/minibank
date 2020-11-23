@@ -186,12 +186,12 @@ Run:
 sudo mkdir /etc/iptables
 ```
 
-Edit /etc/iptables/rules.v4 ith your favourite command-line text editor, e.g. `vi`  
+2. Edit /etc/iptables/rules.v4 ith your favourite command-line text editor, e.g. `vi`  
 ```
 sudo vi /etc/iptables/rules.v4
 ```
 
-Now type the following in the editor, save and exit.
+4. Now type the following in the editor, save and exit.
 
 ```
 *filter
@@ -204,13 +204,22 @@ Now type the following in the editor, save and exit.
 COMMIT
 ```
 
-Copy to IPv6 (same rules):
+5. Edit IPv6 rules
 ```
-sudo cp /etc/iptables/rules.v4 /etc/iptables/rules.v6
+sudo vi /etc/iptables/rules.v6
 ```
 
+6. Now type the following in the editor, save and exit.
 
-Edit **/etc/default/keyboard** (When attaching with Monitor and a US Keyboard, you may find that your not able to type things like "|". This is not a problem when going over SSH.)
+```
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT DROP [0:0]
+COMMIT
+```
+
+7. Edit **/etc/default/keyboard** (When attaching with Monitor and a US Keyboard, you may find that your not able to type things like "|". This is not a problem when going over SSH.)
 
 Replace 
 ```
@@ -223,12 +232,12 @@ XKBMODEL="pc104"
 XKBLAYOUT="us"
 ```
 
-Reboot:
+8. Reboot:
 ```
 sudo reboot
 ```
 
-Now run:
+9. Now run:
 
 ```
 cat /etc/iptables/rules.v4 | sudo iptables-restore
@@ -248,23 +257,22 @@ Now the output of `sudo iptables-save` should look like this:
 -A OUTPUT -o lo -j ACCEPT
 COMMIT
 ```
-2. Changed the password. Run `sudo raspi-config`. Select: **Change Password** If you don't change the password you'll get hacked.
-3. Connect enthernet cable
-4. Update the system: `sudo apt-get update; sudo apt upgrade;`. If you don't upgrade you'll get hacked.
-5. Write down your IP adress. To look it up run `ifconfig`
-6. Enable remote login over SSH. Run `rspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
-
-7. Make firewall persistent:
+10. Changed the password. Run `sudo raspi-config`. Select: **Change Password** If you don't change the password you'll get hacked.
+11. Connect enthernet cable
+12. Update the system: `sudo apt-get update; sudo apt upgrade;`. If you don't upgrade you'll get hacked.
+13. Make firewall persistent:
 ```
 sudo apt install iptables-persistent
 sudo iptables-save  # show current rules
 
 sudo /etc/init.d/netfilter-persistent restart
 ```
-8. Reboot Pi
 
+14. Reboot Pi
 
-9. Allow SSH in the firewall `sudo vi /etc/iptables/rules.v4` then add "Allow SSH" line so it's like this:
+15. Write down your IP adress. To look it up run `ifconfig`
+16. Enable remote login over SSH. Run `rspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
+17. Allow SSH in the firewall `sudo vi /etc/iptables/rules.v4` then add "Allow SSH" line so it's like this:
 ```
 *filter
 :INPUT DROP [152:211958]
@@ -280,13 +288,12 @@ sudo /etc/init.d/netfilter-persistent restart
 COMMIT
 ``` 
 * Leave IPv6 rules as the inital "Drop-everything" setup because most home networks do not need IPv6.
-* If this is on Amazon then see **Remote Login (HomeAWS node)** section above.
 
-10. Run 
+18. Run 
 ```
 sudo /etc/init.d/netfilter-persistent restart
 ```
-11. From your laptop, use the IP from step 5 and run: `ssh pi@YOUR_IP_HERE` enter your new password
+19. From your laptop, use the IP from step 5 and run: `ssh pi@YOUR_IP_HERE` enter your new password
 
 
 ### Remote Login (AWS node)
