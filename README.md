@@ -50,7 +50,7 @@ Minibank is a HOWTO for building a Lighthing Netwrok node from scratch
 * Monitoring
 
 Comparison to alternatives, it the order of difficulty of use:
-1. Minibank - for technically advanced users, aims to increase security by limiting surface area (less add-ons) and building everything from source (paranoid mode)
+1. Minibank - for those who like to cook from scratch, aims to increase security by limiting surface area (less add-ons) and building everything from source (paranoid mode)
 2. RaspiBlitz - for technically interested / "geeky" users, building projects, trying stuff out, tinkering
 3. RoninDojo - **no lightning**, for privacy focused users, maximally focused on Samourai Wallet's Dojo
 4. nodl - for less technical users that still want improved security, e.g. merchants
