@@ -198,6 +198,7 @@ Now type the following in the editor, save and exit.
 :INPUT DROP [0:0]
 :FORWARD DROP [0:0]
 :OUTPUT ACCEPT [0:0]
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 -A INPUT -i lo -j ACCEPT
 -A OUTPUT -o lo -j ACCEPT
 COMMIT
