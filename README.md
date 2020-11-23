@@ -50,13 +50,13 @@ Minibank is a HOWTO for building a Lighthing Netwrok node from scratch
 * Monitoring
 
 Comparison to alternatives, it the order of difficulty of use:
-1. Minibank [CLI] - for those who like to cook from scratch, aims to increase security by limiting surface area (less add-ons) and building everything from source (paranoid mode)
-2. RaspiBlitz [CLI] - for technically interested / "geeky" users, building projects, trying stuff out, tinkering
-3. RoninDojo [CLI] - **no lightning**, for privacy focused users, maximally focused on Samourai Wallet's Dojo
-4. nodl [CLI] - for less technical users that still want improved security, e.g. merchants
-5. nodl Dojo [CLI] - for privacy focused users, Lightning lnd is available as a 1-click install 
-6. myNode [GUI] - for non-technical users, works out of the box, web interface prioritized
-7. Embassy [GUI] - for grandma to run Lighting and other self-hosted apps. An operating system by start9labs, they ship a device that you plug into home router and use a phone control it
+1. Minibank - [CLI Setup] - for those who like to cook from scratch, aims to increase security by limiting surface area (less add-ons) and building everything from source (paranoid mode)
+2. RaspiBlitz - [CLI Setup] - for technically interested / "geeky" users, building projects, trying stuff out, tinkering
+3. RoninDojo - [CLI Setup] - **no lightning**, for privacy focused users, maximally focused on Samourai Wallet's Dojo
+4. nodl - [CLI Setup] - for less technical users that still want improved security, e.g. merchants
+5. nodl Dojo - [GUI Setup] - for privacy focused users, Lightning lnd is available as a 1-click install 
+6. myNode - [GUI Setup] - for non-technical users, works out of the box, web interface prioritized
+7. Embassy - [GUI Setup] - for grandma to run Lighting and other self-hosted apps. An operating system by start9labs, they ship a device that you plug into home router and use a phone control it
 
 
 ## Hardware
