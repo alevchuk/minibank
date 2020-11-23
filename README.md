@@ -493,6 +493,7 @@ echo -e "LABEL=minibank4\t/mnt/btrfs\tbtrfs\tnoauto\t0\t0" >> /etc/fstab
 
 Now you can mount it like this (even if block device names change):
 ```
+sudo umount /mnt/btrfs
 sudo mount /mnt/btrfs
 ```
 
