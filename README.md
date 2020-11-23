@@ -274,7 +274,7 @@ sudo iptables-save  # show current v4 rules: check if this just like before
 sudo iptables-save -6  # show current v6 rules: check that it is drop-everything 
 ```
 
--- start of citical section ---
+-- end of citical section ---
 
 
 
