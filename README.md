@@ -281,7 +281,7 @@ sudo iptables-save -6  # show current v6 rules: check that it is drop-everything
 16. Install Tor
 
 ```
-sudo apt get tor
+sudo apt install tor
 ```
 
 
