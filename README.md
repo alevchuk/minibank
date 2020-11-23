@@ -302,8 +302,24 @@ ssh 127.0.0.1
 ```
 sudo vi /etc/tor/torrc
 ```
+Find and uncomment lines with:
+```
+HiddenServiceDir
+HiddenServicePort
+```
+and change
+```
+HiddenServicePort 80 127.0.0.1:8080
+```
+to
+```
+HiddenServicePort 22 127.0.0.1:22
+```
 
-
+20. Restart Tor
+```
+sudo systemctl restart tor@default.service
+```
 
 
 15. Write down your IP adress. To look it up run `sudo ifconfig`
