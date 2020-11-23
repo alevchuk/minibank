@@ -175,47 +175,6 @@ Anything bellow 70C is good. The trotteling [kicks in at 80 C](https://www.there
 
 ## Network
 
-### Remote Login (AWS node)
-
-If your seting up Raspberry Pi node at home then skip this section and proceed to **Remote Login (Home node)**.
-
-AWS has a default firewall setup for you. You can manage it from the Amazon AWS web console under Security Groups. Yet, to be sure your in control, you should also setup a local firewall.
-
-NOTE: In this setup it's easy to make a mistake and get locked out of the remote server, so I recomend takeing a snapshot of the root-drive in AWS at this point in time.
-
-
-```
-sudo apt update
-sudo apt install iptables-persistent
-sudo iptables-save  # show current rules
-```
-
-With your favourite command-line text editor, e.g. `sudo vi /etc/iptables/rules.v4` edit /etc/iptables/rules.v4
-```
-*filter
-:INPUT DROP [0:0]
-:FORWARD DROP [0:0]
-:OUTPUT ACCEPT [0:0]
--A INPUT -i lo -j ACCEPT
--A OUTPUT -o lo -j ACCEPT
--A INPUT -p tcp --dport 22 -j ACCEPT
--A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-COMMIT
-```
-
-
-Duplicate this initial setup to /etc/iptables/rules.v6
-* We allow SSH in IPv6 rules as well in case AWS IPv4 network has issues and we need to be able to log-in. Other than SSH no need to edit any other rules in this file because we are not going to use IPv6 here. 
-```
-sudo cp /etc/iptables/rules.v4 /etc/iptables/rules.v6
-```
-
-Run 
-```
-sudo /etc/init.d/netfilter-persistent restart
-```
-
-
 ### Remote Login (Home node)
 
 Connect via monitor and keyboard.
@@ -285,10 +244,52 @@ COMMIT
 * Leave IPv6 rules as the inital "Drop-everything" setup because most home networks do not need IPv6.
 * If this is on Amazon then see **Remote Login (HomeAWS node)** section above.
 
+8. Run 
+```
+sudo /etc/init.d/netfilter-persistent restart
+```
+9. From your laptop, use the IP from step 5 and run: `ssh pi@YOUR_IP_HERE` enter your new password
+
+
+### Remote Login (AWS node)
+
+If your seting up Raspberry Pi node **at home** then skip this section and proceed to **Remote Login (Home node)**.
+
+AWS has a default firewall setup for you. You can manage it from the Amazon AWS web console under Security Groups. Yet, to be sure your in control, you should also setup a local firewall.
+
+NOTE: In this setup it's easy to make a mistake and get locked out of the remote server, so I recomend takeing a snapshot of the root-drive in AWS at this point in time.
+
+
+```
+sudo apt update
+sudo apt install iptables-persistent
+sudo iptables-save  # show current rules
+```
+
+With your favourite command-line text editor, e.g. `sudo vi /etc/iptables/rules.v4` edit /etc/iptables/rules.v4
+```
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -i lo -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
+-A INPUT -p tcp --dport 22 -j ACCEPT
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+COMMIT
+```
+
+Duplicate this initial setup to /etc/iptables/rules.v6
+* We allow SSH in IPv6 rules as well in case AWS IPv4 network has issues and we need to be able to log-in. Other than SSH no need to edit any other rules in this file because we are not going to use IPv6 here. 
+```
+sudo cp /etc/iptables/rules.v4 /etc/iptables/rules.v6
+```
+
 Run 
 ```
 sudo /etc/init.d/netfilter-persistent restart
 ```
+
 8. Optionally [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/first/other-notes/wifi.md)
 9. From your laptop, use the IP from step 5 and run: `ssh pi@YOUR_IP_HERE` enter your new password
 
