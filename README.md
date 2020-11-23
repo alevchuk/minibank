@@ -244,19 +244,10 @@ cat /etc/iptables/rules.v4 | sudo iptables-restore
 cat /etc/iptables/rules.v6 | sudo iptables-restore -6
 ```
 
-Now the output of `sudo iptables-save` should look like this:
+Now the output of `sudo iptables-save` should look like the lines in step 4:
 
  * numbers at the end of the line may be different, those are your network statistics
  
-```
-*filter
-:INPUT DROP [152:211958]
-:FORWARD DROP [0:0]
-:OUTPUT ACCEPT [52247:3125304]
--A INPUT -i lo -j ACCEPT
--A OUTPUT -o lo -j ACCEPT
-COMMIT
-```
 10. Changed the password. Run `sudo raspi-config`. Select: **Change Password** If you don't change the password you'll get hacked.
 11. Connect enthernet cable
 12. Update the system: `sudo apt-get update; sudo apt upgrade;`. If you don't upgrade you'll get hacked.
