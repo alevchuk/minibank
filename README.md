@@ -249,7 +249,7 @@ Now the output of `sudo iptables-save` should look like the lines in step 4:
  * numbers at the end of the line may be different, those are your network statistics
  
 10. Changed the password. Run `sudo raspi-config`. Select: **Change Password** If you don't change the password you'll get hacked.
-11. Connect enthernet cable
+11. Connect enthernet cable or (Optionally) [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/first/other-notes/wifi.md)
 12. Update the system: `sudo apt-get update; sudo apt upgrade;`. If you don't upgrade you'll get hacked.
 13. Make firewall persistent:
 ```
@@ -390,8 +390,7 @@ Run
 sudo /etc/init.d/netfilter-persistent restart
 ```
 
-8. Optionally [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/first/other-notes/wifi.md)
-9. From your laptop, use the IP from step 5 and run: `ssh pi@YOUR_IP_HERE` enter your new password
+8. From your laptop, use the IP from step 5 and run: `ssh pi@YOUR_IP_HERE` enter your new password
 
 ### Authorized keys
 
