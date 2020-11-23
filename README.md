@@ -263,14 +263,16 @@ COMMIT
 13. Make firewall persistent:
 ```
 sudo apt install iptables-persistent
-sudo iptables-save  # show current rules
 
 sudo /etc/init.d/netfilter-persistent restart
+
+sudo iptables-save  # show current v4 rules: check if this just like before
+sudo iptables-save -6  # show current v6 rules: check that it is drop-everything 
 ```
 
 14. Reboot Pi
 
-15. Write down your IP adress. To look it up run `ifconfig`
+15. Write down your IP adress. To look it up run `sudo ifconfig`
 16. Enable remote login over SSH. Run `rspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
 17. Allow SSH in the firewall `sudo vi /etc/iptables/rules.v4` then add "Allow SSH" line so it's like this:
 ```
