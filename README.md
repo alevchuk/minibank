@@ -316,6 +316,11 @@ to
 HiddenServicePort 22 127.0.0.1:22
 ```
 
+and add another line
+```
+HiddenServiceVersion 3
+```
+
 20. Restart Tor
 ```
 sudo systemctl restart tor@default.service
