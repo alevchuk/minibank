@@ -175,18 +175,24 @@ Anything bellow 70C is good. The trotteling [kicks in at 80 C](https://www.there
 
 ## Network
 
-### Remote Login (Home node)
+### Remote Login (home node)
 
 Connect via monitor and keyboard.
 
-1. Setup [no-incomming-connections firewall](https://github.com/alevchuk/pstm/blob/first/lnd-e2e-testing/README.md#security) **before connecting to the network!** If you don't add a firewall you'll get hacked:
+1. Setup no-incomming-connections firewall **before connecting to the network!** If you don't add a firewall you'll get hacked:
 
+Run:
 ```
-sudo apt install iptables-persistent
-sudo iptables-save  # show current rules
+sudo mkdir /etc/iptables
 ```
 
-With your favourite command-line text editor, e.g. `sudo vi /etc/iptables/rules.v4` edit /etc/iptables/rules.v4
+Edit /etc/iptables/rules.v4 ith your favourite command-line text editor, e.g. `vi`  
+```
+sudo vi /etc/iptables/rules.v4
+```
+
+Now type the following in the editor, save and exit.
+
 ```
 *filter
 :INPUT DROP [0:0]
@@ -197,16 +203,36 @@ With your favourite command-line text editor, e.g. `sudo vi /etc/iptables/rules.
 COMMIT
 ```
 
-Edit /etc/iptables/rules.v6
+Copy to IPv6 (same rules):
 ```
-:INPUT DROP [0:0]
-:FORWARD DROP [0:0]
-:OUTPUT ACCEPT [0:0]
--A INPUT -i lo -j ACCEPT
--A OUTPUT -o lo -j ACCEPT
-COMMIT
+sudo cp /etc/iptables/rules.v4 /etc/iptables/rules.v6
 ```
 
+
+Edit **/etc/default/keyboard** (When attaching with Monitor and a US Keyboard, you may find that your not able to type things like "|". This is not a problem when going over SSH.)
+
+Replace 
+```
+XKBMODEL="pc105"
+XKBLAYOUT="gb"
+```
+with
+```
+XKBMODEL="pc104"
+XKBLAYOUT="us"
+```
+
+Reboot:
+```
+sudo reboot
+```
+
+Now run:
+
+```
+cat /etc/iptables/rules.v4 | sudo iptables-restore
+cat /etc/iptables/rules.v6 | sudo iptables-restore -6
+```
 
 Now the output of `sudo iptables-save` should look like this:
 
@@ -226,7 +252,18 @@ COMMIT
 4. Update the system: `sudo apt-get update; sudo apt-get upgrade;`. If you don't upgrade you'll get hacked.
 5. Write down your IP adress. To look it up run `ifconfig`
 6. Enable remote login over SSH. Run `rspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
-7. Allow SSH in the firewall `sudo vi /etc/iptables/rules.v4` then add "Allow SSH" line so it's like this:
+
+7. Make firewall persistent:
+```
+sudo apt install iptables-persistent
+sudo iptables-save  # show current rules
+
+sudo /etc/init.d/netfilter-persistent restart
+```
+8. Reboot Pi
+
+
+9. Allow SSH in the firewall `sudo vi /etc/iptables/rules.v4` then add "Allow SSH" line so it's like this:
 ```
 *filter
 :INPUT DROP [152:211958]
@@ -244,16 +281,16 @@ COMMIT
 * Leave IPv6 rules as the inital "Drop-everything" setup because most home networks do not need IPv6.
 * If this is on Amazon then see **Remote Login (HomeAWS node)** section above.
 
-8. Run 
+10. Run 
 ```
 sudo /etc/init.d/netfilter-persistent restart
 ```
-9. From your laptop, use the IP from step 5 and run: `ssh pi@YOUR_IP_HERE` enter your new password
+11. From your laptop, use the IP from step 5 and run: `ssh pi@YOUR_IP_HERE` enter your new password
 
 
 ### Remote Login (AWS node)
 
-If your seting up Raspberry Pi node **at home** then skip this section and proceed to **Remote Login (Home node)**.
+If your seting up Raspberry Pi node **home node** then skip this section and proceed to **Remote Login (Home node)**.
 
 AWS has a default firewall setup for you. You can manage it from the Amazon AWS web console under Security Groups. Yet, to be sure your in control, you should also setup a local firewall.
 
@@ -562,19 +599,7 @@ bitcoind
 
 Run `rspi-config` and select **Localization Options --> Change Timezone** to make your system clock right. Check time by running `date`
 
-#### Non-British Keyboard
 
-When attaching with Monitor and a US Keyboard, you may find that your not able to type things like "|". This is not a problem when going over SSH. Yet the fix this replace 
-```
-XKBMODEL="pc105"
-XKBLAYOUT="gb"
-```
-with
-```
-XKBMODEL="pc104"
-XKBLAYOUT="us"
-```
-in /etc/default/keyboard
 
 
 #### bash-completion
