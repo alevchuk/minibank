@@ -237,6 +237,8 @@ XKBLAYOUT="us"
 sudo reboot
 ```
 
+-- start of citical section (complete until the end of critical section or remove from netwrok before rebooting) ---
+
 9. Now run:
 
 ```
@@ -271,6 +273,8 @@ sudo reboot
 sudo iptables-save  # show current v4 rules: check if this just like before
 sudo iptables-save -6  # show current v6 rules: check that it is drop-everything 
 ```
+
+-- start of citical section ---
 
 
 
