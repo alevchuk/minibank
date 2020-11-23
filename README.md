@@ -281,8 +281,32 @@ sudo iptables-save  # show current v4 rules: check if this just like before
 sudo iptables-save -6  # show current v6 rules: check that it is drop-everything 
 ```
 
+
+
+16. Install Tor
+
+```
+sudo apt get tor
+```
+
+
+17. Enable remote login over SSH. Run `rspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
+
+18. Test ssh locally (ssh to yourself while in Keyboard-Monitor mode):
+```
+ssh 127.0.0.1
+```
+
+19. Configure Tor
+
+```
+sudo vi /etc/tor/torrc
+```
+
+
+
+
 15. Write down your IP adress. To look it up run `sudo ifconfig`
-16. Enable remote login over SSH. Run `rspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
 17. Allow SSH in the firewall `sudo vi /etc/iptables/rules.v4` then add "Allow SSH" line so it's like this:
 ```
 *filter
