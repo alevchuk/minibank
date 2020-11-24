@@ -287,7 +287,7 @@ sudo apt install tor
 ```
 
 
-17. Enable remote login over SSH. Run `rspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
+17. Enable remote login over SSH. Run `raspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
 
 18. Test ssh locally (ssh to yourself while in Keyboard-Monitor mode):
 ```
@@ -642,7 +642,7 @@ bitcoind
 #### Time-zone
 
 
-Run `rspi-config` and select **Localization Options --> Change Timezone** to make your system clock right. Check time by running `date`
+Run `raspi-config` and select **Localization Options --> Change Timezone** to make your system clock right. Check time by running `date`
 
 
 
