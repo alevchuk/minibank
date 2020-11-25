@@ -2,7 +2,7 @@ SSH over Tor is very slow
 
 Yet Tor provides more privacy
 
-If you want still to SSH over the local network (without Tor) you can do this:
+If you still want to SSH over the without Tor (e.g. only over local network) you can do this:
 
 
 
