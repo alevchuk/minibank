@@ -70,8 +70,8 @@ Total **318 USD** as of 2020-11-15
 * Pi 4 kit (8GB RAM, heat sinks, power supply): [CanaKit Raspberry Pi 4 Basic Kit 8GB RAM](https://camelcamelcamel.com/product/B08DJ9MLHV)
 * FLIRC Passive cooling case [Flirc Raspberry Pi 4 Case (Silver)](https://camelcamelcamel.com/Flirc-Raspberry-Pi-Case-Silver/product/B07WG4DW52)
 * Micro SD card 32G for os partition [SanDisk-Extreme-microSD-UHS-I-Adapter](https://camelcamelcamel.com/product/B06XWMQ81P)
-* Seagate 500 GB SSD (for Raid-1 mirror): [Seagate-Barracuda-500GB-External-Portable](https://camelcamelcamel.com/product/B083FF3PJ9)
-* SanDisk 500 GB SSD (for Raid-1 mirror): [SanDisk-500GB-Extreme-Portable-External](https://camelcamelcamel.com/product/B078SWJ3CF)
+* SSD 500 GB by WD (for Raid-1 mirror): [WD 500GB My Passport SSD External Portable Drive, Gray, Up to 1,050 MB/s](https://camelcamelcamel.com/product/B08F2L6TLR)
+* SSD 500 GB by SanDisk (for Raid-1 mirror): [SanDisk 500GB Extreme Portable SSD - Up to 1050MB/s - USB-C, USB 3.2 Gen 2 - External Solid State Drive](https://camelcamelcamel.com/product/B08GTXVG9P)
 * Card Reader (for 1 time setup) [Transcend-microSDHC-Reader-TS-RDF5K-Black](https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4)
 
 
