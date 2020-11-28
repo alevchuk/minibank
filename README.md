@@ -827,19 +827,16 @@ Edit `~/.lnd/lnd.conf`
 [Application Options]
 listen=0.0.0.0:9735
 rpclisten=localhost:10009
-debuglevel=ATPL=debug,CRTR=warn
 
 [Bitcoin]
 bitcoin.active=1
-bitcoin.testnet=0
 bitcoin.mainnet=1
-bitcoin.simnet=0
 bitcoin.node=bitcoind
 
 [Bitcoind]
 bitcoind.zmqpubrawblock=tcp://localhost:29000
 bitcoind.zmqpubrawtx=tcp://localhost:29001
-bitcoind.rpchost=b1
+bitcoind.rpchost=localhost
 bitcoind.rpcuser=$$PASSWORD_1_HERE$$ 
 bitcoind.rpcpass=$$PASSWORD_2_HERE$$ 
 
@@ -870,7 +867,7 @@ cp /home/lightning/gocode/src/github.com/lightningnetwork/lnd/contrib/lncli.bash
 
 Start:
 ```
-lnd --tor.active --tor.v3
+lnd
 ```
 
 
