@@ -34,7 +34,7 @@ Load `~/.profile`
 git clone https://go.googlesource.com/go ~/src/go
 cd ~/src/go
 git fetch
-git checkout go1.13.1
+git checkout go1.13.15
 ```
 
 5. (for 1 GB RAM hosts only) Add swap
@@ -57,7 +57,7 @@ Now log back into the user account where Go related services will be running.
 ```
 . ~/.profile
 cd $GOROOT/src
-./all.bash
+./make.bash
 ```
 At the end it should say "Installed commands in $GOROOT/bin"
 
