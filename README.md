@@ -789,9 +789,9 @@ Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/mini
 ### Build LND
 
 1. Install dependencies:
-* Fun fact: build-essential contains `make` and dnsutils contains `dig`
+* Fun fact: build-essential contains `make`
 ```
-sudo apt-get install build-essential dnsutils
+sudo apt-get install build-essential
 ```
 
 2. Log in as "lightning"
@@ -870,7 +870,7 @@ cp /home/lightning/gocode/src/github.com/lightningnetwork/lnd/contrib/lncli.bash
 
 Start:
 ```
-lnd --externalip=$(dig +short myip.opendns.com @resolver1.opendns.com):9735  --tor.active --tor.v3
+lnd --tor.active --tor.v3
 ```
 
 
@@ -932,11 +932,7 @@ If this is on AWS then also update the Secutrity Group in AWS web console.
 
 In your home router, forward the port 9735 to the host running LND. Here is [a guide](https://www.noip.com/support/knowledgebase/general-port-forwarding-guide/) on how to do that.
 
-Test with netcat (nc) from a different host
-```
-seq 100 | nc -v <external_ip_of_LND_host> 9735
-```
-For onion addresses (e.g. z123zxczxc87z6xc6zx87c6zxc876zxxyz.onion) use:
+Test with netcat (nc) from a different host. Use onion addresses (e.g. z123zxczxc87z6xc6zx87c6zxc876zxxyz.onion):
 ```
 seq 100 | torify nc -v <onion_address> 9735
 ```
