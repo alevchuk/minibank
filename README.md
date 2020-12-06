@@ -56,7 +56,7 @@ Comparison to alternatives, it the order of difficulty of use:
 4. nodl - for less technical users that still want improved security, e.g. merchants - [CLI Setup]
 5. nodl Dojo - for privacy focused users, Lightning lnd is available as a 1-click install - [GUI Setup]
 6. myNode - for non-technical users, works out of the box, web interface prioritized - [GUI Setup]
-7. Embassy - for grandma to run Lighting and other self-hosted apps. An operating system by start9labs, they ship a device that you plug into home router and **use a phone app to install self hosted apps* - [GUI Setup]
+7. Embassy - for grandma to run Lighting and other self-hosted apps. An operating system by start9labs, they ship a device that you plug into home router and **use a phone app to install self hosted apps** - [GUI Setup]
 
 
 ## Hardware
