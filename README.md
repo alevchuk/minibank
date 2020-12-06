@@ -49,7 +49,7 @@ Minibank is a HOWTO for building a Lightning Network node from scratch
 * Development environment (CLI only) 
 * Monitoring
 
-Comparison to alternatives, it the order of difficulty of use:
+Comparison to similar projects, it the order of difficulty of use:
 1. Minibank - for those who like to cook **from scratch**, aims to increase security by limiting surface area / **no add-ons** and building everything from source (paranoid mode) - [CLI Setup] 
 2. RaspiBlitz - for technically interested / "geeky" users, building projects, trying stuff out, **tinkering** - [CLI Setup]
 3. RoninDojo - **no lightning**, for privacy focused users, maximally focused on Samourai Wallet's Dojo - [CLI Setup]
