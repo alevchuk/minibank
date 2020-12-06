@@ -50,13 +50,13 @@ Minibank is a HOWTO for building a Lightning Network node from scratch
 * Monitoring
 
 Comparison to alternatives, it the order of difficulty of use:
-1. Minibank - for those who like to cook from scratch, aims to increase security by limiting surface area (less add-ons) and building everything from source (paranoid mode) - [CLI Setup] 
+1. Minibank - for those who like to cook **from scratch**, aims to increase security by limiting surface area / **no add-ons** and building everything from source (paranoid mode) - [CLI Setup] 
 2. RaspiBlitz - for technically interested / "geeky" users, building projects, trying stuff out, tinkering - [CLI Setup]
 3. RoninDojo - **no lightning**, for privacy focused users, maximally focused on Samourai Wallet's Dojo - [CLI Setup]
 4. nodl - for less technical users that still want improved security, e.g. merchants - [CLI Setup]
 5. nodl Dojo - for privacy focused users, Lightning lnd is available as a 1-click install - [GUI Setup]
 6. myNode - for non-technical users, works out of the box, web interface prioritized - [GUI Setup]
-7. Embassy - for grandma to run Lighting and other self-hosted apps. An operating system by start9labs, they ship a device that you plug into home router and use a phone control it - [GUI Setup]
+7. Embassy - for grandma to run Lighting and other self-hosted apps. An operating system by start9labs, they ship a device that you plug into home router and **use a phone app to install self hosted apps* - [GUI Setup]
 
 
 ## Hardware
