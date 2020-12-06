@@ -42,10 +42,10 @@ Table of contents
  
 ## About
 
-Minibank is a HOWTO for building a Lighthing Netwrok node from scratch
+Minibank is a HOWTO for building a Lightning Network node from scratch
 * Limited set of features: bitcoind, lnd, tor 
 * Components are built from source code
-* Mirror Raid with 2 exteranl storage devices
+* Mirror Raid with 2 external storage devices
 * Development environment (CLI only) 
 * Monitoring
 
