@@ -74,6 +74,7 @@ Total **315 USD** as of 2020-11-28
 * SAMSUNG SAMSUNG T7 SSD (for Raid-1 mirror): [SAMSUNG-Portable-SSD-500GB-MU-PC500H-dp-B0874XJL6M](https://camelcamelcamel.com/product/B0874XJL6M)
 * Card Reader (for 1 time setup) [Transcend-microSDHC-Reader-TS-RDF5K-Black](https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4)
 
+Known issues:
 * WARNING: DO NOT USE Seagate SSDs. The following Seagate divice caused data corruption when pluging into USB, other storage connected to UBS also got affected. DO NOT USE Seagate 500 GB SSD (for Raid-1 mirror): [Seagate-Barracuda-500GB-External-Portable](https://camelcamelcamel.com/product/B083FF3PJ9)
 
 
