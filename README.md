@@ -68,7 +68,7 @@ The powerful Pi 4 with plenty of RAM removing the need for swap. Two high-speed 
 Total **296 USD** as of 2020-12-09
 
 * Pi 4 kit (8GB RAM, heat sinks, power supply): [CanaKit Raspberry Pi 4 Basic Kit 8GB RAM](https://camelcamelcamel.com/product/B08DJ9MLHV)
-* FLIRC Passive cooling case [Flirc Raspberry Pi 4 Case (Silver)](https://camelcamelcamel.com/Flirc-Raspberry-Pi-Case-Silver/product/B07WG4DW52)
+* FLIRC Passive cooling case [Flirc Raspberry Pi 4 Case](https://camelcamelcamel.com/Flirc-Raspberry-Pi-Case-Silver/product/B07WG4DW52)
 * Micro SD card 32G (for operating system) [SanDisk-Extreme-microSD-UHS-I-Adapter](https://camelcamelcamel.com/product/B06XWMQ81P)
 * SanDisk 500 GB SSD (for data; Raid-1 mirror): [SanDisk-500GB-Extreme-Portable](https://camelcamelcamel.com/product/B078SWJ3CF)
 * SAMSUNG 500 GB SSD (for datat; Raid-1 mirror): [SAMSUNG-500GB-T7-Portable](https://camelcamelcamel.com/product/B0874XJL6M)
