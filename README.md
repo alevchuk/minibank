@@ -585,7 +585,7 @@ zmqpubrawblock=tcp://0.0.0.0:29000
 zmqpubrawtx=tcp://0.0.0.0:29001
 
 ### prune=0  # No prune if you have 1 TB drive(s)
-prune=476000  # we have 500 TB drives
+prune=476000  # we have 500 TB of storage space (raid-1 of 2 drives 500 TB each) 
 
 txindex=1  # Maintain a full transaction index, LND uses this, otherewise there will be a lot of disk scans
 
