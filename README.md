@@ -584,7 +584,9 @@ onlynet=ipv4
 zmqpubrawblock=tcp://0.0.0.0:29000
 zmqpubrawtx=tcp://0.0.0.0:29001
 
-### prune=  # No prune, were running a full node
+### prune=0  # No prune if you have 1 TB drive(s)
+prune=476000  # we have 500 TB drives
+
 txindex=1  # Maintain a full transaction index, LND uses this, otherewise there will be a lot of disk scans
 
 dbcache=200  # Maximum database cache size <n> MiB
