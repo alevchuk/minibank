@@ -34,7 +34,7 @@ Load `~/.profile`
 git clone https://go.googlesource.com/go ~/src/go
 cd ~/src/go
 git fetch
-git checkout go1.13.15
+git checkout go1.14.12
 ```
 
 5. (for 1 GB RAM hosts only) Add swap
@@ -66,7 +66,7 @@ At the end it should say "Installed commands in $GOROOT/bin"
 ## Don't Build Go (if you can avoid it)
 
 
-If you have a Linux distro that has go-1.13.1 or higher packaged, then you don't need to build go, and just do:
+If you have a Linux distro that has go-1.14 or higher packaged, then you don't need to build go, and just do:
 
 
 * AWS Debian 10 (buster) image has this
@@ -74,7 +74,7 @@ If you have a Linux distro that has go-1.13.1 or higher packaged, then you don't
 
 1. Fetch go and git
 ```
-sudo apt install golang-1.13 git
+sudo apt install golang-1.14 git
 ```
 
 2. Set bootstrap path and gopath.
