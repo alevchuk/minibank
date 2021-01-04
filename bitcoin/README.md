@@ -26,9 +26,8 @@ cd ~/src/bitcoin
 ./autogen.sh
 ./configure  --with-gui=no --disable-wallet --disable-tests --prefix=$HOME/bin 
 ```
-> - For ARM achitectures, in some cases you might need to add `--with-boost-libdir=/usr/lib/arm-linux-gnueabihf` 
 > - The final output of `configure` should include:   "with zmq  = yes"
-
+> - For using Bitcoin Core as a wallet (e.g. via Specter Desktop), follow what some core devs do https://twitter.com/orionwl/status/1340037662577741830 and install a modern version of berkeleydb (like this `sudo apt install libdb5.3++-dev`) and add `--with-incompatible-bdb` to the `./configure` command
 
 Build and Install:
 ```
