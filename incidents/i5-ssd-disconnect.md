@@ -1,10 +1,12 @@
 SSD over USB 3 disconnected on Jan  6 05:59:45
 
+Root-cause:
+This is most likely the issue with USB3.0 devices with bad UAS support https://www.raspberrypi.org/forums/viewtopic.php?t=245931
+https://github.com/raspberrypi/linux/issues/3070
+
 Attempted mitigation:
 - Going to try switching cables to UBS2 ports
 
-potential area of investigation:
-- cron ran /etc/cron.hourly/fake-hwclock (`fake-hwclock save`)
 
 syslog
 ```
