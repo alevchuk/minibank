@@ -86,7 +86,7 @@ Jan  6 06:01:32 bl5 systemd[1]: Unmounting /mnt/btrfs...
 
 # Mitigation - turn off UAS
 
-Device 1
+Device 1 - when plugged in to USB 2.0 port
 ```
 [22028.692418] usb 1-1.4: new high-speed USB device number 5 using xhci_hcd
 [22028.826859] usb 1-1.4: New USB device found, idVendor=0781, idProduct=558c, bcdDevice=10.12
@@ -112,7 +112,34 @@ Device 1
 [22030.991181] BTRFS warning (device sdb): duplicate device /dev/sdc devid 1 generation 1142461 scanned by systemd-udevd (28346)
 ```
 
-Device 2
+Device 1 - when plugged in to USB 3.0 port (Blue socket)
+```
+[22268.088868] usb 2-2: new SuperSpeed Gen 1 USB device number 2 using xhci_hcd
+[22268.110067] usb 2-2: New USB device found, idVendor=0781, idProduct=558c, bcdDevice=10.12
+[22268.110085] usb 2-2: New USB device strings: Mfr=2, Product=3, SerialNumber=1
+[22268.110097] usb 2-2: Product: Extreme SSD
+[22268.110109] usb 2-2: Manufacturer: SanDisk
+[22268.110120] usb 2-2: SerialNumber: 31393138314B343030363138
+[22268.126553] scsi host2: uas
+[22268.130296] scsi 2:0:0:0: Direct-Access     SanDisk  Extreme SSD      1012 PQ: 0 ANSI: 6
+[22268.132051] sd 2:0:0:0: [sdc] Spinning up disk...
+[22268.133074] sd 2:0:0:0: Attached scsi generic sg0 type 0
+[22268.135407] scsi 2:0:0:1: Enclosure         SanDisk  SES Device       1012 PQ: 0 ANSI: 6
+[22268.137369] scsi 2:0:0:1: Attached scsi generic sg1 type 13
+[22269.156512] ..ready
+[22270.182865] sd 2:0:0:0: [sdc] 976773120 512-byte logical blocks: (500 GB/466 GiB)
+[22270.182882] sd 2:0:0:0: [sdc] 4096-byte physical blocks
+[22270.183876] sd 2:0:0:0: [sdc] Write Protect is off
+[22270.183894] sd 2:0:0:0: [sdc] Mode Sense: 67 00 10 08
+[22270.184589] sd 2:0:0:0: [sdc] Write cache: disabled, read cache: enabled, supports DPO and FUA
+[22270.185505] sd 2:0:0:0: [sdc] Optimal transfer size 33553920 bytes not a multiple of physical block size (4096 bytes)
+[22270.231921] sd 2:0:0:0: [sdc] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[22270.233236] sd 2:0:0:0: [sdc] Attached SCSI disk
+[22270.267633] BTRFS warning (device sdb): duplicate device /dev/sdc devid 1 generation 1142461 scanned by systemd-udevd (28382)
+```
+
+
+Device 2 - when plugged in to USB 2.0 port
 ```
 [22090.285548] usb 1-1.3: new high-speed USB device number 6 using xhci_hcd
 [22090.427653] usb 1-1.3: New USB device found, idVendor=04e8, idProduct=61f5, bcdDevice= 1.00
@@ -131,3 +158,24 @@ Device 2
 [22090.478678] sd 3:0:0:0: [sdd] Attached SCSI disk
 [22090.561832] BTRFS warning (device sdb): duplicate device /dev/sdd devid 2 generation 1142461 scanned by systemd-udevd (28367)
 ```
+
+Device 2 - when plugged in to USB 3.0 port (Blue socket)
+```
+[22341.090044] usb 2-1: new SuperSpeed Gen 1 USB device number 3 using xhci_hcd
+[22341.118242] usb 2-1: New USB device found, idVendor=04e8, idProduct=61f5, bcdDevice= 1.00
+[22341.118261] usb 2-1: New USB device strings: Mfr=2, Product=3, SerialNumber=1
+[22341.118273] usb 2-1: Product: Portable SSD T5
+[22341.118284] usb 2-1: Manufacturer: Samsung
+[22341.118296] usb 2-1: SerialNumber: 1234567DAFFD
+[22341.136371] scsi host3: uas
+[22341.139726] scsi 3:0:0:0: Direct-Access     Samsung  Portable SSD T5  0    PQ: 0 ANSI: 6
+[22341.143092] sd 3:0:0:0: [sdd] 976773168 512-byte logical blocks: (500 GB/466 GiB)
+[22341.143406] sd 3:0:0:0: [sdd] Write Protect is off
+[22341.143420] sd 3:0:0:0: [sdd] Mode Sense: 43 00 00 00
+[22341.144983] sd 3:0:0:0: [sdd] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[22341.145925] sd 3:0:0:0: Attached scsi generic sg2 type 0
+[22341.147078] sd 3:0:0:0: [sdd] Optimal transfer size 33553920 bytes
+[22341.174323] sd 3:0:0:0: [sdd] Attached SCSI disk
+[22341.231316] BTRFS warning (device sdb): duplicate device /dev/sdd devid 2 generation 1142461 scanned by systemd-udevd (28393)
+```
+
