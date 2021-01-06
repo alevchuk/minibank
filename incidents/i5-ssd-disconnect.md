@@ -179,3 +179,12 @@ Device 2 - when plugged in to USB 3.0 port (Blue socket)
 [22341.231316] BTRFS warning (device sdb): duplicate device /dev/sdd devid 2 generation 1142461 scanned by systemd-udevd (28393)
 ```
 
+Editing boot command:
+```
+sudo vi /boot/cmdline.txt
+```
+
+So at the start of the line adding:
+```
+usb-storage.quirks=0781:558c:u,04e8:61f5:u
+```
