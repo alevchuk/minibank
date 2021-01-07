@@ -501,6 +501,10 @@ From my tests, the following were the adanates of disabling UAS:
 
 For more details on this issue see https://github.com/alevchuk/minibank/blob/first/incidents/i5-ssd-disconnect.md
 
+To check if you have UAS enabled:
+1. run `dmesg | grep uas` soon after rebooting the Pi 
+2. You should see "usbcore: registered new interface driver uas" and "scsi host0: uas"
+
 To disable UAS:
 1. From previous section you'll need the idVendor/idProduct pairs for both SSD devices
 2. Make a backup `sudo cp /boot/cmdline.txt /cmdline.txt-old-backup`
