@@ -485,9 +485,34 @@ The relevant output of `dmesg --follow` would look like this:
 [22341.147078] sd 3:0:0:0: [sdd] Optimal transfer size 33553920 bytes
 [22341.174323] sd 3:0:0:0: [sdd] Attached SCSI disk
 ```
-![Block Device name lookup](https://raw.githubusercontent.com/alevchuk/minibank/first/img/block_device_name_lookup.png "Block Device name lookup")
+* Notice that `[sdd]` is the block device name in the above example
 
 ### Disable UAS
+
+To prevent occasinal freezing of your Pi, disable UAS. UAS (USB Attached SCSI) is a need protocal that adds marginal performance improvement yet it's not reliable (at lease for the current USB 3.0 hardware of the RasberryPi). I suspect that the freezes get triggered by radio interferance of UBS 3.0 with 2.4 GHz Wi-Fi or Bluetooth. However, the old mass storage device protocal is resilient to this issue. So we simply need to follow Rapberry Pi team's recomendation and disable UAS.
+
+From my tests, the following were the adanates of disabling UAS:
+* The freezes stopped.
+  * By freeze I mean: geting /mnt/btrfs mount point failure with "uas_eh_abort_handler" for "CMD OUT" and "CMD IN" errors in `dmesg` 
+  * The failure does not cause data loss/corruption, yet brings down the whole system
+  * A repro is to try to run `btrfs balance start /mnt/btrfs` and you'll get the failure within a minute
+* For the first time I'm now able to run and compleate `sudo btrfs balance start -v --full-balance /mnt/btrfs/`
+* There is no significant performance degradations from disabling UAS
+
+For more details on this issue see https://github.com/alevchuk/minibank/blob/first/incidents/i5-ssd-disconnect.md
+
+To disable UAS:
+1. From previous section you'll need the idVendor/idProduct pairs for both SSD devices
+2. Make a backup `sudo cp /boot/cmdline.txt /cmdline.txt-old-backup`
+3. Edit the boot command by running `sudo vi /boot/cmdline.txt`
+4. Add `usb-storage.quirks=YOUR_VENDOR_ID_FOR_DEVICE_1:YOUR_PRODUCT_ID_FOR_DEVICE_1:u,YOUR_VENDOR_ID_FOR_DEVICE_2:YOUR_PRODUCT_ID_FOR_DEVICE_2:u ` in front of the command
+  * it's "usb-storage.quirks=" followed a comman separated list of "idVendor:idProduct:u"
+  * The part that you add needs to be followed by a space " " (e.g. `usb-storage.quirks=0781:558c:u,04e8:61f5:u dwc_otg.lpm_enable=0 console=serial0,115200 ...`)
+  * replace YOUR_...
+  * don't miss the ":u" at the end
+  * The whole line should look similar to this `usb-storage.quirks=0781:558c:u,04e8:61f5:u dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=3acd0083-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait`
+5. Reboot your pi
+6. Run `dmesg | grep uas` and verify that it only mentions blocklisting/disabling of UAS and nothing else about it
 
 ### BTRFS RAID-1 Mirror
 
