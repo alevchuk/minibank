@@ -507,16 +507,17 @@ To check if you have UAS enabled:
 
 To disable UAS:
 1. From previous section you'll need the idVendor/idProduct pairs for both SSD devices
-2. Make a backup `sudo cp /boot/cmdline.txt /cmdline.txt-old-backup`
-3. Edit the boot command by running `sudo vi /boot/cmdline.txt`
-4. Add `usb-storage.quirks=YOUR_VENDOR_ID_FOR_DEVICE_1:YOUR_PRODUCT_ID_FOR_DEVICE_1:u,YOUR_VENDOR_ID_FOR_DEVICE_2:YOUR_PRODUCT_ID_FOR_DEVICE_2:u ` in front of the command
+2. If you already setup /mnt/btrfs then stop all services using it and run `umount /mnt/btrfs`
+3. Make a backup `sudo cp /boot/cmdline.txt /cmdline.txt-old-backup`
+4. Edit the boot command by running `sudo vi /boot/cmdline.txt`
+5. Add `usb-storage.quirks=YOUR_VENDOR_ID_FOR_DEVICE_1:YOUR_PRODUCT_ID_FOR_DEVICE_1:u,YOUR_VENDOR_ID_FOR_DEVICE_2:YOUR_PRODUCT_ID_FOR_DEVICE_2:u ` in front of the command
   * it's "usb-storage.quirks=" followed a comman separated list of "idVendor:idProduct:u"
   * The part that you add needs to be followed by a space " " (e.g. `usb-storage.quirks=0781:558c:u,04e8:61f5:u dwc_otg.lpm_enable=0 console=serial0,115200 ...`)
   * replace YOUR_...
   * don't miss the ":u" at the end
   * The whole line should look similar to this `usb-storage.quirks=0781:558c:u,04e8:61f5:u dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=3acd0083-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait`
-5. Reboot your pi
-6. Run `dmesg | grep uas` and verify that it only mentions blocklisting/disabling of UAS and nothing else about it
+6. Reboot your pi
+7. Run `dmesg | grep uas` and verify that it only mentions blocklisting/disabling of UAS and nothing else about it
 
 ### BTRFS RAID-1 Mirror
 
