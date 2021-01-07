@@ -14,7 +14,8 @@ Table of contents
   * [Heat](#heat)
   * [Network](#network)
   * [Storage](#storage-home-node)
-    * [Lookup Device Names](#lookup-block-device-names)
+    * [Lookup Storage Device Info](#lookup-storage-device-info)
+    * [Disable UAS](#disable-uas)
     * [BTRFS RAID-1 Mirror](#btrfs-raid-1-mirror)
   * [Software](#software)
     * [Build Bitcoin](#build-bitcoind)
@@ -444,22 +445,49 @@ In this section will setup a Raid-1 Mirror from your two new SSD drives.
 
 WARNING: any data in the SSD drives will be deleted.
 
-### Lookup block device names
+### Lookup storage device info
 
-Run `sudo dmesg --follow` and un-plung/re-plug the external SSD drives one by one.
+In this sections were going to look up the following for each of the SSDs:
+* Block device name (e.g. "sda")
+* idVendor (a hex number, e.g. "04e8")
+* idProduct (a hex number, e.g. "61f5")
 
-1. Look for "sd" followed by a lowercase english letter. Write that down.
-2. Label "sd" followed the lowercase on the storage device that was re-plugged last.
+Steps:
+1. Run `sudo dmesg --follow`
+2. Un-plung and re-plug one of the external SSD drives
+3. Look for the block device name, starting with "sd" followed by a lowercase english letter. Write that down.
+4. Look for idVendor and idProduct. Write those down
+5. Repeate from step 2 for the other SSD
 
-NOTE: it's important to label the storage devices in case one of them fails and you'll need to know which one to replace. 
+NOTE: it's important to label the storage devices with their idVendor and idProduct in case one of them fails and you'll need to know which one to replace. Block device names change depending in which order you plug in the drives. For that reasob, **do not write the block device name (the "sd" followed by a letter) on the lable**.
 
-From now I will refer to these as:
-* YOUR_SSD_BLOCK_DEVICE_1
-* YOUR_SSD_BLOCK_DEVICE_2
+From now I will refer to the block device names as:
+* YOUR_SSD_BLOCK_DEVICE_1 ("sd" followed by a letter)
+* YOUR_VENDOR_ID_FOR_DEVICE_1 (hex number)
+* YOUR_PRODUCT_ID_FOR_DEVICE_1 (hex number)
+* and the above 3 for DEVICE_2
 
 The relevant output of `dmesg --follow` would look like this:
+```
+[22341.090044] usb 2-1: new SuperSpeed Gen 1 USB device number 3 using xhci_hcd
+[22341.118242] usb 2-1: New USB device found, idVendor=04e8, idProduct=61f5, bcdDevice= 1.00
+[22341.118261] usb 2-1: New USB device strings: Mfr=2, Product=3, SerialNumber=1
+[22341.118273] usb 2-1: Product: Portable SSD T5
+[22341.118284] usb 2-1: Manufacturer: Samsung
+[22341.118296] usb 2-1: SerialNumber: 1234567DAFFD
+[22341.136371] scsi host3: uas
+[22341.139726] scsi 3:0:0:0: Direct-Access     Samsung  Portable SSD T5  0    PQ: 0 ANSI: 6
+[22341.143092] sd 3:0:0:0: [sdd] 976773168 512-byte logical blocks: (500 GB/466 GiB)
+[22341.143406] sd 3:0:0:0: [sdd] Write Protect is off
+[22341.143420] sd 3:0:0:0: [sdd] Mode Sense: 43 00 00 00
+[22341.144983] sd 3:0:0:0: [sdd] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[22341.145925] sd 3:0:0:0: Attached scsi generic sg2 type 0
+[22341.147078] sd 3:0:0:0: [sdd] Optimal transfer size 33553920 bytes
+[22341.174323] sd 3:0:0:0: [sdd] Attached SCSI disk
+```
 ![Block Device name lookup](https://raw.githubusercontent.com/alevchuk/minibank/first/img/block_device_name_lookup.png "Block Device name lookup")
 
+### Disable UAS
 
 ### BTRFS RAID-1 Mirror
 
