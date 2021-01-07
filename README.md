@@ -502,8 +502,8 @@ From my tests, the following were the adanates of disabling UAS:
 For more details on this issue see https://github.com/alevchuk/minibank/blob/first/incidents/i5-ssd-disconnect.md
 
 To check if you have UAS enabled:
-1. run `dmesg | grep uas` soon after rebooting the Pi 
-2. You should see "usbcore: registered new interface driver uas" and "scsi host0: uas"
+1. run `dmesg | grep -v registered | grep uas` soon after rebooting the Pi 
+2. You should see "scsi host0: uas"
 
 To disable UAS:
 1. From previous section you'll need the idVendor/idProduct pairs for both SSD devices
@@ -517,7 +517,7 @@ To disable UAS:
   * don't miss the ":u" at the end
   * The whole line should look similar to this `usb-storage.quirks=0781:558c:u,04e8:61f5:u dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=3acd0083-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait`
 6. Reboot your pi
-7. Run `dmesg | grep uas` and verify that it only mentions blocklisting/disabling of UAS and nothing else about it
+7. Run `dmesg | grep UAS` (if you see "usbcore: registered" then that's OK, it case be registered yet still disabled) and verify that it mentions blocklisting/disabling of UAS.
 
 ### BTRFS RAID-1 Mirror
 
