@@ -2,11 +2,11 @@ SSD over USB 3 disconnected on Jan  6 05:59:45
 
 Root-cause:
 - This is most likely the issue with USB3.0 devices with bad UAS support https://www.raspberrypi.org/forums/viewtopic.php?t=245931
-- Along with UAS device firmare issues there was also a suggesting the USB 3.0 is interfering with 2.4 GHz Wi-Fi https://github.com/raspberrypi/linux/issues/3070
+- ~~Along with UAS device firmare issues there was also a suggesting the USB 3.0 is interfering with 2.4 GHz Wi-Fi https://github.com/raspberrypi/linux/issues/3070)~~ 2.4 GHz Wi-Fi is not triggering issues (at least when UAS is disabled)
 
-Attempted mitigation:
+Mitigation:
 - Disable UAS as per raspberrypi.org sticky forum post suggestion
-- Turn Off 2.4HZ Wi-Fi radio on the router (it's localed next to the Pi)
+- Also tired turning Off 2.4HZ Wi-Fi radio on the router (it's localed next to the Pi). When UAS is disabled there are no issues, regardless.
 
 
 syslog
