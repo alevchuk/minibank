@@ -121,28 +121,36 @@ cd ~/src/node && make clean && ./configure --prefix $HOME/bin && make && make in
 ```
 
 # Install yarn
+```
+sudo su -l grafana
+schroot -c pi64
+```
 
-npm was intalled as part of Node.js
+npm was intalled as part of Node.js so you can just do this
 ```
 npm install -g yarn
 ```
 
-# Download grafana
+# Install grafana
 
 ```
-go get github.com/grafana/grafana
+sudo su -l grafana
+schroot -c pi64
 ```
 
-If you see "can't load package" - that's OK, keep going...
+```
+
+git clone https://github.com/grafana/grafana.git ~/src/grafana
+```
 
 
 # Build Grafana front-end
 ```
-cd $GOPATH/src/github.com/grafana/grafana
+cd ~/src/grafana
 
-# IMPORTANT: before running `yarn install`
-#            from ./package.json file remove "phantomjs-prebuilt"
-#            (more details here https://github.com/grafana/grafana/issues/14115 )
+v=$(git tag | grep v7 | sort -V | tail -n1)
+echo $v
+git checkout $v
 
 yarn install --pure-lockfile
 yarn start
@@ -160,7 +168,7 @@ sudo sysctl fs.inotify.max_user_watches=1048576 # increase to 1048576
 sudo su -l grafana
 schroot -c pi64
 
-cd $GOPATH/src/github.com/grafana/grafana
+cd ~/src/grafana/grafana
 make run
 ```
 
