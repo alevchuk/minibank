@@ -168,7 +168,7 @@ sudo sysctl fs.inotify.max_user_watches=1048576 # increase to 1048576
 sudo su -l grafana
 schroot -c pi64
 
-cd ~/src/grafana/grafana
+cd ~/src/grafana
 make run
 ```
 
