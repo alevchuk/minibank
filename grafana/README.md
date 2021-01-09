@@ -120,6 +120,12 @@ git checkout $(git tag | grep v12 | sort -V | tail -n1)
 cd ~/src/node && make clean && ./configure --prefix $HOME/bin && make && make install
 ```
 
+# Install yarn
+
+npm was intalled as part of Node.js
+```
+npm install -g yarn
+```
 
 # Download grafana
 
