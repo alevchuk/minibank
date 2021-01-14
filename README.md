@@ -337,7 +337,7 @@ write it down in a safe place
 
 22. From your laptop run: `torify ssh pi@HOSTNAME_HERE.onion` enter your new password
 
-23. Follow [Authorized Keys](#autorized-keys) section
+23. Follow [Authorized Keys](#authorized-keys) section
 
 ### Remote Login (AWS node)
 
