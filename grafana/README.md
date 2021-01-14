@@ -33,9 +33,10 @@ personality=linux
 preserve-environment=true
 EOF
 
-sudo debootstrap --arch arm64 /mnt/btrfs/pi64
-sudo schroot -c pi64 -- apt install -y mesa-utils sudo
+sudo debootstrap --arch arm64 buster /mnt/btrfs/pi64
 
+sudo schroot -c pi64 -- apt update
+sudo schroot -c pi64 -- apt upgrade -y
 
 sudo mkdir /mnt/btrfs/pi64/mnt/btrfs/grafana
 sudo mkdir /mnt/btrfs/pi64/mnt/btrfs/grafana/src
