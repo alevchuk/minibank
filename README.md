@@ -337,6 +337,7 @@ write it down in a safe place
 
 22. From your laptop run: `torify ssh pi@HOSTNAME_HERE.onion` enter your new password
 
+23. Setup SSH keys and disable login with password. [e.g. as discribed here](https://docs.joinmastodon.org/admin/prerequisites/#do-not-allow-password-based-ssh-login-keys-only)
 
 ### Remote Login (AWS node)
 
