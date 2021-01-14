@@ -337,7 +337,7 @@ write it down in a safe place
 
 22. From your laptop run: `torify ssh pi@HOSTNAME_HERE.onion` enter your new password
 
-23. Setup SSH keys and disable login with password. [e.g. as discribed here](https://docs.joinmastodon.org/admin/prerequisites/#do-not-allow-password-based-ssh-login-keys-only)
+23. Follow [Authorized Keys](#autorized-keys) section
 
 ### Remote Login (AWS node)
 
@@ -414,6 +414,8 @@ Now try logging back in like this:
 ssh -i ~/.ssh/minibank_id_rsa pi@YOUR_IP_HERE
 ```
 You should not need to re-enter password.
+
+Once you can login without a password, disable login with password: edit `/etc/ssh/sshd_config` and find PasswordAuthentication. Uncommented and set to no. Restart ssh server `sudo systemctl restart ssh`
 
 Finally, back on your laptop, add an alias
 ```
