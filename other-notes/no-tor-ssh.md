@@ -28,5 +28,12 @@ COMMIT
 ```
 sudo /etc/init.d/netfilter-persistent restart
 ```
-22. From your laptop, use the IP from step 5 and run: `ssh pi@YOUR_IP_HERE` enter your new password
+
+22. Run
+```
+sudo raspi-config
+```
+Select Interface Option -> SSH -> Yes
+
+23. From your laptop, use the IP from step 5 and run: `ssh pi@YOUR_IP_HERE` enter your new password
 
