@@ -339,6 +339,8 @@ write it down in a safe place
 
 23. Follow [Authorized Keys](#authorized-keys) section
 
+24. Once Authorized Keys are working, disable SSH login with password https://docs.joinmastodon.org/admin/prerequisites/#do-not-allow-password-based-ssh-login-keys-only
+
 ### Remote Login (AWS node)
 
 If your seting up Raspberry Pi node **home node** then skip this section and proceed to **Remote Login (Home node)**.
