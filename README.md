@@ -257,8 +257,8 @@ Now the output of `sudo iptables-save` should look like the lines in step 4:
  
 10. Changed the password. Run `sudo raspi-config`. Select: **Change Password** If you don't change the password you'll get hacked.
 11. Connect enthernet cable or (Optionally) [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/first/other-notes/wifi.md)
-12. Update the system: `sudo apt update && sudo apt upgrade;`. If you don't upgrade you'll get hacked.
-13. Make firewall persistent:
+12. Update the system: `sudo apt update && sudo apt upgrade;`. If you don't upgrade you may get hacked. Some keyboards stop working after upgrade so be ready to find a different keyboard (DAS Keyboard works well, yet Pi needs to be rebooted while it's plugged in).
+13. Make firewall persistent, if you don't persist firewall you may get hacked:
 ```
 sudo apt install iptables-persistent  # when asked "Save currrent rules?" say "Yes" for both IPv4 and IPv6
 
