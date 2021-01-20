@@ -191,7 +191,7 @@ Run:
 sudo mkdir /etc/iptables
 ```
 
-2. Edit /etc/iptables/rules.v4 ith your favourite command-line text editor, e.g. `vi`  
+2. Edit /etc/iptables/rules.v4 ith your favourite command-line text editor, e.g. `vi`  (if your not familiar with `vi` type "nano" instead of "vi" - nano is less adanced yet easier to use) 
 ```
 sudo vi /etc/iptables/rules.v4
 ```
@@ -260,7 +260,7 @@ Now the output of `sudo iptables-save` should look like the lines in step 4:
 12. Update the system: `sudo apt update && sudo apt upgrade;`. If you don't upgrade you'll get hacked.
 13. Make firewall persistent:
 ```
-sudo apt install iptables-persistent
+sudo apt install iptables-persistent  # when asked "Save currrent rules?" say "Yes" for both IPv4 and IPv6
 
 sudo /etc/init.d/netfilter-persistent restart
 
