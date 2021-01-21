@@ -677,8 +677,6 @@ bitcoind
 
 ### Convenience stuff
 
-While your bitcoin chain syncs...
-
 Skip the following sections if your setting up a node on Amazon AWS or Google cloud:
 * Name your Pi
 * Time-zone
@@ -702,11 +700,7 @@ sudo vi /etc/cloud/templates/hosts.debian.tmpl  # do the same as for  /etc/hosts
 # instead add a space and the new hostname at the end, after "{{hostname}} "
 ```
 
-you'll see the change after rebooting, run sudo reboot, re-SSH back in run `sudo mount /mnt/btrfs/` and resume the chain sync:
-```
-sudo su -l bitcoin
-bitcoind
-```
+you'll see the change after rebooting, run sudo reboot, re-SSH back in.
 
 #### Time-zone
 
@@ -783,6 +777,13 @@ defhstatus "^EH"
 hardstatus alwayslastline '%{= G}[ %{G} %h %{g} ][%= %{= w}%?%-Lw%?%{= B}%n*%f %t%?%{= B}(%u)%?%{= w}%+Lw%?%= %{= g}][%{B} %Y-%m-%d %{W}%c %{g}]'
 ```
 
+## After setting up Convenience stuff resume Bitcoind
+
+Run `sudo mount /mnt/btrfs/` and resume the chain sync:
+```
+sudo su -l bitcoin
+bitcoind
+```
 
 Now you can re-start bitcoin in screen, log-out, and it will continue running. To do that:
 1. Find where `bticoind` is currently running, click on that, and press Ctrl-c
