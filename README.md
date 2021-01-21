@@ -384,7 +384,7 @@ sudo /etc/init.d/netfilter-persistent restart
 
 ### Authorized keys
 
-So you don't have to type the password every time you need to log-in to the pi, setup autorized_key.
+So you don't have to type the password every time you need to log-in to the pi, setup authorized_keys.
 
 On your laptop run:
 ```
@@ -401,7 +401,7 @@ Copy the output to clipboard.
 
 SSH into your Pi and run:
 ```
-cat >> ~/.ssh/autorized_keys
+cat >> ~/.ssh/authorized_keys
 ```
 paste the pubkey from clipboard, press Enter, and then press Ctrl-d.
 
