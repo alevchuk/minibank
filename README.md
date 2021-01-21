@@ -684,12 +684,12 @@ Skip the following sections if your setting up a node on Amazon AWS or Google cl
 
 #### Name your Pi
 
-Give your host a name. Put what you want instead of "minibank1"
+Give your host a name. Put what you want instead of "minibank1". No spaces or punctuation.
 ```
 sudo hostname minibank1
 ```
 
-Edit 2 files replacing "raspberrypi" with the name you came up with. No spaces or punctuation.
+Edit 2 files replacing "raspberrypi" with the name you came up with. 
 ```
 sudo vi /etc/hostname
 sudo vi /etc/hosts  # edit the line with 127.0.0.1 adding a space and your new hostname at the end of that line
