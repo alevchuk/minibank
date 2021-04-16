@@ -7,10 +7,6 @@ Prerequisites:
  * Boot Pi in [64-bit mode](https://medium.com/for-linux-users/how-to-make-your-raspberry-pi-4-faster-with-a-64-bit-kernel-77028c47d653) 
  * Login in as unix account that has sudo
 
-Citations:
-* This section is based on the [officail grafana doc](https://github.com/grafana/grafana/blob/first/contribute/developer-guide.md#build-grafana)
-
-
 
 ## Chroot for 64-bit environment
 
@@ -42,8 +38,6 @@ sudo mkdir /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin/bin
 sudo chown -R bitcoin /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin
 ```
 
-# Setup firefall
-https://github.com/alevchuk/minibank#network
 
 
 # Install needed packages
