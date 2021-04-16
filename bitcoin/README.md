@@ -14,11 +14,11 @@ Prerequisites:
 sudo adduser --disabled-password bitcoin
 sudo apt install -y debootstrap schroot
 
-cat << EOF | sudo tee /etc/schroot/chroot.d/pi64
+cat << EOF | sudo tee /etc/schroot/chroot.d/bitcoin64
 [pi64]
 description=builds that need 64-bit environment
 type=directory
-directory=/mnt/btrfs/pi64
+directory=/mnt/btrfs/bitcoin64
 users=grafana
 root-groups=root
 profile=desktop
