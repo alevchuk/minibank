@@ -3,6 +3,8 @@
 
 This manual documents how to build and run Bitcoin on Pi 4. The main challenge is that latest (after 0.19) versions of Bitcoin requires a 64-bit environment while Pi base operating system Rasbian is 32-bit. Fortunately Pi 4 hardware is 64-bit.
 
+For using Bitcoin Core as a wallet (e.g. via Specter Desktop), we what some core devs do https://twitter.com/orionwl/status/1340037662577741830 and install a modern version of berkeleydb (like this `sudo apt install libdb5.3++-dev`) and add `--with-incompatible-bdb` to the `./configure` command
+
 Prerequisites:
  * Boot Pi in [64-bit mode](https://medium.com/for-linux-users/how-to-make-your-raspberry-pi-4-faster-with-a-64-bit-kernel-77028c47d653) 
  * Login in as unix account that has sudo
@@ -42,7 +44,7 @@ sudo chown -R bitcoin /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin
 
 # Install needed packages
 ```
-sudo schroot -c bitcoin64 -- apt install -y git build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils  libboost-dev libboost-system-dev libboost-filesystem-dev  libboost-chrono-dev libboost-program-options-dev  libboost-test-dev libboost-thread-dev  libminiupnpc-dev  libzmq3-dev
+sudo schroot -c bitcoin64 -- apt install -y git build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils  libboost-dev libboost-system-dev libboost-filesystem-dev  libboost-chrono-dev libboost-program-options-dev  libboost-test-dev libboost-thread-dev  libminiupnpc-dev  libzmq3-dev libdb5.3++-dev
 ```
 
 
@@ -65,10 +67,9 @@ git checkout v0.20.1
 Prepare for build (one time setup):
 ```
 ./autogen.sh
-./configure  --with-gui=no --disable-tests --prefix=$HOME/bin 
+./configure  --with-gui=no --disable-tests --with-incompatible-bdb --prefix=$HOME/bin 
 ```
 > - The final output of `configure` should include:   "with zmq  = yes"
-> - For using Bitcoin Core as a wallet (e.g. via Specter Desktop), follow what some core devs do https://twitter.com/orionwl/status/1340037662577741830 and install a modern version of berkeleydb (like this `sudo apt install libdb5.3++-dev`) and add `--with-incompatible-bdb` to the `./configure` command
 
 Build and Install:
 ```
