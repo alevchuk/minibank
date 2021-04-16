@@ -55,23 +55,17 @@ schroot -c bitcoin64
 
 
 
-At this point change to unix account that will be running bitcoin, e.g.:
-```
-sudo su -l bitcoin
-```
-
 Checkout source code:
 ```
 git clone https://github.com/bitcoin/bitcoin.git ~/src/bitcoin
 cd ~/src/bitcoin
-git checkout v0.19.1
+git checkout v0.20.1
 ```
 
 Prepare for build (one time setup):
 ```
-cd ~/src/bitcoin
 ./autogen.sh
-./configure  --with-gui=no --disable-wallet --disable-tests --prefix=$HOME/bin 
+./configure  --with-gui=no --disable-tests --prefix=$HOME/bin 
 ```
 > - The final output of `configure` should include:   "with zmq  = yes"
 > - For using Bitcoin Core as a wallet (e.g. via Specter Desktop), follow what some core devs do https://twitter.com/orionwl/status/1340037662577741830 and install a modern version of berkeleydb (like this `sudo apt install libdb5.3++-dev`) and add `--with-incompatible-bdb` to the `./configure` command
