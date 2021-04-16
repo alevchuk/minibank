@@ -42,7 +42,7 @@ sudo chown -R bitcoin /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin
 
 # Install needed packages
 ```
-sudo schroot -c bitcoin64 -- apt install -y python3.7 python3-distutils g++ make golang git python2
+sudo schroot -c bitcoin64 -- apt install -y git build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils  libboost-dev libboost-system-dev libboost-filesystem-dev  libboost-chrono-dev libboost-program-options-dev  libboost-test-dev libboost-thread-dev  libminiupnpc-dev  libzmq3-dev
 ```
 
 
@@ -50,15 +50,10 @@ sudo schroot -c bitcoin64 -- apt install -y python3.7 python3-distutils g++ make
 Login as bitcoin user and drop into 64-bin environment:
 ```
 sudo su -l bitcoin
-schroot -c pi64
+schroot -c bitcoin64
 ```
 
-With unix account that has sudo, install dependencies:
-```
-sudo apt install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils  libboost-dev libboost-system-dev libboost-filesystem-dev  libboost-chrono-dev libboost-program-options-dev  libboost-test-dev libboost-thread-dev  libminiupnpc-dev  libzmq3-dev 
 
-sudo apt install git
-```
 
 At this point change to unix account that will be running bitcoin, e.g.:
 ```
