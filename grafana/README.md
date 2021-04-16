@@ -1,11 +1,11 @@
 # Grafana on Raspberry Pi 4
 
-This manual documents how to build and run Grafana on Pi 4. The main challenge is that Grafana requires a 64-bit environment while Pi base operating system Rasbian is 32-bit. Funtualty Pi 4 hardware is 64-bit.
+This manual documents how to build and run Grafana on Pi 4. The main challenge is that Grafana requires a 64-bit environment while Pi base operating system Rasbian is 32-bit. Fortunately Pi 4 hardware is 64-bit.
 
 Grafana is a monitoring/analytics web interface.
 
 
-Prereqisits:
+Prerequisites:
  * [Node exporter running on all nodes](https://github.com/alevchuk/minibank/blob/first/README.md#prometheus-exporters) (calculates metrics locally)
  * [Prometheus running on one of the nodes](https://github.com/alevchuk/minibank/blob/first/README.md#prometheus) (aggragetes and stores all metrics in one place)
 
@@ -67,7 +67,7 @@ ln -s /mnt/btrfs/grafana/gocode ~/gocode
 ln -s /mnt/btrfs/grafana/bin ~/bin
 ```
 
-The remainging parts of this manual will assume you are logged into the 64-bin environment.
+The remaining parts of this manual will assume you are logged into the 64-bin environment.
 
 
 
@@ -127,7 +127,7 @@ sudo su -l grafana
 schroot -c pi64
 ```
 
-npm was intalled as part of Node.js so you can just do this
+npm was installed as part of Node.js so you can just do this
 ```
 npm install -g yarn
 ```
@@ -199,7 +199,7 @@ sudo systemctl restart netfilter-persistent.service
 
 Use grafana: connect your browser to http://localhost:3000
 
-Follow web-ui wizard. Import dashboars:
+Follow web-ui wizard. Import dashboards:
 * Node Exporter Server Metrics dashboard https://gist.github.com/alevchuk/2a28d484945c86d3ffef0f7e671b065d
 * Bitcoin dashboard https://gist.github.com/alevchuk/4235aefb3b8389b62c75878f5b1f7d04
 
