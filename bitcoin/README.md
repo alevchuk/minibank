@@ -15,7 +15,7 @@ sudo adduser --disabled-password bitcoin
 sudo apt install -y debootstrap schroot
 
 cat << EOF | sudo tee /etc/schroot/chroot.d/bitcoin64
-[pi64]
+[bitcoin64]
 description=builds that need 64-bit environment
 type=directory
 directory=/mnt/btrfs/bitcoin64
