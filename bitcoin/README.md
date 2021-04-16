@@ -1,5 +1,64 @@
 ## Build Bitcoind (a.k.a. Bitcoin Core)
 
+
+This manual documents how to build and run Bitcoin on Pi 4. The main challenge is that latest (after 0.19) versions of Bitcoin requires a 64-bit environment while Pi base operating system Rasbian is 32-bit. Fortunately Pi 4 hardware is 64-bit.
+
+Prerequisites:
+ * Boot Pi in [64-bit mode](https://medium.com/for-linux-users/how-to-make-your-raspberry-pi-4-faster-with-a-64-bit-kernel-77028c47d653) 
+ * Login in as unix account that has sudo
+
+Citations:
+* This section is based on the [officail grafana doc](https://github.com/grafana/grafana/blob/first/contribute/developer-guide.md#build-grafana)
+
+
+
+## Chroot for 64-bit environment
+
+```
+sudo adduser --disabled-password bitcoin
+sudo apt install -y debootstrap schroot
+
+cat << EOF | sudo tee /etc/schroot/chroot.d/pi64
+[pi64]
+description=builds that need 64-bit environment
+type=directory
+directory=/mnt/btrfs/pi64
+users=grafana
+root-groups=root
+profile=desktop
+personality=linux
+preserve-environment=true
+EOF
+
+sudo debootstrap --arch arm64 buster /mnt/btrfs/bitcoin64
+
+sudo schroot -c bitcoin64 -- apt update
+sudo schroot -c bitcoin64 -- apt upgrade -y
+
+sudo mkdir /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin
+sudo mkdir /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin/src
+sudo mkdir /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin/bin
+
+sudo chown -R bitcoin /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin
+```
+
+# Setup firefall
+https://github.com/alevchuk/minibank#network
+
+
+# Install needed packages
+```
+sudo schroot -c bitcoin64 -- apt install -y python3.7 python3-distutils g++ make golang git python2
+```
+
+
+# Change user
+Login as bitcoin user and drop into 64-bin environment:
+```
+sudo su -l bitcoin
+schroot -c pi64
+```
+
 With unix account that has sudo, install dependencies:
 ```
 sudo apt install build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils  libboost-dev libboost-system-dev libboost-filesystem-dev  libboost-chrono-dev libboost-program-options-dev  libboost-test-dev libboost-thread-dev  libminiupnpc-dev  libzmq3-dev 
