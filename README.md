@@ -793,6 +793,7 @@ Preprequisigtes:
 Login as lightning:
 ```
 sudo su -l lightning
+schroot -c lightning64
 ```
 
 Edit `~/.lnd/lnd.conf`
@@ -919,6 +920,7 @@ lnd logs will show
 Change into Lighting account:
 ```
 sudo su -l lightning
+schroot -c lightning64
 ```
 
 Checkout scripts and copy to `lnd-e2e-testing`:
@@ -1143,6 +1145,8 @@ sudo pip3 install virtualenv
 Setup
 ```
 sudo su -l lightning
+schroot -c lightning64
+
 git clone https://github.com/alevchuk/minibank.git minibank/
 cd minibank
 git pull
