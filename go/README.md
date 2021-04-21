@@ -14,6 +14,13 @@ sudo apt install golang git
 
 --- after this commands should be run under the unix account where Go related services will be running. ---
 
+for example login as Lighting users like this:
+```
+sudo su -l lightning
+schroot -c lightning64
+```
+
+
 2. Set bootstrap path and gopath. Add the following to `~/.profile`
 
 ```
