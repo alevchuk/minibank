@@ -8,11 +8,37 @@ Prerequisites:
  * Boot Pi in [64-bit mode](https://medium.com/for-linux-users/how-to-make-your-raspberry-pi-4-faster-with-a-64-bit-kernel-77028c47d653) 
  * Login in as unix account that has sudo
 
-
-## Chroot for 64-bit environment
+## 1. Create Lightning user
 
 ```
 sudo adduser --disabled-password lightning
+```
+
+## 2. Install Tor
+
+```
+sudo apt install tor
+```
+
+ * Minibank needs tor version **0.3.3.6** or above. Fortunaly Rasiban 10 already has that. On older distos [build tor from source](https://github.com/alevchuk/minibank/tree/first/tor#build-from-source). 
+ * Minibank uses Tor for LND. Yet not for Bitcoin sync traffic because that seems to introduce delays.
+
+1. Edit `/etc/tor/torrc` 
+* Uncomment "ControlPort 9051"
+2. Run 
+```
+sudo systemctl restart tor@default.service
+```
+
+Add lightning user to be part of the Tor group (e.g. it needs read permissions to /run/tor/control.authcookie )
+```
+sudo /usr/sbin/adduser lightning debian-tor
+```
+
+
+## 3. Chroot for 64-bit environment
+
+```
 sudo apt install -y debootstrap schroot
 
 cat << EOF | sudo tee /etc/schroot/chroot.d/lightning64
@@ -44,7 +70,7 @@ sudo chown -R lightning /mnt/btrfs/lightning64/mnt/btrfs/lightning
 
 
 
-## Install needed packages
+## 4. Install needed packages
 ```
 sudo schroot -c lightning64 -- apt install -y git build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils  libboost-dev libboost-system-dev libboost-filesystem-dev  libboost-chrono-dev libboost-program-options-dev  libboost-test-dev libboost-thread-dev  libminiupnpc-dev  libzmq3-dev libdb5.3++-dev
 ```
@@ -52,7 +78,7 @@ sudo schroot -c lightning64 -- apt install -y git build-essential libtool autoto
 
 
 
-## Setup LND environment
+## 5. Setup LND environment
 
 Log-in as "lightning" user and setup symlinks
 
@@ -67,35 +93,11 @@ ln -s /mnt/btrfs/lightning/lnd-e2e-testing
 ln -s /mnt/btrfs/lightning/src
 ```
 
-
-
-## Install Tor
-
-```
-sudo apt install tor
-```
-
- * Minibank needs tor version **0.3.3.6** or above. Fortunaly Rasiban 10 already has that. On older distos [build tor from source](https://github.com/alevchuk/minibank/tree/first/tor#build-from-source). 
- * Minibank uses Tor for LND. Yet not for Bitcoin sync traffic because that seems to introduce delays.
-
-1. Edit `/etc/tor/torrc` 
-* Uncomment "ControlPort 9051"
-2. Run 
-```
-sudo systemctl restart tor@default.service
-```
-
-Add lightning user to be part of the Tor group (e.g. it needs read permissions to /run/tor/control.authcookie )
-```
-sudo /usr/sbin/adduser lightning debian-tor
-```
-
-
-## Build Go
+## 6. Build Go
 Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/minibank/blob/first/go/)
 
 
-## Build LND
+## 7. Build LND
 
 1. Install dependencies:
 * Fun fact: build-essential contains `make`
