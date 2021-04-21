@@ -585,28 +585,7 @@ sudo btrfs balance start -dconvert=raid1 -mconvert=raid1 /mnt/btrfs/
 
 ### Build Bitcoind
 
-1. Create bitcoin user unix account
-```
-sudo adduser --disabled-password bitcoin
-
-sudo mkdir /mnt/btrfs/bitcoin
-sudo mkdir /mnt/btrfs/bitcoin/bin
-sudo mkdir /mnt/btrfs/bitcoin/dot-bitcoin-data
-sudo mkdir /mnt/btrfs/bitcoin/src
-
-sudo chown -R bitcoin /mnt/btrfs/bitcoin
-
-sudo su -l bitcoin
-
-ln -s /mnt/btrfs/bitcoin/bin ~/bin
-ln -s /mnt/btrfs/bitcoin/src ~/src
-ln -s /mnt/btrfs/bitcoin/dot-bitcoin-data ~/.bitcoin
-
-echo 'export PATH=$HOME/bin/bin:$PATH  # bitcoind is here' >> ~/.profile
-. ~/.profile
-```
-
-2. Follow instruction to build bitcoin: [alevchuk/minibank/bitcoin](https://github.com/alevchuk/minibank/tree/first/bitcoin)
+Follow instruction to build bitcoin: [alevchuk/minibank/bitcoin](https://github.com/alevchuk/minibank/tree/first/bitcoin)
 
 
 ### Start Bitcoind
