@@ -62,8 +62,11 @@ sudo schroot -c lightning64 -- apt upgrade -y
 Make directories inside the data mount point:
 ```
 sudo mkdir -p /mnt/btrfs/lightning64/mnt/btrfs/lightning
-sudo mkdir /mnt/btrfs/lightning64/mnt/btrfs/lightning/src
-sudo mkdir /mnt/btrfs/lightning64/mnt/btrfs/lightning/bin
+sudo mkdir    /mnt/btrfs/lightning64/mnt/btrfs/lightning/src
+sudo mkdir    /mnt/btrfs/lightning64/mnt/btrfs/lightning/bin
+sudo mkdir    /mnt/btrfs/lightning64/mnt/btrfs/lightning/gocode
+sudo mkdir    /mnt/btrfs/lightning64/mnt/btrfs/lightning/lnd-data
+sudo mkdir    /mnt/btrfs/lightning64/mnt/btrfs/lightning/lnd-e2e-testing
 
 sudo chown -R lightning /mnt/btrfs/lightning64/mnt/btrfs/lightning
 ```
