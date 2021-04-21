@@ -1,4 +1,6 @@
-### Setup LND environment
+# Install LND and Tor
+
+## Setup LND environment
 
 1. Add new unix user account "lightning" and setup storge directories on BTRFS
 
@@ -28,7 +30,7 @@ ln -s /mnt/btrfs/lightning/src
 
 
 
-### Install Tor
+## Install Tor
 
 ```
 sudo apt install tor
@@ -50,11 +52,11 @@ sudo /usr/sbin/adduser lightning debian-tor
 ```
 
 
-### Build Go
+## Build Go
 Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/minibank/blob/first/go/)
 
 
-### Build LND
+## Build LND
 
 1. Install dependencies:
 * Fun fact: build-essential contains `make`
