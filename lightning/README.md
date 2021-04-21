@@ -71,12 +71,17 @@ sudo chown -R lightning /mnt/btrfs/lightning64/mnt/btrfs/lightning
 
 
 ## 4. Install needed packages
-```
-sudo schroot -c lightning64 -- apt install -y git build-essential
+
+1. Install dependencies:
+
+Fun facts:
+* build-essential contains `make`
+* golang is an older version of go that is needed to build modern Go
 
 ```
+sudo schroot -c lightning64 -- apt install -y git build-essential golang
 
-
+```
 
 
 ## 5. Setup LND environment
@@ -99,19 +104,13 @@ Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/mini
 
 ## 7. Build LND
 
-1. Install dependencies:
-* Fun fact: build-essential contains `make`
-```
-sudo apt-get install build-essential
-```
-
-2. Log in as "lightning"
+1. Log in as "lightning"
 ```
 sudo su -l lightning
 schroot -c lightning64
 ```
 
-3. Download, build, and Install LND:
+2. Download, build, and Install LND:
 ```
 go get -d github.com/lightningnetwork/lnd
 (cd $GOPATH/src/github.com/lightningnetwork/lnd && make clean && make && make install)
