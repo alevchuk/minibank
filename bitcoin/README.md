@@ -21,7 +21,7 @@ cat << EOF | sudo tee /etc/schroot/chroot.d/bitcoin64
 description=builds that need 64-bit environment
 type=directory
 directory=/mnt/btrfs/bitcoin64
-users=grafana
+users=bitcoin
 root-groups=root
 profile=desktop
 personality=linux
