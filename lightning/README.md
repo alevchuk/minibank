@@ -83,7 +83,6 @@ sudo schroot -c lightning64 -- apt install -y git build-essential
 
 Log-in as "lightning" user and setup symlinks
 
-
 ```
 sudo su -l lightning
 schroot -c lightning64
