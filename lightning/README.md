@@ -39,7 +39,7 @@ sudo mkdir -p /mnt/btrfs/lightning64/mnt/btrfs/lightning
 sudo mkdir /mnt/btrfs/lightning64/mnt/btrfs/lightning/src
 sudo mkdir /mnt/btrfs/lightning64/mnt/btrfs/lightning/bin
 
-sudo chown -R lightning /mnt/btrfs/lightning6464/mnt/btrfs/lightning
+sudo chown -R lightning /mnt/btrfs/lightning64/mnt/btrfs/lightning
 ```
 
 
