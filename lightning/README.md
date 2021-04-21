@@ -15,7 +15,7 @@ Prerequisites:
 sudo adduser --disabled-password lightning
 sudo apt install -y debootstrap schroot
 
-cat << EOF | sudo tee /etc/schroot/chroot.d/bitcoin64
+cat << EOF | sudo tee /etc/schroot/chroot.d/lightning64
 [lightning64]
 description=builds that need 64-bit environment
 type=directory
