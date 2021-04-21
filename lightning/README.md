@@ -72,16 +72,14 @@ sudo chown -R lightning /mnt/btrfs/lightning64/mnt/btrfs/lightning
 
 ## 4. Install needed packages
 
-1. Install dependencies:
-
-Fun facts:
-* build-essential contains `make`
-* golang is an older version of go that is needed to build modern Go
-
 ```
 sudo schroot -c lightning64 -- apt install -y git build-essential golang
 
 ```
+
+Fun facts:
+* build-essential contains `make`
+* golang is an older version of go that is needed to build modern Go
 
 
 ## 5. Setup LND environment
