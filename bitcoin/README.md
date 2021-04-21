@@ -32,7 +32,10 @@ sudo debootstrap --arch arm64 buster /mnt/btrfs/bitcoin64
 
 sudo schroot -c bitcoin64 -- apt update
 sudo schroot -c bitcoin64 -- apt upgrade -y
+```
 
+Make direcetories inside the data mount point:
+```
 sudo mkdir /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin
 sudo mkdir /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin/src
 sudo mkdir /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin/bin
@@ -48,13 +51,23 @@ sudo schroot -c bitcoin64 -- apt install -y git build-essential libtool autotool
 ```
 
 
-# Change user
+# Setup, git clone, and build
+
 Login as bitcoin user and drop into 64-bin environment:
 ```
 sudo su -l bitcoin
 schroot -c bitcoin64
 ```
 
+Make symlinks back to data mount point
+```
+ln -s /mnt/btrfs/bitcoin/bin ~/bin
+ln -s /mnt/btrfs/bitcoin/src ~/src
+ln -s /mnt/btrfs/bitcoin/dot-bitcoin-data ~/.bitcoin
+
+echo 'export PATH=$HOME/bin/bin:$PATH  # bitcoind is here' >> ~/.profile
+. ~/.profile
+```
 
 
 Checkout source code:
