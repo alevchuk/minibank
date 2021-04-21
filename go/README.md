@@ -8,7 +8,8 @@ We use Go for Lightning LND implementation and for monitoring services.
 1. Fetch bootstrap go (as root)
 
 ```
-sudo apt install golang git
+sudo schroot -c lightning64 -- apt install -y golang git
+
 ```
 
 
