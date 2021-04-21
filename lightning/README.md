@@ -35,7 +35,7 @@ sudo schroot -c lightning64 -- apt upgrade -y
 
 Make directories inside the data mount point:
 ```
-sudo mkdir /mnt/btrfs/lightning64/mnt/btrfs/lightning
+sudo mkdir -p /mnt/btrfs/lightning64/mnt/btrfs/lightning
 sudo mkdir /mnt/btrfs/lightning64/mnt/btrfs/lightning/src
 sudo mkdir /mnt/btrfs/lightning64/mnt/btrfs/lightning/bin
 
