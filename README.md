@@ -785,8 +785,7 @@ Follow instrutions under [alevchuk/minibank/lightning](https://github.com/alevch
 
 Preprequisigtes:
 * [Start Bitcoin](#start-bitcoind)
-* [Build LND](#build-lnd)
-* System package installed: `dnsutils`
+* [Build LND](#install-lnd-and-tor)
 
 
 
