@@ -1,26 +1,65 @@
 # Install LND and Tor
 
-## Setup LND environment
+This manual documents how to build and run Lightning on Pi 4. The main challenge is 64-bit environment while Pi base operating system Rasbian is 32-bit. Fortunately Pi 4 hardware is 64-bit.
 
-1. Add new unix user account "lightning" and setup storge directories on BTRFS
+The reason for running LND in 64-bit mode is to avoid 32-bit related bugs such as https://github.com/lightningnetwork/lnd/issues/5196 - athough LND team is commited to supporting 32-bit mode, some of these bugs can take several days to fix. By the way, there are also some not well understood issues possbliy related to 32-bit mode https://github.com/mynodebtc/mynode/issues/512 so using 64-bit mode can be solid way to confirm if 32-bit mode is the problem.
+
+Prerequisites:
+ * Boot Pi in [64-bit mode](https://medium.com/for-linux-users/how-to-make-your-raspberry-pi-4-faster-with-a-64-bit-kernel-77028c47d653) 
+ * Login in as unix account that has sudo
+
+
+## Chroot for 64-bit environment
 
 ```
 sudo adduser --disabled-password lightning
+sudo apt install -y debootstrap schroot
 
-sudo mkdir /mnt/btrfs/lightning
-sudo mkdir /mnt/btrfs/lightning/lnd-data
-sudo mkdir /mnt/btrfs/lightning/gocode
-sudo mkdir /mnt/btrfs/lightning/lnd-e2e-testing
-sudo mkdir /mnt/btrfs/lightning/src
+cat << EOF | sudo tee /etc/schroot/chroot.d/bitcoin64
+[lightning64]
+description=builds that need 64-bit environment
+type=directory
+directory=/mnt/btrfs/lightning64
+users=lightning
+root-groups=root
+profile=desktop
+personality=linux
+preserve-environment=true
+EOF
 
-sudo chown -R lightning /mnt/btrfs/lightning
+sudo debootstrap --arch arm64 buster /mnt/btrfs/lightning64
+
+sudo schroot -c lightning64 -- apt update
+sudo schroot -c lightning64 -- apt upgrade -y
 ```
 
-2. Log-in as "lightning" user and setup symlinks
+Make direcetories inside the data mount point:
+```
+sudo mkdir /mnt/btrfs/lightning64/mnt/btrfs/lightning
+sudo mkdir /mnt/btrfs/lightning64/mnt/btrfs/lightning/src
+sudo mkdir /mnt/btrfs/lightning64/mnt/btrfs/lightning/bin
+
+sudo chown -R lightning /mnt/btrfs/lightning6464/mnt/btrfs/lightning
+```
+
+
+
+## Install needed packages
+```
+sudo schroot -c lightning64 -- apt install -y git build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils  libboost-dev libboost-system-dev libboost-filesystem-dev  libboost-chrono-dev libboost-program-options-dev  libboost-test-dev libboost-thread-dev  libminiupnpc-dev  libzmq3-dev libdb5.3++-dev
+```
+
+
+
+
+## Setup LND environment
+
+Log-in as "lightning" user and setup symlinks
 
 
 ```
 sudo su -l lightning
+schroot -c lightning64
 
 ln -s /mnt/btrfs/lightning/lnd-data ~/.lnd
 ln -s /mnt/btrfs/lightning/gocode
@@ -67,6 +106,7 @@ sudo apt-get install build-essential
 2. Log in as "lightning"
 ```
 sudo su -l lightning
+schroot -c lightning64
 ```
 
 3. Download, build, and Install LND:
