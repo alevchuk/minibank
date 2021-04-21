@@ -34,7 +34,7 @@ sudo schroot -c bitcoin64 -- apt update
 sudo schroot -c bitcoin64 -- apt upgrade -y
 ```
 
-Make direcetories inside the data mount point:
+Make directories inside the data mount point:
 ```
 sudo mkdir /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin
 sudo mkdir /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin/src
