@@ -256,10 +256,9 @@ def main():
     chan_id = src_c["chan_id"]
 
     # Part 1: find route that end for src_remote_pubkey
-    max_routes = 20
-    print("Querying for up to {} routes".format(max_routes))
+    print("Querying routes")
     routes = json.loads(subprocess.check_output([
-      "lncli", "queryroutes", src_remote_pubkey, str(amt), "--final_cltv_delta", "144", '--num_max_routes', str(max_routes)]
+      "lncli", "queryroutes", src_remote_pubkey, str(amt), "--final_cltv_delta", "144"]
     ).decode("utf-8"))["routes"]
     print("Got {} routes".format(len(routes)))
 
