@@ -42,7 +42,7 @@ Load `~/.profile`
 git clone https://go.googlesource.com/go ~/src/go
 cd ~/src/go
 git fetch
-git checkout go1.14.12
+git checkout go1.17.1
 ```
 
 5. (for 1 GB RAM hosts only) Add swap
