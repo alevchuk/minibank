@@ -655,7 +655,7 @@ bitcoind
 Skip the following sections if your setting up a node on Amazon AWS or Google cloud:
 * Name your Pi
 * Time-zone
-* Non-British Keyboard
+* British to US Keyboard
 
 #### Name your Pi
 
@@ -841,6 +841,17 @@ cp /home/lightning/gocode/src/github.com/lightningnetwork/lnd/contrib/lncli.bash
 Start:
 ```
 lnd
+```
+
+## British to US keyboard
+
+When plugged in with keyboard to USB, Raspberry Pi will type brittish pound instead of "#" (pound used for commenting out code), and some other wier symbol instad of "|" (pipe used for chaining commands in Linux). To switch to US kyboard do:
+
+Change `/etc/default/keyboard`
+to
+```
+XKBMODEL="pc105"
+XKBLAYOUT="us"
 ```
 
 
