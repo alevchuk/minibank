@@ -754,7 +754,13 @@ hardstatus alwayslastline '%{= G}[ %{G} %h %{g} ][%= %{= w}%?%-Lw%?%{= B}%n*%f %
 
 ## British to US keyboard
 
-When plugged in with keyboard to USB, Raspberry Pi will type brittish pound instead of "#" (pound used for commenting out code), and some other wier symbol instad of "|" (pipe used for chaining commands in Linux). To switch to US kyboard do:
+When plugged in with keyboard to USB, Raspberry Pi will type 
+
+* brittish pound instead of "#" (pound used for commenting out code),
+* some other wierd symbol instad of `"` (double quote used for grouping command line arguments and telling apart variable names from litteral values). 
+* some other wierd symbol instad of "|" (pipe used for chaining commands in Linux). 
+ 
+To switch to US kyboard do:
 
 Change `/etc/default/keyboard`
 to
