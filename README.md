@@ -659,10 +659,7 @@ Skip the following sections if your setting up a node on Amazon AWS or Google cl
 
 #### Name your Pi
 
-Give your host a name. Put what you want instead of "minibank1". No spaces or punctuation.
-```
-sudo hostname minibank1
-```
+
 
 Edit 2 files replacing "raspberrypi" with the name you came up with. 
 ```
@@ -673,6 +670,11 @@ sudo vi /etc/cloud/templates/hosts.debian.tmpl  # do the same as for  /etc/hosts
 # yet if this file does not exist then skip this step.
 # don't rely on the {{hostname}} sytax (it will not do what you most likely expect),
 # instead add a space and the new hostname at the end, after "{{hostname}} "
+```
+
+If you want to give your host a name without rebooting. No spaces or punctuation. (Put what you want instead of "minibank1".)
+```
+sudo hostname minibank1
 ```
 
 you'll see the change after rebooting, run sudo reboot, re-SSH back in.
