@@ -752,6 +752,18 @@ defhstatus "^EH"
 hardstatus alwayslastline '%{= G}[ %{G} %h %{g} ][%= %{= w}%?%-Lw%?%{= B}%n*%f %t%?%{= B}(%u)%?%{= w}%+Lw%?%= %{= g}][%{B} %Y-%m-%d %{W}%c %{g}]'
 ```
 
+## British to US keyboard
+
+When plugged in with keyboard to USB, Raspberry Pi will type brittish pound instead of "#" (pound used for commenting out code), and some other wier symbol instad of "|" (pipe used for chaining commands in Linux). To switch to US kyboard do:
+
+Change `/etc/default/keyboard`
+to
+```
+XKBMODEL="pc105"
+XKBLAYOUT="us"
+```
+
+
 ## After setting up Convenience stuff resume Bitcoind
 
 Run `sudo mount /mnt/btrfs/` and resume the chain sync:
@@ -843,16 +855,7 @@ Start:
 lnd
 ```
 
-## British to US keyboard
 
-When plugged in with keyboard to USB, Raspberry Pi will type brittish pound instead of "#" (pound used for commenting out code), and some other wier symbol instad of "|" (pipe used for chaining commands in Linux). To switch to US kyboard do:
-
-Change `/etc/default/keyboard`
-to
-```
-XKBMODEL="pc105"
-XKBLAYOUT="us"
-```
 
 
 ### Create your Lightning wallet
