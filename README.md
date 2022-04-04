@@ -64,13 +64,13 @@ Comparison to similar projects, it the order of difficulty of use:
 
 The powerful Pi 4 with plenty of RAM removing the need for swap. Two high-speed SSDs for Raid-1 mirroring. Different manufacturers so they don't fail at the same time.
 
-Total **296 USD** as of 2020-12-09
+Total **430 USD** as of 2022-01-04
 
 * Pi 4 kit (8GB RAM, heat sinks, power supply): [CanaKit Raspberry Pi 4 Basic Kit 8GB RAM](https://camelcamelcamel.com/product/B08DJ9MLHV)
 * FLIRC Passive cooling case [Flirc Raspberry Pi 4 Case](https://camelcamelcamel.com/Flirc-Raspberry-Pi-Case-Silver/product/B07WG4DW52)
 * Micro SD card 32G (for operating system) [SanDisk-Extreme-microSD-UHS-I-Adapter](https://camelcamelcamel.com/product/B06XWMQ81P)
-* SanDisk 500 GB SSD (for data; Raid-1 mirror): [SanDisk-500GB-Extreme-Portable](https://camelcamelcamel.com/product/B078SWJ3CF)
-* SAMSUNG 500 GB SSD (for datat; Raid-1 mirror): [SAMSUNG-500GB-T7-Portable](https://camelcamelcamel.com/product/B0874XJL6M)
+* SanDisk 500 GB SSD (for data; Raid-1 mirror): [SanDisk-500GB-Extreme-Portable](https://camelcamelcamel.com/product/B078STRHBX)
+* SAMSUNG 500 GB SSD (for datat; Raid-1 mirror): [SAMSUNG-500GB-T7-Portable](https://camelcamelcamel.com/product/B0874YJP92)
 * Card Reader (for 1 time setup) [Transcend-microSDHC-Reader-TS-RDF5K-Black](https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4)
 
 Known issues:
@@ -623,8 +623,8 @@ onlynet=ipv4
 zmqpubrawblock=tcp://0.0.0.0:29000
 zmqpubrawtx=tcp://0.0.0.0:29001
 
-### prune=0  # No prune if you have 1 TB drive(s)
-prune=476000  # we have 500 TB of storage space (raid-1 of 2 drives 500 TB each) 
+prune=0  # No prune if you have 1 TB drive(s)
+## prune=476000  # if you have 500 TB of storage space (raid-1 of 2 drives 500 TB each) you'll need to prune but you will need to disable txindex and blockfilterindex
 
 txindex=1  # Maintain a full transaction index, LND uses this, otherewise there will be a lot of disk scans
 
