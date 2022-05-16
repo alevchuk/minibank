@@ -518,7 +518,19 @@ To disable UAS:
   * replace YOUR_...
   * don't miss the ":u" at the end
   * The whole line should look similar to this `usb-storage.quirks=0781:558c:u,04e8:61f5:u dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=3acd0083-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait`
-
+6. Reboot
+7. Check `dmesg | less`. Seach for "UAS", by typing "/UAS" and pressing "n" to go to next one. There should be 2 "UAS is ignored" messages for each USB debvice. They look like this:
+```
+[    1.617927] usb 2-1: UAS is ignored for this device, using usb-storage instead
+[    1.618064] usb 2-1: UAS is ignored for this device, using usb-storage instead
+...
+[    2.049009] usb 2-2: UAS is ignored for this device, using usb-storage instead
+[    2.049152] usb 2-2: UAS is ignored for this device, using usb-storage instead
+...
+[    2.624504] sd 0:0:0:0: [sda] 1953525168 512-byte logical blocks: (1.00 TB/932 GiB)
+...
+[    3.071842] sd 1:0:0:0: [sdb] 976773168 512-byte logical blocks: (500 GB/466 GiB)
+```
 
 ### BTRFS RAID-1 Mirror
 
