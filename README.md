@@ -75,7 +75,7 @@ Total **430 USD** as of 2022-01-04
 * Card Reader (for 1 time setup) [Transcend-microSDHC-Reader-TS-RDF5K-Black](https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4)
 
 Known issues:
-* WARNING: DO NOT USE Seagate SSDs. The following Seagate divice caused data corruption when pluging into USB, other storage connected to UBS also got affected. DO NOT USE Seagate 500 GB SSD (for Raid-1 mirror): [Seagate-Barracuda-500GB-External-Portable](https://camelcamelcamel.com/product/B083FF3PJ9)
+* [Not sure this is ture. Now I know the data corruption is caused by UAS. So later in this article I disable UAS. This may actually fix the percieved Seagate issue] WARNING: The following Seagate divice [may] caused data corruption when pluging into USB, other storage connected to UBS also got affected. DO NOT USE Seagate 500 GB SSD (for Raid-1 mirror): [Seagate-Barracuda-500GB-External-Portable](https://camelcamelcamel.com/product/B083FF3PJ9)
 
 
 ### (Optional) Monitoring Station at Home
