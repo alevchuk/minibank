@@ -69,10 +69,11 @@ Total **430 USD** as of 2022-01-04
 * Pi 4 kit (8GB RAM, heat sinks, power supply): [CanaKit Raspberry Pi 4 Basic Kit 8GB RAM](https://camelcamelcamel.com/product/B08DJ9MLHV)
 * FLIRC Passive cooling case [Flirc Raspberry Pi 4 Case](https://camelcamelcamel.com/Flirc-Raspberry-Pi-Case-Silver/product/B07WG4DW52)
 * Micro SD card 32G (for operating system) [SanDisk-Extreme-microSD-UHS-I-Adapter](https://camelcamelcamel.com/product/B06XWMQ81P)
+* Card Reader (for 1 time setup) [Transcend-microSDHC-Reader-TS-RDF5K-Black](https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4)
 * SAMSUNG 1 TB SSD (for datat; Raid-1 mirror): [SAMSUNG T7 Portable SSD 1TB](https://camelcamelcamel.com/product/B0874YJP92)
 * SanDisk 1 TB SSD (for data; Raid-1 mirror): [SanDisk 1TB Extreme Portable External SSD](https://camelcamelcamel.com/product/B078STRHBX)
-  * Different manufacturers so they don't fail at the same time. Yet, SanDisk failed first after I used this setup for several year. SanDisk company only tests Win and Mac. It does not show having cache on Linux so this many be a result of degraded perfromance. Also, shipping took much longer than SAMSUNG. So, in the future I might just get two SAMSUNGs instead.
-* Card Reader (for 1 time setup) [Transcend-microSDHC-Reader-TS-RDF5K-Black](https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4)
+  * **Pros:** Different manufacturers so they don't fail at the same time. **Cons:** SanDisk failed first after I used this setup for several year. SanDisk company only tests Win and Mac. It does not show having cache on Linux so this many be a result of degraded perfromance. No indicator light. Shipping took much longer than SAMSUNG. **Conclusion:** in the future I might just get two SAMSUNGs instead
+
 
 Known issues:
 * [Not sure this is ture. Now I know the data corruption is caused by UAS. So later in this article I disable UAS. This may actually fix the percieved Seagate issue] WARNING: The following Seagate divice [may] caused data corruption when pluging into USB, other storage connected to UBS also got affected. DO NOT USE Seagate 500 GB SSD (for Raid-1 mirror): [Seagate-Barracuda-500GB-External-Portable](https://camelcamelcamel.com/product/B083FF3PJ9)
