@@ -62,15 +62,16 @@ Comparison to similar projects, it the order of difficulty of use:
 
 ### Model 4 :: Node at Home
 
-The powerful Pi 4 with plenty of RAM removing the need for swap. Two high-speed SSDs for Raid-1 mirroring. Different manufacturers so they don't fail at the same time.
+The powerful Pi 4 with plenty of RAM removing the need for swap. Two high-speed SSDs for Raid-1 mirroring.
 
 Total **430 USD** as of 2022-01-04
 
 * Pi 4 kit (8GB RAM, heat sinks, power supply): [CanaKit Raspberry Pi 4 Basic Kit 8GB RAM](https://camelcamelcamel.com/product/B08DJ9MLHV)
 * FLIRC Passive cooling case [Flirc Raspberry Pi 4 Case](https://camelcamelcamel.com/Flirc-Raspberry-Pi-Case-Silver/product/B07WG4DW52)
 * Micro SD card 32G (for operating system) [SanDisk-Extreme-microSD-UHS-I-Adapter](https://camelcamelcamel.com/product/B06XWMQ81P)
-* SanDisk 1 TB SSD (for data; Raid-1 mirror): [SanDisk 1TB Extreme Portable External SSD](https://camelcamelcamel.com/product/B078STRHBX)
 * SAMSUNG 1 TB SSD (for datat; Raid-1 mirror): [SAMSUNG T7 Portable SSD 1TB](https://camelcamelcamel.com/product/B0874YJP92)
+* SanDisk 1 TB SSD (for data; Raid-1 mirror): [SanDisk 1TB Extreme Portable External SSD](https://camelcamelcamel.com/product/B078STRHBX)
+  * Different manufacturers so they don't fail at the same time. Yet, SanDisk failed first after I used this setup for several year. SanDisk company only tests Win and Mac. It does not show having cache on Linux so this many be a result of degraded perfromance. Also, shipping took much longer than SAMSUNG. So, in the future I might just get two SAMSUNGs instead.
 * Card Reader (for 1 time setup) [Transcend-microSDHC-Reader-TS-RDF5K-Black](https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4)
 
 Known issues:
