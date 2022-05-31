@@ -34,6 +34,7 @@ sudo schroot -c electrs64 -- apt upgrade -y
 
 Make directories inside the data mount point:
 ```
+sudo mkdir /mnt/btrfs/electrs64/mnt/btrfs
 sudo mkdir /mnt/btrfs/electrs64/mnt/btrfs/electrs
 sudo mkdir /mnt/btrfs/electrs64/mnt/btrfs/electrs/src
 sudo mkdir /mnt/btrfs/electrs64/mnt/btrfs/electrs/bin
