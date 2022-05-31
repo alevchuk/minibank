@@ -45,7 +45,7 @@ sudo chown -R electrs /mnt/btrfs/electrs64/mnt/btrfs/electrs
 
 # Install needed packages
 ```
-sudo schroot -c electrs64 -- apt install -y git build-essential libtool autotools-dev automake pkg-config libssl-dev libevent-dev bsdmainutils  libboost-dev libboost-system-dev libboost-filesystem-dev  libboost-chrono-dev libboost-program-options-dev  libboost-test-dev libboost-thread-dev  libminiupnpc-dev  libzmq3-dev libdb5.3++-dev
+sudo schroot -c electrs64 -- apt install -y git clang cmake build-essential 
 ```
 
 
