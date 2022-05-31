@@ -36,6 +36,7 @@ sudo schroot -c bitcoin64 -- apt upgrade -y
 
 Make directories inside the data mount point:
 ```
+sudo mkdir /mnt/btrfs/bitcoin64/mnt/btrfs
 sudo mkdir /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin
 sudo mkdir /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin/src
 sudo mkdir /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin/bin
