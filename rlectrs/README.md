@@ -1,4 +1,4 @@
-## Build RelctRS
+## Build Electrs
 
 
 This manual documents how to build and run Electrs on Pi 4. We're going to run it in a 64-bit environment while Pi base operating system Rasbian is 32-bit. Fortunately Pi 4 hardware is 64-bit.
