@@ -46,7 +46,7 @@ sudo chown -R electrs /mnt/btrfs/electrs64/mnt/btrfs/electrs
 
 # Install needed packages
 ```
-sudo schroot -c electrs64 -- apt install -y git clang cmake build-essential 
+sudo schroot -c electrs64 -- apt install -y git clang cmake build-essential cargo
 ```
 
 
