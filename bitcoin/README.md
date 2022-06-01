@@ -44,6 +44,15 @@ sudo mkdir /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin/bin
 sudo chown -R bitcoin /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin
 ```
 
+Make shared directory for bitcoin clients (e.g. LND) to be able to read the `.cookie` file:
+
+```
+sudo groupadd bitcoinclinets
+sudo mkdir /home/bitcoin/bitcoinclients
+sudo chmod o=,g=rx,u=rwx /home/bitcoin/bitcoinclients  # others nothing, group read, bitcoin read+write
+sudo chmod +s /home/bitcoin/bitcoinclients  # in case subdirectories are made, caryover the permissions
+sudo chown bitcoin /home/bitcoin/bitcoinclients
+```
 
 
 # Install needed packages
