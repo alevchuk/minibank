@@ -88,6 +88,7 @@ mv ~/.cargo ~/src/dot-cargo
 ln -s ~/src/dot-cargo ~/.cargo
 
 . ~/.bashrc
+. ~/.profile
 ```
 
 ## Build electrs
