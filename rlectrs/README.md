@@ -79,4 +79,6 @@ ln -s ~/src/dot-rustup ~/.rustup
 
 mv ~/.cargo ~/src/dot-cargo 
 ln -s ~/src/dot-cargo ~/.cargo
+
+. ~/.bashrc
 ```
