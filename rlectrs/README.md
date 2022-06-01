@@ -104,5 +104,7 @@ cd ~/src/
 git clone https://github.com/romanz/electrs
 cd electrs
 cargo build --locked --release
+
+cp target/release/electrs ~/bin/
 ```
 
