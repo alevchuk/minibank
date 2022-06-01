@@ -46,7 +46,7 @@ sudo chown -R electrs /mnt/btrfs/electrs64/mnt/btrfs/electrs
 
 # Install needed packages
 ```
-sudo schroot -c electrs64 -- apt install -y git clang cmake build-essential cargo
+sudo schroot -c electrs64 -- apt install -y git clang cmake build-essential curl
 ```
 
 
@@ -65,4 +65,12 @@ ln -s /mnt/btrfs/electrs/src ~/src
 
 echo 'export PATH=$HOME/bin/bin:$PATH  # electrs is here' >> ~/.profile
 . ~/.profile
+```
+
+While logged in as electrs user:
+```
+cd src/
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh
+chmod +x rustup.sh
+./rustup.sh
 ```
