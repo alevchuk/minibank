@@ -63,8 +63,8 @@ Make symlinks back to data mount point
 ln -s /mnt/btrfs/electrs/bin ~/bin
 ln -s /mnt/btrfs/electrs/src ~/src
 
-echo 'export PATH=$HOME/bin/bin:$PATH  # electrs is here' >> ~/.profile
-. ~/.profile
+echo 'export PATH=$HOME/bin:$PATH  # electrs is here' >> ~/.bashrc
+. ~/.bashrc
 ```
 
 ## Install rust
@@ -88,7 +88,6 @@ mv ~/.cargo ~/src/dot-cargo
 ln -s ~/src/dot-cargo ~/.cargo
 
 . ~/.bashrc
-. ~/.profile
 ```
 
 ## Build electrs
