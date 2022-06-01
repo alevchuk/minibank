@@ -67,7 +67,14 @@ echo 'export PATH=$HOME/bin/bin:$PATH  # electrs is here' >> ~/.profile
 . ~/.profile
 ```
 
-While logged in as electrs user:
+## Install rust
+Login as electrs user and drop into 64-bin environment:
+```
+sudo su -l electrs
+schroot -c electrs64
+```
+
+While logged in as electrs schroot:
 ```
 cd src/
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh
@@ -82,3 +89,20 @@ ln -s ~/src/dot-cargo ~/.cargo
 
 . ~/.bashrc
 ```
+
+## Build electrs
+
+Login as electrs user and drop into 64-bin environment:
+```
+sudo su -l electrs
+schroot -c electrs64
+```
+
+While logged in as electrs schroot:
+```
+cd ~/src/
+git clone https://github.com/romanz/electrs
+cd electrs
+cargo build --locked --release
+```
+
