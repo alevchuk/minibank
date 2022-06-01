@@ -73,4 +73,10 @@ cd src/
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh
 chmod +x rustup.sh
 ./rustup.sh
+
+mv ~/.rustup ~/src/dot-rustup
+ln -s ~/src/dot-rustup ~/.rustup
+
+mv ~/.cargo ~/src/dot-cargo 
+ln -s ~/src/dot-cargo ~/.cargo
 ```
