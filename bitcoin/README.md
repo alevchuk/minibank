@@ -52,6 +52,7 @@ sudo mkdir /home/bitcoin/bitcoinclients
 sudo chmod o=,g=rx,u=rwx /home/bitcoin/bitcoinclients  # others nothing, group read, bitcoin read+write
 sudo chmod +s /home/bitcoin/bitcoinclients  # in case subdirectories are made, caryover the permissions
 sudo chown bitcoin /home/bitcoin/bitcoinclients
+sudo chgrp bitcoinclinets /home/bitcoin/bitcoinclients
 ```
 
 
