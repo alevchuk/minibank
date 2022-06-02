@@ -129,6 +129,10 @@ Build and Install:
 make clean && make && make install
 ```
 
+# Configure and run
+
+For configuriong and running bitcoin see "Start Bitcoin" section on the main page https://github.com/alevchuk/minibank/blob/first/README.md#start-bitcoind
+
 # Upgrade
 ```
 cd ~/src/bitcoin
