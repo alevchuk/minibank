@@ -44,6 +44,8 @@ sudo mkdir /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin/bin
 sudo chown -R bitcoin /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin
 ```
 
+# Bitcoin Cookie
+
 Make shared directory for bitcoin clients (e.g. LND) to be able to read the `.cookie` file:
 
 ```
@@ -54,6 +56,33 @@ sudo chmod +s /home/bitcoin/bitcoinclients  # in case subdirectories are made, c
 sudo chown bitcoin /home/bitcoin/bitcoinclients
 sudo chgrp bitcoinclinets /home/bitcoin/bitcoinclients
 ```
+
+When bitcoin starts it will make the cookies files restricted to only bitcoin user:
+```
+ls -l bitcoinclients/
+total 8
+-rw------- 1 bitcoin bitcoinclinets   75 Jun  2 14:14 cookie
+```
+
+To let other account such as LND and Electrs access to the cookie, the workaround is to make a cron job so that the permission changes to this:
+
+```
+ls -l bitcoinclients/
+total 8
+-rw-r----- 1 bitcoin bitcoinclinets   75 Jun  2 14:14 cookie
+```
+
+To get that, run:
+```
+sudo su -l bitcoin
+crontab -e
+```
+and add the following line on the bottom:
+```
+* *  * * * chmod g+r /home/bitcoin/bitcoinclients/cookie
+```
+
+This will make the file accessable to members of `bitcoinclients` group within 1 minute of `bitcoind` writing the file (it writes it during `bitcoind` startup).
 
 
 # Install needed packages
