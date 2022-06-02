@@ -627,8 +627,8 @@ rpcbind=127.0.0.1:8332
 ####rpcallowip=192.168.0.17
 rpcallowip=127.0.0.1
 
-rpcuser=$$PASSWORD_1_HERE$$ 
-rpcpassword=$$PASSWORD_2_HERE$$ 
+rpccookiefile=/home/bitcoin/bitcoinclients/cookie
+
 
 # Listen for RPC connections on this TCP port:
 ####rpcport=8332
