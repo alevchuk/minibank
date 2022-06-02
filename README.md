@@ -841,11 +841,9 @@ bitcoin.mainnet=1
 bitcoin.node=bitcoind
 
 [Bitcoind]
-bitcoind.zmqpubrawblock=tcp://localhost:29000
-bitcoind.zmqpubrawtx=tcp://localhost:29001
 bitcoind.rpchost=localhost
-bitcoind.rpcuser=$$PASSWORD_1_HERE$$ 
-bitcoind.rpcpass=$$PASSWORD_2_HERE$$ 
+bitcoind.rpccookie=/home/bitcoin/bitcoinclients/cookie
+bitcoind.dir=/home/bitcoin/bitcoinclients/
 
 [tor]
 ; The port that Tor's exposed SOCKS5 proxy is listening on. Using Tor allows
@@ -864,12 +862,20 @@ autopilot.minchansize=20000
 autopilot.maxchansize=50000
 ```
 
-Replace $$PASSWORD_1_HERE$$ and $$PASSWORD_2_HERE$$ with the same passwords that you set in `~bitcoin/.bitcoin/bitcoin.conf`
+When setting up bitcoind we explain how `/home/bitcoin/bitcoinclients/cookie` is created.
+
+However, you will still need to copy bitcoind config into `bitcoinclients` folder because LND currently has [an issue](https://github.com/lightningnetwork/lnd/issues/6613) where it cannot configure `bitcoind.zmqpubraw{block,tx}` directly and instead has to read it form bitcoin's config file:
+
+```
+sudo su -l bitcoin
+schroot -c bitcoin64
+cp .bitcoin/bitcoin.conf  bitcoinclients/
+```
 
 Enable bash completion for lncli:
 ```
-cp /home/lightning/gocode/src/github.com/lightningnetwork/lnd/contrib/lncli.bash-completion /etc/bash_completion.d/lncli
-# on Debian distros install "bash-completion" and uncomment "enable bash completion" in /etc/bash.bashrc
+sudo cp /home/lightning/gocode/src/github.com/lightningnetwork/lnd/contrib/lncli.bash-completion /etc/bash_completion.d/lncli
+# on Debian distros install "bash-completion" and uncomment "enable bash completion" section in /etc/bash.bashrc
 ```
 
 Start:
