@@ -606,6 +606,7 @@ Prerequisites:
 Log-in as bitcoin
 ```
 sudo su -l bitcoin
+schroot -c bitcoin64
 ```
 
 Edit `~/.bitcoin/bitcoin.conf`
