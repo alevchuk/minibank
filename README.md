@@ -726,6 +726,13 @@ To make selection for Copy-and-paste use laptop's OS instead of staying in Vi, r
 sudo su -c "echo set mouse= >> /usr/share/vim/vim81/defaults.vim"
 ```
 
+Make vim default (e.g. whenever git needs to invoke an editor):
+```
+echo 'export EDITOR="vim"' >> ~/.bashrc 
+. ~/>> ~/.bashrc 
+```
+
+
 Python IDE:
 ```
 sudo su -c "cat <<EOF >> /etc/vim/vimrc
