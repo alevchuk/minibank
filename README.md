@@ -1052,8 +1052,8 @@ Suggested new remote balance percentage --dst-pct 50.00
 ### Prometheus exporters
 
 Prerequisites:
-* [Storage](#storage)
-* [Build Go](#build-go)
+* [Storage](#storage-home-node)
+* [Build Go](go#build-go)
 
 Citations:
  * This section is based on [github.com/prometheus](https://github.com/prometheus/prometheus#building-from-source)
