@@ -114,7 +114,7 @@ Checkout source code:
 ```
 git clone https://github.com/bitcoin/bitcoin.git ~/src/bitcoin
 cd ~/src/bitcoin
-git checkout v0.20.1
+git checkout v0.23.0  # or find the latest tag with git tag | grep v0.23
 ```
 
 Prepare for build (one time setup):
