@@ -108,3 +108,13 @@ cargo build --locked --release
 cp target/release/electrs ~/bin/
 ```
 
+
+# Configure
+
+https://github.com/romanz/electrs/blob/master/doc/config.md
+
+# Run it
+
+```
+~/bin/electrs --electrum-rpc-addr 127.0.0.1:50001
+```
