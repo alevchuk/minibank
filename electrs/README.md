@@ -26,7 +26,7 @@ personality=linux
 preserve-environment=true
 EOF
 
-sudo debootstrap --arch arm64 buster /mnt/btrfs/electrs64
+sudo debootstrap --arch arm64 bookworm /mnt/btrfs/electrs64
 
 sudo schroot -c electrs64 -- apt update
 sudo schroot -c electrs64 -- apt upgrade -y
