@@ -53,7 +53,7 @@ personality=linux
 preserve-environment=true
 EOF
 
-sudo debootstrap --arch arm64 buster /mnt/btrfs/lightning64
+sudo debootstrap --arch arm64 bookworm /mnt/btrfs/lightning64
 
 sudo schroot -c lightning64 -- apt update
 sudo schroot -c lightning64 -- apt upgrade -y
