@@ -27,7 +27,7 @@ personality=linux
 preserve-environment=true
 EOF
 
-sudo debootstrap --arch arm64 buster /mnt/btrfs/bitcoin64
+sudo debootstrap --arch arm64 bookworm /mnt/btrfs/bitcoin64
 
 sudo schroot -c bitcoin64 -- apt update
 sudo schroot -c bitcoin64 -- apt upgrade -y
