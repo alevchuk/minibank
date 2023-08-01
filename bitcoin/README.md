@@ -113,7 +113,7 @@ Checkout source code:
 ```
 git clone https://github.com/bitcoin/bitcoin.git ~/src/bitcoin
 cd ~/src/bitcoin
-git checkout v0.24.0  # or find the latest tag with git tag | grep v0.24
+git checkout v25.0  # or find the latest tag with git tag | grep v25
 ```
 
 if you have bitcoin on v0.23 or lower and LND is 0.15.99 or newer, then LND will fail to start and give the following error 
