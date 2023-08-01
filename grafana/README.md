@@ -33,7 +33,7 @@ personality=linux
 preserve-environment=true
 EOF
 
-sudo debootstrap --arch arm64 buster /mnt/btrfs/pi64
+sudo debootstrap --arch arm64 bookworm /mnt/btrfs/pi64
 
 sudo schroot -c pi64 -- apt update
 sudo schroot -c pi64 -- apt upgrade -y
