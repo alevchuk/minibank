@@ -113,6 +113,8 @@ schroot -c lightning64
 
 2. Download, build, and Install LND:
 ```
-go get -d github.com/lightningnetwork/lnd
-(cd $GOPATH/src/github.com/lightningnetwork/lnd && make clean && make && make install)
+cd ~/src
+git clone https://github.com/lightningnetwork/lnd
+
+(cd $GOPATH/src/github.com/lightningnetwork/lnd && make clean && make install)
 ```
