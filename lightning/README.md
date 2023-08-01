@@ -115,6 +115,7 @@ schroot -c lightning64
 ```
 cd ~/src
 git clone https://github.com/lightningnetwork/lnd
+git checkout $(git tag | grep v0.16.*-beta$ | sort -V | tail -n1)  # checkout latest minor version
 
-(cd $GOPATH/src/github.com/lightningnetwork/lnd && make clean && make install)
+(cd ~/src/lnd && make clean && make install)
 ```
