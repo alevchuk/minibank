@@ -42,7 +42,9 @@ Load `~/.profile`
 git clone https://go.googlesource.com/go ~/src/go
 cd ~/src/go
 git fetch
-git checkout go1.17.1
+
+git checkout $(git tag | grep go1.19.[0-9]*$ | sort -V | tail -n1) # checkout latest minor version
+
 ```
 
 5. (for 1 GB RAM hosts only) Add swap
