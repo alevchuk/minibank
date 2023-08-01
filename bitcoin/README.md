@@ -22,7 +22,6 @@ description=builds that need 64-bit environment
 type=directory
 directory=/mnt/btrfs/bitcoin64
 users=bitcoin
-root-groups=root
 profile=desktop
 personality=linux
 preserve-environment=true
