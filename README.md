@@ -47,7 +47,7 @@ Minibank is a HOWTO for building a Lightning Network node from scratch
 * Mirror Raid with 2 external storage devices
 * Development environment (CLI only) 
 * Monitoring
-* Runs modern 64-bit sofrware on a old 32-bit Rasbian OS [on a 64-bit RasPi hardware]
+* Runs modern 64-bit software on a old 32-bit Raspbian OS [on a 64-bit RasPi hardware]
 
 Comparison to similar projects, it the order of difficulty of use:
 1. Minibank - for those who like to cook **from scratch**, aims to increase security by limiting surface area / **no add-ons** and building everything from source (paranoid mode) - [CLI Setup] 
