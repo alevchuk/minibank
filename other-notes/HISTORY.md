@@ -1,5 +1,14 @@
 # History of Minibank Models
 
+# 2023 - ...
+
+
+## 2020 - 2023
+
+Pi 3 (64-bit) for a while had a 32-bit operating system. I used schroot and debootstrap to install 64-bit containers for various services. How that Raspberry Pi OS is 64-bit this can be simplified.
+
+[[README-2020-2023.md]]
+
 ## 2020-11-15
 
 Thought of bulding the expensive 1TB version, yet realized with BTRFS compression my Bitcoin data is going to last for another few years. So I don't see a reason for taking the 27% cost hit now.
