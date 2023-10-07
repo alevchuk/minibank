@@ -730,7 +730,7 @@ sudo su -c "echo set mouse= >> /usr/share/vim/vim81/defaults.vim"
 Make vim default (e.g. whenever git needs to invoke an editor):
 ```
 echo 'export EDITOR="vim"' >> ~/.bashrc 
-. ~/>> ~/.bashrc 
+. ~/.bashrc 
 ```
 
 
