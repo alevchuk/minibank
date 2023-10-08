@@ -91,9 +91,172 @@ To measure the temperature, run:
 while :; do /opt/vc/bin/vcgencmd measure_temp; sleep 1; done
 ```
 
-Anything bellow 70C is good. The throtteling [kicks in at 80 C](https://www.theregister.co.uk/2019/07/22/raspberry_pi_4_too_hot_to_handle/).
+Anything bellow 70C is good. The throttling [kicks in at 80 C](https://www.theregister.co.uk/2019/07/22/raspberry_pi_4_too_hot_to_handle/).
 
 ## Network
+
+### Remote Login (home node)
+
+Connect via monitor and keyboard.
+
+1. Setup no-incoming-connections firewall **before connecting to the network!** If you don't add a firewall you'll get hacked:
+
+Run:
+```
+sudo mkdir /etc/iptables
+```
+
+2. Edit /etc/iptables/rules.v4 with your favourite command-line text editor, e.g. `vi`  (if your not familiar with `vi` type "nano" instead of "vi" - nano is less advanced yet easier to use) 
+```
+sudo vi /etc/iptables/rules.v4
+```
+
+4. Now type the following in the editor, save and exit.
+
+```
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [0:0]
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -i lo -j ACCEPT
+-A OUTPUT -o lo -j ACCEPT
+COMMIT
+```
+
+5. Edit IPv6 rules
+```
+sudo vi /etc/iptables/rules.v6
+```
+
+6. Now type the following in the editor, save and exit.
+
+```
+*filter
+:INPUT DROP [0:0]
+:FORWARD DROP [0:0]
+:OUTPUT DROP [0:0]
+COMMIT
+```
+
+7. Edit **/etc/default/keyboard** (When attaching with Monitor and a US Keyboard, you may find that your not able to type things like "|". This is not a problem when going over SSH.)
+
+Replace 
+```
+XKBMODEL="pc105"
+XKBLAYOUT="gb"
+```
+with
+```
+XKBMODEL="pc104"
+XKBLAYOUT="us"
+```
+
+8. Reboot:
+```
+sudo reboot
+```
+
+-- start of critical section (complete until the end of critical section or remove from network before rebooting) ---
+
+9. Now run:
+
+```
+cat /etc/iptables/rules.v4 | sudo iptables-restore
+cat /etc/iptables/rules.v6 | sudo iptables-restore -6
+```
+
+Now the output of `sudo iptables-save` should look like the lines in step 4:
+
+ * numbers at the end of the line may be different, those are your network statistics
+ 
+10. Changed the password. Run `sudo raspi-config`. Select: **Change Password** If you don't change the password you'll get hacked.
+11. Connect Ethernet cable or (Optionally) [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/first/other-notes/wifi.md)
+12. Update the system: `sudo apt update && sudo apt upgrade;`. If you don't upgrade you may get hacked. Some keyboards stop working after upgrade so be ready to find a different keyboard (DAS Keyboard works well, yet Pi needs to be rebooted while it's plugged in).
+13. Make firewall persistent, if you don't persist firewall you may get hacked:
+```
+sudo apt install iptables-persistent  # when asked "Save currrent rules?" say "Yes" for both IPv4 and IPv6
+
+sudo /etc/init.d/netfilter-persistent restart
+
+sudo iptables-save  # show current v4 rules: check if this just like before
+sudo iptables-save -6  # show current v6 rules: check that it is drop-everything 
+```
+
+14. Reboot Pi
+```
+sudo reboot
+```
+
+15. Again check firewall after reboot:
+```
+sudo iptables-save  # show current v4 rules: check if this just like before
+sudo iptables-save -6  # show current v6 rules: check that it is drop-everything 
+```
+
+-- end of critical section ---
+
+
+
+16. SSH over Tor
+
+If you want still to SSH over the local network (without Tor) you can do this:  https://github.com/alevchuk/minibank/blob/first/other-notes/no-tor-ssh.md and skip steps 16 thru 22.
+
+```
+sudo apt install tor
+```
+
+
+17. Enable remote login over SSH. Run `raspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
+
+18. Test ssh locally (ssh to yourself while in Keyboard-Monitor mode):
+```
+ssh 127.0.0.1
+```
+
+19. Configure Tor
+
+```
+sudo vi /etc/tor/torrc
+```
+Find and uncomment lines with:
+```
+HiddenServiceDir
+HiddenServicePort
+```
+and change
+```
+HiddenServicePort 80 127.0.0.1:8080
+```
+to
+```
+HiddenServicePort 22 127.0.0.1:22
+```
+
+and add another line
+```
+HiddenServiceVersion 3
+```
+
+20. Restart Tor
+```
+sudo systemctl restart tor@default.service
+```
+
+21. Reveal the hidden hostname
+```
+cat /var/lib/tor/hidden_service/hostname
+```
+write it down in a safe place
+
+
+22. From your laptop run: `torify ssh pi@HOSTNAME_HERE.onion` enter your new password
+
+23. Follow [Authorized Keys](#authorized-keys) section
+
+24. Once Authorized Keys are working, disable SSH login with password https://docs.joinmastodon.org/admin/prerequisites/#do-not-allow-password-based-ssh-login-keys-only
+
+
 ### Authorized keys
 
 So you don't have to type the password every time you need to log-in to the pi, setup authorized_keys.
