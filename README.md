@@ -95,6 +95,8 @@ Anything bellow 70C is good. The throttling [kicks in at 80 C](https://www.there
 
 ## Network
 
+Don't connect to network yet.
+
 ### Remote Login (home node)
 
 Connect via monitor and keyboard.
