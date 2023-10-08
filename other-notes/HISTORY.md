@@ -1,13 +1,10 @@
 # History of Minibank Models
 
-# 2023 - ...
-
-
 ## 2020 - 2023
 
 Pi 3 (64-bit) for a while had a 32-bit operating system. I used schroot and debootstrap to install 64-bit containers for various services. How that Raspberry Pi OS is 64-bit this can be simplified.
 
-[[README-2020-2023.md]]
+[README-2020-2023.md](https://github.com/alevchuk/minibank/blob/first/other-notes/README-2020-2023.md)
 
 ## 2020-11-15
 
