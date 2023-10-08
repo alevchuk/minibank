@@ -46,13 +46,13 @@ Total **317 USD** as of Oct 2023
 * FLIRC Passive cooling case [Flirc Raspberry Pi 4 Case](https://camelcamelcamel.com/Flirc-Raspberry-Pi-Case-Silver/product/B07WG4DW52)
 * Micro SD card 32G (for operating system) [SanDisk-Extreme-microSD-UHS-I-Adapter](https://camelcamelcamel.com/product/B06XWMQ81P)
 * Card Reader (for 1 time setup) [Transcend-microSDHC-Reader-TS-RDF5K-Black](https://camelcamelcamel.com/Transcend-microSDHC-Reader-TS-RDF5K-Black/product/B009D79VH4)
-* SAMSUNG 1 TB SSD (for datat; Raid-1 mirror): [SAMSUNG T7 Portable SSD 1TB](https://camelcamelcamel.com/product/B0874YJP92)
+* SAMSUNG 1 TB SSD (for data; Raid-1 mirror): [SAMSUNG T7 Portable SSD 1TB](https://camelcamelcamel.com/product/B0874YJP92)
 * SanDisk 1 TB SSD (for data; Raid-1 mirror): [SanDisk 1TB Extreme Portable External SSD](https://camelcamelcamel.com/product/B078STRHBX)
-  * **Pros:** Different manufacturers so they don't fail at the same time. **Cons:** SanDisk failed first after I used this setup for several year. SanDisk company only tests Win and Mac. It does not show having cache on Linux so this many be a result of degraded perfromance. No indicator light. Shipping took much longer than SAMSUNG. **Conclusion:** in the future I might just get two SAMSUNGs instead
+  * **Pros:** Different manufacturers so they don't fail at the same time. **Cons:** SanDisk failed first after I used this setup for several year. SanDisk company only tests Win and Mac. It does not show having cache on Linux so this many be a result of degraded performance. No indicator light. Shipping took much longer than SAMSUNG. **Conclusion:** in the future I might just get two SAMSUNG drives instead
 
 
 Hardware with known issues:
-* [Not sure this is still ture. Now I know the data corruption is caused by UAS. So later in this article I disable UAS. This may actually fix the percieved Seagate issue] WARNING: The following Seagate divice [may] caused data corruption when pluging into USB, other storage connected to UBS also got affected. DO NOT USE Seagate 500 GB SSD (for Raid-1 mirror): [Seagate-Barracuda-500GB-External-Portable](https://camelcamelcamel.com/product/B083FF3PJ9)
+* [Not sure this is still true. Now I know the data corruption is caused by UAS. So later in this article I disable UAS. This may actually fix the perceived Seagate issue] WARNING: The following Seagate device [may] caused data corruption when plugging into USB, other storage connected to UBS also got affected. DO NOT USE Seagate 500 GB SSD (for Raid-1 mirror): [Seagate-Barracuda-500GB-External-Portable](https://camelcamelcamel.com/product/B083FF3PJ9)
 
 
 
@@ -61,7 +61,7 @@ Hardware with known issues:
 1. Download the image the Raspberry Pi Foundation’s official supported operating system
 **Raspberry Pi OS (64-bit) Lite** from [official raspberrypi link](https://www.raspberrypi.com/software/operating-systems/#raspberry-pi-os-64-bit)
 2. Uncompress the file: `xz -d Downloads/2023-05-03-raspios-bullseye-arm64-lite.img.xz`
-3. Transfer the contents on the ".img" file to your SD card (I use `dd`, Raspberry Pi has installers and instcutions for doing this from [Linux](https://www.raspberrypi.org/documentation/installation/installing-images/linux.md), [Mac](https://www.raspberrypi.org/documentation/installation/installing-images/mac.md), and [Windows](https://www.raspberrypi.org/documentation/installation/installing-images/windows.md)) Here is how I do it (avoiding using Rasberry Pi Installer):
+3. Transfer the contents on the ".img" file to your SD card (I use `dd`, Raspberry Pi has installers and instructions for doing this from [Linux](https://www.raspberrypi.org/documentation/installation/installing-images/linux.md), [Mac](https://www.raspberrypi.org/documentation/installation/installing-images/mac.md), and [Windows](https://www.raspberrypi.org/documentation/installation/installing-images/windows.md)) Here is how I do it (avoiding using Raspberry Pi Installer):
 ```
 sudo dmesg --follow  # first run the command then insert your SD card and verify that it's sdb
 # Press Ctrl-c to exist out of dmesg or run in a different terminal / tab
@@ -69,9 +69,74 @@ sudo dd if=Downloads/2023-05-03-raspios-bullseye-arm64-lite.img of=/dev/sdb  # c
 ```
 
 
-### Create your username in Raspberry Pi
+### First Login (create your username in Raspberry Pi)
 
-Now that you have the SD card, put it in, and connect the Pi to a Monitor and a keyboard.
+Now that you have the SD card, put it in. Don't connect to network. Connect monitor and keyboard. Power-up Pi.
+
 
 On first boot, the Pi will ask you to create an account. Give it your special username and a strong password.
+
+
+## Heat
+
+I recommend using FLIRC passive cooling:
+- Pi temp under 50C
+- No more worries of airflow obstruction
+- Fan won't fail because there is not fan
+
+If you still want to go with a fan, follow [this howto](https://blog.hackster.io/do-you-need-to-use-a-fan-for-cooling-with-the-new-raspberry-pi-4-6d523ca12453). Tip: Connect the fan to GPIO pins with quiet cooling mode works best for me https://www.raspberrypi.org/forums/viewtopic.php?t=248918#p1519636
+
+To measure the temperature, run:
+```
+while :; do /opt/vc/bin/vcgencmd measure_temp; sleep 1; done
+```
+
+Anything bellow 70C is good. The throtteling [kicks in at 80 C](https://www.theregister.co.uk/2019/07/22/raspberry_pi_4_too_hot_to_handle/).
+
+## Network
+### Authorized keys
+
+So you don't have to type the password every time you need to log-in to the pi, setup authorized_keys.
+
+On your laptop run:
+```
+ssh-keygen -f ~/.ssh/minibank_id_rsa
+```
+Hit enter twice when prompted for password.
+
+Print you're new public key:
+```
+cat  ~/.ssh/minibank_id_rsa.pub
+```
+
+Copy the output to clipboard.
+
+SSH into your Pi and run:
+```
+cat >> ~/.ssh/authorized_keys
+```
+paste the pubkey from clipboard, press Enter, and then press Ctrl-d.
+
+Now run:
+```
+chmod o=,g= ~/.ssh/authorized_keys
+```
+Now log out, press Ctrl-d.
+
+Now try logging back in like this:
+```
+ssh -i ~/.ssh/minibank_id_rsa pi@YOUR_IP_HERE
+```
+You should not need to re-enter password.
+
+Once you can login without a password, disable login with password: edit `/etc/ssh/sshd_config` and find PasswordAuthentication. Uncommented and set to no. Restart ssh server `sudo systemctl restart ssh`
+
+Finally, back on your laptop, add an alias
+```
+echo 'alias mb4="ssh -i ~/.ssh/minibank_id_rsa pi@YOUR_IP_HERE"' >> ~/.bash_profile
+. ~/.bash_profile
+```
+
+Now type `mb4` and that should log you into the Pi.
+
 
