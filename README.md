@@ -39,7 +39,7 @@ Comparison to similar projects, it the order of difficulty of use:
 
 Pi 4 Model B. Two high-speed SSDs for Raid-1 mirroring.
 
-Total **317 USD** as of 2022-01-04
+Total **317 USD** as of Oct 2023
 
 * Pi 4b kit (8GB RAM): [Raspberry Pi 4 8GB Model B](https://camelcamelcamel.com/product/B0B6ZJGF4Q)
 * Power supply
