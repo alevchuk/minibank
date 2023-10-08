@@ -11,6 +11,8 @@ Table of contents
   * [About](#about)
   * [Hardware](#hardware)
   * [Operating System](#operating-system)
+  * [Head](#heat)
+  * [Netowrk](#network)
 
 
 ## About
