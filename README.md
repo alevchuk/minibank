@@ -97,8 +97,6 @@ Anything bellow 70C is good. The throttling [kicks in at 80 C](https://www.there
 
 Don't connect to network yet.
 
-### Remote Login (home node)
-
 Connect via monitor and keyboard.
 
 1. Setup no-incoming-connections firewall **before connecting to the network!** If you don't add a firewall you'll get hacked:
