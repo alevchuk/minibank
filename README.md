@@ -156,23 +156,28 @@ COMMIT
 sudo reboot
 ```
 
--- start of critical section (complete until the end of critical section or remove from network before rebooting) ---
+-- start of critical section (this section contains the step of connecting to the network, complete until the end of critical section or remove from network before rebooting) ---
 
 8. Now run:
 
 ```
+sudo iptables -F
+sudo ip6tables -F
 cat /etc/iptables/rules.v4 | sudo iptables-restore
-cat /etc/iptables/rules.v6 | sudo iptables-restore -6
+cat /etc/iptables/rules.v6 | sudo ip6tables-restore
 ```
 
-Now the output of `sudo iptables-save` should look like the lines in step 4:
-
- * numbers at the end of the line may be different, those are your network statistics
+9. Carefully check for duplicate lines or extra lines in the output of:
+```
+sudo iptables-save  # should look exactly like the lines in step 4
+sudo ip6tables-save  # should look exactly like the lines in step 6
+```
+ * numbers at the end of the line may be different, those are your network statistics (if you accidentally connected to the network then the dropped/accepted packets will get counted)
+ * if you see entries that don't match what you head in step 4 and 6, go back and check that rules were typed in correctly
  
-9. Changed the password. Run `sudo raspi-config`. Select: **Change Password** If you don't change the password you'll get hacked.
-10. Connect Ethernet cable or (Optionally) [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/first/other-notes/wifi.md)
-11. Update the system: `sudo apt update && sudo apt upgrade;`. If you don't upgrade you may get hacked. Some keyboards stop working after upgrade so be ready to find a different keyboard (DAS Keyboard works well, yet Pi needs to be rebooted while it's plugged in).
-12. Make firewall persistent, if you don't persist firewall you may get hacked:
+9. Connect Ethernet cable or (Optionally) [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/first/other-notes/wifi.md)
+10. Update the system: `sudo apt update && sudo apt upgrade;`. If you don't upgrade you may get hacked. Some keyboards stop working after upgrade so be ready to find a different keyboard (DAS Keyboard works well, yet Pi needs to be rebooted while it's plugged in).
+11. Make firewall persistent, if you don't persist firewall you may get hacked:
 ```
 sudo apt install iptables-persistent  # when asked "Save currrent rules?" say "Yes" for both IPv4 and IPv6
 
@@ -182,15 +187,16 @@ sudo iptables-save  # show current v4 rules: check if this just like before
 sudo iptables-save -6  # show current v6 rules: check that it is drop-everything 
 ```
 
+12. Disconnect from network (Ethernet or Wi-Fi)
 13. Reboot Pi
 ```
 sudo reboot
 ```
 
-14. Again check firewall after reboot:
+13. Again check firewall after reboot:
 ```
 sudo iptables-save  # show current v4 rules: check if this just like before
-sudo iptables-save -6  # show current v6 rules: check that it is drop-everything 
+sudo ip6tables-save  # show current v6 rules: check that it is drop-everything 
 ```
 
 -- end of critical section ---
