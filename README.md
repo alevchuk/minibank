@@ -13,6 +13,7 @@ Table of contents
   * [Operating System](#operating-system)
   * [Heat](#heat)
   * [Network](#network)
+  * [Storage](#storage)
 
 
 ## About
@@ -313,4 +314,95 @@ echo 'alias mb4="torify ssh -i ~/.ssh/minibank_id_rsa <PI_USER_NAME>@<TOR_HOSTNA
 
 Now type `mb4` and that should log you into the Pi.
 
+
+## Storage
+
+In this section will setup a Raid-1 Mirror from your two new SSD drives.
+
+WARNING: any data in the SSD drives will be deleted.
+
+### Lookup storage device info
+
+In this sections were going to look up the following for each of the SSDs:
+* Block device name (e.g. "sda")
+* idVendor (a hex number, e.g. "04e8")
+* idProduct (a hex number, e.g. "61f5")
+
+Steps:
+1. Run `sudo dmesg --follow`
+2. Un-plung and re-plug one of the external SSD drives
+3. Look for the block device name, starting with "sd" followed by a lowercase english letter. Write that down.
+4. Look for idVendor and idProduct. Write those down
+5. Repeate from step 2 for the other SSD
+
+NOTE: it's important to label the storage devices with their idVendor and idProduct in case one of them fails and you'll need to know which one to replace. Block device names change depending in which order you plug in the drives. For that reasob, **do not write the block device name (the "sd" followed by a letter) on the lable**.
+
+From now I will refer to the block device names as:
+* YOUR_SSD_BLOCK_DEVICE_1 ("sd" followed by a letter)
+* YOUR_VENDOR_ID_FOR_DEVICE_1 (hex number)
+* YOUR_PRODUCT_ID_FOR_DEVICE_1 (hex number)
+* and the above 3 for DEVICE_2
+
+The relevant output of `dmesg --follow` would look like this:
+```
+[22341.090044] usb 2-1: new SuperSpeed Gen 1 USB device number 3 using xhci_hcd
+[22341.118242] usb 2-1: New USB device found, idVendor=04e8, idProduct=61f5, bcdDevice= 1.00
+[22341.118261] usb 2-1: New USB device strings: Mfr=2, Product=3, SerialNumber=1
+[22341.118273] usb 2-1: Product: Portable SSD T5
+[22341.118284] usb 2-1: Manufacturer: Samsung
+[22341.118296] usb 2-1: SerialNumber: 1234567DAFFD
+[22341.136371] scsi host3: uas
+[22341.139726] scsi 3:0:0:0: Direct-Access     Samsung  Portable SSD T5  0    PQ: 0 ANSI: 6
+[22341.143092] sd 3:0:0:0: [sdd] 976773168 512-byte logical blocks: (500 GB/466 GiB)
+[22341.143406] sd 3:0:0:0: [sdd] Write Protect is off
+[22341.143420] sd 3:0:0:0: [sdd] Mode Sense: 43 00 00 00
+[22341.144983] sd 3:0:0:0: [sdd] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+[22341.145925] sd 3:0:0:0: Attached scsi generic sg2 type 0
+[22341.147078] sd 3:0:0:0: [sdd] Optimal transfer size 33553920 bytes
+[22341.174323] sd 3:0:0:0: [sdd] Attached SCSI disk
+```
+* Notice that `[sdd]` is the block device name in the above example
+
+### Disable UAS
+
+To prevent occasional freezing of your Pi, disable UAS. UAS (USB Attached SCSI) is a protocol that adds marginal performance improvement yet it's not reliable (at least for the current USB 3.0 hardware of the RaspberryPi). I suspect that the freezes get triggered by radio interference of USB 3.0 with 2.4 GHz Wi-Fi or Bluetooth. However, the old mass storage device protocol is resilient to this issue. So we simply need to follow the Raspberry Pi team's recommendation and disable UAS.
+
+From my tests, the following were the advantages of disabling UAS:
+* The freezes stopped.
+  * By freeze I mean: getting /mnt/btrfs mount point failure with "uas_eh_abort_handler" for "CMD OUT" and "CMD IN" errors in `dmesg`
+  * The failure does not cause data loss/corruption, yet brings down the whole system
+  * A repro is to try to run `btrfs balance start /mnt/btrfs` and you'll get the failure within a minute
+* For the first time I'm now able to run and complete `sudo btrfs balance start -v --full-balance /mnt/btrfs/`
+* There is no significant performance degradations from disabling UAS
+
+For more details on this issue see https://github.com/alevchuk/minibank/blob/first/incidents/i5-ssd-disconnect.md
+
+To check if you have UAS enabled:
+1. run `dmesg | grep -v registered | grep uas` soon after rebooting the Pi
+2. You should see "scsi host0: uas"
+
+To disable UAS:
+1. From previous section you'll need the idVendor/idProduct pairs for both SSD devices
+2. If you already setup /mnt/btrfs then stop all services using it and run `umount /mnt/btrfs`
+3. Make a backup `sudo cp /boot/cmdline.txt /cmdline.txt-old-backup`
+4. Edit the boot command by running `sudo vi /boot/cmdline.txt`
+5. Add `usb-storage.quirks=YOUR_VENDOR_ID_FOR_DEVICE_1:YOUR_PRODUCT_ID_FOR_DEVICE_1:u,YOUR_VENDOR_ID_FOR_DEVICE_2:YOUR_PRODUCT_ID_FOR_DEVICE_2:u ` in front of the command
+  * it's "usb-storage.quirks=" followed a comma separated list of "idVendor:idProduct:u"
+  * The part that you add needs to be followed by a space " " (e.g. `usb-storage.quirks=0781:558c:u,04e8:61f5:u dwc_otg.lpm_enable=0 console=serial0,115200 ...`)
+  * replace YOUR_...
+  * don't miss the ":u" at the end
+  * The whole line should look similar to this `usb-storage.quirks=0781:558c:u,04e8:61f5:u dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=3acd0083-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait`
+6. Reboot
+7. Check `dmesg | less`. Seach for "UAS", by typing "/UAS" and pressing "n" to go to next one. There should be 2 "UAS is ignored" messages for each USB debvice. They look like this:
+```
+[    1.617927] usb 2-1: UAS is ignored for this device, using usb-storage instead
+[    1.618064] usb 2-1: UAS is ignored for this device, using usb-storage instead
+...
+[    2.049009] usb 2-2: UAS is ignored for this device, using usb-storage instead
+[    2.049152] usb 2-2: UAS is ignored for this device, using usb-storage instead
+...
+[    2.624504] sd 0:0:0:0: [sda] 1953525168 512-byte logical blocks: (1.00 TB/932 GiB)
+...
+[    3.071842] sd 1:0:0:0: [sdb] 976773168 512-byte logical blocks: (500 GB/466 GiB)
+```
 
