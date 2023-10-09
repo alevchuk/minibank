@@ -131,7 +131,6 @@ sudo vi /etc/iptables/rules.v4
 :OUTPUT ACCEPT [0:0]
 -A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
 -A INPUT -i lo -j ACCEPT
--A OUTPUT -o lo -j ACCEPT
 COMMIT
 ```
 
