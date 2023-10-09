@@ -300,7 +300,7 @@ Now log out, press Ctrl-d.
 
 Now try logging back in like this:
 ```
-ssh -i ~/.ssh/minibank_id_rsa pi@YOUR_IP_HERE
+torify ssh -i ~/.ssh/minibank_id_rsa <PI_USER_NAME>@<TOR_HOSTNAME_HERE>.onion
 ```
 You should not need to re-enter password.
 
@@ -308,7 +308,7 @@ Once you can login without a password, disable login with password: edit `/etc/s
 
 Finally, back on your laptop, add an alias
 ```
-echo 'alias mb4="ssh -i ~/.ssh/minibank_id_rsa pi@YOUR_IP_HERE"' >> ~/.bash_profile
+echo 'alias mb4="torify ssh -i ~/.ssh/minibank_id_rsa <PI_USER_NAME>@<TOR_HOSTNAME_HERE>.onion"' >> ~/.bash_profile
 . ~/.bash_profile
 ```
 
