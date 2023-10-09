@@ -219,7 +219,7 @@ sudo apt install tor
 ```
 
 
-17. Enable remote login over SSH. Run `raspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
+17. Enable remote login over SSH. Run `sudo raspi-config` and select **Interface Options -> SSH -> SSH server to be enabled**
 
 18. Test ssh locally (ssh to yourself while in Keyboard-Monitor mode):
 ```
