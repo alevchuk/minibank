@@ -174,7 +174,11 @@ sudo ip6tables-save  # should look exactly like the lines in step 6
  * numbers at the end of the line may be different, those are your network statistics (if you accidentally connected to the network then the dropped/accepted packets will get counted)
  * if you see entries that don't match what you head in step 4 and 6, go back and check that rules were typed in correctly
  
-9. Connect Ethernet cable or (Optionally) [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/first/other-notes/wifi.md)
+10. Connect Ethernet cable or (Optionally) [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/first/other-notes/wifi.md)
+
+NOTE: steps 9 (check firewall) and 10 (connect to network) need to be done back to back. E.g. if you reboot firewall rules will be lost and you'll need to go back to step 8 before connecting to network.
+
+     
 10. Update the system: `sudo apt update && sudo apt upgrade;`. If you don't upgrade you may get hacked. Some keyboards stop working after upgrade so be ready to find a different keyboard (DAS Keyboard works well, yet Pi needs to be rebooted while it's plugged in).
 11. Make firewall persistent, if you don't persist firewall you may get hacked:
 ```
