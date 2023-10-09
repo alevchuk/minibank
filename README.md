@@ -213,7 +213,17 @@ sudo ip6tables-save  # show current v6 rules: check that it is drop-everything
 
 16. SSH over Tor
 
-If you want still to SSH over the local network (without Tor) you can do this:  https://github.com/alevchuk/minibank/blob/first/other-notes/no-tor-ssh.md and skip steps 16 thru 22.
+We first setup a management connection over Tor which will be slow. Later you will be able to add a fast management connection on your local network.
+
+Tor:
+- slow
+- do not need to know any IPs
+- accessible from anywhere on the internet with a Tor client
+
+Local network:
+- fast
+- need to know local IP of the Raspberry Pi
+- accessible only when you're connected to your local network
 
 ```
 sudo apt install tor
@@ -265,7 +275,10 @@ write it down in a safe place
 
 22. From your laptop run: `torify ssh <PI_USER_NAME>@<TOR_HOSTNAME_HERE>.onion` (replace <PI_USER_NAME> from "First Login" section, and <TOR_HOSTNAME_HERE> from step 21). When prompted enter your Raspberry Pi password from "First Login" section.
 
-23. Follow [Authorized Keys](#authorized-keys) section
+23. I recommend that you also setup a fast SSH over the local network (without Tor) you can do this by following https://github.com/alevchuk/minibank/blob/first/other-notes/no-tor-ssh.md
+  
+
+24. Follow [Authorized Keys](#authorized-keys) section
 
 
 
