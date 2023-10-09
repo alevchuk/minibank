@@ -122,6 +122,8 @@ sudo mkdir /etc/iptables
 sudo vi /etc/iptables/rules.v4
 ```
 
+3. nothing
+
 4. Now type the following in the editor, save and exit.
 
 ```
@@ -179,7 +181,7 @@ sudo ip6tables-save  # should look exactly like the lines in step 6
 NOTE: steps 9 (check firewall) and 10 (connect to network) need to be done back to back. E.g. if you reboot firewall rules will be lost and you'll need to go back to step 8 before connecting to network.
 
      
-10. Update the system: `sudo apt update && sudo apt upgrade;`. If you don't upgrade you may get hacked. Some keyboards stop working after upgrade so be ready to find a different keyboard (DAS Keyboard works well, yet Pi needs to be rebooted while it's plugged in).
+11. Update the system: `sudo apt update && sudo apt upgrade;`. If you don't upgrade you may get hacked. Some keyboards stop working after upgrade so be ready to find a different keyboard (DAS Keyboard works well, yet Pi needs to be rebooted while it's plugged in).
 11. Make firewall persistent, if you don't persist firewall you may get hacked:
 ```
 sudo apt install iptables-persistent  # when asked "Save currrent rules?" say "Yes" for both IPv4 and IPv6
@@ -190,23 +192,25 @@ sudo iptables-save  # show current v4 rules: check if this just like before
 sudo iptables-save -6  # show current v6 rules: check that it is drop-everything 
 ```
 
-12. Disconnect from network (Ethernet or Wi-Fi)
+12. Disconnect from network (Ethernet cable or Wi-Fi)
 13. Reboot Pi
 ```
 sudo reboot
 ```
 
-13. Again check firewall after reboot:
+14. Again check firewall after reboot:
 ```
 sudo iptables-save  # show current v4 rules: check if this just like before
 sudo ip6tables-save  # show current v6 rules: check that it is drop-everything 
 ```
 
+15. Connect to network (Ethernet cable or Wi-Fi)
+
 -- end of critical section ---
 
 
 
-15. SSH over Tor
+16. SSH over Tor
 
 If you want still to SSH over the local network (without Tor) you can do this:  https://github.com/alevchuk/minibank/blob/first/other-notes/no-tor-ssh.md and skip steps 16 thru 22.
 
@@ -215,14 +219,14 @@ sudo apt install tor
 ```
 
 
-16. Enable remote login over SSH. Run `raspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
+17. Enable remote login over SSH. Run `raspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
 
-17. Test ssh locally (ssh to yourself while in Keyboard-Monitor mode):
+18. Test ssh locally (ssh to yourself while in Keyboard-Monitor mode):
 ```
 ssh 127.0.0.1
 ```
 
-18. Configure Tor
+19. Configure Tor
 
 ```
 sudo vi /etc/tor/torrc
@@ -246,23 +250,23 @@ and add another line
 HiddenServiceVersion 3
 ```
 
-19. Restart Tor
+20. Restart Tor
 ```
 sudo systemctl restart tor@default.service
 ```
 
-20. Reveal the hidden hostname
+21. Reveal the hidden hostname
 ```
 cat /var/lib/tor/hidden_service/hostname
 ```
 write it down in a safe place
 
 
-21. From your laptop run: `torify ssh pi@HOSTNAME_HERE.onion` enter your new password
+22. From your laptop run: `torify ssh pi@HOSTNAME_HERE.onion` enter your new password
 
-22. Follow [Authorized Keys](#authorized-keys) section
+23. Follow [Authorized Keys](#authorized-keys) section
 
-23. Once Authorized Keys are working, disable SSH login with password https://docs.joinmastodon.org/admin/prerequisites/#do-not-allow-password-based-ssh-login-keys-only
+24. Once Authorized Keys are working, disable SSH login with password https://docs.joinmastodon.org/admin/prerequisites/#do-not-allow-password-based-ssh-login-keys-only
 
 
 ### Authorized keys
