@@ -6,8 +6,8 @@ If you still want to SSH over the without Tor (e.g. only over local network) you
 
 
 
-19. Write down your IP adress. To look it up run `sudo ifconfig`
-20. Allow SSH in the firewall `sudo vi /etc/iptables/rules.v4` then add "Allow SSH" line so it's like this:
+1. Write down your IP adress. To look it up run `sudo ifconfig`
+2. Allow SSH in the firewall `sudo vi /etc/iptables/rules.v4` then add "Allow SSH" line so it's like this:
 ```
 *filter
 :INPUT DROP [152:211958]
@@ -24,16 +24,7 @@ COMMIT
 ``` 
 * Leave IPv6 rules as the inital "Drop-everything" setup because most home networks do not need IPv6.
 
-21. Run 
+3. Run 
 ```
 sudo /etc/init.d/netfilter-persistent restart
 ```
-
-22. Run
-```
-sudo raspi-config
-```
-Select Interface Option -> SSH -> Yes
-
-23. From your laptop, use the IP from step 5 and run: `ssh pi@YOUR_IP_HERE` enter your new password
-
