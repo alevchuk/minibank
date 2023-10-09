@@ -266,7 +266,6 @@ write it down in a safe place
 
 23. Follow [Authorized Keys](#authorized-keys) section
 
-24. Once Authorized Keys are working, disable SSH login with password https://docs.joinmastodon.org/admin/prerequisites/#do-not-allow-password-based-ssh-login-keys-only
 
 
 ### Authorized keys
