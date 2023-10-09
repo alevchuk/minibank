@@ -108,7 +108,9 @@ Connect via monitor and keyboard.
 
 The following ~20 steps will need to be typed (not copy and pasted) because we are connected directly without network (not thru another computer). Setting up the firewall this way provides a higher level of security.
 
-1. Setup no-incoming-connections firewall **before connecting to the network!** If you don't add a firewall you'll get hacked:
+Tip: take a photo of these instructions and open it on your phone next to your keyboard
+
+1. Setup no-incoming-connections firewall **before connecting to the network!** If you don't add a firewall you're at risk of getting hacked:
 
 Run:
 ```
