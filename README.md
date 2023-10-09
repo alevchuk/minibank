@@ -262,7 +262,7 @@ cat /var/lib/tor/hidden_service/hostname
 write it down in a safe place
 
 
-22. From your laptop run: `torify ssh pi@HOSTNAME_HERE.onion` enter your new password
+22. From your laptop run: `torify ssh <PI_USER_NAME>@<TOR_HOSTNAME_HERE>.onion` (replace <PI_USER_NAME> from "First Login" section, and <TOR_HOSTNAME_HERE> from step 21). When prompted enter your Raspberry Pi password from "First Login" section.
 
 23. Follow [Authorized Keys](#authorized-keys) section
 
