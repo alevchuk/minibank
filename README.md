@@ -82,7 +82,7 @@ Once logged in, check to make sure you have a 64-bin linux OS, type:
 ```
 arch
 ```
-if you get "arch64" your good to proceed. Otherwise, this manual will not work (maybe you have have older hardware that's 32-bit only or you downloaded the wrong SD card image).
+if you get "arch64" you're good to go (continue with this manual). Otherwise, this manual will not work (maybe you have have older hardware that's 32-bit only or you downloaded the wrong SD card image).
 
 ## Heat
 
