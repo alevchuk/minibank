@@ -106,6 +106,8 @@ Don't connect to network yet.
 
 Connect via monitor and keyboard.
 
+The following ~20 steps will need to be typed (not copy and pasted) because we are connected directly without network (not thru another computer). Setting up the firewall this way provides a higher level of security.
+
 1. Setup no-incoming-connections firewall **before connecting to the network!** If you don't add a firewall you'll get hacked:
 
 Run:
@@ -146,27 +148,15 @@ sudo vi /etc/iptables/rules.v6
 COMMIT
 ```
 
-7. Edit **/etc/default/keyboard** (When attaching with Monitor and a US Keyboard, you may find that your not able to type things like "|". This is not a problem when going over SSH.)
 
-Replace 
-```
-XKBMODEL="pc105"
-XKBLAYOUT="gb"
-```
-with
-```
-XKBMODEL="pc104"
-XKBLAYOUT="us"
-```
-
-8. Reboot:
+7. Reboot:
 ```
 sudo reboot
 ```
 
 -- start of critical section (complete until the end of critical section or remove from network before rebooting) ---
 
-9. Now run:
+8. Now run:
 
 ```
 cat /etc/iptables/rules.v4 | sudo iptables-restore
@@ -177,10 +167,10 @@ Now the output of `sudo iptables-save` should look like the lines in step 4:
 
  * numbers at the end of the line may be different, those are your network statistics
  
-10. Changed the password. Run `sudo raspi-config`. Select: **Change Password** If you don't change the password you'll get hacked.
-11. Connect Ethernet cable or (Optionally) [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/first/other-notes/wifi.md)
-12. Update the system: `sudo apt update && sudo apt upgrade;`. If you don't upgrade you may get hacked. Some keyboards stop working after upgrade so be ready to find a different keyboard (DAS Keyboard works well, yet Pi needs to be rebooted while it's plugged in).
-13. Make firewall persistent, if you don't persist firewall you may get hacked:
+9. Changed the password. Run `sudo raspi-config`. Select: **Change Password** If you don't change the password you'll get hacked.
+10. Connect Ethernet cable or (Optionally) [setup Wi-Fi](https://github.com/alevchuk/minibank/blob/first/other-notes/wifi.md)
+11. Update the system: `sudo apt update && sudo apt upgrade;`. If you don't upgrade you may get hacked. Some keyboards stop working after upgrade so be ready to find a different keyboard (DAS Keyboard works well, yet Pi needs to be rebooted while it's plugged in).
+12. Make firewall persistent, if you don't persist firewall you may get hacked:
 ```
 sudo apt install iptables-persistent  # when asked "Save currrent rules?" say "Yes" for both IPv4 and IPv6
 
@@ -190,12 +180,12 @@ sudo iptables-save  # show current v4 rules: check if this just like before
 sudo iptables-save -6  # show current v6 rules: check that it is drop-everything 
 ```
 
-14. Reboot Pi
+13. Reboot Pi
 ```
 sudo reboot
 ```
 
-15. Again check firewall after reboot:
+14. Again check firewall after reboot:
 ```
 sudo iptables-save  # show current v4 rules: check if this just like before
 sudo iptables-save -6  # show current v6 rules: check that it is drop-everything 
@@ -205,7 +195,7 @@ sudo iptables-save -6  # show current v6 rules: check that it is drop-everything
 
 
 
-16. SSH over Tor
+15. SSH over Tor
 
 If you want still to SSH over the local network (without Tor) you can do this:  https://github.com/alevchuk/minibank/blob/first/other-notes/no-tor-ssh.md and skip steps 16 thru 22.
 
@@ -214,14 +204,14 @@ sudo apt install tor
 ```
 
 
-17. Enable remote login over SSH. Run `raspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
+16. Enable remote login over SSH. Run `raspi-config` select **Interface Options -> SSH -> SSH server to be enabled**
 
-18. Test ssh locally (ssh to yourself while in Keyboard-Monitor mode):
+17. Test ssh locally (ssh to yourself while in Keyboard-Monitor mode):
 ```
 ssh 127.0.0.1
 ```
 
-19. Configure Tor
+18. Configure Tor
 
 ```
 sudo vi /etc/tor/torrc
@@ -245,23 +235,23 @@ and add another line
 HiddenServiceVersion 3
 ```
 
-20. Restart Tor
+19. Restart Tor
 ```
 sudo systemctl restart tor@default.service
 ```
 
-21. Reveal the hidden hostname
+20. Reveal the hidden hostname
 ```
 cat /var/lib/tor/hidden_service/hostname
 ```
 write it down in a safe place
 
 
-22. From your laptop run: `torify ssh pi@HOSTNAME_HERE.onion` enter your new password
+21. From your laptop run: `torify ssh pi@HOSTNAME_HERE.onion` enter your new password
 
-23. Follow [Authorized Keys](#authorized-keys) section
+22. Follow [Authorized Keys](#authorized-keys) section
 
-24. Once Authorized Keys are working, disable SSH login with password https://docs.joinmastodon.org/admin/prerequisites/#do-not-allow-password-based-ssh-login-keys-only
+23. Once Authorized Keys are working, disable SSH login with password https://docs.joinmastodon.org/admin/prerequisites/#do-not-allow-password-based-ssh-login-keys-only
 
 
 ### Authorized keys
