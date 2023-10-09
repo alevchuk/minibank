@@ -28,3 +28,15 @@ COMMIT
 ```
 sudo /etc/init.d/netfilter-persistent restart
 ```
+
+4. Finally, back on your laptop, test your local ssh:
+```
+ssh -i ~/.ssh/minibank_id_rsa <PI_USER_NAME>@<LOCAL_IP_HERE>
+```
+
+5. add an alias
+```
+echo 'alias mb4l="ssh -i ~/.ssh/minibank_id_rsa <PI_USER_NAME>@<LOCAL_IP_HERE>"' >> ~/.bash_profile
+. ~/.bash_profile
+```
+Now type `mb4l` and that should log you into the Pi.
