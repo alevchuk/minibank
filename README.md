@@ -667,3 +667,62 @@ To deatch from screen press Ctrl-b and then press "d"
 
 To re-attach, run `screen -r`
 
+
+### Install LND
+
+Follow instructions under [alevchuk/minibank/lightning](https://github.com/alevchuk/minibank/tree/first/lightning)
+
+### Start LND
+
+Prerequisites:
+* [Start Bitcoin](#start-bitcoind)
+* [Install LND](#install-lnd)
+
+
+Login as lightning:
+```
+sudo su -l lightning
+```
+
+Edit `~/.lnd/lnd.conf`
+
+```
+[Application Options]
+listen=0.0.0.0:9735
+rpclisten=localhost:10009
+
+[Bitcoin]
+bitcoin.active=1
+bitcoin.mainnet=1
+bitcoin.node=bitcoind
+
+[Bitcoind]
+bitcoind.rpchost=localhost
+bitcoind.rpccookie=/home/bitcoin/bitcoinclients/cookie
+bitcoind.dir=/home/bitcoin/bitcoinclients/
+
+[tor]
+; The port that Tor's exposed SOCKS5 proxy is listening on. Using Tor allows
+; outbound-only connections (listening will be disabled) -- NOTE port must be
+; between 1024 and 65535
+tor.socks=9050
+tor.active=1
+tor.v3=1
+```
+
+When setting up bitcoind we explain how `/home/bitcoin/bitcoinclients/cookie` is created.
+
+However, you will still need to copy bitcoind config into `bitcoinclients` folder because LND currently has [an issue](https://github.com/lightningnetwork/lnd/issues/6613) where it cannot configure `bitcoind.zmqpubraw{block,tx}` directly and instead has to read it form bitcoin's config file:
+
+```
+sudo su -l bitcoin
+schroot -c bitcoin64
+cp .bitcoin/bitcoin.conf  bitcoinclients/
+```
+
+Enable bash completion for lncli:
+```
+sudo cp /home/lightning/gocode/src/github.com/lightningnetwork/lnd/contrib/lncli.bash-completion /etc/bash_completion.d/lncli
+# on Debian distros install "bash-completion" and uncomment "enable bash completion" section in /etc/bash.bashrc
+```
+

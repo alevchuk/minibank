@@ -1,12 +1,10 @@
 # Install LND and Tor
 
-This manual documents how to build and run Lightning on Pi 4. The main challenge is 64-bit environment while Pi base operating system Rasbian is 32-bit. Fortunately Pi 4 hardware is 64-bit.
-
-The reason for running LND in 64-bit mode is to avoid 32-bit related bugs such as https://github.com/lightningnetwork/lnd/issues/5196 - athough LND team is commited to supporting 32-bit mode, some of these bugs can take several days to fix. By the way, there are also some not well understood issues possbliy related to 32-bit mode https://github.com/mynodebtc/mynode/issues/512 so using 64-bit mode can be solid way to confirm if 32-bit mode is the problem.
+This manual documents how to build and run Lightning on Pi 4.
 
 Prerequisites:
- * Boot Pi in [64-bit mode](https://medium.com/for-linux-users/how-to-make-your-raspberry-pi-4-faster-with-a-64-bit-kernel-77028c47d653) 
- * Login in as unix account that has sudo
+ * Boot Pi with a 64-bit OS
+ * Login in as Unix account that has sudo
 
 ## 1. Create Lightning user
 
@@ -20,8 +18,7 @@ sudo adduser --disabled-password lightning
 sudo apt install tor
 ```
 
- * Minibank needs tor version **0.3.3.6** or above. Fortunaly Rasiban 10 already has that. On older distos [build tor from source](https://github.com/alevchuk/minibank/tree/first/tor#build-from-source). 
- * Minibank uses Tor for LND. Yet not for Bitcoin sync traffic because that seems to introduce delays.
+ * Minibank uses Tor for LND. Yet not for Bitcoin sync traffic because that introduces delays.
 
 1. Edit `/etc/tor/torrc` 
 * Uncomment "ControlPort 9051"
@@ -35,49 +32,22 @@ Add lightning user to be part of the Tor group (e.g. it needs read permissions t
 sudo /usr/sbin/adduser lightning debian-tor
 ```
 
-
-## 3. Chroot for 64-bit environment
-
+## 3. Make directories inside the data mount point:
 ```
-sudo apt install -y debootstrap schroot
+sudo mkdir -p /mnt/btrfs/lightning
+sudo mkdir    /mnt/btrfs/lightning/src
+sudo mkdir    /mnt/btrfs/lightning/bin
+sudo mkdir    /mnt/btrfs/lightning/gocode
+sudo mkdir    /mnt/btrfs/lightning/lnd-data
+sudo mkdir    /mnt/btrfs/lightning/lnd-e2e-testing
 
-cat << EOF | sudo tee /etc/schroot/chroot.d/lightning64
-[lightning64]
-description=builds that need 64-bit environment
-type=directory
-directory=/mnt/btrfs/lightning64
-users=lightning
-root-groups=root
-profile=desktop
-personality=linux
-preserve-environment=true
-EOF
-
-sudo debootstrap --arch arm64 bookworm /mnt/btrfs/lightning64
-
-sudo schroot -c lightning64 -- apt update
-sudo schroot -c lightning64 -- apt upgrade -y
+sudo chown -R lightning /mnt/btrfs/lightning
 ```
-
-Make directories inside the data mount point:
-```
-sudo mkdir -p /mnt/btrfs/lightning64/mnt/btrfs/lightning
-sudo mkdir    /mnt/btrfs/lightning64/mnt/btrfs/lightning/src
-sudo mkdir    /mnt/btrfs/lightning64/mnt/btrfs/lightning/bin
-sudo mkdir    /mnt/btrfs/lightning64/mnt/btrfs/lightning/gocode
-sudo mkdir    /mnt/btrfs/lightning64/mnt/btrfs/lightning/lnd-data
-sudo mkdir    /mnt/btrfs/lightning64/mnt/btrfs/lightning/lnd-e2e-testing
-
-sudo chown -R lightning /mnt/btrfs/lightning64/mnt/btrfs/lightning
-```
-
-
 
 ## 4. Install needed packages
 
 ```
-sudo schroot -c lightning64 -- apt install -y git build-essential golang
-
+sudo apt install -y git build-essential golang
 ```
 
 Fun facts:
@@ -91,7 +61,6 @@ Log-in as "lightning" user and setup symlinks
 
 ```
 sudo su -l lightning
-schroot -c lightning64
 
 ln -s /mnt/btrfs/lightning/lnd-data ~/.lnd
 ln -s /mnt/btrfs/lightning/gocode
@@ -100,7 +69,7 @@ ln -s /mnt/btrfs/lightning/src
 ```
 
 ## 6. Build Go
-Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/minibank/blob/first/go/)
+Follow instructions under [alevchuk/minibank/go](https://github.com/alevchuk/minibank/blob/first/go/)
 
 
 ## 7. Build LND
@@ -108,7 +77,6 @@ Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/mini
 1. Log in as "lightning"
 ```
 sudo su -l lightning
-schroot -c lightning64
 ```
 
 2. Download, build, and Install LND:
