@@ -583,7 +583,7 @@ you'll see the change after rebooting, run sudo reboot, re-SSH back in.
 
 #### Time-zone
 
-Run `raspi-config` and select **Localization Options --> Change Timezone** to make your system clock right. Check time by running `date`
+Run `sudo raspi-config` and select **Localization Options --> Change Timezone** to make your system clock right. Check time by running `date`
 
 
 #### bash-completion
