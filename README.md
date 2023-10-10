@@ -727,7 +727,6 @@ sudo /usr/sbin/adduser lightning bitcoinclients
 Enable bash completion for lncli:
 ```
 sudo cp /home/lightning/gocode/src/github.com/lightningnetwork/lnd/contrib/lncli.bash-completion /etc/bash_completion.d/lncli
-# on Debian distros install "bash-completion" and uncomment "enable bash completion" section in /etc/bash.bashrc
 ```
 
 Start:
