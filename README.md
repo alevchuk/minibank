@@ -548,3 +548,143 @@ blockfilterindex=1 #  takes a few GB of storage and helps to speed-up blockchain
 ####debug=leveldb
 ```
 
+You'll need to set things like PASSWORD_1_HERE and PASSWORD_2_HERE with unique passwords. Generate random strings (of 30 alphanumeric characters) for each password. First character should be a letter. `rpcuser` should also look like a password. You can use: `openssl rand -base64 32 | grep -o '[a-z0-9]' | xargs | tr -d ' '` to generate random strings.
+
+Start
+```
+bitcoind
+```
+
+### Convenience stuff
+
+In following sections you will:
+* Name your Pi
+* Set your Time-zone
+* Enable bash completion
+* Expand bash history
+* Customize Vim
+* Customize GNU Screen
+
+
+#### Name your Pi
+
+Edit 2 files replacing "raspberrypi" with the name you came up with.
+```
+sudo vi /etc/hostname
+sudo vi /etc/hosts  # edit the line with 127.0.0.1 adding a space and your new hostname at the end of that line
+
+sudo vi /etc/cloud/templates/hosts.debian.tmpl  # do the same as for  /etc/hosts
+# yet if this file does not exist then skip this step.
+# don't rely on the {{hostname}} sytax (it will not do what you most likely expect),
+# instead add a space and the new hostname at the end, after "{{hostname}} "
+```
+
+If you want to give your host a name without rebooting. No spaces or punctuation. (Put what you want instead of "minibank1".)
+```
+sudo hostname minibank1
+```
+
+you'll see the change after rebooting, run sudo reboot, re-SSH back in.
+
+#### Time-zone
+
+Run `raspi-config` and select **Localization Options --> Change Timezone** to make your system clock right. Check time by running `date`
+
+
+#### bash-completion
+
+```
+sudo apt update
+sudo apt install bash-completion
+```
+
+
+#### Vim
+
+More text editing features.
+
+```
+sudo apt install vim
+```
+This will replace "vi" as well.
+
+Vi has a very inconvenient feature of making selection not native to the OS that your SSHing from.
+
+To make selection for Copy-and-paste use laptop's OS instead of staying in Vi, run
+```
+sudo su -c "echo set mouse= >> /usr/share/vim/vim81/defaults.vim"
+```
+
+Make vim default (e.g. whenever git needs to invoke an editor):
+```
+echo 'export EDITOR="vim"' >> ~/.bashrc
+. ~/>> ~/.bashrc
+```
+
+
+Python IDE:
+```
+sudo su -c "cat <<EOF >> /etc/vim/vimrc
+set paste
+syntax on
+set tabstop=4 shiftwidth=4 expandtab
+EOF
+"
+```
+
+
+#### Bash
+
+To the end of the bash rc file add the following lines after running `vi ~/.bashrc`
+```
+# https://unix.stackexchange.com/a/48113/4058
+export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
+export HISTSIZE=100000                   # big big history
+export HISTFILESIZE=100000               # big big history
+shopt -s histappend                      # append to history, don't overwrite it
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+```
+
+Now do the same /etc/skel by running `sudo vi /etc/skel/.bashrc`
+* so that every new accounts gets this
+
+#### GNU Screen
+
+```
+sudo apt install screen
+```
+
+To the end of default screen config add the following lines by running `sudo vi /etc/screenrc`
+```
+startup_message off
+
+escape ^Bb
+defscrollback 6000
+maptimeout 0
+defhstatus "^EH"
+hardstatus alwayslastline '%{= G}[ %{G} %h %{g} ][%= %{= w}%?%-Lw%?%{= B}%n*%f %t%?%{= B}(%u)%?%{= w}%+Lw%?%= %{= g}][%{B} %Y-%m-%d %{W}%c %{g}]'
+```
+
+
+## After setting up Convenience stuff restart Bitcoind in Screen
+
+Screen allows you to run things printing logs to your virtual screen while your away / logged out / diconnected.
+
+If you rebooted, run `sudo mount /mnt/btrfs/` to connect to external storage devices.
+
+Now you can re-start bitcoin in screen, log-out, and it will continue running. To do that:
+1. Find where `bticoind` is currently running, click on that, and press Ctrl-c
+2. Wait for bitcoin to exit
+3. Run `screen`
+4. Start Bitcoin by running:
+```
+sudo su -l bitcoin
+bitcoind
+```
+Now you don't have to worry about loosing SSH connection or logging out.
+
+To deatch from screen press Ctrl-b and then press "d"
+
+To re-attach, run `screen -r`
+
