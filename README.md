@@ -14,6 +14,7 @@ Table of contents
   * [Heat](#heat)
   * [Network](#network)
   * [Storage](#storage)
+  * [Software](#software)
 
 
 ## About
@@ -475,5 +476,72 @@ sudo btrfs fi df /mnt/btrfs
 
 # convert to Raid1 mirror
 sudo btrfs balance start -dconvert=raid1 -mconvert=raid1 /mnt/btrfs/
+```
+
+
+## Software
+
+### Build Bitcoind
+
+Follow instruction to build bitcoin: [alevchuk/minibank/bitcoin](https://github.com/alevchuk/minibank/tree/first/bitcoin)
+
+
+### Start Bitcoind
+
+Prerequisites:
+* Build Bitcoind
+
+Log-in as bitcoin
+```
+sudo su -l bitcoin
+```
+
+Edit `~/.bitcoin/bitcoin.conf`
+```
+server=1
+deamon=0
+disablewallet=1
+
+# Bind to given address to listen for JSON-RPC connections. Use [host]:port notation for IPv6.
+# This option can be specified multiple times (default: bind to all interfaces)
+####rpcbind=<addr>:<port>
+####rpcbind=192.168.0.17:8332
+rpcbind=127.0.0.1:8332
+
+
+# By default, only RPC connections from localhost are allowed.
+# You can speficy multiple rpcallowip lines to allow different IPs
+####rpcallowip=<addr>
+####rpcallowip=192.168.0.17
+rpcallowip=127.0.0.1
+
+rpccookiefile=/home/bitcoin/bitcoinclients/cookie
+
+
+# Listen for RPC connections on this TCP port:
+####rpcport=8332
+
+onlynet=ipv4
+zmqpubrawblock=tcp://0.0.0.0:29000
+zmqpubrawtx=tcp://0.0.0.0:29001
+
+prune=0  # No prune if you have 1 TB drive(s)
+## prune=476000  # if you have 500 TB of storage space (raid-1 of 2 drives 500 TB each) you'll need to prune but you will need to disable txindex and blockfilterindex
+
+txindex=1  # Maintain a full transaction index, LND uses this, otherwise there will be a lot of disk scans
+
+dbcache=200  # Maximum database cache size <n> MiB
+maxorphantx=10  # Keep at most <n> unconnectable transactions in memory (default: 100)
+maxmempool=50  # Keep the transaction memory pool below <n> megabytes
+maxconnections=20  # Maintain at most <n> connections to peers
+maxuploadtarget=50  # MiB/day for the community
+
+# Detailed logging
+####debug=bench
+####debug=db
+####debug=reindex
+####debug=cmpctblock
+####debug=coindb
+####debug=leveldb
 ```
 
