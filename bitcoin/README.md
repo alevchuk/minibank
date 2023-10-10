@@ -6,7 +6,7 @@ For using Bitcoin Core as a wallet (e.g. via Specter Desktop), doing what some c
 
 Prerequisites:
  * Pi with a 64-bit OS
- * Login in as unix account that has sudo
+ * Login in as Unix account that has sudo
 
 ## Create bitcoin user
 
@@ -30,19 +30,19 @@ sudo chown -R bitcoin /mnt/btrfs/bitcoin
 Make shared directory for bitcoin clients (e.g. LND) to be able to read the `.cookie` file:
 
 ```
-sudo groupadd bitcoinclinets
+sudo groupadd bitcoinclients
 sudo mkdir /home/bitcoin/bitcoinclients
 sudo chmod o=,g=rx,u=rwx /home/bitcoin/bitcoinclients  # others nothing, group read, bitcoin read+write
 sudo chmod +s /home/bitcoin/bitcoinclients  # in case subdirectories are made, caryover the permissions
 sudo chown bitcoin /home/bitcoin/bitcoinclients
-sudo chgrp bitcoinclinets /home/bitcoin/bitcoinclients
+sudo chgrp bitcoinclients /home/bitcoin/bitcoinclients
 ```
 
 When bitcoin starts it will make the cookies files restricted to only bitcoin user:
 ```
 ls -l bitcoinclients/
 total 8
--rw------- 1 bitcoin bitcoinclinets   75 Jun  2 14:14 cookie
+-rw------- 1 bitcoin bitcoinclients   75 Jun  2 14:14 cookie
 ```
 
 To let other account such as LND and Electrs access to the cookie, the workaround is to make a cron job so that the permission changes to this:
@@ -50,7 +50,7 @@ To let other account such as LND and Electrs access to the cookie, the workaroun
 ```
 ls -l bitcoinclients/
 total 8
--rw-r----- 1 bitcoin bitcoinclinets   75 Jun  2 14:14 cookie
+-rw-r----- 1 bitcoin bitcoinclients   75 Jun  2 14:14 cookie
 ```
 
 To get that, run:

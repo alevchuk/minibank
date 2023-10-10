@@ -718,12 +718,10 @@ tor.v3=1
 
 When setting up bitcoind we explain how `/home/bitcoin/bitcoinclients/cookie` is created.
 
-However, you will still need to copy bitcoind config into `bitcoinclients` folder because LND currently has [an issue](https://github.com/lightningnetwork/lnd/issues/6613) where it cannot configure `bitcoind.zmqpubraw{block,tx}` directly and instead has to read it form bitcoin's config file:
+However, you will need to add the lightning user to bitcoinclients group like this:
 
 ```
-sudo su -l bitcoin
-schroot -c bitcoin64
-cp .bitcoin/bitcoin.conf  bitcoinclients/
+sudo /usr/sbin/adduser lightning bitcoinclients
 ```
 
 Enable bash completion for lncli:
