@@ -100,7 +100,7 @@ ln -s /mnt/btrfs/lightning/src
 ```
 
 ## 6. Build Go
-Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/minibank/blob/first/go/)
+Follow instrutions under [alevchuk/minibank/go](https://github.com/alevchuk/minibank/blob/first/go/README-with-chroot.md)
 
 
 ## 7. Build LND
