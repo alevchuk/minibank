@@ -599,7 +599,6 @@ This will replace "vi" as well.
 Make vim default (e.g. whenever git needs to invoke an editor):
 ```
 echo 'export EDITOR="vim"' >> ~/.bashrc
-. ~/>> ~/.bashrc
 ```
 
 Vim as Development Environment (for Python and stuff like that):
