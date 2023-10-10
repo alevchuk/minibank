@@ -21,14 +21,13 @@ sudo su -l lightning
 ```
 
 
-2. Set bootstrap path and gopath. Add the following to `~/.profile`
+2. Set bootstrap path and gopath. Run:
 
 ```
-export GOROOT_BOOTSTRAP="$(ls -1d /usr/lib/go-* | tail -n1)"
-
-export GOROOT=~/src/go
-export GOPATH=~/gocode
-export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+echo 'export GOROOT_BOOTSTRAP="$(ls -1d /usr/lib/go-* | tail -n1)"' >> ~/.profile
+echo 'export GOROOT=~/src/go' >> ~/.profile
+echo 'export GOPATH=~/gocode' >> ~/.profile
+echo 'export PATH=$GOROOT/bin:$GOPATH/bin:$PATH' >> ~/.profile
 ```
 
 Load `~/.profile`
