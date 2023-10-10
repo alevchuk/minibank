@@ -578,7 +578,7 @@ If you want to give your host a name without rebooting. No spaces or punctuation
 sudo hostname minibank1
 ```
 
-you'll see the change after rebooting, run sudo reboot, re-SSH back in.
+You'll see the change after rebooting, run sudo reboot, re-SSH back in.
 
 #### Time-zone
 
@@ -595,6 +595,12 @@ More text editing features.
 sudo apt install vim
 ```
 This will replace "vi" as well.
+
+Vi has a very inconvenient feature of making mouse actions not native to the OS that your SSHing from.
+E.g. to make middle-click paste work will paste, run:
+```
+sudo su -c "echo set mouse= >> /usr/share/vim/vim82/defaults.vim"
+```
 
 Make vim default (e.g. whenever git needs to invoke an editor):
 ```
