@@ -726,3 +726,47 @@ sudo cp /home/lightning/gocode/src/github.com/lightningnetwork/lnd/contrib/lncli
 # on Debian distros install "bash-completion" and uncomment "enable bash completion" section in /etc/bash.bashrc
 ```
 
+Start:
+```
+lnd
+```
+
+
+### Create your Lightning wallet
+
+Create a wallet
+
+```
+lncli create
+``` 
+
+This will create:
+1. Your bitcoin private key stored on disk
+2. A mnemonic phrase that you can backup to paper and use to restore the bitcoin funds
+3. A password that will need to be entered every time LND starts
+
+
+### Fund your LND wallet and open channels
+
+1. Create a one-time-use address and transfer some bitcoin to it
+
+ ```
+lncli newaddress np2wkh  # Nested SegWit address
+```
+      
+2. Send the funds from an external bitcoin wallet.
+      
+3. Check that the funds arrived
+```
+lncli walletbalance  # will show unconfirmed balance within a few seconds. One confirmation will happen roughly every 10 minutes
+```
+4. Wait for 6 confirmations. About 1 hour.
+
+5. Restart LND
+6. Open Channels, follow: https://docs.lightning.engineering/lightning-network-tools/lnd/first-steps-with-lnd
+7. Check activity in 1 hour:
+``` 
+lncli walletbalance
+lncli channelbalance
+lncli listchannels  | grep active | sort | uniq -c  # number of open channels
+```
