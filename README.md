@@ -705,7 +705,8 @@ bitcoin.node=bitcoind
 [Bitcoind]
 bitcoind.rpchost=localhost
 bitcoind.rpccookie=/home/bitcoin/bitcoinclients/cookie
-bitcoind.dir=/home/bitcoin/bitcoinclients/
+bitcoind.zmqpubrawblock=tcp://localhost:29000
+bitcoind.zmqpubrawtx=tcp://localhost:29001
 
 [tor]
 ; The port that Tor's exposed SOCKS5 proxy is listening on. Using Tor allows
