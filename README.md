@@ -343,18 +343,18 @@ In this sections were going to look up the following for each of the SSDs:
 
 Steps:
 1. Run `sudo dmesg --follow`
-2. Un-plung and re-plug one of the external SSD drives
-3. Look for the block device name, starting with "sd" followed by a lowercase english letter. Write that down.
+2. Unplug and re-plug one of the external SSD drives
+3. Look for the block device name, starting with "sd" followed by a lowercase English letter. Write that down.
 4. Look for idVendor and idProduct. Write those down
-5. Repeate from step 2 for the other SSD
+5. Repeat from step 2 for the other SSD
 
-NOTE: it's important to label the storage devices with their idVendor and idProduct in case one of them fails and you'll need to know which one to replace. Block device names change depending in which order you plug in the drives. For that reasob, **do not write the block device name (the "sd" followed by a letter) on the lable**.
+NOTE: it's important to label the storage devices with their idVendor and idProduct in case one of them fails and you'll need to know which one to replace. Block device names change depending in which order you plug in the drives. For that reason, **do not write the block device name (the "sd" followed by a letter) on the label**.
 
 From now I will refer to the block device names as:
 * YOUR_SSD_BLOCK_DEVICE_1 ("sd" followed by a letter)
 * YOUR_VENDOR_ID_FOR_DEVICE_1 (hex number)
 * YOUR_PRODUCT_ID_FOR_DEVICE_1 (hex number)
-* and the above 3 for DEVICE_2
+* and same for DEVICE_2
 
 The relevant output of `dmesg --follow` would look like this:
 ```
@@ -406,7 +406,7 @@ To disable UAS:
   * don't miss the ":u" at the end
   * The whole line should look similar to this `usb-storage.quirks=0781:558c:u,04e8:61f5:u dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=3acd0083-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait`
 6. Reboot
-7. Check `dmesg | less`. Seach for "UAS", by typing "/UAS" and pressing "n" to go to next one. There should be 2 "UAS is ignored" messages for each USB debvice. They look like this:
+7. Check `dmesg | less`. Search for "UAS", by typing "/UAS" and pressing "n" to go to next one. There should be 2 "UAS is ignored" messages for each USB device. They look like this:
 ```
 [    1.617927] usb 2-1: UAS is ignored for this device, using usb-storage instead
 [    1.618064] usb 2-1: UAS is ignored for this device, using usb-storage instead
