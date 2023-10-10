@@ -22,7 +22,7 @@ sudo mkdir /mnt/btrfs/bitcoin
 sudo mkdir /mnt/btrfs/bitcoin/src
 sudo mkdir /mnt/btrfs/bitcoin/bin
 
-sudo chown -R bitcoin /mnt/btrfs/bitcoin64/mnt/btrfs/bitcoin
+sudo chown -R bitcoin /mnt/btrfs/bitcoin
 ```
 
 # Bitcoin Cookie
