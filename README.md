@@ -585,7 +585,7 @@ you'll see the change after rebooting, run sudo reboot, re-SSH back in.
 
 Run `sudo raspi-config` and select **Localization Options --> Change Timezone --> Other --> UTC** to make your system clock right. Check time by running `date`
 
-I recommed setting your timezone to UTC because that's better for privacy and that's what bitcoind logs use.
+I recommend setting your timezone to UTC because that's better for privacy and that's what bitcoind logs use.
 
 #### bash-completion
 
@@ -604,21 +604,13 @@ sudo apt install vim
 ```
 This will replace "vi" as well.
 
-Vi has a very inconvenient feature of making selection not native to the OS that your SSHing from.
-
-To make selection for Copy-and-paste use laptop's OS instead of staying in Vi, run
-```
-sudo su -c "echo set mouse= >> /usr/share/vim/vim81/defaults.vim"
-```
-
 Make vim default (e.g. whenever git needs to invoke an editor):
 ```
 echo 'export EDITOR="vim"' >> ~/.bashrc
 . ~/>> ~/.bashrc
 ```
 
-
-Python IDE:
+Vim as Development Environment (for Python and stuff like that):
 ```
 sudo su -c "cat <<EOF >> /etc/vim/vimrc
 set paste
