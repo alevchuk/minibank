@@ -419,3 +419,61 @@ To disable UAS:
 [    3.071842] sd 1:0:0:0: [sdb] 976773168 512-byte logical blocks: (500 GB/466 GiB)
 ```
 
+### BTRFS RAID-1 Mirror
+
+Install BTRFS progs:
+```
+sudo apt update
+sudo apt install btrfs-progs
+```
+
+WARNING: any data in the SSD drives will be deleted. If you don't know what your doing, try running the command without `--force` first.
+
+Create file-systems Bitcoin and LND nodes
+```
+sudo mkfs.btrfs --force /dev/YOUR_SSD_BLOCK_DEVICE_1_NAME_HERE
+sudo mkfs.btrfs --force /dev/YOUR_SSD_BLOCK_DEVICE_2_NAME_HERE
+```
+
+Mount
+```
+sudo mkdir /mnt/btrfs
+sudo mount /dev/YOUR_SSD_BLOCK_DEVICE_1_NAME_HERE /mnt/btrfs
+```
+
+Label it
+```
+sudo btrfs fi label /mnt/btrfs minibank4
+
+```
+
+Add it to fstab:
+```
+sudo su -l
+echo -e "LABEL=minibank4\t/mnt/btrfs\tbtrfs\tnoauto\t0\t0" >> /etc/fstab
+```
+
+Now you can mount it like this (even if block device names change):
+```
+sudo umount /mnt/btrfs
+sudo mount /mnt/btrfs
+```
+
+
+Check BTRFS sizes like this (--si makes numbers compatible with numbers in `parted`):
+```
+sudo btrfs fi show --si
+```
+
+
+To setup Raid1 mirror you can do it at the time of running `mkfs.btrfs` or add a new device later, like this:
+```
+sudo btrfs dev add -f /dev/YOUR_SSD_BLOCK_DEVICE_2_NAME_HERE /mnt/btrfs
+
+# check current Raid setup
+sudo btrfs fi df /mnt/btrfs
+
+# convert to Raid1 mirror
+sudo btrfs balance start -dconvert=raid1 -mconvert=raid1 /mnt/btrfs/
+```
+
