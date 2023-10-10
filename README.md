@@ -560,7 +560,6 @@ bitcoind
 In following sections you will:
 * Name your Pi
 * Set your Time-zone
-* Enable bash completion
 * Expand bash history
 * Customize Vim
 * Customize GNU Screen
@@ -586,13 +585,6 @@ you'll see the change after rebooting, run sudo reboot, re-SSH back in.
 Run `sudo raspi-config` and select **Localization Options --> Change Timezone --> Other --> UTC** to make your system clock right. Check time by running `date`
 
 I recommend setting your timezone to UTC because that's better for privacy and that's what bitcoind logs use.
-
-#### bash-completion
-
-```
-sudo apt update
-sudo apt install bash-completion
-```
 
 
 #### Vim
