@@ -500,7 +500,7 @@ Edit `~/.bitcoin/bitcoin.conf`
 ```
 server=1
 deamon=0
-disablewallet=1
+disablewallet=0
 
 # Bind to given address to listen for JSON-RPC connections. Use [host]:port notation for IPv6.
 # This option can be specified multiple times (default: bind to all interfaces)
@@ -529,12 +529,15 @@ prune=0  # No prune if you have 1 TB drive(s)
 ## prune=476000  # if you have 500 TB of storage space (raid-1 of 2 drives 500 TB each) you'll need to prune but you will need to disable txindex and blockfilterindex
 
 txindex=1  # Maintain a full transaction index, LND uses this, otherwise there will be a lot of disk scans
+blockfilterindex=1 #  takes a few GB of storage and helps to speed-up blockchain rescanning
 
-dbcache=200  # Maximum database cache size <n> MiB
-maxorphantx=10  # Keep at most <n> unconnectable transactions in memory (default: 100)
-maxmempool=50  # Keep the transaction memory pool below <n> megabytes
-maxconnections=20  # Maintain at most <n> connections to peers
-maxuploadtarget=50  # MiB/day for the community
+## # tunning (not needed on the new Pi3 with SSDs)
+## dbcache=200  # Maximum database cache size <n> MiB
+## maxorphantx=10  # Keep at most <n> unconnectable transactions in memory (default: 100)
+## maxmempool=50  # Keep the transaction memory pool below <n> megabytes
+## maxconnections=20  # Maintain at most <n> connections to peers
+## maxuploadtarget=50  # MiB/day for the community
+## whitelist=download@127.0.0.1  # disable the limit for local p2p connections
 
 # Detailed logging
 ####debug=bench
