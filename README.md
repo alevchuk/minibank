@@ -583,8 +583,9 @@ you'll see the change after rebooting, run sudo reboot, re-SSH back in.
 
 #### Time-zone
 
-Run `sudo raspi-config` and select **Localization Options --> Change Timezone** to make your system clock right. Check time by running `date`
+Run `sudo raspi-config` and select **Localization Options --> Change Timezone --> Other --> UTC** to make your system clock right. Check time by running `date`
 
+I recommed setting your timezone to UTC because that's better for privacy and that's what bitcoind logs use.
 
 #### bash-completion
 
