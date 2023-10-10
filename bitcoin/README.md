@@ -97,9 +97,6 @@ cd ~/src/bitcoin
 git checkout v25.0  # or find the latest tag with git tag | grep v25
 ```
 
-if you have bitcoin on v0.23 or lower and LND is 0.15.99 or newer, then LND will fail to start and give the following error 
-> error creating wallet config: unable to create partial chain control: node backend does not support taproot
-
 Prepare for build (one time setup):
 ```
 ./autogen.sh
