@@ -930,3 +930,100 @@ Run node_exporter
 ```
 ${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter/node_exporter --no-collector.mdadm --no-collector.infiniband
 ```
+
+### Prometheus
+
+Requierments
+ * Lightning (because we re-use Go build)
+
+If you have multiple nodes, install this on the base station to pull in all metrics into a single place.
+
+Setup accounts:
+```
+sudo adduser --disabled-password prometheus
+sudo mkdir /mnt/btrfs/prometheus
+sudo mkdir /mnt/btrfs/prometheus/gocode
+sudo mkdir /mnt/btrfs/prometheus/data
+sudo mkdir /mnt/btrfs/prometheus/src
+sudo mkdir /mnt/btrfs/prometheus/bin
+
+sudo chown -R prometheus /mnt/btrfs/prometheus/
+
+sudo su -l prometheus
+ln -s /mnt/btrfs/lightning/src ~/lightning_readonly # symlink to read-only go installation
+ln -s /mnt/btrfs/prometheus/src ~/src
+ln -s /mnt/btrfs/prometheus/bin ~/bin
+ln -s /mnt/btrfs/prometheus/gocode ~/gocode
+```
+
+Build node.js (includes NPM)
+
+```
+git clone https://github.com/nodejs/node.git ~/src/node
+cd ~/src/node
+git fetch
+git checkout v13.7.0  # version higher then this will not build on the 32-bit rasbian
+./configure --prefix $HOME/bin
+make
+make install
+
+```
+
+
+Enable Go. To `~/.profile` add:
+```
+export GOROOT=~/src_readonly/go
+export GOPATH=~/gocode
+export PATH=$GOROOT/bin:$GOPATH/bin:$HOME/bin/bin:$PATH
+
+```
+
+Install Yarn:
+```
+npm install -g yarn
+```
+
+Fetch source code and build prometheus:
+```
+go get github.com/prometheus/prometheus/cmd/...
+cd /home/prometheus/gocode/src/github.com/prometheus/prometheus/
+make build
+```
+
+Configure:
+```
+ln -s /mnt/btrfs/prometheus/data ~/.prometheus
+vi ~/.prometheus/prometheus.yml
+```
+Configure to collect from node exporters from all managed hosts, including self, e.g.:
+```
+global:
+  scrape_interval:     15s # Set the scrape interval to every 15 seconds. Default is every 1 minute.
+  evaluation_interval: 15s # Evaluate rules every 15 seconds. The default is every 1 minute.
+  # scrape_timeout is set to the global default (10s).
+
+scrape_configs:
+- job_name: 'node3'
+  static_configs:
+  - targets: ['bl3:9100', 'bl4:9100', 'bl5:9100', 'bl3:8334', 'bl4:8334', 'bl5:8334']
+```
+
+Run prometheus:
+```
+cd ~prometheus/.prometheus && ~/gocode/src/github.com/prometheus/prometheus/prometheus --storage.tsdb.retention 5y
+```
+
+### Grafana
+
+Grafana is a monitoring/analytics web interface.
+
+Warning: This is a web server, so be especially careful with security.
+
+To install and run Grafana follow [alevchuk/minibank/grafana](https://github.com/alevchuk/minibank/blob/first/grafana/README.md)
+
+![alt text](https://raw.githubusercontent.com/alevchuk/minibank/first/img/grafana_screen_shot_2018-11-23.png "grafana monitoring dashboard using data from prometheus time-series store")
+
+
+# Operations
+
+* [BTRFS Raid wiki](https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_with_Multiple_Devices#Adding_new_devices)
