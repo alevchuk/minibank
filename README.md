@@ -478,6 +478,11 @@ sudo btrfs fi df /mnt/btrfs
 sudo btrfs balance start -dconvert=raid1 -mconvert=raid1 /mnt/btrfs/
 ```
 
+At any time, check for errors:
+```
+sudo btrfs dev stats /mnt/btrfs/
+```
+
 
 ## Software
 
