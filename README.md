@@ -969,13 +969,17 @@ make install
 
 ```
 
-
-Enable Go. To `~/.profile` add:
+Enable Go. Add exports to ~/.profile by running:
 ```
-export GOROOT=~/src_readonly/go
-export GOPATH=~/gocode
-export PATH=$GOROOT/bin:$GOPATH/bin:$HOME/bin/bin:$PATH
+echo 'export GOROOT=~/src_readonly/go' >> ~/.profile
+echo 'export GOPATH=~/gocode' >> ~/.profile
+echo 'export PATH=$GOROOT/bin:$GOPATH/bin:$PATH' >> ~/.profile
+echo 'export PATH=$HOME/bin/bin:$PATH' >> ~/.profile
+```
 
+Load new profile
+```
+. ~/.profile
 ```
 
 Install Yarn:
