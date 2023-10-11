@@ -917,9 +917,7 @@ Load new profile
 Node Exporter is used to export system metrics to Prometheus
 
 ```
-go get github.com/prometheus/node_exporter
-# if you get "net/http: TLS handshake timeout" errors, you need to re-run the `go get` command above 
-# if the error is persistent try to see how to make the netwrok less busy (e.g. temporary stop bitcoind)
+go install github.com/prometheus/node_exporter@latest
 
 cd ${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter
 
