@@ -884,6 +884,12 @@ sudo mkdir ./monitoring/src
 sudo chown -R monitoring ./monitoring
 ```
 
+Allow everyone to read lighting source code:
+```
+sudo chmod o+rx /mnt/btrfs/lightning         # x means "execute (or search for directories)"
+sudo chmod -R o+rX /mnt/btrfs/lightning/src  # X means "execute/search only if the file is a directory or already has execute permission for some user"
+```
+
 Loging as "monitoring" user
 ```
 sudo su -l monitoring
