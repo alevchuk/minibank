@@ -15,6 +15,7 @@ Table of contents
   * [Network](#network)
   * [Storage](#storage)
   * [Software](#software)
+  * [Monitoring](#monitoring)
 
 
 ## About
@@ -858,3 +859,67 @@ Active channels:
 Suggested new remote balance percentage --dst-pct 50.00
 ```
 
+## Monitoring
+
+### Prometheus exporters
+
+Prerequisites:
+* [Storage](#storage-home-node)
+* [Build Go](go#build-go)
+
+Citations:
+ * This section is based on [github.com/prometheus](https://github.com/prometheus/prometheus#building-from-source)
+
+Install on all nodes.
+
+```
+sudo adduser --disabled-password monitoring
+
+cd /mnt/btrfs
+
+sudo mkdir ./monitoring
+sudo mkdir ./monitoring/gocode
+sudo mkdir ./monitoring/src
+
+sudo chown -R monitoring ./monitoring
+```
+
+Loging as "monitoring" user
+```
+sudo su -l monitoring
+ln -s /mnt/btrfs/monitoring/src
+ln -s /mnt/btrfs/monitoring/gocode
+ln -s /mnt/btrfs/lightning/src/ ~/src_readonly
+```
+
+to `~/.profile` add:
+```
+export GOROOT=~/src_readonly/go
+export GOPATH=~/gocode
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+
+export PATH=$HOME/bin/bin:$PATH
+```
+
+and  now install node exporter
+
+#### Host metrics
+
+Node Exporter is used to export system metrics to Prometheus
+
+```
+go get github.com/prometheus/node_exporter
+# if you get "net/http: TLS handshake timeout" errors, you need to re-run the `go get` command above 
+# if the error is persistent try to see how to make the netwrok less busy (e.g. temporary stop bitcoind)
+
+cd ${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter
+
+git pull
+
+make
+```
+
+Run node_exporter
+```
+${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter/node_exporter --no-collector.mdadm --no-collector.infiniband
+```
