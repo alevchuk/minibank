@@ -957,7 +957,8 @@ ln -s /mnt/btrfs/prometheus/gocode ~/gocode
 ```
 
 Build node.js (includes NPM)
-
+* unfortunatly, the `make` step here will take hours. It's likely faster to install node.js some other way
+ 
 ```
 git clone https://github.com/nodejs/node.git ~/src/node
 cd ~/src/node
@@ -966,7 +967,6 @@ git checkout $(git tag | grep ^v | sort -V | tail -n1)  # lastes release
 ./configure --prefix $HOME/bin
 make
 make install
-
 ```
 
 Enable Go. Add exports to ~/.profile by running:
