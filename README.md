@@ -892,18 +892,21 @@ ln -s /mnt/btrfs/monitoring/gocode
 ln -s /mnt/btrfs/lightning/src/ ~/src_readonly
 ```
 
-to `~/.profile` add:
+Add exports to ~/.profile by running:
 ```
-export GOROOT=~/src_readonly/go
-export GOPATH=~/gocode
-export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
-
-export PATH=$HOME/bin/bin:$PATH
+echo 'export GOROOT=~/src_readonly/go' >> ~/.profile
+echo 'export GOPATH=~/gocode' >> ~/.profile
+echo 'export PATH=$GOROOT/bin:$GOPATH/bin:$PATH' >> ~/.profile
+echo 'export PATH=$HOME/bin/bin:$PATH' >> ~/.profile
 ```
 
-and  now install node exporter
+Load new profile
+```
+. ~/.profile
+```
 
-#### Host metrics
+
+#### Node Exporter: Host metrics
 
 Node Exporter is used to export system metrics to Prometheus
 
