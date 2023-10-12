@@ -30,7 +30,7 @@ https://github.com/alevchuk/minibank#network
 
 # Install needed packages
 ```
-sudo apt install -y python3.7 python3-distutils g++ make golang git python2
+sudo apt install -y python3.7 python3-distutils g++ make golang git
 ```
 
 
