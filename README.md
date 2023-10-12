@@ -1022,7 +1022,7 @@ cd ~prometheus/.prometheus && ~/gocode/src/github.com/prometheus/prometheus/prom
 
 Grafana is a monitoring/analytics web interface.
 
-Warning: This is a web server, so be especially careful with security.
+Warning: This is a web server, so be especially careful with security. E.g. you may want to run grafana on a different Pi or inside a container (e.g. Docker)
 
 To install and run Grafana follow [alevchuk/minibank/grafana](https://github.com/alevchuk/minibank/blob/first/grafana/README.md)
 
