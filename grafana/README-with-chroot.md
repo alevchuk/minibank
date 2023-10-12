@@ -1,10 +1,13 @@
 # Grafana on Raspberry Pi 4
 
-Grafana is a monitoring/analytics web interface.  This manual documents how to build and run Grafana on Pi 4.
+This manual documents how to build and run Grafana on Pi 4. The main challenge is that Grafana requires a 64-bit environment while Pi base operating system Rasbian is 32-bit. Fortunately Pi 4 hardware is 64-bit.
+
+Grafana is a monitoring/analytics web interface.
+
 
 Prerequisites:
  * [Node exporter running on all nodes](https://github.com/alevchuk/minibank/blob/first/README.md#prometheus-exporters) (calculates metrics locally)
- * [Prometheus running on one of the nodes](https://github.com/alevchuk/minibank/blob/first/README.md#prometheus) (aggregates and stores all metrics in one place)
+ * [Prometheus running on one of the nodes](https://github.com/alevchuk/minibank/blob/first/README.md#prometheus) (aggragetes and stores all metrics in one place)
 
 
 Citations:
@@ -12,16 +15,35 @@ Citations:
 
 
 
-## Create directories
+## Chroot for 64-bit environment
 
 ```
 sudo adduser --disabled-password grafana
-sudo mkdir /mnt/btrfs/grafana
-sudo mkdir /mnt/btrfs/grafana/src
-sudo mkdir /mnt/btrfs/grafana/gocode
-sudo mkdir /mnt/btrfs/grafana/bin
+sudo apt install -y debootstrap schroot
 
-sudo chown -R grafana /mnt/btrfs/grafana
+cat << EOF | sudo tee /etc/schroot/chroot.d/pi64
+[pi64]
+description=builds that need 64-bit environment
+type=directory
+directory=/mnt/btrfs/pi64
+users=grafana
+root-groups=root
+profile=desktop
+personality=linux
+preserve-environment=true
+EOF
+
+sudo debootstrap --arch arm64 bookworm /mnt/btrfs/pi64
+
+sudo schroot -c pi64 -- apt update
+sudo schroot -c pi64 -- apt upgrade -y
+
+sudo mkdir /mnt/btrfs/pi64/mnt/btrfs/grafana
+sudo mkdir /mnt/btrfs/pi64/mnt/btrfs/grafana/src
+sudo mkdir /mnt/btrfs/pi64/mnt/btrfs/grafana/gocode
+sudo mkdir /mnt/btrfs/pi64/mnt/btrfs/grafana/bin
+
+sudo chown -R grafana /mnt/btrfs/pi64/mnt/btrfs/grafana
 ```
 
 # Setup firefall
@@ -30,7 +52,7 @@ https://github.com/alevchuk/minibank#network
 
 # Install needed packages
 ```
-sudo apt install -y python3.7 python3-distutils g++ make golang git python2
+sudo schroot -c pi64 -- apt install -y python3.7 python3-distutils g++ make golang git python2
 ```
 
 
@@ -38,6 +60,7 @@ sudo apt install -y python3.7 python3-distutils g++ make golang git python2
 Login as grafana user and drop into 64-bin environment:
 ```
 sudo su -l grafana
+schroot -c pi64
 
 ln -s /mnt/btrfs/grafana/src ~/src
 ln -s /mnt/btrfs/grafana/gocode ~/gocode
