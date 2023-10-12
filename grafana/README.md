@@ -126,7 +126,7 @@ make run
 # Run
 ```
 cd ~/gocode/src/github.com/grafana/grafana
-./bin/linux-arm/grafana-server
+./bin/grafana-server
 ```
 
 # Punch a hole in the firewall
