@@ -50,21 +50,19 @@ The remaining parts of this manual will assume you are logged into the 64-bin en
 
 ## Build Go
 
-1. Set bootstrap path and gopath. Add the following to `~/.profile`
-
+1.  Enable Go. Add exports to ~/.profile by running:
 ```
-export GOROOT=~/src/go
-export GOPATH=~/gocode
-export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
-
-export PATH=$HOME/bin/bin:$PATH
-
+echo 'export GOROOT=~/src_readonly/go' >> ~/.profile
+echo 'export GOPATH=~/gocode' >> ~/.profile
+echo 'export PATH=$GOROOT/bin:$GOPATH/bin:$PATH' >> ~/.profile
+echo 'export PATH=$HOME/bin/bin:$PATH' >> ~/.profile
 ```
 
-Load ~/.profile
+Load new profile
 ```
 . ~/.profile
 ```
+
 
 2. Fetch new go
 ```
