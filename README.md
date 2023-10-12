@@ -16,6 +16,8 @@ Table of contents
   * [Storage](#storage)
   * [Software](#software)
   * [Monitoring](#monitoring)
+  * [Operations](#operations)
+
 
 
 ## About
@@ -1031,4 +1033,6 @@ To install and run Grafana follow [alevchuk/minibank/grafana](https://github.com
 
 # Operations
 
-* [BTRFS Raid wiki](https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_with_Multiple_Devices#Adding_new_devices)
+* To update OS and utilities with latest security patches, regularly run: `sudo apt update && sudo apt upgrade -y`
+* To replace a bad OS SD Card, run thru this manual again but skip building software (i.e. `make` commands) and don't reformat your external SSD drives (they contain your data, configuration, and software that you've built in this manual)
+* To replace a bad external SSD drive [BTRFS Raid wiki](https://btrfs.wiki.kernel.org/index.php/Using_Btrfs_with_Multiple_Devices#Adding_new_devices)
