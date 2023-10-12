@@ -957,7 +957,8 @@ ln -s /mnt/btrfs/prometheus/gocode ~/gocode
 ```
 
 Build node.js (includes NPM)
-* unfortunatly, the `make` step here will take hours. It's likely faster to install node.js some other way
+* unfortunatly, the `make` step here **will take many hours (a whole day)**
+  *  installing node.js some other way maybe possible yet comes with other issues (e.g. the official debian build is out-dated, likely incompatible and has security vulnerabilities)
  
 ```
 git clone https://github.com/nodejs/node.git ~/src/node
