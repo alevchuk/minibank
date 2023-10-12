@@ -49,7 +49,7 @@ The remaining parts of this manual will assume you are logged into the 64-bin en
 
 
 
-## Build Go
+## Link to Go
 
 1.  Enable Go. Add exports to ~/.profile by running:
 ```
@@ -65,31 +65,11 @@ Load new profile
 ```
 
 
-2. Fetch new go
-```
-git clone https://go.googlesource.com/go ~/src/go
-cd ~/src/go
-git fetch
-git checkout go1.13.1
-```
-
-3. Build new go
-```
-cd $GOROOT/src
-./all.bash
-```
-At the end it should say "Installed commands in $GOROOT/bin"
-
-
 ## Build Node.js 
 
 Login as grafana user and drop into 64-bin environment:
 ```
 sudo su -l grafana
-schroot -c pi64
-```
-
-```
 git clone https://github.com/nodejs/node.git ~/src/node
 cd ~/src/node
 git checkout $(git tag | grep v12 | sort -V | tail -n1)
@@ -100,7 +80,6 @@ cd ~/src/node && make clean && ./configure --prefix $HOME/bin && make && make in
 # Install yarn
 ```
 sudo su -l grafana
-schroot -c pi64
 ```
 
 npm was installed as part of Node.js so you can just do this
@@ -112,10 +91,6 @@ npm install -g yarn
 
 ```
 sudo su -l grafana
-schroot -c pi64
-```
-
-```
 
 git clone https://github.com/grafana/grafana.git ~/src/grafana
 ```
@@ -143,7 +118,6 @@ sudo sysctl fs.inotify.max_user_watches=1048576 # increase to 1048576
 
 ```
 sudo su -l grafana
-schroot -c pi64
 
 cd ~/src/grafana
 make run
