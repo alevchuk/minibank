@@ -42,6 +42,7 @@ sudo su -l grafana
 ln -s /mnt/btrfs/grafana/src ~/src
 ln -s /mnt/btrfs/grafana/gocode ~/gocode
 ln -s /mnt/btrfs/grafana/bin ~/bin
+ln -s /mnt/btrfs/lightning/src/ ~/src_readonly
 ```
 
 The remaining parts of this manual will assume you are logged into the 64-bin environment.
