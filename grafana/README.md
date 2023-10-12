@@ -33,9 +33,9 @@ https://github.com/alevchuk/minibank#network
 sudo apt install -y python3 python3-distutils g++ make golang git
 ```
 
+## Link to Go
 
-# Change user
-Login as grafana user and drop into 64-bin environment:
+1.  Enable Go. Add exports to ~/.profile by running:
 ```
 sudo su -l grafana
 
@@ -43,16 +43,7 @@ ln -s /mnt/btrfs/grafana/src ~/src
 ln -s /mnt/btrfs/grafana/gocode ~/gocode
 ln -s /mnt/btrfs/grafana/bin ~/bin
 ln -s /mnt/btrfs/lightning/src/ ~/src_readonly
-```
 
-The remaining parts of this manual will assume you are logged into the 64-bin environment.
-
-
-
-## Link to Go
-
-1.  Enable Go. Add exports to ~/.profile by running:
-```
 echo 'export GOROOT=~/src_readonly/go' >> ~/.profile
 echo 'export GOPATH=~/gocode' >> ~/.profile
 echo 'export PATH=$GOROOT/bin:$GOPATH/bin:$PATH' >> ~/.profile
@@ -67,7 +58,7 @@ Load new profile
 
 ## Build Node.js 
 
-Login as grafana user and drop into 64-bin environment:
+Login as grafana user:
 ```
 sudo su -l grafana
 git clone https://github.com/nodejs/node.git ~/src/node
