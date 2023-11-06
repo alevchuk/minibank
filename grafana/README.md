@@ -95,8 +95,7 @@ v=$(git tag | grep v9 | sort -V | tail -n1)
 echo $v
 git checkout $v
 
-yarn install
-yarn start
+yarn install   # this will take ~15 minutes
 ```
 
 
