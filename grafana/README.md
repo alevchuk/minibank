@@ -95,17 +95,12 @@ v=$(git tag | grep v9 | sort -V | tail -n1)
 echo $v
 git checkout $v
 
-yarn install --pure-lockfile
+yarn install
 yarn start
 ```
 
 
 # Build Grafana back-end
-
-```
-cat /proc/sys/fs/inotify/max_user_watches # default is 8192 
-sudo sysctl fs.inotify.max_user_watches=1048576 # increase to 1048576
-```
 
 ```
 sudo su -l grafana
