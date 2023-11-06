@@ -58,6 +58,11 @@ Load new profile
 
 ## Build Node.js 
 
+node.js (includes NPM)
+
+- **unfortunatly, the make step here will take many hours (a whole day)**
+  - installing node.js some other way maybe possible yet comes with other issues (e.g. the official debian build is out-dated, likely incompatible and has security vulnerabilities)
+
 Login as grafana user:
 ```
 sudo su -l grafana
