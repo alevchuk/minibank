@@ -63,7 +63,7 @@ Login as grafana user:
 sudo su -l grafana
 git clone https://github.com/nodejs/node.git ~/src/node
 cd ~/src/node
-git checkout $(git tag | grep v12 | sort -V | tail -n1)
+git checkout $(git tag | grep v20 | sort -V | tail -n1)
 
 cd ~/src/node && make clean && ./configure --prefix $HOME/bin && make && make install
 ```
