@@ -95,7 +95,8 @@ v=$(git tag | grep v9 | sort -V | tail -n1)
 echo $v
 git checkout $v
 
-yarn install   # this will take ~15 minutes
+yarn install --immutable   # this will take ~15 minutes
+yarn start   # this will build front-end assets
 ```
 
 
