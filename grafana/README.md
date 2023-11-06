@@ -91,7 +91,7 @@ git clone https://github.com/grafana/grafana.git ~/src/grafana
 ```
 cd ~/src/grafana
 
-v=$(git tag | grep v7 | sort -V | tail -n1)
+v=$(git tag | grep v9 | sort -V | tail -n1)
 echo $v
 git checkout $v
 
