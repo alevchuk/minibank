@@ -66,6 +66,9 @@ node.js (includes NPM)
 Login as grafana user:
 ```
 sudo su -l grafana
+
+rm -rf /mnt/btrfs/grafana/bin/lib/node_modules  # clear previous install
+
 git clone https://github.com/nodejs/node.git ~/src/node
 cd ~/src/node
 git checkout $(git tag | grep v20 | sort -V | tail -n1)
