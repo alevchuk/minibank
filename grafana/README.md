@@ -71,7 +71,7 @@ rm -rf /mnt/btrfs/grafana/bin/lib/node_modules  # clear previous install
 
 git clone https://github.com/nodejs/node.git ~/src/node
 cd ~/src/node
-git checkout $(git tag | grep v20 | sort -V | tail -n1)
+git checkout $(git tag | grep v21 | sort -V | tail -n1)
 
 cd ~/src/node && make clean && ./configure --prefix $HOME/bin && make && make install
 ```
