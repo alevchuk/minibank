@@ -84,6 +84,7 @@ sudo su -l grafana
 npm was installed as part of Node.js so you can just do this
 ```
 npm install -g yarn
+yarn set version stable
 ```
 
 # Install grafana
