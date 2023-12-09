@@ -48,7 +48,7 @@ total 4
 -rw------- 1 bitcoin bitcoinclients   75 Dec 9  14:14   cookie
 ```
 
-To let other accounts such as LND and Electrs access to the cookie a startupnotify paramters is configured in bitcoin config, so after bitcoin runs for a while (look for "init message: Done loading" in bitcoin logs) the permission will look like this:
+To let other accounts such as LND and Electrs access to the cookie, a startupnotify paramters is configured in bitcoin config, so after bitcoin runs for a while (look for "init message: Done loading" in bitcoin logs) the permission will look like this:
 ```
 ls -l bitcoinclients/
 total 4
