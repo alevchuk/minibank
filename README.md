@@ -504,13 +504,7 @@ Log-in as bitcoin
 sudo su -l bitcoin
 ```
 
-Make directories
-```
-cd ~
-mkdir bitcoinclients
-chmod u=rwx,g=rx,o= /home/bitcoin/bitcoinclients
-chgrp bitcoinclients bitcoinclients
-```
+Note: bitcoinclients direcetory was created when bitcoin was built https://github.com/alevchuk/minibank/tree/first/bitcoin#bitcoin-cookie
 
 Edit `~/.bitcoin/bitcoin.conf`
 ```
