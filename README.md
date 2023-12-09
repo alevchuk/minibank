@@ -504,10 +504,17 @@ Log-in as bitcoin
 sudo su -l bitcoin
 ```
 
+Make directories
+```
+cd ~
+mkdir bitcoinclients
+chmod u=rwx,g=rx,o= /home/bitcoin/bitcoinclients
+chgrp bitcoinclients bitcoinclients
+```
+
 Edit `~/.bitcoin/bitcoin.conf`
 ```
 server=1
-deamon=0
 disablewallet=0
 
 # Bind to given address to listen for JSON-RPC connections. Use [host]:port notation for IPv6.
@@ -524,6 +531,8 @@ rpcbind=127.0.0.1:8332
 rpcallowip=127.0.0.1
 
 rpccookiefile=/home/bitcoin/bitcoinclients/cookie
+startupnotify=chmod g+r /home/bitcoin/bitcoinclients/cookie
+
 
 
 # Listen for RPC connections on this TCP port:
