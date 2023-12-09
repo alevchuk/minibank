@@ -32,9 +32,7 @@ Make shared directory for bitcoin clients (e.g. LND) to be able to read the `.co
 ```
 sudo groupadd bitcoinclients
 sudo mkdir /home/bitcoin/bitcoinclients
-sudo chmod o=,g=rx,u=rwx /home/bitcoin/bitcoinclients  # others nothing, group read, bitcoin read+write
-sudo chmod +s /home/bitcoin/bitcoinclients  # in case subdirectories are made, caryover the permissions
-sudo chown bitcoin /home/bitcoin/bitcoinclients
+sudo chmod u=rwx,g=rx,o= /home/bitcoin/bitcoinclients  # others nothing, group read, bitcoin read+write
 sudo chgrp bitcoinclients /home/bitcoin/bitcoinclients
 ```
 
@@ -45,26 +43,7 @@ total 8
 -rw------- 1 bitcoin bitcoinclients   75 Jun  2 14:14 cookie
 ```
 
-To let other account such as LND and Electrs access to the cookie, the workaround is to make a cron job so that the permission changes to this:
-
-```
-ls -l bitcoinclients/
-total 8
--rw-r----- 1 bitcoin bitcoinclients   75 Jun  2 14:14 cookie
-```
-
-To get that, run:
-```
-sudo su -l bitcoin
-crontab -e
-```
-and add the following line on the bottom:
-```
-* *  * * * chmod g+r /home/bitcoin/bitcoinclients/cookie
-```
-
-This will make the file accessible to members of `bitcoinclients` group within 1 minute of `bitcoind` writing the file (it writes it during `bitcoind` startup).
-
+To let other accounts such as LND and Electrs access to the cookie a startupnotify paramters is configured in bitcoin config.
 
 # Install needed packages
 ```
