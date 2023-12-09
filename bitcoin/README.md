@@ -32,8 +32,8 @@ Make shared directory for bitcoin clients (e.g. LND) to be able to read the `.co
 ```
 sudo groupadd bitcoinclients
 sudo mkdir                /home/bitcoin/bitcoinclients
-sudo chmod u=rwx,g=rx,o=  /home/bitcoin/bitcoinclients  # bitcoin user gets read+write+list permission, the group gets read+list permission, others get nothing
-sudo chmod +s /home/bitcoin/bitcoinclients # the "s" setuid bit on the direcetory makes any new files created in the directory inherit the group of the directory, we want this so that the cookie file has the bitcoinclients group
+sudo chmod u=rwx,g=rx,o=  /home/bitcoin/bitcoinclients # bitcoin user gets read+write+list permission, the group gets read+list permission, others get nothing
+sudo chmod +s             /home/bitcoin/bitcoinclients # the "s" setuid bit on the direcetory makes any new files created in the directory inherit the group of the directory, we want this so that the cookie file has the bitcoinclients group
 sudo chown bitcoin        /home/bitcoin/bitcoinclients
 sudo chgrp bitcoinclients /home/bitcoin/bitcoinclients
 ```
