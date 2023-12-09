@@ -31,6 +31,7 @@ Make shared directory for bitcoin clients (e.g. LND) to be able to read the `.co
 
 ```
 sudo groupadd bitcoinclients
+sudo /usr/sbin/adduser bitcoin bitcoinclients  # bitcoin user needs to be part of the group so it can change the group of the cookie file that it creates
 sudo mkdir                /home/bitcoin/bitcoinclients
 sudo chmod u=rwx,g=rx,o=  /home/bitcoin/bitcoinclients  # bitcoin user gets read+write+list permission, group gets read+list permission, others get nothing
 sudo chown bitcoin        /home/bitcoin/bitcoinclients
