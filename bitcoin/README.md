@@ -32,7 +32,7 @@ Make shared directory for bitcoin clients (e.g. LND) to be able to read the `.co
 ```
 sudo groupadd bitcoinclients
 sudo mkdir                /home/bitcoin/bitcoinclients
-sudo chmod u=rwx,g=rx,o=  /home/bitcoin/bitcoinclients  # others nothing, group read, bitcoin read+write
+sudo chmod u=rwx,g=rx,o=  /home/bitcoin/bitcoinclients  # bitcoin read+write+list, group read+list, others nothing
 sudo chown bitcoin        /home/bitcoin/bitcoinclients
 sudo chgrp bitcoinclients /home/bitcoin/bitcoinclients
 ```
