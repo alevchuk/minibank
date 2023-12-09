@@ -44,15 +44,15 @@ ls -ld bitcoinclients/
 drwsr-x--- 2 bitcoin bitcoinclients 4096 Dec 9 15:29    bitcoinclients/
 
 ls -l bitcoinclients/
-total 8
+total 4
 -rw------- 1 bitcoin bitcoinclients   75 Dec 9  14:14   cookie
 ```
 
 To let other accounts such as LND and Electrs access to the cookie a startupnotify paramters is configured in bitcoin config, so after bitcoin runs for a while (look for "init message: Done loading" in bitcoin logs) the permission will look like this:
 ```
 ls -l bitcoinclients/
-total 8
-rw-r----- 1 bitcoin bitcoinclients          75 Dec 9  14:14 cookie
+total 4
+-rw-r----- 1 bitcoin bitcoinclients   75 Dec 9  14:14   cookie
 ```
 
 # Install needed packages
