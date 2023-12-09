@@ -38,7 +38,7 @@ sudo chown bitcoin        /home/bitcoin/bitcoinclients
 sudo chgrp bitcoinclients /home/bitcoin/bitcoinclients
 ```
 
-When bitcoin starts it will make the cookies files restricted to only bitcoin user:
+Soon after bitcoin starts it will make the cookies files restricted to only bitcoin user:
 ```
 ls -ld bitcoinclients/
 drwsr-x--- 2 bitcoin bitcoinclients 4096 Dec  9 15:29 bitcoinclients/
@@ -48,7 +48,7 @@ total 8
 -rw------- 1 bitcoin bitcoinclients          75 Dec 9  14:14 cookie
 ```
 
-To let other accounts such as LND and Electrs access to the cookie a startupnotify paramters is configured in bitcoin config, so after bitcoin starts the permission will look like this:
+To let other accounts such as LND and Electrs access to the cookie a startupnotify paramters is configured in bitcoin config, so after bitcoin runs for a while are ready to serve RPC requests the permission will look like this:
 ```
 ls -l bitcoinclients/
 total 8
