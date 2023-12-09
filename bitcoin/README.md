@@ -32,7 +32,7 @@ Make shared directory for bitcoin clients (e.g. LND) to be able to read the `.co
 ```
 sudo groupadd bitcoinclients
 sudo mkdir                /home/bitcoin/bitcoinclients
-sudo chmod u=rwx,g=rx,o=  /home/bitcoin/bitcoinclients  # bitcoin read+write+list, group read+list, others nothing
+sudo chmod u=srwx,g=rx,o=  /home/bitcoin/bitcoinclients  # bitcoin user gets read+write+list ("s" is to keep the bitcoinclients group on any new files created in the directory), group gets read+list premission, others get nothing
 sudo chown bitcoin        /home/bitcoin/bitcoinclients
 sudo chgrp bitcoinclients /home/bitcoin/bitcoinclients
 ```
@@ -44,7 +44,10 @@ total 8
 -rw------- 1 bitcoin bitcoinclients   75 Jun  2 14:14 cookie
 ```
 
-To let other accounts such as LND and Electrs access to the cookie a startupnotify paramters is configured in bitcoin config.
+To let other accounts such as LND and Electrs access to the cookie a startupnotify paramters is configured in bitcoin config, so after bitcoin starts the permission will look like this:
+```
+
+```
 
 # Install needed packages
 ```
