@@ -112,6 +112,7 @@ Raspberry Pi comes with a lot of extras that we probably don't want running (exp
 ```
 sudo systemctl disable bluetooth.service
 sudo systemctl disable avahi-daemon.service
+sudo systemctl disable dphys-swapfile.service
 ```
 
 ## Network
