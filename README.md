@@ -1057,6 +1057,55 @@ Run node_exporter
 ${GOPATH-$HOME/go}/src/github.com/prometheus/node_exporter/node_exporter --no-collector.mdadm --no-collector.infiniband
 ```
 
+Once confimed that node_exporter start up, kill it (by pressing `Ctrl-c`) and configure systemd:
+```
+sudo vi /etc/systemd/system/minibank-mon.service
+```
+
+Press "i" and paste:
+```
+[Unit]
+Description=Minibank Node Exporter for Prometheus monitoring
+After=mnt-btrfs.mount
+
+[Service]
+ExecStart=/home/monitoring/gocode/src/github.com/prometheus/node_exporter/node_exporter
+User=monitoring
+Group=monitoring
+ExecReload=/bin/true
+KillMode=process
+Restart=on-failure
+RestartPreventExitStatus=255
+Type=simple
+RuntimeDirectory=minibank-mon
+RuntimeDirectoryMode=0755
+
+[Install]
+WantedBy=default.target
+```
+type ":wq" to save and quit out of Vim
+
+Test starting and stopping:
+```
+sudo systemctl start minibank-mon.service
+sudo systemctl status minibank-mon.service
+
+sudo systemctl stop minibank-mon.service
+sudo systemctl status minibank-mon.service
+```
+
+Configure to start at boot time:
+```
+sudo systemctl enable minibank-mon.service
+```
+
+Test:
+```
+sudo reboot
+# after system comes back:
+sudo systemctl status minibank-mon.service
+```
+
 ### Prometheus
 
 Requierments
