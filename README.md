@@ -12,6 +12,7 @@ Table of contents
   * [Hardware](#hardware)
   * [Operating System](#operating-system)
   * [Heat](#heat)
+  * [Remove Extras](#remove-extras)
   * [Network](#network)
   * [Storage](#storage)
   * [Software](#software)
@@ -104,6 +105,14 @@ while :; do /opt/vc/bin/vcgencmd measure_temp; sleep 1; done
 ```
 
 Anything bellow 70C is good. The throttling [kicks in at 80 C](https://www.theregister.co.uk/2019/07/22/raspberry_pi_4_too_hot_to_handle/).
+
+## Remove Extras
+
+Raspberry Pi comes with a lot of extras that we probably don't want running (exposing greater surface area to security issues, slowing down boot, pollution logs) so let's remove them like this:
+```
+sudo systemctl disable bluetooth.service
+sudo systemctl disable avahi-daemon.service
+```
 
 ## Network
 
