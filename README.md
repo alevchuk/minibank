@@ -461,16 +461,41 @@ sudo btrfs fi label /mnt/btrfs minibank4
 
 ```
 
-Add it to fstab:
+Add it to systemd (in the past we used fstab):
 ```
-sudo su -l
-echo -e "LABEL=minibank4\t/mnt/btrfs\tbtrfs\tnoauto\t0\t0" >> /etc/fstab
+sudo vi /dev/disk/by-label/minibank4
 ```
+
+Paste:
+```
+[Unit]
+Description=Minibank Directory (/mnt/btrfs)
+DefaultDependencies=no
+Conflicts=umount.target
+After=network.target
+
+[Mount]
+What=/dev/disk/by-label/minibank4
+Where=/mnt/btrfs
+Type=btrfs
+Options=defaults
+
+[Install]
+WantedBy=multi-user.target
+```
+and type ":wq" to save and quit vim
+
+
 
 Now you can mount it like this (even if block device names change):
 ```
-sudo umount /mnt/btrfs
-sudo mount /mnt/btrfs
+sudo systemctl stop mnt-btrfs.mount
+sudo systemctl start mnt-btrfs.mount
+```
+
+To have the mount during boot time:
+```
+sudo systemctl enable mnt-btrfs.mount
 ```
 
 
