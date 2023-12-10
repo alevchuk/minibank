@@ -113,7 +113,24 @@ Raspberry Pi comes with a lot of extras that we probably don't want running (exp
 sudo systemctl disable bluetooth.service
 sudo systemctl disable avahi-daemon.service
 sudo systemctl disable dphys-swapfile.service
+sudo apt-get purge bluez -y
+sudo apt-get autoremove -y
 ```
+
+```
+sudo vi /boot/config.txt
+```
+1. press "G" to go to the end of file
+2. press "A" and Enter to start typing
+3. add the following
+
+```
+# Disable Bluetooth
+dtoverlay=disable-bt
+```
+
+
+
 
 ## Network
 
