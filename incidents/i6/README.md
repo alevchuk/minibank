@@ -54,5 +54,23 @@ Dec 17, 2024
 [422916.776310]  ret_from_fork+0x10/0x20
 ```
 
-Did: `sudo reboot` host did not come back right away but eventually did. I checked by running `ssh` in 30 minutes and got in, `dmesg` was clear.
+Did: `sudo reboot` host did not come back right away but eventually did. In 30 minutes I check by running `ssh`  and get in, `dmesg` is:
+
+```
+[   10.870088] Btrfs loaded, crc32c=crc32c-generic, zoned=no, fsverity=no
+[   10.879567] BTRFS: device label minibank4 devid 4 transid 3292839 /dev/sda scanned by systemd-udevd (196)
+[   10.887566] BTRFS: device label minibank4 devid 3 transid 3292839 /dev/sdb scanned by systemd-udevd (210)
+[   11.313771] BTRFS info (device sdb): using crc32c (crc32c-generic) checksum algorithm
+[   11.313842] BTRFS info (device sdb): disk space caching is enabled
+[   11.501063] bcmgenet fd580000.ethernet: configuring instance for external RGMII (RX delay)
+[   11.502942] bcmgenet fd580000.ethernet eth0: Link is Down
+[   11.939697] BTRFS info (device sdb): start tree-log replay
+[   13.028106] BTRFS info (device sdb): the free space cache file (6422575185920) is invalid, skip it
+[   13.405551] BTRFS warning (device sdb): block group 6380699254784 has wrong amount of free space
+[   13.405577] BTRFS warning (device sdb): failed to load free space cache for block group 6380699254784, rebuildin
+g it now
+[   15.118745] BTRFS info (device sdb): checking UUID tree
+[   15.588241] bcmgenet fd580000.ethernet eth0: Link is Up - 1Gbps/Full - flow control rx/tx
+[   15.588284] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+```
 
