@@ -74,3 +74,17 @@ g it now
 [   15.588284] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
 ```
 
+No btrfs error recorded:
+```
+sudo btrfs dev stats -z /mnt/btrfs/
+[/dev/sdb].write_io_errs    0
+[/dev/sdb].read_io_errs     0
+[/dev/sdb].flush_io_errs    0
+[/dev/sdb].corruption_errs  0
+[/dev/sdb].generation_errs  0
+[/dev/sda].write_io_errs    0
+[/dev/sda].read_io_errs     0
+[/dev/sda].flush_io_errs    0
+[/dev/sda].corruption_errs  0
+[/dev/sda].generation_errs  0
+```
