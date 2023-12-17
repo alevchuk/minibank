@@ -54,4 +54,5 @@ Dec 17, 2024
 [422916.776310]  ret_from_fork+0x10/0x20
 ```
 
-Did: `sudo reboot`
+Did: `sudo reboot` host did not come back.
+
