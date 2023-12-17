@@ -54,5 +54,5 @@ Dec 17, 2024
 [422916.776310]  ret_from_fork+0x10/0x20
 ```
 
-Did: `sudo reboot` host did not come back.
+Did: `sudo reboot` host did not come back right away but eventually did. I checked by running `ssh` in 30 minutes and got in, `dmesg` was clear.
 
