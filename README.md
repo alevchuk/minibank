@@ -113,6 +113,11 @@ Raspberry Pi comes with a lot of extras that we probably don't want running (exp
 sudo systemctl disable bluetooth.service
 sudo systemctl disable avahi-daemon.service
 sudo systemctl disable dphys-swapfile.service
+sudo systemctl disable wpa_supplicant.service  # if your not using Wi-Fi
+sudo systemctl disable triggerhappy.service
+
+# NOTE: the services will keep running until you do sudo systemctl stop or shutdown/reboot the pi
+
 sudo apt-get purge bluez -y
 sudo apt-get autoremove -y
 ```
