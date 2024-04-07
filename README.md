@@ -115,6 +115,7 @@ sudo systemctl disable avahi-daemon.service
 sudo systemctl disable dphys-swapfile.service
 sudo systemctl disable wpa_supplicant.service  # if your not using Wi-Fi
 sudo systemctl disable triggerhappy.service
+sudo systemctl disable triggerhappy.socket
 
 # NOTE: the services will keep running until you do sudo systemctl stop or shutdown/reboot the pi
 
