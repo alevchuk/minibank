@@ -84,7 +84,9 @@ sudo su -l lightning
 cd ~/src
 git clone https://github.com/lightningnetwork/lnd
 cd lnd
-git checkout $(git tag | grep v0.16.*-beta$ | sort -V | tail -n1)  # checkout latest minor version
+git checkout $(git tag | grep v0.18.*-beta$ | sort -V | tail -n1)  # checkout latest minor version
 
 (cd ~/src/lnd && make clean && make install)
 ```
+
+As of 2024-12 the latest release is v0.18, for latest releases you can check at https://github.com/lightningnetwork/lnd/releases
