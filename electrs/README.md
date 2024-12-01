@@ -1,61 +1,43 @@
 ## Build Electrs
 
 
-This manual documents how to build and run Electrs on Pi 4. We're going to run it in a 64-bit environment while Pi base operating system Rasbian is 32-bit. Fortunately Pi 4 hardware is 64-bit.
+This manual documents how to build and run Electrs on Pi 4.
 
 Prerequisites:
- * Boot Pi in [64-bit mode](https://medium.com/for-linux-users/how-to-make-your-raspberry-pi-4-faster-with-a-64-bit-kernel-77028c47d653) 
+ * 64-bit OS and hardware
  * Login in as unix account that has sudo
 
 
-## Chroot for 64-bit environment
-
+# User
 ```
-sudo adduser --disabled-password electrs
-sudo apt install -y debootstrap schroot
-
-cat << EOF | sudo tee /etc/schroot/chroot.d/electrs64
-[electrs64]
-description=builds that need 64-bit environment
-type=directory
-directory=/mnt/btrfs/electrs64
-users=electrs
-root-groups=root
-profile=desktop
-personality=linux
-preserve-environment=true
-EOF
-
-sudo debootstrap --arch arm64 bookworm /mnt/btrfs/electrs64
-
-sudo schroot -c electrs64 -- apt update
-sudo schroot -c electrs64 -- apt upgrade -y
+sudo adduser --disabled-password electrs  # hold Enter to answer all questions as default/yes
 ```
+
+# Directories
 
 Make directories inside the data mount point:
 ```
-sudo mkdir /mnt/btrfs/electrs64/mnt/btrfs
-sudo mkdir /mnt/btrfs/electrs64/mnt/btrfs/electrs
-sudo mkdir /mnt/btrfs/electrs64/mnt/btrfs/electrs/src
-sudo mkdir /mnt/btrfs/electrs64/mnt/btrfs/electrs/bin
+sudo mkdir /mnt/btrfs
+sudo mkdir /mnt/btrfs/electrs
+sudo mkdir /mnt/btrfs/electrs/src
+sudo mkdir /mnt/btrfs/electrs/bin
 
-sudo chown -R electrs /mnt/btrfs/electrs64/mnt/btrfs/electrs
+sudo chown -R electrs /mnt/btrfs/electrs
 ```
 
 
 
 # Install needed packages
 ```
-sudo schroot -c electrs64 -- apt install -y git clang cmake build-essential curl
+sudo apt install -y git clang cmake build-essential curl
 ```
 
 
 # Setup, git clone, and build
 
-Login as electrs user and drop into 64-bin environment:
+Login as electrs user:
 ```
 sudo su -l electrs
-schroot -c electrs64
 ```
 
 Make symlinks back to data mount point
@@ -71,10 +53,9 @@ echo 'export PATH=$HOME/bin:$PATH  # electrs is here' >> ~/.bashrc
 Login as electrs user and drop into 64-bin environment:
 ```
 sudo su -l electrs
-schroot -c electrs64
 ```
 
-While logged in as electrs schroot:
+While logged in as electrs user:
 ```
 cd src/
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > rustup.sh
@@ -92,10 +73,9 @@ ln -s ~/src/dot-cargo ~/.cargo
 
 ## Build electrs
 
-Login as electrs user and drop into 64-bin environment:
+Login as electrs user:
 ```
 sudo su -l electrs
-schroot -c electrs64
 ```
 
 While logged in as electrs schroot:
