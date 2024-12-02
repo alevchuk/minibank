@@ -41,10 +41,10 @@ git clone https://go.googlesource.com/go ~/src/go
 cd ~/src/go
 git fetch
 
-git checkout $(git tag | grep go1.19.[0-9]*$ | sort -V | tail -n1) # checkout latest minor version
+git checkout $(git tag | grep go1.22.[0-9]*$ | sort -V | tail -n1) # checkout latest minor version
 
 ```
-As of 2024-12 min version is 1.19, you can check it here https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#installing-go
+As of 2024-12 min version is 1.22, you can check it here https://github.com/lightningnetwork/lnd/blob/master/docs/INSTALL.md#installing-go
 
 5. Build new go
 ```
