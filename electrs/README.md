@@ -20,7 +20,9 @@ Make directories inside the data mount point:
 sudo mkdir /mnt/btrfs
 sudo mkdir /mnt/btrfs/electrs
 sudo mkdir /mnt/btrfs/electrs/src
+sudo mkdir /mnt/btrfs/electrs/src/dot-electrs
 sudo mkdir /mnt/btrfs/electrs/bin
+
 
 sudo chown -R electrs /mnt/btrfs/electrs
 ```
@@ -90,6 +92,12 @@ cp target/release/electrs ~/bin/
 
 
 # Configure
+
+```
+ln -s ~/src/dot-electrs  ~/.electrs
+```
+
+then follow
 
 https://github.com/romanz/electrs/blob/master/doc/config.md
 
