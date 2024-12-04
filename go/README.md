@@ -32,6 +32,7 @@ Set bootstrap path
 ```
 export GOROOT_BOOTSTRAP="$(ls -1d /usr/lib/go-* | tail -n1)"
 export GOROOT=~/src/go
+export GOPATH=~/gocode
 ```
 
 4. Fetch go1.20 source code
@@ -45,7 +46,6 @@ git checkout $(git tag | grep go1.20.[0-9]*$ | sort -V | tail -n1) # checkout la
 
 5. Build
 ```
-. ~/.profile
 cd $GOROOT/src
 ./make.bash
 ```
@@ -62,6 +62,7 @@ cp -r $GOROOT ~/tmp/go1.20
 ```
 export GOROOT_BOOTSTRAP="$HOME/tmp/go1.20"
 export GOROOT=~/src/go
+export GOPATH=~/gocode
 ```
 
 8. Fetch go1.20 source code
@@ -74,7 +75,6 @@ git checkout $(git tag | grep go1.22.[0-9]*$ | sort -V | tail -n1) # checkout la
 
 9. Finally, build the modern go
 ```
-. ~/.profile
 cd $GOROOT/src
 ./make.bash
 ```
