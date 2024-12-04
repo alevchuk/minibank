@@ -55,7 +55,7 @@ At the end it should say "Installed commands in $GOROOT/bin"
 6. Copy go to a tmp directory
 ```
 mkdir -p ~/tmp/go1.17
-cp -r $GOROOT ~/tmp/go1.17
+cp -r $GOROOT ~/tmp/go1.17/
 ```
 
 7. Set bootstrap path
@@ -84,7 +84,7 @@ At the end it should say "Installed commands in $GOROOT/bin"
 10. Copy go to a tmp directory
 ```
 mkdir -p ~/tmp/go1.20
-cp -r $GOROOT ~/tmp/go1.20
+cp -r $GOROOT ~/tmp/go1.20/
 ```
 
 11. Set bootstrap path
