@@ -43,7 +43,7 @@ git fetch
 git checkout $(git tag | grep go1.20.[0-9]*$ | sort -V | tail -n1) # checkout latest minor version
 ```
 
-5. Build new go
+5. Build
 ```
 . ~/.profile
 cd $GOROOT/src
@@ -72,7 +72,7 @@ git fetch
 git checkout $(git tag | grep go1.22.[0-9]*$ | sort -V | tail -n1) # checkout latest minor version
 ```
 
-9. Build new go
+9. Finally, build the modern go
 ```
 . ~/.profile
 cd $GOROOT/src
