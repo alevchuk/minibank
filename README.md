@@ -189,11 +189,7 @@ sudo vi /etc/iptables/rules.v6
 COMMIT
 ```
 
-
-7. Reboot:
-```
-sudo reboot
-```
+7. Critical section
 
 -- start of critical section (this section contains the step of connecting to the network, complete until the end of critical section or remove from network before rebooting) ---
 
