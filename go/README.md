@@ -95,12 +95,12 @@ export GOROOT=~/src/go
 export GOPATH=~/gocode
 ```
 
-12. Fetch go1.20 source code
+12. Fetch go1.23 source code
 ```
 cd ~/src/go
 git fetch
 
-git checkout $(git tag | grep go1.22.[0-9]*$ | sort -V | tail -n1) # checkout latest minor version
+git checkout $(git tag | grep go1.23.[0-9]*$ | sort -V | tail -n1) # checkout latest minor version
 ```
 
 13. Finally, build the modern go
